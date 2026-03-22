@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vinyl BPM + Key Helper v1.0.9</title>
+  <title>Vinyl BPM + Key Helper v1.0.10</title>
   <style>
     :root {
       --bg: #0b0d14;
@@ -402,11 +402,17 @@
       margin: 0;
       transform: translateX(-50%);
       opacity: 0;
-      cursor: pointer;
-      appearance: slider-vertical;
-      -webkit-appearance: slider-vertical;
+      appearance: none;
+      -webkit-appearance: none;
       writing-mode: bt-lr;
-      z-index: 4;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    body.dragging-fader,
+    html.dragging-fader {
+      overflow: hidden;
+      overscroll-behavior: none;
       touch-action: none;
     }
 
@@ -610,7 +616,7 @@
 <body>
   <div class="app">
     <div class="title-wrap">
-      <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.9</span></h1>
+      <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.10</span></h1>
       <p class="subtitle">Turntable-style pitch simulation from -16% to +16%. Enter a BPM and key, then use the fader to see the new BPM, pitch shift, shifted key result, and tracks that can match within ±5%.</p>
     </div>
 
@@ -922,8 +928,14 @@
 
     let draggingFader = false;
 
+    function setDraggingState(isDragging) {
+      draggingFader = isDragging;
+      document.body.classList.toggle('dragging-fader', isDragging);
+      document.documentElement.classList.toggle('dragging-fader', isDragging);
+    }
+
     function startFaderDrag(clientY) {
-      draggingFader = true;
+      setDraggingState(true);
       setPitchFromClientY(clientY);
     }
 
@@ -933,16 +945,13 @@
     }
 
     function endFaderDrag() {
-      draggingFader = false;
+      setDraggingState(false);
     }
 
-    faderSlot.addEventListener('touchstart', (event) => {
-      event.preventDefault();
-    }, { passive: false });
-
-    faderSlot.addEventListener('touchmove', (event) => {
-      event.preventDefault();
-    }, { passive: false });
+    function getTouchY(event) {
+      const touch = event.touches?.[0] || event.changedTouches?.[0];
+      return touch ? touch.clientY : null;
+    }
 
     fillSelects();
     buildTicks();
@@ -953,20 +962,44 @@
     regularSelect.addEventListener('change', () => syncSelects('regular'));
     camelotSelect.addEventListener('change', () => syncSelects('camelot'));
     bpmInput.addEventListener('input', update);
-    pitchSlider.addEventListener('input', update);
-    pitchSlider.addEventListener('change', update);
 
     faderSlot.addEventListener('pointerdown', (event) => {
       event.preventDefault();
       faderSlot.setPointerCapture?.(event.pointerId);
       startFaderDrag(event.clientY);
     });
-    faderSlot.addEventListener('pointermove', (event) => {
+
+    window.addEventListener('pointermove', (event) => {
+      if (!draggingFader) return;
+      event.preventDefault();
       moveFaderDrag(event.clientY);
     });
-    faderSlot.addEventListener('pointerup', () => endFaderDrag());
-    faderSlot.addEventListener('pointercancel', () => endFaderDrag());
-    faderSlot.addEventListener('lostpointercapture', () => endFaderDrag());
+
+    window.addEventListener('pointerup', () => endFaderDrag());
+    window.addEventListener('pointercancel', () => endFaderDrag());
+
+    faderSlot.addEventListener('touchstart', (event) => {
+      const y = getTouchY(event);
+      if (y === null) return;
+      event.preventDefault();
+      startFaderDrag(y);
+    }, { passive: false });
+
+    window.addEventListener('touchmove', (event) => {
+      if (!draggingFader) return;
+      const y = getTouchY(event);
+      if (y === null) return;
+      event.preventDefault();
+      moveFaderDrag(y);
+    }, { passive: false });
+
+    window.addEventListener('touchend', (event) => {
+      if (!draggingFader) return;
+      event.preventDefault();
+      endFaderDrag();
+    }, { passive: false });
+
+    window.addEventListener('touchcancel', () => endFaderDrag(), { passive: true });
     window.addEventListener('resize', update);
   </script>
 </body>
