@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vinyl BPM + Key Helper v1.0.11</title>
+  <title>Vinyl BPM + Key Helper v1.0.12</title>
   <style>
     :root {
       --bg: #0b0d14;
@@ -240,8 +240,8 @@
     .display-box {
       border-radius: 18px;
       padding: 14px 14px 12px;
-      min-height: 118px;
-      height: 118px;
+      min-height: 122px;
+      height: 122px;
       background:
         linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.01)),
         linear-gradient(180deg, #121824, #0b111a);
@@ -259,23 +259,32 @@
     }
 
     .display-box .big {
-      font-size: clamp(1.3rem, 1.8vw, 1.8rem);
+      font-size: clamp(1.18rem, 1.6vw, 1.6rem);
       font-weight: 800;
-      line-height: 1.1;
+      line-height: 1.05;
+      height: 2.2em;
       min-height: 2.2em;
       display: flex;
       align-items: center;
       justify-content: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .display-box .sub {
       margin-top: 7px;
       color: var(--muted);
-      font-size: 0.72rem;
-      line-height: 1.18;
-      min-height: 2.36em;
-      max-height: 2.36em;
+      font-size: 0.67rem;
+      line-height: 1.12;
+      height: 2.24em;
+      min-height: 2.24em;
+      max-height: 2.24em;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
     .pitch-panel {
@@ -505,10 +514,14 @@
     }
 
     .result-box .big {
-      font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+      font-size: clamp(1.02rem, 1.55vw, 1.42rem);
       font-weight: 800;
-      line-height: 1.15;
+      line-height: 1.12;
       word-break: break-word;
+      min-height: 2.35em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .result-box .sub {
@@ -548,16 +561,17 @@
         linear-gradient(180deg, #141b27, #0b1119);
       border: 1px solid rgba(255,255,255,0.08);
       display: grid;
-      grid-template-rows: auto 3.54em auto;
+      grid-template-rows: auto 2.4em auto;
       align-items: start;
     }
 
     .match-line {
-      font-size: 0.68rem;
-      line-height: 1.18;
+      font-size: 0.62rem;
+      line-height: 1.15;
       color: var(--muted);
-      min-height: 3.54em;
-      max-height: 3.54em;
+      height: 2.4em;
+      min-height: 2.4em;
+      max-height: 2.4em;
       overflow: hidden;
     }
 
@@ -567,20 +581,25 @@
       gap: 8px;
       margin-top: 10px;
       align-items: stretch;
+      grid-auto-rows: 1fr;
     }
 
     .chip {
       display: inline-flex;
       align-items: center;
+      justify-content: flex-start;
       gap: 8px;
       border-radius: 999px;
       padding: 8px 10px;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       min-height: 42px;
       width: 100%;
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.08);
       color: #e8edff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .formula {
@@ -596,10 +615,13 @@
 
     .combined-result .big {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       justify-content: center;
       gap: 8px 10px;
       align-items: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .combined-result .separator {
@@ -611,6 +633,12 @@
       display: grid;
       grid-template-rows: auto auto;
       align-items: start;
+    }
+
+    .target-readout .result-grid,
+    .target-readout .result-box,
+    .target-readout .match-box {
+      width: 100%;
     }
 
     @media (max-width: 1020px) {
@@ -640,7 +668,7 @@
 <body>
   <div class="app">
     <div class="title-wrap">
-      <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.11</span></h1>
+      <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.12</span></h1>
       <p class="subtitle">Turntable-style pitch simulation from -16% to +16%. Enter a BPM and key, then use the fader to see the new BPM, pitch shift, shifted key result, and tracks that can match within ±5%.</p>
     </div>
 
@@ -912,16 +940,16 @@
 
       document.getElementById('pitchDisplay').textContent = `${pct >= 0 ? '+' : ''}${pct}%`;
       document.getElementById('newBpm').textContent = newBpm.toFixed(2);
-      document.getElementById('newBpmSub').textContent = `Original ${bpm.toFixed(2)} × ${multiplier.toFixed(4)}`;
+      document.getElementById('newBpmSub').textContent = `Orig ${bpm.toFixed(2)} × ${multiplier.toFixed(4)}`;
       document.getElementById('semiShift').textContent = `${semitoneShift >= 0 ? '+' : ''}${semitoneShift.toFixed(2)} semitones`;
-      document.getElementById('centsShift').textContent = `Nearest semitone ${nearestSemitone >= 0 ? '+' : ''}${nearestSemitone}, offset ${cents >= 0 ? '+' : ''}${cents.toFixed(0)} cents`;
+      document.getElementById('centsShift').textContent = `Nearest ${nearestSemitone >= 0 ? '+' : ''}${nearestSemitone} st · ${cents >= 0 ? '+' : ''}${cents.toFixed(0)} cents`;
 
       document.getElementById('sourceDisplayKey').textContent = selected.camelot;
       document.getElementById('sourceDisplayRegular').textContent = selected.regular;
 
       document.getElementById('newRegular').textContent = newKey.regular;
       document.getElementById('newCamelot').textContent = newKey.camelot;
-      document.getElementById('combinedKeyDetail').textContent = `${selected.regular} / ${selected.camelot} shifted by ${nearestSemitone >= 0 ? '+' : ''}${nearestSemitone} nearest semitones.`;
+      document.getElementById('combinedKeyDetail').textContent = `From ${selected.camelot} ${selected.regular} · nearest ${nearestSemitone >= 0 ? '+' : ''}${nearestSemitone} st`;
       const targetColor = getCamelotColor(newKey.camelot);
       const camelotDot = document.getElementById('camelotDot');
       camelotDot.style.color = targetColor;
@@ -940,7 +968,7 @@
 
       const minMatch = newBpm / 1.05;
       const maxMatch = newBpm / 0.95;
-      document.getElementById('matchLine').textContent = `To hit ${newBpm.toFixed(2)} BPM, look for tracks from ${minMatch.toFixed(2)} to ${maxMatch.toFixed(2)} BPM that can be pitched within ±5%.`;
+      document.getElementById('matchLine').textContent = `Hit ${newBpm.toFixed(2)} BPM: search ${minMatch.toFixed(2)}–${maxMatch.toFixed(2)} BPM tracks within ±5%.`;
       document.getElementById('matchChips').innerHTML = [
         chipHTML(same, 'Same key'),
         chipHTML(plus, '+1 key'),
