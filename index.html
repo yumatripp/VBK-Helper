@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vinyl BPM + Key Helper v1.0.27</title>
+  <title>Vinyl BPM + Key Helper v1.0.28</title>
   <style>
     :root {
       --bg: #0b0d14;
@@ -987,7 +987,7 @@ body[data-skin="casio"] .fader-shell {
 }
 
 
-/* v1.0.27 Silver skin: keep only Midnight and Silver; improve center fader visibility */
+/* v1.0.28 Silver skin: keep only Midnight and Silver; improve center fader visibility */
 body[data-skin="silver"] .fader-shell,
 body[data-skin="silver"] .pitch-module,
 body[data-skin="silver"] .pitch-panel,
@@ -1053,6 +1053,35 @@ body[data-skin="silver"] .pitch-info .label {
   color:#4a5563 !important;
 }
 
+
+/* v1.0.28: Silver skin - make New BPM and Pitch Shift use the same silver module treatment */
+body[data-skin="silver"] .display-box {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.96), rgba(233,238,244,0.90)),
+    repeating-linear-gradient(
+      180deg,
+      rgba(255,255,255,0.05) 0px,
+      rgba(255,255,255,0.05) 2px,
+      rgba(180,188,198,0.03) 2px,
+      rgba(180,188,198,0.03) 4px
+    ),
+    #e7edf4 !important;
+  border: 1px solid rgba(63, 76, 91, 0.16) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.96),
+    0 8px 18px rgba(61,72,90,0.08) !important;
+  color: #10151b !important;
+}
+
+body[data-skin="silver"] .display-box .mini {
+  color: #495362 !important;
+}
+
+body[data-skin="silver"] .display-box .big,
+body[data-skin="silver"] .display-box .sub {
+  color: #10151b !important;
+}
+
 </style>
 </head>
 <body>
@@ -1060,7 +1089,7 @@ body[data-skin="silver"] .pitch-info .label {
     <div class="title-wrap">
       <div class="title-bar">
         <div class="title-copy">
-          <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.27</span></h1>
+          <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.28</span></h1>
           <p class="subtitle">Turntable-style pitch simulation from -16% to +16%. Enter a BPM and key, then use the fader to see the new BPM, pitch shift, shifted key result, and tracks that can match within ±5%.</p>
         </div>
         <div class="skin-picker">
