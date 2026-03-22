@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
-  <title>Vinyl BPM + Key Helper v1.0.45</title>
+  <title>Vinyl BPM + Key Helper v1.0.46</title>
   <style>
     :root {
       --bg: #0b0d14;
@@ -987,7 +987,7 @@ body[data-skin="casio"] .fader-shell {
 }
 
 
-/* v1.0.45 Silver skin: keep only Midnight and Silver; improve center fader visibility */
+/* v1.0.46 Silver skin: keep only Midnight and Silver; improve center fader visibility */
 body[data-skin="silver"] .fader-shell,
 body[data-skin="silver"] .pitch-module,
 body[data-skin="silver"] .pitch-panel,
@@ -1054,7 +1054,7 @@ body[data-skin="silver"] .pitch-info .label {
 }
 
 
-/* v1.0.45: Silver skin - make New BPM and Pitch Shift use the same silver module treatment */
+/* v1.0.46: Silver skin - make New BPM and Pitch Shift use the same silver module treatment */
 body[data-skin="silver"] .display-box {
   background:
     linear-gradient(180deg, rgba(255,255,255,0.96), rgba(233,238,244,0.90)),
@@ -1083,7 +1083,7 @@ body[data-skin="silver"] .display-box .sub {
 }
 
 
-/* v1.0.45: platter center color tweak ONLY */
+/* v1.0.46: platter center color tweak ONLY */
 
 /* Silver = lighter blue */
 body[data-skin="silver"] .platter::after {
@@ -1224,7 +1224,7 @@ body[data-skin="midnight"] .platter::after {
     }
 
 
-/* v1.0.45: Silver skin - fix Tap Tempo button styling */
+/* v1.0.46: Silver skin - fix Tap Tempo button styling */
 body[data-skin="silver"] .tap-btn {
   background:
     linear-gradient(180deg, rgba(255,255,255,0.98), rgba(232,237,243,0.92)),
@@ -1250,7 +1250,7 @@ body[data-skin="silver"] .tap-btn:active {
 }
 
 
-/* v1.0.45: prevent iPhone Safari zoom bounce on Tap Tempo */
+/* v1.0.46: prevent iPhone Safari zoom bounce on Tap Tempo */
 .tap-btn {
   touch-action: manipulation;
   -webkit-touch-callout: none;
@@ -1267,7 +1267,7 @@ body[data-skin="silver"] .tap-btn:active {
 }
 
 
-/* v1.0.45: smart suggestions text-only */
+/* v1.0.46: smart suggestions text-only */
 .smart-item-text-only {
   grid-template-columns: 1fr;
 }
@@ -1342,6 +1342,16 @@ body[data-skin="silver"] .tap-mini-btn:hover {
   justify-content: center;
 }
 
+
+/* v1.0.46: narrower Original BPM field */
+#bpm {
+  max-width: 120px;
+}
+
+#bpm + .tap-row {
+  justify-content: center;
+}
+
 </style>
 </head>
 <body>
@@ -1349,7 +1359,7 @@ body[data-skin="silver"] .tap-mini-btn:hover {
     <div class="title-wrap">
       <div class="title-bar">
         <div class="title-copy">
-          <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.45</span></h1>
+          <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.46</span></h1>
           <p class="subtitle">Turntable-style pitch simulation from -16% to +16%. Enter a BPM and key, then use the fader to see the new BPM, pitch shift, shifted key result, and tracks that can match within ±5%.</p>
         </div>
       </div>
