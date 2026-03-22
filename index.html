@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vinyl BPM + Key Helper v1.0.10</title>
+  <title>Vinyl BPM + Key Helper v1.0.11</title>
   <style>
     :root {
       --bg: #0b0d14;
@@ -240,7 +240,8 @@
     .display-box {
       border-radius: 18px;
       padding: 14px 14px 12px;
-      min-height: 108px;
+      min-height: 118px;
+      height: 118px;
       background:
         linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.01)),
         linear-gradient(180deg, #121824, #0b111a);
@@ -261,14 +262,20 @@
       font-size: clamp(1.3rem, 1.8vw, 1.8rem);
       font-weight: 800;
       line-height: 1.1;
+      min-height: 2.2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .display-box .sub {
       margin-top: 7px;
       color: var(--muted);
-      font-size: 0.76rem;
-      line-height: 1.28;
-      min-height: 2.7em;
+      font-size: 0.72rem;
+      line-height: 1.18;
+      min-height: 2.36em;
+      max-height: 2.36em;
+      overflow: hidden;
     }
 
     .pitch-panel {
@@ -473,6 +480,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
+      align-items: start;
     }
 
     .result-box {
@@ -506,8 +514,11 @@
     .result-box .sub {
       margin-top: 7px;
       color: var(--muted);
-      font-size: 0.84rem;
-      line-height: 1.38;
+      font-size: 0.76rem;
+      line-height: 1.22;
+      min-height: 2.44em;
+      max-height: 2.44em;
+      overflow: hidden;
     }
 
     .camelot-badge {
@@ -536,20 +547,26 @@
         linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.01)),
         linear-gradient(180deg, #141b27, #0b1119);
       border: 1px solid rgba(255,255,255,0.08);
+      display: grid;
+      grid-template-rows: auto 3.54em auto;
+      align-items: start;
     }
 
     .match-line {
-      font-size: 0.72rem;
-      line-height: 1.22;
+      font-size: 0.68rem;
+      line-height: 1.18;
       color: var(--muted);
-      min-height: 3.7em;
+      min-height: 3.54em;
+      max-height: 3.54em;
+      overflow: hidden;
     }
 
     .chip-row {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 8px;
       margin-top: 10px;
+      align-items: stretch;
     }
 
     .chip {
@@ -558,7 +575,9 @@
       gap: 8px;
       border-radius: 999px;
       padding: 8px 10px;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
+      min-height: 42px;
+      width: 100%;
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.08);
       color: #e8edff;
@@ -588,6 +607,11 @@
       font-weight: 700;
     }
 
+    .target-readout {
+      display: grid;
+      grid-template-rows: auto auto;
+      align-items: start;
+    }
 
     @media (max-width: 1020px) {
       .layout {
@@ -605,7 +629,7 @@
       body { padding: 10px; }
       .deck-shell { padding: 12px; border-radius: 20px; }
       .module { padding: 14px; border-radius: 18px; }
-      .field-grid, .result-grid { grid-template-columns: 1fr; }
+      .field-grid, .result-grid, .chip-row { grid-template-columns: 1fr; }
       .result-box.full { grid-column: auto; }
       .fader-wrap { grid-template-columns: 36px 1fr 36px; min-height: 360px; }
       .fader-handle { width: 56px; }
@@ -616,7 +640,7 @@
 <body>
   <div class="app">
     <div class="title-wrap">
-      <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.10</span></h1>
+      <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.11</span></h1>
       <p class="subtitle">Turntable-style pitch simulation from -16% to +16%. Enter a BPM and key, then use the fader to see the new BPM, pitch shift, shifted key result, and tracks that can match within ±5%.</p>
     </div>
 
@@ -704,7 +728,7 @@
           </div>
         </section>
 
-        <section class="module">
+        <section class="module target-readout">
           <div class="module-title">Target Readout</div>
           <div class="result-grid">
             <div class="result-box full">
