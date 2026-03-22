@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vinyl BPM + Key Helper v1.0.29</title>
+  <title>Vinyl BPM + Key Helper v1.0.30</title>
   <style>
     :root {
       --bg: #0b0d14;
@@ -987,7 +987,7 @@ body[data-skin="casio"] .fader-shell {
 }
 
 
-/* v1.0.29 Silver skin: keep only Midnight and Silver; improve center fader visibility */
+/* v1.0.30 Silver skin: keep only Midnight and Silver; improve center fader visibility */
 body[data-skin="silver"] .fader-shell,
 body[data-skin="silver"] .pitch-module,
 body[data-skin="silver"] .pitch-panel,
@@ -1054,7 +1054,7 @@ body[data-skin="silver"] .pitch-info .label {
 }
 
 
-/* v1.0.29: Silver skin - make New BPM and Pitch Shift use the same silver module treatment */
+/* v1.0.30: Silver skin - make New BPM and Pitch Shift use the same silver module treatment */
 body[data-skin="silver"] .display-box {
   background:
     linear-gradient(180deg, rgba(255,255,255,0.96), rgba(233,238,244,0.90)),
@@ -1082,6 +1082,29 @@ body[data-skin="silver"] .display-box .sub {
   color: #10151b !important;
 }
 
+
+/* v1.0.30: platter center color tweak ONLY */
+
+/* Silver = lighter blue */
+body[data-skin="silver"] .platter::after {
+  background: radial-gradient(circle,
+    #d6ecff 0 7%,
+    #7fbce6 8%,
+    #5a9fcb 22%,
+    #3e7aa3 55%,
+    #2c5f82 100%);
+}
+
+/* Midnight = darker blue */
+body[data-skin="midnight"] .platter::after {
+  background: radial-gradient(circle,
+    #7aaed6 0 7%,
+    #1c4d73 8%,
+    #123a57 22%,
+    #0a2236 55%,
+    #05121d 100%);
+}
+
 </style>
 </head>
 <body>
@@ -1089,7 +1112,7 @@ body[data-skin="silver"] .display-box .sub {
     <div class="title-wrap">
       <div class="title-bar">
         <div class="title-copy">
-          <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.29</span></h1>
+          <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.30</span></h1>
           <p class="subtitle">Turntable-style pitch simulation from -16% to +16%. Enter a BPM and key, then use the fader to see the new BPM, pitch shift, shifted key result, and tracks that can match within ±5%.</p>
         </div>
         <div class="skin-picker">
