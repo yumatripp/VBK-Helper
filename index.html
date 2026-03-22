@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vinyl BPM + Key Helper v1.0.32</title>
+  <title>Vinyl BPM + Key Helper v1.0.33</title>
   <style>
     :root {
       --bg: #0b0d14;
@@ -987,7 +987,7 @@ body[data-skin="casio"] .fader-shell {
 }
 
 
-/* v1.0.32 Silver skin: keep only Midnight and Silver; improve center fader visibility */
+/* v1.0.33 Silver skin: keep only Midnight and Silver; improve center fader visibility */
 body[data-skin="silver"] .fader-shell,
 body[data-skin="silver"] .pitch-module,
 body[data-skin="silver"] .pitch-panel,
@@ -1054,7 +1054,7 @@ body[data-skin="silver"] .pitch-info .label {
 }
 
 
-/* v1.0.32: Silver skin - make New BPM and Pitch Shift use the same silver module treatment */
+/* v1.0.33: Silver skin - make New BPM and Pitch Shift use the same silver module treatment */
 body[data-skin="silver"] .display-box {
   background:
     linear-gradient(180deg, rgba(255,255,255,0.96), rgba(233,238,244,0.90)),
@@ -1083,7 +1083,7 @@ body[data-skin="silver"] .display-box .sub {
 }
 
 
-/* v1.0.32: platter center color tweak ONLY */
+/* v1.0.33: platter center color tweak ONLY */
 
 /* Silver = lighter blue */
 body[data-skin="silver"] .platter::after {
@@ -1125,6 +1125,104 @@ body[data-skin="midnight"] .platter::after {
       align-items: start;
     }
 
+
+    .tap-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+    .tap-btn {
+      min-height: 38px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)),
+        #20283b;
+      color: var(--text);
+      padding: 8px 12px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .tap-status {
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.2;
+      min-height: 1.2em;
+    }
+    .range-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .range-label {
+      margin: 0;
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .range-select {
+      width: auto;
+      min-width: 92px;
+      min-height: 34px;
+      padding: 6px 28px 6px 10px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+    }
+    .smart-box {
+      margin-top: 14px;
+    }
+    .smart-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 2px;
+    }
+    .smart-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .smart-text {
+      min-width: 0;
+      font-size: 0.82rem;
+      line-height: 1.2;
+      color: var(--text);
+    }
+    .smart-text .mini-line {
+      display: block;
+      color: var(--muted);
+      font-size: 0.72rem;
+      margin-top: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .snap-btn {
+      min-width: 86px;
+      min-height: 36px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .snap-btn:active, .tap-btn:active {
+      transform: translateY(1px);
+    }
+
 </style>
 </head>
 <body>
@@ -1132,7 +1230,7 @@ body[data-skin="midnight"] .platter::after {
     <div class="title-wrap">
       <div class="title-bar">
         <div class="title-copy">
-          <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.32</span></h1>
+          <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.33</span></h1>
           <p class="subtitle">Turntable-style pitch simulation from -16% to +16%. Enter a BPM and key, then use the fader to see the new BPM, pitch shift, shifted key result, and tracks that can match within ±5%.</p>
         </div>
       </div>
@@ -1146,6 +1244,10 @@ body[data-skin="midnight"] .platter::after {
             <div>
               <label class="label" for="bpm">Original BPM</label>
               <input id="bpm" type="number" min="1" step="0.5" value="128" />
+              <div class="tap-row">
+                <button type="button" class="tap-btn" id="tapTempoBtn">Tap Tempo</button>
+                <span class="tap-status" id="tapStatus">Tap 4+ times</span>
+              </div>
             </div>
             <div>
               <label class="label" for="camelotKey">Key</label>
@@ -1187,12 +1289,18 @@ body[data-skin="midnight"] .platter::after {
               <div class="mini">Pitch Fader</div>
               <div class="pct" id="pitchDisplay">+0%</div>
               <div class="caption">Top = slower / negative. Bottom = faster / positive.</div>
+              <div class="range-row">
+                <label class="label range-label" for="pitchRangeSelect">Pitch Range</label>
+                <select id="pitchRangeSelect" class="range-select">
+                  <option value="8">±8%</option>
+                  <option value="10">±10%</option>
+                  <option value="16" selected>±16%</option>
+                </select>
+              </div>
             </div>
 
             <div class="fader-wrap">
-              <div class="scale-col" aria-hidden="true">
-                <span>-16</span><span>-12</span><span>-8</span><span>-4</span><span>0</span><span>+4</span><span>+8</span><span>+12</span><span>+16</span>
-              </div>
+              <div class="scale-col" id="leftScale" aria-hidden="true"></div>
               <div class="fader-slot">
                 <div class="fader-track"></div>
                 <div class="fader-zero"></div>
@@ -1200,9 +1308,7 @@ body[data-skin="midnight"] .platter::after {
                 <input id="pitchSlider" type="range" min="-16" max="16" step="1" value="0" orient="vertical" aria-label="Pitch fader" />
                 <div class="fader-handle" id="faderHandle"></div>
               </div>
-              <div class="scale-col" aria-hidden="true">
-                <span>%</span><span>Slow</span><span></span><span></span><span>0</span><span></span><span></span><span>Fast</span><span>%</span>
-              </div>
+              <div class="scale-col" id="rightScale" aria-hidden="true"></div>
             </div>
           </div>
         </section>
@@ -1215,6 +1321,12 @@ body[data-skin="midnight"] .platter::after {
               <div class="chip-row" id="harmonicChips"></div>
               <div class="sub">Same key, +1, -1, and relative major/minor from the shifted result.</div>
             </div>
+          </div>
+
+          <div class="result-box full smart-box">
+            <div class="mini">Smart Suggestions</div>
+            <div class="smart-list" id="smartList"></div>
+            <div class="sub">Tap a Snap button to set the pitch instantly.</div>
           </div>
 
           <div class="match-box">
@@ -1295,6 +1407,15 @@ body[data-skin="midnight"] .platter::after {
     const faderHandle = document.getElementById('faderHandle');
     const tickStack = document.getElementById('tickStack');
     const faderSlot = document.querySelector('.fader-slot');
+    const leftScale = document.getElementById('leftScale');
+    const rightScale = document.getElementById('rightScale');
+    const pitchRangeSelect = document.getElementById('pitchRangeSelect');
+    const smartList = document.getElementById('smartList');
+    const tapTempoBtn = document.getElementById('tapTempoBtn');
+    const tapStatus = document.getElementById('tapStatus');
+
+    let currentPitchRange = Number(pitchRangeSelect?.value || 16);
+    let tapTimes = [];
 
     function fillSelects() {
       keyData.forEach((entry, index) => {
@@ -1320,15 +1441,34 @@ body[data-skin="midnight"] .platter::after {
       return keyData.find(k => k.mode === entry.mode && k.pitchClass === targetPc) || entry;
     }
 
+    function updateScaleLabels() {
+      const range = currentPitchRange;
+      const steps = [range, Math.round(range * 0.75), Math.round(range * 0.5), Math.round(range * 0.25), 0, Math.round(range * 0.25), Math.round(range * 0.5), Math.round(range * 0.75), range];
+      leftScale.innerHTML = [
+        `-${range}`,
+        `-${Math.round(range * 0.75)}`,
+        `-${Math.round(range * 0.5)}`,
+        `-${Math.round(range * 0.25)}`,
+        `0`,
+        `+${Math.round(range * 0.25)}`,
+        `+${Math.round(range * 0.5)}`,
+        `+${Math.round(range * 0.75)}`,
+        `+${range}`
+      ].map(v => `<span>${v}</span>`).join('');
+      rightScale.innerHTML = ['%','Slow','','','0','','','Fast','%'].map(v => `<span>${v}</span>`).join('');
+    }
+
     function buildTicks() {
-      if (tickStack.childElementCount) return;
-      for (let i = -16; i <= 16; i++) {
+      tickStack.innerHTML = '';
+      const range = currentPitchRange;
+      for (let i = -range; i <= range; i++) {
         const tick = document.createElement('div');
         tick.className = `tick-mark${i % 4 === 0 ? ' major' : ''}`;
-        const ratio = (16 - i) / 32;
+        const ratio = (range - i) / (range * 2);
         tick.style.top = `${ratio * 100}%`;
         tickStack.appendChild(tick);
       }
+      updateScaleLabels();
     }
 
     function positionHandle(pct) {
@@ -1347,7 +1487,7 @@ body[data-skin="midnight"] .platter::after {
     }
 
     function clampPitchValue(value) {
-      return Math.max(-16, Math.min(16, Math.round(value)));
+      return Math.max(-currentPitchRange, Math.min(currentPitchRange, Math.round(value)));
     }
 
     function setPitchFromClientY(clientY) {
@@ -1356,7 +1496,7 @@ body[data-skin="midnight"] .platter::after {
       const usable = Math.max(1, rect.height - (pad * 2));
       const y = Math.min(rect.bottom - pad, Math.max(rect.top + pad, clientY));
       const ratio = (y - (rect.top + pad)) / usable;
-      const pct = clampPitchValue(-16 + (ratio * 32));
+      const pct = clampPitchValue(-currentPitchRange + (ratio * currentPitchRange * 2));
       pitchSlider.value = String(pct);
       update();
     }
@@ -1433,8 +1573,66 @@ body[data-skin="midnight"] .platter::after {
         chipHTML(minus, '-1 key'),
         chipHTML(relative, 'Relative')
       ].join('');
+
+      const suggestions = [
+        { bpm: roundToHalf(newBpm), label: 'Same tempo' },
+        { bpm: roundToHalf(newBpm - 2), label: '-2 BPM feel' },
+        { bpm: roundToHalf(newBpm + 2), label: '+2 BPM feel' }
+      ].filter((s, idx, arr) => s.bpm > 0 && arr.findIndex(x => x.bpm === s.bpm) === idx).slice(0, 3);
+
+      smartList.innerHTML = suggestions.map((s, idx) => {
+        const targetPctRaw = ((s.bpm / Math.max(0.01, bpm)) - 1) * 100;
+        const targetPct = clampPitchValue(targetPctRaw);
+        const snappedMultiplier = 1 + (targetPct / 100);
+        const snappedBpm = bpm * snappedMultiplier;
+        const snappedShift = snappedMultiplier > 0 ? 12 * Math.log2(snappedMultiplier) : 0;
+        const snappedKey = findNearestKey(selected, snappedShift);
+        const sign = targetPct >= 0 ? '+' : '';
+        return `<div class="smart-item">
+          <div class="smart-text">
+            <strong>${s.label}: ${snappedBpm.toFixed(2)} BPM</strong>
+            <span class="mini-line">${sign}${targetPct}% · ${snappedKey.camelot} · ${snappedKey.regular}</span>
+          </div>
+          <button type="button" class="snap-btn" data-pct="${targetPct}">Snap ${sign}${targetPct}%</button>
+        </div>`;
+      }).join('');
     }
 
+
+
+    function setPitchRange(range) {
+      currentPitchRange = Math.max(1, Number(range) || 16);
+      pitchSlider.min = String(-currentPitchRange);
+      pitchSlider.max = String(currentPitchRange);
+      pitchSlider.value = String(clampPitchValue(Number(pitchSlider.value) || 0));
+      buildTicks();
+      update();
+    }
+
+    function registerTapTempo() {
+      const now = performance.now();
+      tapTimes = tapTimes.filter(t => now - t < 4000);
+      tapTimes.push(now);
+
+      if (tapTimes.length < 2) {
+        tapStatus.textContent = `Tap ${Math.max(0, 4 - tapTimes.length)}+ more times`;
+        return;
+      }
+
+      const intervals = [];
+      for (let i = 1; i < tapTimes.length; i++) {
+        intervals.push(tapTimes[i] - tapTimes[i - 1]);
+      }
+
+      const recent = intervals.slice(-6);
+      const avg = recent.reduce((a, b) => a + b, 0) / recent.length;
+      const bpm = 60000 / avg;
+      const rounded = Math.max(1, Math.round(bpm * 2) / 2);
+      bpmInput.value = rounded.toFixed(1);
+      lastValidBpm = rounded;
+      tapStatus.textContent = `${rounded.toFixed(1)} BPM from ${recent.length + 1} taps`;
+      update();
+    }
 
     let draggingFader = false;
 
@@ -1464,8 +1662,7 @@ body[data-skin="midnight"] .platter::after {
     }
 
     fillSelects();
-    buildTicks();
-    update();
+    setPitchRange(currentPitchRange);
 
     let lastValidBpm = Math.max(1, Number(bpmInput.value) || 128);
 
@@ -1508,6 +1705,20 @@ body[data-skin="midnight"] .platter::after {
 
     bpmInput.addEventListener('blur', () => {
       roundBpmToHalf(true);
+      update();
+    });
+
+    pitchRangeSelect.addEventListener('change', () => {
+      setPitchRange(Number(pitchRangeSelect.value) || 16);
+    });
+
+    tapTempoBtn.addEventListener('click', registerTapTempo);
+
+    smartList.addEventListener('click', (event) => {
+      const btn = event.target.closest('.snap-btn');
+      if (!btn) return;
+      const pct = clampPitchValue(Number(btn.dataset.pct) || 0);
+      pitchSlider.value = String(pct);
       update();
     });
 
