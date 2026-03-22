@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vinyl BPM + Key Helper v1.0.16</title>
+  <title>Vinyl BPM + Key Helper v1.0.18</title>
   <style>
     :root {
       --bg: #0b0d14;
@@ -668,7 +668,7 @@
 <body>
   <div class="app">
     <div class="title-wrap">
-      <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.16</span></h1>
+      <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.18</span></h1>
       <p class="subtitle">Turntable-style pitch simulation from -16% to +16%. Enter a BPM and key, then use the fader to see the new BPM, pitch shift, shifted key result, and tracks that can match within ±5%.</p>
     </div>
 
@@ -682,19 +682,8 @@
               <input id="bpm" type="number" min="1" step="0.5" value="128" />
             </div>
             <div>
-              <label class="label" for="mode">Input Type</label>
-              <select id="mode">
-                <option value="camelot" selected>Camelot Key</option>
-                <option value="regular">Regular Key</option>
-              </select>
-            </div>
-            <div id="camelotWrap">
-              <label class="label" for="camelotKey">Camelot Key</label>
+              <label class="label" for="camelotKey">Key</label>
               <select id="camelotKey"></select>
-            </div>
-            <div id="regularWrap" style="display:none;">
-              <label class="label" for="regularKey">Regular Key</label>
-              <select id="regularKey"></select>
             </div>
           </div>
 
@@ -810,11 +799,7 @@
     };
 
     const bpmInput = document.getElementById('bpm');
-    const modeSelect = document.getElementById('mode');
-    const regularSelect = document.getElementById('regularKey');
     const camelotSelect = document.getElementById('camelotKey');
-    const regularWrap = document.getElementById('regularWrap');
-    const camelotWrap = document.getElementById('camelotWrap');
     const pitchSlider = document.getElementById('pitchSlider');
     const faderHandle = document.getElementById('faderHandle');
     const tickStack = document.getElementById('tickStack');
@@ -822,35 +807,16 @@
 
     function fillSelects() {
       keyData.forEach((entry, index) => {
-        const r = document.createElement('option');
-        r.value = index;
-        r.textContent = entry.regular;
-        regularSelect.appendChild(r);
-
         const c = document.createElement('option');
         c.value = index;
         c.textContent = `${entry.camelot} — ${entry.regular}`;
         camelotSelect.appendChild(c);
       });
-      regularSelect.value = '14';
       camelotSelect.value = '14';
     }
 
-    function updateVisibility() {
-      const useCamelot = modeSelect.value === 'camelot';
-      camelotWrap.style.display = useCamelot ? 'block' : 'none';
-      regularWrap.style.display = useCamelot ? 'none' : 'block';
-      update();
-    }
-
-    function syncSelects(from) {
-      if (from === 'camelot') regularSelect.value = camelotSelect.value;
-      if (from === 'regular') camelotSelect.value = regularSelect.value;
-      update();
-    }
-
     function getSelectedEntry() {
-      const idx = modeSelect.value === 'camelot' ? Number(camelotSelect.value) : Number(regularSelect.value);
+      const idx = Number(camelotSelect.value);
       return keyData[idx] || keyData[14];
     }
 
@@ -1008,7 +974,6 @@
 
     fillSelects();
     buildTicks();
-    updateVisibility();
     update();
 
     function roundBpmToHalf() {
@@ -1018,9 +983,8 @@
       bpmInput.value = rounded.toFixed(1);
     }
 
-    modeSelect.addEventListener('change', updateVisibility);
-    regularSelect.addEventListener('change', () => syncSelects('regular'));
-    camelotSelect.addEventListener('change', () => syncSelects('camelot'));
+    camelotSelect.addEventListener('change', update);
+
     bpmInput.addEventListener('input', () => {
       roundBpmToHalf();
       update();
