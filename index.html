@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
-  <title>Vinyl BPM + Key Helper v1.0.51</title>
+  <title>Vinyl BPM + Key Helper Pro v2.0.0</title>
   <style>
     :root {
       --bg: #0b0d14;
@@ -1561,6 +1561,129 @@ body[data-skin="silver"] .field-grid select:focus {
     inset 0 -10px 18px rgba(90,104,124,0.08) !important;
 }
 
+
+.pro-mode-row {
+  margin-top: 12px;
+}
+.pro-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.pro-toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.pro-toggle .slider-pill {
+  position: relative;
+  width: 56px;
+  height: 30px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03)), #20283b;
+  border: 1px solid rgba(255,255,255,0.09);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+  cursor: pointer;
+}
+.pro-toggle .slider-pill::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #f6f9ff, #b7c0cf);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+  transition: transform 160ms ease;
+}
+.pro-toggle input:checked + .slider-pill::after {
+  transform: translateX(26px);
+}
+.pro-toggle input:checked + .slider-pill {
+  border-color: rgba(109,211,255,0.35);
+  box-shadow: 0 0 0 3px rgba(109,211,255,0.10), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+body[data-skin="silver"] .pro-toggle .slider-pill {
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(232,237,243,0.92)), #e7edf4;
+  border-color: rgba(63,76,91,0.16);
+}
+.pro-library {
+  margin-top: 14px;
+  border-radius: 18px;
+  padding: 14px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)),
+    linear-gradient(180deg, #111825, #0b1119);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.pro-library .mini {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.pro-library-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+.pro-library-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.file-btn {
+  min-height: 38px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)),
+    #20283b;
+  color: var(--text);
+  padding: 8px 12px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.pro-source-info {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.3;
+  min-height: 2.6em;
+}
+.smart-item .track-title {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 800;
+  margin-bottom: 3px;
+}
+.smart-item .camelot-keyline {
+  display: block;
+  font-size: 0.76rem;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+body[data-skin="silver"] .file-btn {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.98), rgba(232,237,243,0.92)),
+    #e7edf4 !important;
+  color: #11161d !important;
+  border: 1px solid rgba(63,76,91,0.16) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.96),
+    0 4px 10px rgba(61,72,90,0.08) !important;
+}
+
 </style>
 </head>
 <body>
@@ -1568,8 +1691,16 @@ body[data-skin="silver"] .field-grid select:focus {
     <div class="title-wrap">
       <div class="title-bar">
         <div class="title-copy">
-          <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.51</span></h1>
-          <p class="subtitle">Turntable-style pitch simulation from -16% to +16%. Enter a BPM and key, then use the fader to see the new BPM, pitch shift, shifted key result, and tracks that can match within ±5%.</p>
+          <h1>Vinyl BPM + Key Helper <span class="version-tag">v2.0.0 Pro</span></h1>
+          <p class="subtitle">Turntable-style pitch simulation with Standard and Pro modes. Use Pro to browse a CSV track library, load songs into the Source Deck, and see real matching songs in Smart Suggestions.</p>
+          <div class="pro-mode-row">
+            <label class="pro-toggle" for="proModeToggle">
+              <span>Standard</span>
+              <input type="checkbox" id="proModeToggle" />
+              <span class="slider-pill" aria-hidden="true"></span>
+              <span>Pro</span>
+            </label>
+          </div>
         </div>
       </div>
     </div>
@@ -1595,6 +1726,20 @@ body[data-skin="silver"] .field-grid select:focus {
               </div>
               <div class="tap-status" id="tapStatus">Tap 4+ times</div>
             </div>
+          </div>
+
+          <div class="pro-library" id="proLibrary" hidden>
+            <div class="mini">Pro Library</div>
+            <div class="pro-library-grid">
+              <input id="trackSearch" type="text" placeholder="Search artist or song" />
+              <select id="trackSelect"></select>
+            </div>
+            <div class="pro-library-actions">
+              <button type="button" class="tap-btn" id="loadTrackBtn">Load to Source Deck</button>
+              <label class="file-btn" for="csvFileInput">Import CSV</label>
+              <input id="csvFileInput" type="file" accept=".csv,text/csv" hidden />
+            </div>
+            <div class="pro-source-info" id="proSourceInfo">Using bundled sample library.</div>
           </div>
 
           <div class="platter">
@@ -1668,7 +1813,7 @@ body[data-skin="silver"] .field-grid select:focus {
           <div class="result-box full smart-box">
             <div class="mini">Smart Suggestions</div>
             <div class="smart-list" id="smartList"></div>
-            <div class="sub">Suggested track BPM/key combos that can pitch to your current playing BPM and harmonic zone.</div>
+            <div class="sub" id="smartSub">Suggested track BPM/key combos that can pitch to your current playing BPM and harmonic zone.</div>
           </div>
 
           <div class="skin-picker skin-picker-bottom">
@@ -1685,6 +1830,7 @@ body[data-skin="silver"] .field-grid select:focus {
 
   <script>
 
+    const embeddedLibrary = [{"artist": "Prince vs The Beatfreakz", "title": "Erotic City [Remix] - Dirty", "bpm": 124, "key": "2A", "year": "1984", "genre": "Pop"}, {"artist": "Peter Godwin", "title": "Images Of Heaven (Video XXX)", "bpm": 126, "key": "1B", "year": "1982", "genre": "Synth Pop"}, {"artist": "New Order", "title": "Blue Monday (Original 12 Inch Mix)", "bpm": 130, "key": "8A", "year": "1983", "genre": "Synth Pop"}, {"artist": "Philip Bailey n Phil Collins", "title": "Easy Lover [Xtendz] - Clean", "bpm": 134, "key": "4A", "year": "1984", "genre": "Pop"}, {"artist": "Donna Summer", "title": "She Works Hard For The Money", "bpm": 137, "key": "2A", "year": "1983", "genre": "Pop"}, {"artist": "MC Shy D", "title": "Shake It (Clean) (Extended)", "bpm": 134, "key": "1A", "year": "1988", "genre": "80's"}, {"artist": "Pet Shop Boys", "title": "Suburbia", "bpm": 126, "key": "5A", "year": "1986", "genre": "Dance"}];
     const skinSelect = document.getElementById('skinSelect');
 
     function applySkin(skin) {
@@ -1751,9 +1897,92 @@ body[data-skin="silver"] .field-grid select:focus {
     const halfTempoBtn = document.getElementById('halfTempoBtn');
     const doubleTempoBtn = document.getElementById('doubleTempoBtn');
     const tapStatus = document.getElementById('tapStatus');
+    const proModeToggle = document.getElementById('proModeToggle');
+    const proLibrary = document.getElementById('proLibrary');
+    const trackSearch = document.getElementById('trackSearch');
+    const trackSelect = document.getElementById('trackSelect');
+    const loadTrackBtn = document.getElementById('loadTrackBtn');
+    const csvFileInput = document.getElementById('csvFileInput');
+    const proSourceInfo = document.getElementById('proSourceInfo');
+    const smartSub = document.getElementById('smartSub');
 
     let currentPitchRange = Number(pitchRangeSelect?.value || 8);
     let tapTimes = [];
+
+
+    let libraryTracks = [...embeddedLibrary];
+    let currentSourceTrack = null;
+
+    function sanitizeKey(value) {
+      return String(value || '').trim().toUpperCase().replace(/\s+/g, '');
+    }
+
+    function parseCSVText(text) {
+      const lines = text.split(/\r?\n/).filter(Boolean);
+      if (!lines.length) return [];
+      const parseLine = (line) => line.split(',').map(part => part.trim());
+      const rawHeaders = parseLine(lines[0]).filter(Boolean);
+      const headers = rawHeaders.map(h => h.toLowerCase());
+      const findIndex = (name) => headers.findIndex(h => h.includes(name));
+      const idx = {
+        artist: findIndex('artist'),
+        title: Math.max(findIndex('song'), findIndex('title')),
+        bpm: findIndex('bpm'),
+        key: findIndex('key'),
+        year: findIndex('year'),
+        genre: findIndex('genre')
+      };
+      return lines.slice(1).map(line => parseLine(line)).map(parts => ({
+        artist: (parts[idx.artist] || '').trim(),
+        title: (parts[idx.title] || '').trim(),
+        bpm: Number(parts[idx.bpm]),
+        key: sanitizeKey(parts[idx.key]),
+        year: (parts[idx.year] || '').trim(),
+        genre: (parts[idx.genre] || '').trim()
+      })).filter(t => t.artist && t.title && Number.isFinite(t.bpm) && t.key);
+    }
+
+    function populateTrackSelect(filterText = '') {
+      const q = String(filterText || '').trim().toLowerCase();
+      const filtered = libraryTracks.filter(track => !q || `${track.artist} ${track.title} ${track.genre} ${track.year}`.toLowerCase().includes(q));
+      trackSelect.innerHTML = '';
+      filtered.forEach((track) => {
+        const option = document.createElement('option');
+        option.value = String(libraryTracks.indexOf(track));
+        option.textContent = `${track.artist} — ${track.title} · ${track.bpm} BPM · ${track.key}`;
+        trackSelect.appendChild(option);
+      });
+      if (!filtered.length) {
+        const option = document.createElement('option');
+        option.value = '';
+        option.textContent = 'No matching tracks';
+        trackSelect.appendChild(option);
+      }
+    }
+
+    function applyProMode(enabled) {
+      if (proLibrary) proLibrary.hidden = !enabled;
+      if (smartSub) {
+        smartSub.textContent = enabled
+          ? 'Real songs from your track library that can pitch into the current source BPM and harmonic zone.'
+          : 'Suggested track BPM/key combos that can pitch to your current playing BPM and harmonic zone.';
+      }
+      try { localStorage.setItem('vinylProMode', enabled ? '1' : '0'); } catch (e) {}
+      update();
+    }
+
+    function setSourceFromTrack(track) {
+      if (!track) return;
+      const matchIdx = keyData.findIndex(k => k.camelot === sanitizeKey(track.key));
+      if (matchIdx >= 0) camelotSelect.value = String(matchIdx);
+      bpmInput.value = (Math.round(Number(track.bpm) * 2) / 2).toFixed(1);
+      lastValidBpm = Number(bpmInput.value);
+      currentSourceTrack = track;
+      if (proSourceInfo) {
+        proSourceInfo.textContent = `${track.artist} — ${track.title} · ${track.year || 'Year ?'} · ${track.genre || 'Genre ?'}`;
+      }
+      update();
+    }
 
     function fillSelects() {
       keyData.forEach((entry, index) => {
@@ -1763,11 +1992,16 @@ body[data-skin="silver"] .field-grid select:focus {
         camelotSelect.appendChild(c);
       });
       camelotSelect.value = '14';
+      populateTrackSelect();
     }
 
     function getSelectedEntry() {
       const idx = Number(camelotSelect.value);
       return keyData[idx] || keyData[14];
+    }
+
+    function getEntryByCamelot(camelot) {
+      return keyData.find(k => k.camelot === sanitizeKey(camelot)) || null;
     }
 
     function normalizePitchClass(n) {
@@ -1934,42 +2168,74 @@ body[data-skin="silver"] .field-grid select:focus {
       const lightPct = Math.min(currentPitchRange, 2);
       const medPct = Math.min(currentPitchRange, 3);
 
-      let pitchPlans = [
-        { pitchPct: -lightPct, target: harmonicTargets[0], dir: 'down' },
-        { pitchPct: -medPct, target: harmonicTargets[1], dir: 'down' },
-        { pitchPct: -strongPct, target: harmonicTargets[2], dir: 'down' },
-        { pitchPct: lightPct, target: harmonicTargets[2], dir: 'up' },
-        { pitchPct: medPct, target: harmonicTargets[3], dir: 'up' },
-        { pitchPct: strongPct, target: harmonicTargets[1], dir: 'up' }
-      ];
+      if (proModeToggle && proModeToggle.checked) {
+        const allowedCamelots = new Set([same.camelot, plus.camelot, minus.camelot, relative.camelot]);
+        const matches = libraryTracks.map(track => {
+          const sourceKeyEntry = getEntryByCamelot(track.key);
+          if (!sourceKeyEntry) return null;
+          if (currentSourceTrack && track.artist === currentSourceTrack.artist && track.title === currentSourceTrack.title) return null;
+          const requiredPct = ((newBpm / Math.max(0.01, Number(track.bpm))) - 1) * 100;
+          if (!Number.isFinite(requiredPct) || Math.abs(requiredPct) > currentPitchRange) return null;
+          const shiftedSemitones = 12 * Math.log2(1 + (requiredPct / 100));
+          const resultingKey = findNearestKey(sourceKeyEntry, shiftedSemitones);
+          if (!allowedCamelots.has(resultingKey.camelot)) return null;
+          const targetLabel = harmonicTargets.find(h => h.entry.camelot === resultingKey.camelot)?.label || 'Compatible';
+          return { track, requiredPct, targetLabel, score: Math.abs(requiredPct) };
+        }).filter(Boolean).sort((a, b) => a.score - b.score || a.track.bpm - b.track.bpm).slice(0, 6);
 
-      const uniquePlans = [];
-      const seen = new Set();
-      for (const plan of pitchPlans) {
-        const key = `${plan.pitchPct}|${plan.target.entry.camelot}|${plan.dir}`;
-        if (!seen.has(key)) {
-          seen.add(key);
-          uniquePlans.push(plan);
+        if (matches.length) {
+          const bestScore = matches[0].score;
+          smartList.innerHTML = matches.map(match => {
+            const sign = match.requiredPct >= 0 ? '+' : '';
+            const bestClass = match.score === bestScore ? ' best-suggestion' : '';
+            return `<div class="smart-item smart-item-text-only${bestClass}">
+              <div class="smart-text">
+                <strong class="track-title">${match.track.artist} — ${match.track.title}</strong>
+                <span class="camelot-keyline">${Number(match.track.bpm).toFixed(1)} BPM · ${match.track.key} · ${match.track.year || '—'} · ${match.track.genre || '—'}</span>
+                <span class="mini-line">Pitch ${sign}${match.requiredPct.toFixed(1)}% to land on ${newBpm.toFixed(2)} BPM · ${match.targetLabel}</span>
+              </div>
+            </div>`;
+          }).join('');
+        } else {
+          smartList.innerHTML = `<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">No library matches</strong><span class="mini-line">Try another source BPM, key, pitch range, or import a larger CSV library.</span></div></div>`;
         }
-      }
+      } else {
+        let pitchPlans = [
+          { pitchPct: -lightPct, target: harmonicTargets[0], dir: 'down' },
+          { pitchPct: -medPct, target: harmonicTargets[1], dir: 'down' },
+          { pitchPct: -strongPct, target: harmonicTargets[2], dir: 'down' },
+          { pitchPct: lightPct, target: harmonicTargets[2], dir: 'up' },
+          { pitchPct: medPct, target: harmonicTargets[3], dir: 'up' },
+          { pitchPct: strongPct, target: harmonicTargets[1], dir: 'up' }
+        ];
 
-      const bestPitchAbs = Math.min(...uniquePlans.map(p => Math.abs(p.pitchPct)));
+        const uniquePlans = [];
+        const seen = new Set();
+        for (const plan of pitchPlans) {
+          const key = `${plan.pitchPct}|${plan.target.entry.camelot}|${plan.dir}`;
+          if (!seen.has(key)) {
+            seen.add(key);
+            uniquePlans.push(plan);
+          }
+        }
 
-      smartList.innerHTML = uniquePlans.map((plan) => {
-        const candidateBpm = roundToHalf(newBpm / (1 + (plan.pitchPct / 100)));
-        const semitoneApplied = 12 * Math.log2(1 + (plan.pitchPct / 100));
-        const originalKey = keyShift(plan.target.entry, -Math.round(semitoneApplied));
-        const sign = plan.pitchPct >= 0 ? '+' : '';
-        const verb = plan.dir === 'down' ? 'Pitch down' : 'Pitch up';
-        const bestClass = Math.abs(plan.pitchPct) === bestPitchAbs ? ' best-suggestion' : '';
-        return `<div class="smart-item smart-item-text-only${bestClass}">
-          <div class="smart-text">
-            <strong>${candidateBpm.toFixed(1)} BPM · ${originalKey.camelot} · ${originalKey.regular}</strong>
-            <span class="mini-line">${verb} ${sign}${plan.pitchPct}% to land on ${newBpm.toFixed(2)} BPM · ${plan.target.label}</span>
-          </div>
-        </div>`;
-      }).join('');
-    }
+        const bestPitchAbs = Math.min(...uniquePlans.map(p => Math.abs(p.pitchPct)));
+
+        smartList.innerHTML = uniquePlans.map((plan) => {
+          const candidateBpm = roundToHalf(newBpm / (1 + (plan.pitchPct / 100)));
+          const semitoneApplied = 12 * Math.log2(1 + (plan.pitchPct / 100));
+          const originalKey = keyShift(plan.target.entry, -Math.round(semitoneApplied));
+          const sign = plan.pitchPct >= 0 ? '+' : '';
+          const verb = plan.dir === 'down' ? 'Pitch down' : 'Pitch up';
+          const bestClass = Math.abs(plan.pitchPct) === bestPitchAbs ? ' best-suggestion' : '';
+          return `<div class="smart-item smart-item-text-only${bestClass}">
+            <div class="smart-text">
+              <strong>${candidateBpm.toFixed(1)} BPM · ${originalKey.camelot} · ${originalKey.regular}</strong>
+              <span class="mini-line">${verb} ${sign}${plan.pitchPct}% to land on ${newBpm.toFixed(2)} BPM · ${plan.target.label}</span>
+            </div>
+          </div>`;
+        }).join('');
+      }    }
 
 
 
@@ -2106,8 +2372,40 @@ body[data-skin="silver"] .field-grid select:focus {
     tapTempoBtn.addEventListener('click', registerTapTempo);
     if (halfTempoBtn) halfTempoBtn.addEventListener('click', halveTempo);
     if (doubleTempoBtn) doubleTempoBtn.addEventListener('click', doubleTempo);
-
-
+    if (proModeToggle) {
+      try {
+        proModeToggle.checked = localStorage.getItem('vinylProMode') === '1';
+      } catch (e) {
+        proModeToggle.checked = false;
+      }
+      applyProMode(proModeToggle.checked);
+      proModeToggle.addEventListener('change', () => applyProMode(proModeToggle.checked));
+    }
+    if (trackSearch) {
+      trackSearch.addEventListener('input', () => populateTrackSelect(trackSearch.value));
+    }
+    if (loadTrackBtn) {
+      loadTrackBtn.addEventListener('click', () => {
+        const idx = Number(trackSelect.value);
+        if (Number.isFinite(idx) && libraryTracks[idx]) setSourceFromTrack(libraryTracks[idx]);
+      });
+    }
+    if (csvFileInput) {
+      csvFileInput.addEventListener('change', async () => {
+        const file = csvFileInput.files && csvFileInput.files[0];
+        if (!file) return;
+        const text = await file.text();
+        const parsed = parseCSVText(text);
+        if (parsed.length) {
+          libraryTracks = parsed;
+          populateTrackSelect(trackSearch?.value || '');
+          if (proSourceInfo) proSourceInfo.textContent = `Imported ${parsed.length} tracks from ${file.name}`;
+          update();
+        } else {
+          if (proSourceInfo) proSourceInfo.textContent = `Could not read tracks from ${file.name}`;
+        }
+      });
+    }
 
     faderSlot.addEventListener('pointerdown', (event) => {
       event.preventDefault();
