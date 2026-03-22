@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
-  <title>Vinyl BPM + Key Helper v1.0.49</title>
+  <title>Vinyl BPM + Key Helper v1.0.51</title>
   <style>
     :root {
       --bg: #0b0d14;
@@ -987,7 +987,7 @@ body[data-skin="casio"] .fader-shell {
 }
 
 
-/* v1.0.49 Silver skin: keep only Midnight and Silver; improve center fader visibility */
+/* v1.0.51 Silver skin: keep only Midnight and Silver; improve center fader visibility */
 body[data-skin="silver"] .fader-shell,
 body[data-skin="silver"] .pitch-module,
 body[data-skin="silver"] .pitch-panel,
@@ -1054,7 +1054,7 @@ body[data-skin="silver"] .pitch-info .label {
 }
 
 
-/* v1.0.49: Silver skin - make New BPM and Pitch Shift use the same silver module treatment */
+/* v1.0.51: Silver skin - make New BPM and Pitch Shift use the same silver module treatment */
 body[data-skin="silver"] .display-box {
   background:
     linear-gradient(180deg, rgba(255,255,255,0.96), rgba(233,238,244,0.90)),
@@ -1083,7 +1083,7 @@ body[data-skin="silver"] .display-box .sub {
 }
 
 
-/* v1.0.49: platter center color tweak ONLY */
+/* v1.0.51: platter center color tweak ONLY */
 
 /* Silver = lighter blue */
 body[data-skin="silver"] .platter::after {
@@ -1229,7 +1229,7 @@ body[data-skin="midnight"] .platter::after {
     }
 
 
-/* v1.0.49: Silver skin - fix Tap Tempo button styling */
+/* v1.0.51: Silver skin - fix Tap Tempo button styling */
 body[data-skin="silver"] .tap-btn {
   background:
     linear-gradient(180deg, rgba(255,255,255,0.98), rgba(232,237,243,0.92)),
@@ -1255,7 +1255,7 @@ body[data-skin="silver"] .tap-btn:active {
 }
 
 
-/* v1.0.49: prevent iPhone Safari zoom bounce on Tap Tempo */
+/* v1.0.51: prevent iPhone Safari zoom bounce on Tap Tempo */
 .tap-btn {
   touch-action: manipulation;
   -webkit-touch-callout: none;
@@ -1272,7 +1272,7 @@ body[data-skin="silver"] .tap-btn:active {
 }
 
 
-/* v1.0.49: smart suggestions text-only */
+/* v1.0.51: smart suggestions text-only */
 .smart-item-text-only {
   grid-template-columns: 1fr;
 }
@@ -1348,13 +1348,13 @@ body[data-skin="silver"] .tap-mini-btn:hover {
 }
 
 
-/* v1.0.49: narrower Original BPM field */
+/* v1.0.51: narrower Original BPM field */
 #bpm {
   max-width: 120px;
 }
 
 
-/* v1.0.49: center tap controls across both Source Deck columns */
+/* v1.0.51: center tap controls across both Source Deck columns */
 .tap-controls {
   grid-column: 1 / -1;
   display: flex;
@@ -1364,7 +1364,7 @@ body[data-skin="silver"] .tap-mini-btn:hover {
 }
 
 
-/* v1.0.49: equal width BPM + Key */
+/* v1.0.51: equal width BPM + Key */
 .field-grid input,
 .field-grid select {
   width: 140px;
@@ -1374,12 +1374,191 @@ body[data-skin="silver"] .tap-mini-btn:hover {
 }
 
 
-/* v1.0.49: center labels above BPM + Key */
+/* v1.0.51: center labels above BPM + Key */
 .field-grid .label {
   width: 140px;
   margin: 0 auto 4px;
   text-align: center;
   display: block;
+}
+
+
+/* v1.0.51: panel alignment + micro interactions */
+
+/* Match Source Deck field widths to display boxes for a cleaner grid feel */
+.field-grid input,
+.field-grid select,
+.field-grid .label {
+  width: 160px;
+  max-width: 100%;
+}
+
+/* Keep New BPM / Pitch Shift visually aligned and balanced */
+.display-box {
+  width: 100%;
+  max-width: 260px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Slight active glow polish */
+input:focus,
+select:focus,
+.tap-btn:focus-visible,
+.range-select:focus-visible,
+.skin-picker select:focus-visible {
+  border-color: rgba(109,211,255,0.65);
+  box-shadow:
+    0 0 0 3px rgba(109,211,255,0.14),
+    0 0 12px rgba(109,211,255,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+/* Silver skin focus polish */
+body[data-skin="silver"] input:focus,
+body[data-skin="silver"] select:focus,
+body[data-skin="silver"] .tap-btn:focus-visible,
+body[data-skin="silver"] .range-select:focus-visible,
+body[data-skin="silver"] .skin-picker select:focus-visible {
+  border-color: rgba(63, 76, 91, 0.22) !important;
+  box-shadow:
+    0 0 0 3px rgba(63,76,91,0.08),
+    0 0 12px rgba(61,72,90,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.08) !important;
+}
+
+/* Softer press animation for buttons */
+.tap-btn,
+.skin-picker select,
+.range-select {
+  transition:
+    transform 120ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.tap-btn:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.tap-btn:hover {
+  box-shadow:
+    0 6px 14px rgba(0,0,0,0.16),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+body[data-skin="silver"] .tap-btn:hover {
+  box-shadow:
+    0 6px 14px rgba(61,72,90,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.96) !important;
+}
+
+
+/* v1.0.51: CDJ-style display treatment for Source + center readouts */
+
+/* Source Deck fields */
+.field-grid input,
+.field-grid select {
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, rgba(8,12,20,0.96), rgba(18,24,36,0.96)),
+    linear-gradient(180deg, #0b1119, #1a2230) !important;
+  border: 1px solid rgba(140, 160, 190, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    inset 0 -10px 18px rgba(0,0,0,0.26),
+    0 2px 10px rgba(0,0,0,0.18);
+  color: #dff3ff !important;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.field-grid input:focus,
+.field-grid select:focus {
+  border-color: rgba(109,211,255,0.65);
+  box-shadow:
+    0 0 0 3px rgba(109,211,255,0.12),
+    0 0 14px rgba(109,211,255,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    inset 0 -10px 18px rgba(0,0,0,0.26);
+}
+
+/* Source labels get a hardware-caption look */
+.field-grid .label {
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.76rem;
+  color: var(--muted) !important;
+}
+
+/* Center readout boxes more like CDJ displays */
+.display-box {
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, rgba(8,12,20,0.96), rgba(16,22,34,0.96)),
+    linear-gradient(180deg, #0a0f17, #161e2c) !important;
+  border: 1px solid rgba(140,160,190,0.16) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    inset 0 -14px 24px rgba(0,0,0,0.30),
+    0 6px 18px rgba(0,0,0,0.18) !important;
+}
+
+.display-box .mini {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: #8ea0bf !important;
+}
+
+.display-box .big {
+  color: #dff4ff !important;
+  text-shadow:
+    0 0 8px rgba(109,211,255,0.10),
+    0 1px 0 rgba(255,255,255,0.03);
+}
+
+.display-box .sub {
+  color: #7e91b1 !important;
+}
+
+/* Silver skin gets a silver CDJ display instead of dark blue */
+body[data-skin="silver"] .field-grid input,
+body[data-skin="silver"] .field-grid select,
+body[data-skin="silver"] .display-box {
+  background:
+    linear-gradient(180deg, rgba(244,247,251,0.98), rgba(224,231,239,0.94)),
+    linear-gradient(180deg, #eef3f8, #d6dee8) !important;
+  border-color: rgba(76, 90, 109, 0.18) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.98),
+    inset 0 -10px 18px rgba(90,104,124,0.08),
+    0 6px 18px rgba(61,72,90,0.08) !important;
+  color: #15202b !important;
+}
+
+body[data-skin="silver"] .display-box .big,
+body[data-skin="silver"] .field-grid input,
+body[data-skin="silver"] .field-grid select {
+  color: #111a24 !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.55);
+}
+
+body[data-skin="silver"] .display-box .mini,
+body[data-skin="silver"] .display-box .sub,
+body[data-skin="silver"] .field-grid .label {
+  color: #516074 !important;
+}
+
+body[data-skin="silver"] .field-grid input:focus,
+body[data-skin="silver"] .field-grid select:focus {
+  border-color: rgba(63,76,91,0.24) !important;
+  box-shadow:
+    0 0 0 3px rgba(63,76,91,0.08),
+    0 0 12px rgba(61,72,90,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.98),
+    inset 0 -10px 18px rgba(90,104,124,0.08) !important;
 }
 
 </style>
@@ -1389,7 +1568,7 @@ body[data-skin="silver"] .tap-mini-btn:hover {
     <div class="title-wrap">
       <div class="title-bar">
         <div class="title-copy">
-          <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.49</span></h1>
+          <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.51</span></h1>
           <p class="subtitle">Turntable-style pitch simulation from -16% to +16%. Enter a BPM and key, then use the fader to see the new BPM, pitch shift, shifted key result, and tracks that can match within ±5%.</p>
         </div>
       </div>
