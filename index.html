@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vinyl BPM + Key Helper v1.0.21</title>
+  <title>Vinyl BPM + Key Helper v1.0.22</title>
   <style>
     :root {
       --bg: #0b0d14;
@@ -671,9 +671,12 @@
       flex-wrap: wrap;
     }
 
+    .title-copy { min-width: 0; flex: 1 1 520px; }
+
     .skin-picker {
-      min-width: 170px;
-      max-width: 220px;
+      min-width: 180px;
+      max-width: 240px;
+      flex: 0 0 220px;
       padding-top: 6px;
     }
 
@@ -712,100 +715,45 @@
       --shadow: 0 18px 45px rgba(61,72,90,0.18);
     }
 
-    body[data-skin="silver"] .version-tag {
-      color: #233041;
-      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(236,240,245,0.75));
-      border: 1px solid rgba(56,68,82,0.14);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 8px 18px rgba(61,72,90,0.08);
-    }
-
-    body[data-skin="silver"] .deck-shell {
-      border: 1px solid rgba(63, 76, 91, 0.12);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.55)),
-        linear-gradient(135deg, #edf1f6, #cfd6df 38%, #eef2f7 100%);
-      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.9);
-    }
-
-    body[data-skin="silver"] .module {
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.88), rgba(240,244,249,0.72)),
-        linear-gradient(180deg, #eef2f6, #dce2ea);
-      border: 1px solid rgba(63, 76, 91, 0.14);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.95), inset 0 -16px 24px rgba(130,140,155,0.09);
-    }
-
-    body[data-skin="silver"] .label,
-    body[data-skin="silver"] .module-title,
-    body[data-skin="silver"] .mini,
-    body[data-skin="silver"] .small,
-    body[data-skin="silver"] .subtitle {
-      color: var(--muted);
-    }
-
-    body[data-skin="silver"] h1,
-    body[data-skin="silver"] .strong,
-    body[data-skin="silver"] .big,
-    body[data-skin="silver"] .pitch-big,
-    body[data-skin="silver"] .display-value,
-    body[data-skin="silver"] .match-line {
-      color: var(--text);
-    }
-
+    body[data-skin="silver"] .version-tag,
     body[data-skin="silver"] input,
     body[data-skin="silver"] select,
     body[data-skin="silver"] .result-box,
     body[data-skin="silver"] .small-box,
-    body[data-skin="silver"] .match-window,
+    body[data-skin="silver"] .match-box,
     body[data-skin="silver"] .readout-screen,
     body[data-skin="silver"] .fader-shell {
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.98), rgba(231,236,242,0.9)),
-        #e7edf4;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(231,236,242,0.9)), #e7edf4;
       color: var(--text);
       border-color: rgba(63, 76, 91, 0.15);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.96);
     }
 
+    body[data-skin="silver"] .deck-shell,
+    body[data-skin="silver"] .module {
+      border-color: rgba(63, 76, 91, 0.14);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+
     body[data-skin="silver"] .platter {
       background:
         radial-gradient(circle at 50% 48%, rgba(255,255,255,0.86) 0 20%, rgba(224,229,236,0.95) 21% 32%, rgba(180,188,199,0.96) 33% 46%, rgba(235,239,244,0.96) 47% 62%, rgba(163,171,181,0.96) 63% 100%);
-      box-shadow:
-        inset 0 5px 12px rgba(255,255,255,0.85),
-        inset 0 -10px 24px rgba(92,103,118,0.18),
-        0 12px 24px rgba(76,87,100,0.13);
-    }
-
-    body[data-skin="silver"] .platter::after {
-      opacity: 0.5;
-      filter: brightness(0.78);
+      box-shadow: inset 0 5px 12px rgba(255,255,255,0.85), inset 0 -10px 24px rgba(92,103,118,0.18), 0 12px 24px rgba(76,87,100,0.13);
     }
 
     body[data-skin="silver"] .fader-track {
       background: linear-gradient(180deg, #a9b3bf, #edf2f6 12%, #b8c1cb 88%, #8c97a6);
-      box-shadow: inset 0 0 0 1px rgba(76,87,100,0.16);
     }
 
     body[data-skin="silver"] .fader-thumb {
-      background:
-        radial-gradient(circle at 35% 30%, #ffffff, #e6ebf1 45%, #c4ccd7 80%, #adb7c3 100%);
+      background: radial-gradient(circle at 35% 30%, #ffffff, #e6ebf1 45%, #c4ccd7 80%, #adb7c3 100%);
       border-color: rgba(77, 88, 103, 0.22);
       box-shadow: 0 10px 20px rgba(77,88,103,0.18), inset 0 1px 0 rgba(255,255,255,0.95);
     }
 
-    body[data-skin="silver"] .dot {
-      box-shadow: 0 0 0 2px rgba(63,76,91,0.08);
-    }
-
-    @media (max-width: 720px) {
-      .title-bar { align-items: stretch; }
-      .skin-picker { width: 100%; max-width: none; padding-top: 0; }
-    }
-
-    body[data-skin="crimson"] {
+    body[data-skin="crimson"], body[data-skin="alarm7"], body[data-skin="cdjred"] {
       background:
         radial-gradient(circle at 50% -15%, rgba(255, 60, 60, 0.10), transparent 32%),
-        radial-gradient(circle at 18% 8%, rgba(255, 0, 0, 0.08), transparent 18%),
         linear-gradient(180deg, #090909 0%, #000000 100%);
       --bg: #090909;
       --bg2: #020202;
@@ -824,231 +772,100 @@
       --shadow: 0 20px 48px rgba(0,0,0,0.55);
     }
 
-    body[data-skin="crimson"] .deck-shell {
-      background:
-        linear-gradient(180deg, rgba(38,38,38,0.72), rgba(0,0,0,0.96)),
-        linear-gradient(135deg, #161616, #060606 40%, #141414 100%);
-      border: 1px solid rgba(255, 68, 68, 0.10);
-      box-shadow:
-        0 22px 50px rgba(0,0,0,0.58),
-        inset 0 1px 0 rgba(255,255,255,0.04),
-        inset 0 -14px 24px rgba(255,0,0,0.04);
+    body[data-skin="crimson"] .deck-shell,
+    body[data-skin="alarm7"] .deck-shell,
+    body[data-skin="cdjred"] .deck-shell,
+    body[data-skin="crimson"] .module,
+    body[data-skin="alarm7"] .module,
+    body[data-skin="cdjred"] .module {
+      background: linear-gradient(180deg, rgba(18,18,18,0.96), rgba(2,2,2,0.98)), linear-gradient(180deg, #0a0a0a, #010101);
+      border: 1px solid rgba(255, 68, 68, 0.12);
+      box-shadow: 0 22px 50px rgba(0,0,0,0.58), inset 0 1px 0 rgba(255,255,255,0.04), inset 0 -14px 24px rgba(255,0,0,0.04);
     }
 
-    body[data-skin="crimson"] .module {
-      background:
-        linear-gradient(180deg, rgba(16,16,16,0.96), rgba(5,5,5,0.98)),
-        linear-gradient(180deg, #0d0d0d, #040404);
-      border: 1px solid rgba(255, 70, 70, 0.12);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.03),
-        inset 0 -12px 22px rgba(255,0,0,0.04);
-    }
-
-    body[data-skin="crimson"] .version-tag {
-      color: #ff5f5f;
-      background: linear-gradient(180deg, rgba(20,20,20,0.96), rgba(4,4,4,0.96));
-      border: 1px solid rgba(255,80,80,0.18);
-      box-shadow: inset 0 0 0 1px rgba(255,0,0,0.06), 0 10px 18px rgba(0,0,0,0.35);
-      text-shadow: 0 0 8px rgba(255,80,80,0.28);
-    }
-
-    body[data-skin="crimson"] .label,
-    body[data-skin="crimson"] .module-title,
-    body[data-skin="crimson"] .mini,
-    body[data-skin="crimson"] .small,
-    body[data-skin="crimson"] .subtitle {
-      color: #cf5a5a;
-    }
-
-    body[data-skin="crimson"] h1,
-    body[data-skin="crimson"] .strong,
-    body[data-skin="crimson"] .big,
-    body[data-skin="crimson"] .pitch-big,
-    body[data-skin="crimson"] .display-value,
-    body[data-skin="crimson"] .match-line,
-    body[data-skin="crimson"] .tempo-line,
-    body[data-skin="crimson"] .key-line {
-      color: #ff4b4b;
-      text-shadow: 0 0 10px rgba(255,70,70,0.18);
-    }
-
+    body[data-skin="crimson"] .version-tag,
     body[data-skin="crimson"] input,
     body[data-skin="crimson"] select,
     body[data-skin="crimson"] .result-box,
     body[data-skin="crimson"] .small-box,
-    body[data-skin="crimson"] .match-window,
+    body[data-skin="crimson"] .match-box,
     body[data-skin="crimson"] .readout-screen,
-    body[data-skin="crimson"] .fader-shell {
-      background:
-        linear-gradient(180deg, rgba(19,4,4,0.98), rgba(7,0,0,0.98)),
-        #070000;
-      color: #ff4a4a;
-      border-color: rgba(255, 68, 68, 0.20);
-      box-shadow:
-        inset 0 0 0 1px rgba(255,0,0,0.04),
-        inset 0 1px 0 rgba(255,255,255,0.02),
-        0 0 18px rgba(255,0,0,0.04);
-      text-shadow: 0 0 8px rgba(255,70,70,0.16);
-    }
-
-    body[data-skin="crimson"] .readout-screen,
-    body[data-skin="crimson"] .result-box,
-    body[data-skin="crimson"] .small-box,
-    body[data-skin="crimson"] .match-window {
-      position: relative;
-      overflow: hidden;
-    }
-
-    body[data-skin="crimson"] .readout-screen::before,
-    body[data-skin="crimson"] .result-box::before,
-    body[data-skin="crimson"] .small-box::before,
-    body[data-skin="crimson"] .match-window::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        repeating-linear-gradient(
-          180deg,
-          rgba(255, 72, 72, 0.02) 0px,
-          rgba(255, 72, 72, 0.02) 2px,
-          rgba(0,0,0,0.0) 2px,
-          rgba(0,0,0,0.0) 4px
-        );
-      pointer-events: none;
-      mix-blend-mode: screen;
-    }
-
-    body[data-skin="crimson"] .platter {
-      background:
-        radial-gradient(circle at 50% 48%, rgba(25,25,25,0.98) 0 20%, rgba(5,5,5,0.98) 21% 32%, rgba(30,30,30,0.96) 33% 46%, rgba(12,12,12,0.96) 47% 62%, rgba(3,3,3,0.98) 63% 100%);
-      box-shadow:
-        inset 0 5px 12px rgba(255,255,255,0.02),
-        inset 0 -10px 24px rgba(255,0,0,0.04),
-        0 12px 24px rgba(0,0,0,0.4);
-    }
-
-    body[data-skin="crimson"] .platter::after {
-      opacity: 0.18;
-      filter: hue-rotate(-10deg) saturate(1.2);
-    }
-
-    body[data-skin="crimson"] .fader-track {
-      background: linear-gradient(180deg, #2b2b2b, #0a0a0a 12%, #141414 88%, #000000);
-      box-shadow: inset 0 0 0 1px rgba(255, 68, 68, 0.08);
-    }
-
-    body[data-skin="crimson"] .fader-thumb {
-      background:
-        radial-gradient(circle at 35% 30%, #2f2f2f, #161616 45%, #090909 80%, #010101 100%);
-      border-color: rgba(255, 70, 70, 0.16);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.36), inset 0 1px 0 rgba(255,255,255,0.06);
-    }
-
-    body[data-skin="crimson"] .dot {
-      background: #ff5252;
-      box-shadow: 0 0 0 2px rgba(255,82,82,0.12), 0 0 10px rgba(255,82,82,0.26);
-    }
-
-    body[data-skin="crimson"] .camelot-pill,
-    body[data-skin="crimson"] .camelot-chip {
-      box-shadow: inset 0 0 0 1px rgba(255,82,82,0.12), 0 0 12px rgba(255,0,0,0.05);
-    }
-
-    /* optional display fonts for alternate skins */
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=VT323&display=swap');
-
-    body[data-skin="alarm7"] {
-      background:
-        radial-gradient(circle at 50% -15%, rgba(255, 64, 64, 0.12), transparent 34%),
-        linear-gradient(180deg, #050505 0%, #000000 100%);
-      --bg: #080808;
-      --bg2: #000000;
-      --panel: #070707;
-      --panel2: #030303;
-      --panel3: #0b0b0b;
-      --metal1: #232323;
-      --metal2: #050505;
-      --text: #ff5e54;
-      --muted: #c7625d;
-      --accent: #ff463b;
-      --accent2: #ff7d75;
-      --gold: #ff7a63;
-      --good: #ff6e61;
-      --border: rgba(255, 94, 84, 0.18);
-      --shadow: 0 20px 52px rgba(0,0,0,0.58);
-    }
-
-    body[data-skin="alarm7"] .deck-shell,
-    body[data-skin="alarm7"] .module {
-      background:
-        linear-gradient(180deg, rgba(18,18,18,0.96), rgba(2,2,2,0.98)),
-        linear-gradient(180deg, #0a0a0a, #010101);
-      border: 1px solid rgba(255, 94, 84, 0.11);
-      box-shadow:
-        0 18px 40px rgba(0,0,0,0.48),
-        inset 0 1px 0 rgba(255,255,255,0.03),
-        inset 0 -12px 20px rgba(255,94,84,0.03);
-    }
-
-    body[data-skin="alarm7"] h1,
-    body[data-skin="alarm7"] .big,
-    body[data-skin="alarm7"] .pitch-big,
-    body[data-skin="alarm7"] .display-value,
-    body[data-skin="alarm7"] .match-line,
-    body[data-skin="alarm7"] .tempo-line,
-    body[data-skin="alarm7"] .key-line,
-    body[data-skin="alarm7"] .version-tag {
-      font-family: "Orbitron", system-ui, sans-serif;
-      letter-spacing: 0.05em;
-      color: #ff6157;
-      text-shadow: 0 0 14px rgba(255,97,87,0.22);
-    }
-
+    body[data-skin="crimson"] .fader-shell,
     body[data-skin="alarm7"] .version-tag,
     body[data-skin="alarm7"] input,
     body[data-skin="alarm7"] select,
     body[data-skin="alarm7"] .result-box,
     body[data-skin="alarm7"] .small-box,
-    body[data-skin="alarm7"] .match-window,
+    body[data-skin="alarm7"] .match-box,
     body[data-skin="alarm7"] .readout-screen,
-    body[data-skin="alarm7"] .fader-shell {
-      background:
-        linear-gradient(180deg, rgba(22,7,7,0.98), rgba(8,1,1,0.98)),
-        #090101;
-      color: #ff6157;
-      border-color: rgba(255, 94, 84, 0.20);
-      box-shadow:
-        inset 0 0 0 1px rgba(255,90,82,0.05),
-        0 0 20px rgba(255,64,64,0.05);
-      text-shadow: 0 0 10px rgba(255,97,87,0.16);
+    body[data-skin="alarm7"] .fader-shell,
+    body[data-skin="cdjred"] .version-tag,
+    body[data-skin="cdjred"] input,
+    body[data-skin="cdjred"] select,
+    body[data-skin="cdjred"] .result-box,
+    body[data-skin="cdjred"] .small-box,
+    body[data-skin="cdjred"] .match-box,
+    body[data-skin="cdjred"] .readout-screen,
+    body[data-skin="cdjred"] .fader-shell {
+      background: linear-gradient(180deg, rgba(19,4,4,0.98), rgba(7,0,0,0.98)), #070000;
+      color: #ff4a4a;
+      border-color: rgba(255, 68, 68, 0.20);
+      box-shadow: inset 0 0 0 1px rgba(255,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.02), 0 0 18px rgba(255,0,0,0.04);
+      text-shadow: 0 0 8px rgba(255,70,70,0.16);
     }
 
-    body[data-skin="alarm7"] .readout-screen::before,
+    body[data-skin="crimson"] .match-box,
+    body[data-skin="alarm7"] .match-box,
+    body[data-skin="cdjred"] .match-box,
+    body[data-skin="crimson"] .result-box,
+    body[data-skin="alarm7"] .result-box,
+    body[data-skin="cdjred"] .result-box,
+    body[data-skin="crimson"] .small-box,
+    body[data-skin="alarm7"] .small-box,
+    body[data-skin="cdjred"] .small-box {
+      position: relative;
+      overflow: hidden;
+    }
+
+    body[data-skin="crimson"] .match-box::before,
+    body[data-skin="alarm7"] .match-box::before,
+    body[data-skin="cdjred"] .match-box::before,
+    body[data-skin="crimson"] .result-box::before,
     body[data-skin="alarm7"] .result-box::before,
+    body[data-skin="cdjred"] .result-box::before,
+    body[data-skin="crimson"] .small-box::before,
     body[data-skin="alarm7"] .small-box::before,
-    body[data-skin="alarm7"] .match-window::before {
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      background:
-        repeating-linear-gradient(90deg,
-          rgba(255,94,84,0.02) 0 6px,
-          transparent 6px 10px);
+    body[data-skin="cdjred"] .small-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(180deg, rgba(255, 72, 72, 0.02) 0px, rgba(255, 72, 72, 0.02) 2px, rgba(0,0,0,0.0) 2px, rgba(0,0,0,0.0) 4px);
+      pointer-events: none;
       mix-blend-mode: screen;
     }
 
-    body[data-skin="alarm7"] .fader-track {
-      background: linear-gradient(180deg, #2b2b2b, #0a0a0a 14%, #141414 86%, #000000);
-      box-shadow: inset 0 0 0 1px rgba(255,94,84,0.09);
+    body[data-skin="crimson"] .platter,
+    body[data-skin="alarm7"] .platter,
+    body[data-skin="cdjred"] .platter {
+      background: radial-gradient(circle at 50% 48%, rgba(25,25,25,0.98) 0 20%, rgba(5,5,5,0.98) 21% 32%, rgba(30,30,30,0.96) 33% 46%, rgba(12,12,12,0.96) 47% 62%, rgba(3,3,3,0.98) 63% 100%);
+      box-shadow: inset 0 5px 12px rgba(255,255,255,0.02), inset 0 -10px 24px rgba(255,0,0,0.04), 0 12px 24px rgba(0,0,0,0.4);
     }
-    body[data-skin="alarm7"] .fader-thumb { background: radial-gradient(circle at 35% 30%, #2f2f2f, #171717 50%, #090909 100%); }
+
+    body[data-skin="crimson"] .fader-track,
+    body[data-skin="alarm7"] .fader-track,
+    body[data-skin="cdjred"] .fader-track {
+      background: linear-gradient(180deg, #2b2b2b, #0a0a0a 12%, #141414 88%, #000000);
+    }
+
+    body[data-skin="crimson"] .fader-thumb,
+    body[data-skin="alarm7"] .fader-thumb,
+    body[data-skin="cdjred"] .fader-thumb {
+      background: radial-gradient(circle at 35% 30%, #2f2f2f, #161616 45%, #090909 80%, #010101 100%);
+      border-color: rgba(255, 70, 70, 0.16);
+    }
 
     body[data-skin="casio"] {
-      background:
-        radial-gradient(circle at 50% -10%, rgba(232, 245, 224, 0.22), transparent 38%),
-        linear-gradient(180deg, #bfc7b0 0%, #909983 100%);
+      background: radial-gradient(circle at 50% -10%, rgba(232, 245, 224, 0.22), transparent 38%), linear-gradient(180deg, #bfc7b0 0%, #909983 100%);
       --bg: #cad0bc;
       --bg2: #8e9680;
       --panel: #dce2cf;
@@ -1066,34 +883,11 @@
       --shadow: 0 18px 45px rgba(67,77,58,0.18);
     }
 
-    body[data-skin="casio"] .deck-shell {
-      background:
-        linear-gradient(180deg, rgba(243,247,235,0.92), rgba(221,228,208,0.85)),
-        linear-gradient(135deg, #dde4d0, #bcc4b0 40%, #e6ebdc 100%);
+    body[data-skin="casio"] .deck-shell,
+    body[data-skin="casio"] .module {
+      background: linear-gradient(180deg, rgba(243,247,235,0.92), rgba(221,228,208,0.85)), linear-gradient(135deg, #dde4d0, #bcc4b0 40%, #e6ebdc 100%);
       border: 1px solid rgba(56, 71, 57, 0.12);
       box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.95);
-    }
-
-    body[data-skin="casio"] .module {
-      background:
-        linear-gradient(180deg, rgba(240,245,232,0.94), rgba(220,227,209,0.84)),
-        linear-gradient(180deg, #dde4d0, #c3cab7);
-      border: 1px solid rgba(56, 71, 57, 0.14);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.96), inset 0 -14px 20px rgba(84,98,74,0.06);
-    }
-
-    body[data-skin="casio"] h1,
-    body[data-skin="casio"] .version-tag,
-    body[data-skin="casio"] .big,
-    body[data-skin="casio"] .pitch-big,
-    body[data-skin="casio"] .display-value,
-    body[data-skin="casio"] .match-line,
-    body[data-skin="casio"] .tempo-line,
-    body[data-skin="casio"] .key-line {
-      font-family: "VT323", monospace;
-      letter-spacing: 0.03em;
-      color: #304932;
-      text-shadow: none;
     }
 
     body[data-skin="casio"] .version-tag,
@@ -1101,119 +895,23 @@
     body[data-skin="casio"] select,
     body[data-skin="casio"] .result-box,
     body[data-skin="casio"] .small-box,
-    body[data-skin="casio"] .match-window,
+    body[data-skin="casio"] .match-box,
     body[data-skin="casio"] .readout-screen,
     body[data-skin="casio"] .fader-shell {
-      background:
-        linear-gradient(180deg, rgba(205,216,194,0.98), rgba(179,190,168,0.95)),
-        #c3ccb6;
+      background: linear-gradient(180deg, rgba(205,216,194,0.98), rgba(179,190,168,0.95)), #c3ccb6;
       color: #2e4631;
       border-color: rgba(56, 71, 57, 0.16);
       box-shadow: inset 0 1px 0 rgba(236,241,231,0.96);
     }
 
-    body[data-skin="casio"] .readout-screen::before,
-    body[data-skin="casio"] .result-box::before,
-    body[data-skin="casio"] .small-box::before,
-    body[data-skin="casio"] .match-window::before {
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.04)),
-        repeating-linear-gradient(0deg, rgba(46,70,49,0.03) 0 1px, transparent 1px 3px);
-      mix-blend-mode:multiply;
-    }
-
     body[data-skin="casio"] .platter {
-      background:
-        radial-gradient(circle at 50% 48%, rgba(232,239,225,0.96) 0 20%, rgba(193,203,184,0.96) 21% 32%, rgba(155,166,144,0.94) 33% 46%, rgba(214,222,204,0.95) 47% 62%, rgba(144,154,132,0.96) 63% 100%);
-      box-shadow:
-        inset 0 5px 12px rgba(255,255,255,0.75),
-        inset 0 -10px 22px rgba(84,98,74,0.12),
-        0 12px 24px rgba(67,77,58,0.12);
+      background: radial-gradient(circle at 50% 48%, rgba(232,239,225,0.96) 0 20%, rgba(193,203,184,0.96) 21% 32%, rgba(155,166,144,0.94) 33% 46%, rgba(214,222,204,0.95) 47% 62%, rgba(144,154,132,0.96) 63% 100%);
+      box-shadow: inset 0 5px 12px rgba(255,255,255,0.75), inset 0 -10px 22px rgba(84,98,74,0.12), 0 12px 24px rgba(67,77,58,0.12);
     }
 
-    body[data-skin="cdjred"] {
-      background:
-        radial-gradient(circle at 50% -10%, rgba(255, 40, 40, 0.14), transparent 32%),
-        linear-gradient(180deg, #151515 0%, #080808 100%);
-      --bg: #121212;
-      --bg2: #060606;
-      --panel: #141414;
-      --panel2: #090909;
-      --panel3: #0f0f0f;
-      --metal1: #2d2d2d;
-      --metal2: #090909;
-      --text: #ff3a3a;
-      --muted: #cf6868;
-      --accent: #ff2121;
-      --accent2: #ff7474;
-      --gold: #ff6767;
-      --good: #ff5050;
-      --border: rgba(255, 58, 58, 0.14);
-      --shadow: 0 20px 48px rgba(0,0,0,0.48);
-    }
-
-    body[data-skin="cdjred"] .deck-shell,
-    body[data-skin="cdjred"] .module {
-      background:
-        linear-gradient(180deg, rgba(24,24,24,0.96), rgba(6,6,6,0.98)),
-        linear-gradient(180deg, #121212, #050505);
-      border: 1px solid rgba(255,58,58,0.10);
-      box-shadow:
-        0 18px 42px rgba(0,0,0,0.45),
-        inset 0 1px 0 rgba(255,255,255,0.03),
-        inset 0 -12px 18px rgba(255,58,58,0.02);
-    }
-
-    body[data-skin="cdjred"] .version-tag,
-    body[data-skin="cdjred"] .readout-screen,
-    body[data-skin="cdjred"] .result-box,
-    body[data-skin="cdjred"] .small-box,
-    body[data-skin="cdjred"] .match-window,
-    body[data-skin="cdjred"] input,
-    body[data-skin="cdjred"] select,
-    body[data-skin="cdjred"] .fader-shell {
-      background:
-        linear-gradient(180deg, rgba(30,0,0,0.98), rgba(8,0,0,0.98)),
-        #110000;
-      color: #ff3f3f;
-      border-color: rgba(255,58,58,0.18);
-      box-shadow: inset 0 0 0 1px rgba(255,58,58,0.05), 0 0 18px rgba(255,58,58,0.04);
-    }
-
-    body[data-skin="cdjred"] h1,
-    body[data-skin="cdjred"] .big,
-    body[data-skin="cdjred"] .pitch-big,
-    body[data-skin="cdjred"] .display-value,
-    body[data-skin="cdjred"] .match-line,
-    body[data-skin="cdjred"] .tempo-line,
-    body[data-skin="cdjred"] .key-line,
-    body[data-skin="cdjred"] .version-tag {
-      font-family: "Orbitron", system-ui, sans-serif;
-      letter-spacing: 0.04em;
-      color: #ff4040;
-      text-shadow: 0 0 10px rgba(255,64,64,0.18);
-    }
-
-    body[data-skin="cdjred"] .dot {
-      background: #ff3535;
-      box-shadow: 0 0 0 2px rgba(255,53,53,0.12), 0 0 12px rgba(255,53,53,0.28);
-    }
-
-    body[data-skin="cdjred"] .readout-screen::before,
-    body[data-skin="cdjred"] .result-box::before,
-    body[data-skin="cdjred"] .small-box::before,
-    body[data-skin="cdjred"] .match-window::before {
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.02), transparent 16%, rgba(255,255,255,0.01) 16%, transparent 100%);
-      mix-blend-mode:screen;
+    @media (max-width: 720px) {
+      .title-bar { align-items: stretch; }
+      .skin-picker { width: 100%; max-width: none; flex: 1 1 100%; padding-top: 0; }
     }
 
   </style>
@@ -1221,8 +919,23 @@
 <body>
   <div class="app">
     <div class="title-wrap">
-      <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.21</span></h1>
-      <p class="subtitle">Turntable-style pitch simulation from -16% to +16%. Enter a BPM and key, then use the fader to see the new BPM, pitch shift, shifted key result, and tracks that can match within ±5%.</p>
+      <div class="title-bar">
+        <div class="title-copy">
+          <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.22</span></h1>
+          <p class="subtitle">Turntable-style pitch simulation from -16% to +16%. Enter a BPM and key, then use the fader to see the new BPM, pitch shift, shifted key result, and tracks that can match within ±5%.</p>
+        </div>
+        <div class="skin-picker">
+          <label class="label" for="skinSelect">Skin</label>
+          <select id="skinSelect">
+            <option value="midnight" selected>Midnight</option>
+            <option value="silver">Silver</option>
+            <option value="crimson">Crimson LCD</option>
+            <option value="alarm7">Alarm 7-Segment</option>
+            <option value="casio">Casio LCD</option>
+            <option value="cdjred">CDJ Red</option>
+          </select>
+        </div>
+      </div>
     </div>
 
     <div class="deck-shell">
@@ -1323,9 +1036,10 @@
     const skinSelect = document.getElementById('skinSelect');
 
     function applySkin(skin) {
-      const nextSkin = ['silver','crimson','alarm7','casio','cdjred'].includes(skin) ? skin : 'midnight';
+      const valid = ['midnight', 'silver', 'crimson', 'alarm7', 'casio', 'cdjred'];
+      const nextSkin = valid.includes(skin) ? skin : 'midnight';
       document.body.setAttribute('data-skin', nextSkin);
-      skinSelect.value = nextSkin;
+      if (skinSelect) skinSelect.value = nextSkin;
       try { localStorage.setItem('vinylSkin', nextSkin); } catch (e) {}
     }
 
@@ -1335,7 +1049,9 @@
       applySkin('midnight');
     }
 
-    skinSelect.addEventListener('change', () => applySkin(skinSelect.value));
+    if (skinSelect) {
+      skinSelect.addEventListener('change', () => applySkin(skinSelect.value));
+    }
 
     const keyData = [
       { regular: "A♭ minor", camelot: "1A", pitchClass: 8, mode: "minor" },
