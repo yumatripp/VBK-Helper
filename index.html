@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vinyl BPM + Key Helper v1.0.8</title>
+  <title>Vinyl BPM + Key Helper v1.0.9</title>
   <style>
     :root {
       --bg: #0b0d14;
@@ -339,6 +339,11 @@
         linear-gradient(180deg, #0c1017, #171d2a 42%, #0d1118);
       border: 1px solid rgba(255,255,255,0.08);
       box-shadow: inset 0 0 28px rgba(0,0,0,0.48), inset 0 1px 0 rgba(255,255,255,0.03);
+      touch-action: none;
+      -ms-touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+      overscroll-behavior: contain;
     }
 
     .fader-track {
@@ -402,6 +407,7 @@
       -webkit-appearance: slider-vertical;
       writing-mode: bt-lr;
       z-index: 4;
+      touch-action: none;
     }
 
     #pitchSlider::-webkit-slider-thumb {
@@ -604,7 +610,7 @@
 <body>
   <div class="app">
     <div class="title-wrap">
-      <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.8</span></h1>
+      <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.9</span></h1>
       <p class="subtitle">Turntable-style pitch simulation from -16% to +16%. Enter a BPM and key, then use the fader to see the new BPM, pitch shift, shifted key result, and tracks that can match within ±5%.</p>
     </div>
 
@@ -929,6 +935,14 @@
     function endFaderDrag() {
       draggingFader = false;
     }
+
+    faderSlot.addEventListener('touchstart', (event) => {
+      event.preventDefault();
+    }, { passive: false });
+
+    faderSlot.addEventListener('touchmove', (event) => {
+      event.preventDefault();
+    }, { passive: false });
 
     fillSelects();
     buildTicks();
