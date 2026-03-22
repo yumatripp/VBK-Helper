@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vinyl BPM + Key Helper v1.0.30</title>
+  <title>Vinyl BPM + Key Helper v1.0.32</title>
   <style>
     :root {
       --bg: #0b0d14;
@@ -987,7 +987,7 @@ body[data-skin="casio"] .fader-shell {
 }
 
 
-/* v1.0.30 Silver skin: keep only Midnight and Silver; improve center fader visibility */
+/* v1.0.32 Silver skin: keep only Midnight and Silver; improve center fader visibility */
 body[data-skin="silver"] .fader-shell,
 body[data-skin="silver"] .pitch-module,
 body[data-skin="silver"] .pitch-panel,
@@ -1054,7 +1054,7 @@ body[data-skin="silver"] .pitch-info .label {
 }
 
 
-/* v1.0.30: Silver skin - make New BPM and Pitch Shift use the same silver module treatment */
+/* v1.0.32: Silver skin - make New BPM and Pitch Shift use the same silver module treatment */
 body[data-skin="silver"] .display-box {
   background:
     linear-gradient(180deg, rgba(255,255,255,0.96), rgba(233,238,244,0.90)),
@@ -1083,7 +1083,7 @@ body[data-skin="silver"] .display-box .sub {
 }
 
 
-/* v1.0.30: platter center color tweak ONLY */
+/* v1.0.32: platter center color tweak ONLY */
 
 /* Silver = lighter blue */
 body[data-skin="silver"] .platter::after {
@@ -1105,6 +1105,26 @@ body[data-skin="midnight"] .platter::after {
     #05121d 100%);
 }
 
+
+    .skin-picker-bottom {
+      width: 100%;
+      max-width: 240px;
+      margin: 16px auto 0;
+      padding-top: 0;
+      align-self: end;
+      text-align: center;
+    }
+
+    .skin-picker-bottom .label {
+      text-align: center;
+    }
+
+    .target-readout {
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      align-items: start;
+    }
+
 </style>
 </head>
 <body>
@@ -1112,15 +1132,8 @@ body[data-skin="midnight"] .platter::after {
     <div class="title-wrap">
       <div class="title-bar">
         <div class="title-copy">
-          <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.30</span></h1>
+          <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.32</span></h1>
           <p class="subtitle">Turntable-style pitch simulation from -16% to +16%. Enter a BPM and key, then use the fader to see the new BPM, pitch shift, shifted key result, and tracks that can match within ±5%.</p>
-        </div>
-        <div class="skin-picker">
-          <label class="label" for="skinSelect">Skin</label>
-          <select id="skinSelect">
-            <option value="midnight" selected>Midnight</option>
-            <option value="silver">Silver</option>
-          </select>
         </div>
       </div>
     </div>
@@ -1154,10 +1167,6 @@ body[data-skin="midnight"] .platter::after {
             <div class="sub" id="combinedKeyDetail">Nearest musical key after transposition with matching Camelot wheel position.</div>
           </div>
 
-          <div class="formula">
-            New BPM = original BPM × (1 + pitch% / 100)<br>
-            Semitone shift = 12 × log₂(1 + pitch% / 100)
-          </div>
         </section>
 
         <section class="module fader-module">
@@ -1212,6 +1221,14 @@ body[data-skin="midnight"] .platter::after {
             <div class="mini">Track Match Window (±5%)</div>
             <div class="match-line" id="matchLine">To hit 128.00 BPM, look for tracks between 121.90 and 134.74 BPM that can be pitched within ±5%.</div>
             <div class="chip-row" id="matchChips"></div>
+          </div>
+
+          <div class="skin-picker skin-picker-bottom">
+            <label class="label" for="skinSelect">Skin</label>
+            <select id="skinSelect">
+              <option value="midnight" selected>Midnight</option>
+              <option value="silver">Silver</option>
+            </select>
           </div>
         </section>
       </div>
@@ -1531,6 +1548,31 @@ body[data-skin="midnight"] .platter::after {
     }, { passive: false });
 
     window.addEventListener('touchcancel', () => endFaderDrag(), { passive: true });
+
+    window.addEventListener('keydown', (event) => {
+      if (!event.shiftKey) return;
+
+      const active = document.activeElement;
+      const tag = active ? active.tagName : '';
+      const isTypingField = active && (
+        tag === 'INPUT' ||
+        tag === 'TEXTAREA' ||
+        active.isContentEditable
+      );
+
+      if (isTypingField) return;
+
+      if (event.key === 'ArrowUp' || event.key === 'Up') {
+        event.preventDefault();
+        pitchSlider.value = String(clampPitchValue((Number(pitchSlider.value) || 0) - 1));
+        update();
+      } else if (event.key === 'ArrowDown' || event.key === 'Down') {
+        event.preventDefault();
+        pitchSlider.value = String(clampPitchValue((Number(pitchSlider.value) || 0) + 1));
+        update();
+      }
+    });
+
     window.addEventListener('resize', update);
   </script>
 </body>
