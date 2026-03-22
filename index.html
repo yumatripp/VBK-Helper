@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vinyl BPM + Key Helper v1.0.25</title>
+  <title>Vinyl BPM + Key Helper v1.0.26</title>
   <style>
     :root {
       --bg: #0b0d14;
@@ -986,6 +986,52 @@ body[data-skin="casio"] .fader-shell {
   border-color: rgba(56, 71, 57, 0.14);
 }
 
+
+/* v1.0.26 Silver skin: keep only Midnight and Silver; improve center fader visibility */
+body[data-skin="silver"] .fader-shell,
+body[data-skin="silver"] .pitch-module,
+body[data-skin="silver"] .pitch-panel,
+body[data-skin="silver"] .center-module {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.96), rgba(233,238,244,0.90)),
+    repeating-linear-gradient(
+      180deg,
+      rgba(255,255,255,0.05) 0px,
+      rgba(255,255,255,0.05) 2px,
+      rgba(180,188,198,0.03) 2px,
+      rgba(180,188,198,0.03) 4px
+    ),
+    #e7edf4 !important;
+  border-color: rgba(63, 76, 91, 0.16) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.96),
+    0 8px 18px rgba(61,72,90,0.08) !important;
+}
+
+body[data-skin="silver"] .fader-track {
+  background:
+    linear-gradient(180deg, #c7d0da 0%, #eef2f6 10%, #d6dde6 50%, #eef2f6 90%, #b8c1cb 100%) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(63, 76, 91, 0.16),
+    inset 0 1px 2px rgba(255,255,255,0.70) !important;
+}
+
+body[data-skin="silver"] .fader-thumb {
+  background:
+    radial-gradient(circle at 35% 30%, #ffffff 0%, #eef2f6 35%, #d6dde6 72%, #bcc5d0 100%) !important;
+  border-color: rgba(77, 88, 103, 0.22) !important;
+  box-shadow:
+    0 10px 20px rgba(77,88,103,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.96) !important;
+}
+
+body[data-skin="silver"] .fader-value,
+body[data-skin="silver"] .pitch-readout,
+body[data-skin="silver"] .pitch-big,
+body[data-skin="silver"] .display-value {
+  color: #10151b !important;
+}
+
 </style>
 </head>
 <body>
@@ -993,7 +1039,7 @@ body[data-skin="casio"] .fader-shell {
     <div class="title-wrap">
       <div class="title-bar">
         <div class="title-copy">
-          <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.25</span></h1>
+          <h1>Vinyl BPM + Key Helper <span class="version-tag">v1.0.26</span></h1>
           <p class="subtitle">Turntable-style pitch simulation from -16% to +16%. Enter a BPM and key, then use the fader to see the new BPM, pitch shift, shifted key result, and tracks that can match within ±5%.</p>
         </div>
         <div class="skin-picker">
@@ -1001,8 +1047,6 @@ body[data-skin="casio"] .fader-shell {
           <select id="skinSelect">
             <option value="midnight" selected>Midnight</option>
             <option value="silver">Silver</option>
-            <option value="crimson">Crimson LCD</option>
-            <option value="casio">Casio LCD</option>
           </select>
         </div>
       </div>
