@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" name="viewport"/>
-<title>Vinyl BPM + Key Helper Pro v2.2.34-step5a</title>
+<title>Vinyl BPM + Key Helper Pro v2.2.37-step5a</title>
 <style>
     :root {
       --bg: #0b0d14;
@@ -3820,6 +3820,33 @@ function populateTrackSelect(filterText = '') {
     subEl.textContent = `${track.title || ''} · ${track.bpm || '—'} BPM · ${track.key || '—'}`;
   }
 
+  function positionLeftMirrorHandle() {
+    const slider = document.getElementById('leftPitchSliderStep4');
+    const slot = document.getElementById('leftFaderSlotStep4');
+    const handle = document.getElementById('leftFaderHandleStep4');
+    const display = document.getElementById('leftPitchDisplay');
+    if (!slider || !slot || !handle) return;
+
+    const min = Number(slider.min);
+    const max = Number(slider.max);
+    const val = Number(slider.value || 0);
+    const ratio = (val - min) / (max - min);
+
+    const rect = slot.getBoundingClientRect();
+    const handleHeight = 24;
+    const pad = 18;
+    const usable = Math.max(1, rect.height - (pad * 2));
+    const centerY = pad + (ratio * usable);
+    const minCenter = pad + (handleHeight / 2);
+    const maxCenter = rect.height - pad - (handleHeight / 2);
+    const clampedCenter = Math.min(maxCenter, Math.max(minCenter, centerY));
+    handle.style.top = `${clampedCenter}px`;
+
+    if (display) {
+      display.textContent = `${val >= 0 ? '+' : ''}${val}%`;
+    }
+  }
+
   function updateLeftDeckFeedback() {
     if (!leftResultBpm || !leftResultKey || !leftMatchQuality) return;
     if (!(dualToggle && dualToggle.checked)) return;
@@ -3946,18 +3973,15 @@ function populateTrackSelect(filterText = '') {
   function loadLeftTrackMirror(track, requiredPct) {
     leftDeckTrack = track;
     setDeckTextMirror('left', leftDeckTrack);
+
+    const clamped = Math.max(-8, Math.min(8, Math.round(requiredPct)));
     if (leftPitchSlider) {
-      const clamped = Math.max(-8, Math.min(8, Math.round(requiredPct)));
       leftPitchSlider.value = String(clamped);
     }
-    const leftDisplay = document.getElementById('leftPitchDisplay');
-    const leftHandle = document.getElementById('leftFaderHandleStep4');
-    const leftSlot = document.getElementById('leftFaderSlotStep4');
-    if (typeof positionHandle === 'function' && leftPitchSlider) positionHandle(leftSlot, leftHandle, leftPitchSlider);
-    if (leftDisplay && leftPitchSlider) {
-      const v = Number(leftPitchSlider.value || 0);
-      leftDisplay.textContent = `${v >= 0 ? '+' : ''}${v}%`;
-    }
+
+    // Move the visible custom left-side handle and refresh the readout.
+    positionLeftMirrorHandle();
+
     if (typeof renderRightSuggestions === 'function') renderRightSuggestions();
     renderLeftSuggestions();
     updateLeftDeckFeedback();
@@ -4001,14 +4025,7 @@ function populateTrackSelect(filterText = '') {
     renderLeftSuggestions();
   });
   if (leftPitchSlider) leftPitchSlider.addEventListener('input', () => {
-    const leftDisplay = document.getElementById('leftPitchDisplay');
-    const leftHandle = document.getElementById('leftFaderHandleStep4');
-    const leftSlot = document.getElementById('leftFaderSlotStep4');
-    if (typeof positionHandle === 'function' && leftPitchSlider) positionHandle(leftSlot, leftHandle, leftPitchSlider);
-    if (leftDisplay && leftPitchSlider) {
-      const v = Number(leftPitchSlider.value || 0);
-      leftDisplay.textContent = `${v >= 0 ? '+' : ''}${v}%`;
-    }
+    positionLeftMirrorHandle();
     renderRightSuggestions();
     updateLeftDeckFeedback();
   });
@@ -4017,6 +4034,7 @@ function populateTrackSelect(filterText = '') {
     updateLeftDeckFeedback();
   }, 0));
 
+  positionLeftMirrorHandle();
   updateLeftDeckFeedback();
   renderLeftSuggestions();
 
