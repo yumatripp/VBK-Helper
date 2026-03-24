@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
-  <title>Vinyl BPM + Key Helper Pro v2.0.0</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Vinyl BPM + Key Helper Pro v2.2.34-step5a</title>
+<style>
     :root {
       --bg: #0b0d14;
       --bg2: #141823;
@@ -1684,151 +1685,624 @@ body[data-skin="silver"] .file-btn {
     0 4px 10px rgba(61,72,90,0.08) !important;
 }
 
+
+/* v2.1.0: Pro branch UX upgrades */
+.pro-filter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+.smart-item.clickable-suggestion {
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 140ms ease, border-color 140ms ease;
+}
+.smart-item.clickable-suggestion:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+}
+.smart-item.clickable-suggestion:active {
+  transform: translateY(0);
+}
+@media (max-width: 640px) {
+  .pro-filter-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* v2.1.2: optional Smart Suggestions decade lock */
+.year-lock-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.year-lock-row input {
+  width: auto;
+  min-height: auto;
+  margin: 0;
+}
+
+
+/* v2.1.6: clean Single Deck / Dual Deck toggle */
+.pro-mode-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.deck-toggle {
+  margin-left: 0;
+}
+
+.dual-deck-note {
+  margin-top: 12px;
+  border-radius: 14px;
+  padding: 10px 12px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.01)),
+    linear-gradient(180deg, #141b27, #0b1119);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.dual-deck-note .mini {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.dual-deck-note-text {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+
+
+/* v2.2.0-step1: Dual Deck shell only */
+.dual-shell {
+  margin-top: 18px;
+}
+
+.dual-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(260px, 1fr) minmax(260px, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.dual-module {
+  min-width: 0;
+}
+
+.dual-placeholder {
+  border-radius: 18px;
+  min-height: 220px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 20px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)),
+    linear-gradient(180deg, #111825, #0b1119);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.dual-placeholder-title {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.dual-placeholder-sub {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.35;
+  max-width: 280px;
+}
+
+@media (max-width: 1020px) and (orientation: portrait) {
+  .dual-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* v2.2.2-step2: move center content into Dual Deck center */
+.dual-center-module {
+  display: block;
+}
+.dual-center-stack {
+  display: grid;
+  gap: 14px;
+}
+.dual-mount {
+  min-height: 40px;
+}
+.dual-shell .result-grid {
+  grid-template-columns: 1fr;
+}
+.dual-shell .result-box.full {
+  grid-column: auto;
+}
+
+
+/* v2.2.3-step2b: Smart Suggestions at top, hide harmonic in dual */
+.dual-center-stack { align-content: start; }
+
+
+/* v2.2.4-step3: centered Load Left / Load Right in Dual center */
+.dual-load-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 2px;
+}
+.dual-load-row .tap-btn {
+  min-width: 110px;
+}
+
+
+/* v2.2.5-step4: dual slider shells */
+.dual-deck-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 96px;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.dual-deck-main {
+  min-width: 0;
+}
+
+.dual-deck-fader {
+  min-width: 0;
+}
+
+.dual-platter {
+  margin-top: 0;
+}
+
+.dual-pitch-panel {
+  height: 100%;
+  min-height: 520px;
+  padding: 12px 8px 12px;
+}
+
+.dual-fader-wrap {
+  grid-template-columns: 18px 1fr 18px;
+  min-height: 420px;
+}
+
+.dual-fader-slot {
+  min-width: 0;
+}
+
+.dual-fader-slot .fader-track {
+  width: 8px;
+}
+
+.dual-fader-slot .fader-handle {
+  width: 36px;
+  height: 24px;
+}
+
+#leftPitchSliderStep4,
+#rightPitchSliderStep4 {
+  width: 40px;
+}
+
+.dual-scale-col {
+  font-size: 0.66rem;
+  padding: 14px 0;
+}
+
+@media (max-width: 1020px) and (orientation: portrait) {
+  .dual-deck-wrap {
+    grid-template-columns: 1fr;
+  }
+  .dual-pitch-panel {
+    min-height: 360px;
+  }
+}
+
+
+/* v2.2.15-step5a: deck-level smart suggestions placeholders */
+.dual-deck-suggestions {
+  margin-top: 12px;
+}
+.dual-smart-placeholder {
+  opacity: 0.6;
+}
+
+
+/* v2.2.18: Dual center Pro Library */
+.dual-pro-library {
+  margin-top: 0;
+}
+.dual-center-stack {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+
+/* v2.2.20: better deck suggestion clicks + slider interaction */
+.clickable-right-suggestion { cursor: pointer; }
+.clickable-right-suggestion:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+}
+
+
+/* v2.2.29: integrated right deck feedback */
+.dual-deck-feedback {
+  margin-top: 12px;
+}
+.dual-feedback-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.dual-feedback-box {
+  max-width: none;
+}
+@media (max-width: 720px) {
+  .dual-feedback-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* v2.2.29: mirrored left deck feedback/suggestions */
+.clickable-left-suggestion {
+  cursor: pointer;
+}
+.clickable-left-suggestion:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+}
+
 </style>
 </head>
 <body>
-  <div class="app">
-    <div class="title-wrap">
-      <div class="title-bar">
-        <div class="title-copy">
-          <h1>Vinyl BPM + Key Helper <span class="version-tag">v2.0.0 Pro</span></h1>
-          <p class="subtitle">Turntable-style pitch simulation with Standard and Pro modes. Use Pro to browse a CSV track library, load songs into the Source Deck, and see real matching songs in Smart Suggestions.</p>
-          <div class="pro-mode-row">
-            <label class="pro-toggle" for="proModeToggle">
-              <span>Standard</span>
-              <input type="checkbox" id="proModeToggle" />
-              <span class="slider-pill" aria-hidden="true"></span>
-              <span>Pro</span>
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="deck-shell">
-      <div class="layout">
-        <section class="module">
-          <div class="module-title">Source Deck</div>
-          <div class="field-grid">
-            <div>
-              <label class="label" for="bpm">Original BPM</label>
-              <input id="bpm" type="number" min="1" step="0.5" value="128" />
-            </div>
-            <div>
-              <label class="label" for="camelotKey">Key</label>
-              <select id="camelotKey"></select>
-            </div>
-            <div class="tap-controls">
-              <div class="tap-row">
-                <button type="button" class="tap-btn tap-mini-btn" id="halfTempoBtn">Half</button>
-                <button type="button" class="tap-btn" id="tapTempoBtn">Tap Tempo</button>
-                <button type="button" class="tap-btn tap-mini-btn" id="doubleTempoBtn">Double</button>
-              </div>
-              <div class="tap-status" id="tapStatus">Tap 4+ times</div>
-            </div>
-          </div>
-
-          <div class="pro-library" id="proLibrary" hidden>
-            <div class="mini">Pro Library</div>
-            <div class="pro-library-grid">
-              <input id="trackSearch" type="text" placeholder="Search artist or song" />
-              <select id="trackSelect"></select>
-            </div>
-            <div class="pro-library-actions">
-              <button type="button" class="tap-btn" id="loadTrackBtn">Load to Source Deck</button>
-              <label class="file-btn" for="csvFileInput">Import CSV</label>
-              <input id="csvFileInput" type="file" accept=".csv,text/csv" hidden />
-            </div>
-            <div class="pro-source-info" id="proSourceInfo">Using bundled sample library.</div>
-          </div>
-
-          <div class="platter">
-            <div class="source-meta">
-              <div class="mini">Current Source</div>
-              <div class="strong" id="sourceDisplayKey">8A</div>
-              <div class="small" id="sourceDisplayRegular">A minor</div>
-            </div>
-          </div>
-
-          <div class="result-box full combined-result">
-            <div class="mini">Shifted Key Result</div>
-            <div class="big"><span id="newRegular">A minor</span><span class="separator">·</span><span class="camelot-badge"><span class="dot" id="camelotDot"></span><span id="newCamelot">8A</span></span></div>
-            <div class="sub" id="combinedKeyDetail">Nearest musical key after transposition with matching Camelot wheel position.</div>
-          </div>
-
-        </section>
-
-        <section class="module fader-module">
-          <div class="display-box">
-            <div class="mini">New BPM</div>
-            <div class="big" id="newBpm">128.00</div>
-            <div class="sub" id="newBpmSub">Original 128.00 × 1.0000</div>
-          </div>
-
-          <div class="display-box">
-            <div class="mini">Pitch Shift</div>
-            <div class="big" id="semiShift">+0.00 semitones</div>
-            <div class="sub" id="centsShift">Nearest semitone 0, offset +0 cents</div>
-          </div>
-
-          <div class="pitch-panel">
-            <div class="pitch-top">
-              <div class="mini">Pitch Fader</div>
-              <div class="pct" id="pitchDisplay">+0%</div>
-              <div class="caption">Top = slower / negative. Bottom = faster / positive.</div>
-              <div class="range-row">
-                <label class="label range-label" for="pitchRangeSelect">Pitch Range</label>
-                <select id="pitchRangeSelect" class="range-select">
-                  <option value="8" selected>±8%</option>
-                  <option value="10">±10%</option>
-                  <option value="16">±16%</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="fader-wrap">
-              <div class="scale-col" id="leftScale" aria-hidden="true"></div>
-              <div class="fader-slot">
-                <div class="fader-track"></div>
-                <div class="fader-zero"></div>
-                <div class="tick-stack" id="tickStack"></div>
-                <input id="pitchSlider" type="range" min="-16" max="16" step="1" value="0" orient="vertical" aria-label="Pitch fader" />
-                <div class="fader-handle" id="faderHandle"></div>
-              </div>
-              <div class="scale-col" id="rightScale" aria-hidden="true"></div>
-            </div>
-          </div>
-        </section>
-
-        <section class="module target-readout">
-          <div class="module-title">Target Readout</div>
-          <div class="result-grid">
-            <div class="result-box full">
-              <div class="mini">Harmonic Mix Options</div>
-              <div class="chip-row" id="harmonicChips"></div>
-              <div class="sub">Same key, +1, -1, and relative major/minor from the shifted result.</div>
-            </div>
-          </div>
-
-          <div class="result-box full smart-box">
-            <div class="mini">Smart Suggestions</div>
-            <div class="smart-list" id="smartList"></div>
-            <div class="sub" id="smartSub">Suggested track BPM/key combos that can pitch to your current playing BPM and harmonic zone.</div>
-          </div>
-
-          <div class="skin-picker skin-picker-bottom">
-            <label class="label" for="skinSelect">Skin</label>
-            <select id="skinSelect">
-              <option value="midnight" selected>Midnight</option>
-              <option value="silver">Silver</option>
-            </select>
-          </div>
-        </section>
-      </div>
-    </div>
-  </div>
-
-  <script>
+<div class="app">
+<div class="title-wrap">
+<div class="title-bar">
+<div class="title-copy">
+<h1>Vinyl BPM + Key Helper <span class="version-tag">v2.0.0 Pro</span></h1>
+<p class="subtitle">Turntable-style pitch simulation with Standard and Pro modes. Single Deck is the current view. Dual Deck is now available as a separate shell in Pro mode, built one step at a time.</p>
+<div class="pro-mode-row">
+<label class="pro-toggle" for="proModeToggle">
+<span>Standard</span>
+<input id="proModeToggle" type="checkbox"/>
+<span aria-hidden="true" class="slider-pill"></span>
+<span>Pro</span>
+</label>
+<div hidden="" id="dualDeckToggleWrapper">
+<label class="pro-toggle deck-toggle" for="dualDeckToggle">
+<span>Single Deck</span>
+<input id="dualDeckToggle" type="checkbox"/>
+<span aria-hidden="true" class="slider-pill"></span>
+<span>Dual Deck</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="deck-shell">
+<div class="layout">
+<section class="module">
+<div class="module-title">Source Deck</div>
+<div class="field-grid">
+<div>
+<label class="label" for="bpm">Original BPM</label>
+<input id="bpm" min="1" step="0.5" type="number" value="128"/>
+</div>
+<div>
+<label class="label" for="camelotKey">Key</label>
+<select id="camelotKey"></select>
+</div>
+<div class="tap-controls">
+<div class="tap-row">
+<button class="tap-btn tap-mini-btn" id="halfTempoBtn" type="button">Half</button>
+<button class="tap-btn" id="tapTempoBtn" type="button">Tap Tempo</button>
+<button class="tap-btn tap-mini-btn" id="doubleTempoBtn" type="button">Double</button>
+</div>
+<div class="tap-status" id="tapStatus">Tap 4+ times</div>
+</div>
+</div>
+<div class="dual-deck-note" hidden="" id="dualDeckNote">
+<div class="mini">Dual Deck</div>
+<div class="dual-deck-note-text">Dual Deck mode foundation is enabled. Auto-load from library is disabled in this mode.</div>
+</div>
+<div class="pro-library" hidden="" id="proLibrary">
+<div class="mini">Pro Library</div>
+<div class="pro-library-grid">
+<input id="trackSearch" placeholder="Search artist or song" type="text"/>
+<select id="trackSelect"></select>
+</div>
+<div class="pro-filter-grid">
+<select id="genreFilter">
+<option value="">All Genres</option>
+</select>
+<select id="decadeFilter">
+<option value="">All Years</option>
+<option value="1940">1940s</option>
+<option value="1950">1950s</option>
+<option value="1960">1960s</option>
+<option value="1970">1970s</option>
+<option value="1980">1980s</option>
+<option value="1990">1990s</option>
+<option value="2000">2000s</option>
+<option value="2010">2010s</option>
+<option value="2020">2020s</option>
+</select>
+</div>
+<label class="year-lock-row" for="smartSuggestYearLock">
+<input id="smartSuggestYearLock" type="checkbox"/>
+<span>Smart Suggestions stay in selected decade</span>
+</label>
+<div class="pro-library-actions">
+<button class="tap-btn" id="loadTrackBtn" type="button">Load to Source Deck</button>
+<label class="file-btn" for="csvFileInput">Import CSV</label>
+<input accept=".csv,text/csv" hidden="" id="csvFileInput" type="file"/>
+</div>
+<div class="pro-source-info" id="proSourceInfo">Using bundled sample library.</div>
+</div>
+<div class="platter">
+<div class="source-meta">
+<div class="mini">Current Source</div>
+<div class="strong" id="sourceDisplayKey">8A</div>
+<div class="small" id="sourceDisplayRegular">A minor</div>
+</div>
+</div>
+<div class="result-box full combined-result">
+<div class="mini">Shifted Key Result</div>
+<div class="big"><span id="newRegular">A minor</span><span class="separator">·</span><span class="camelot-badge"><span class="dot" id="camelotDot"></span><span id="newCamelot">8A</span></span></div>
+<div class="sub" id="combinedKeyDetail">Nearest musical key after transposition with matching Camelot wheel position.</div>
+</div>
+</section>
+<section class="module fader-module">
+<div class="display-box">
+<div class="mini">New BPM</div>
+<div class="big" id="newBpm">128.00</div>
+<div class="sub" id="newBpmSub">Original 128.00 × 1.0000</div>
+</div>
+<div class="display-box">
+<div class="mini">Pitch Shift</div>
+<div class="big" id="semiShift">+0.00 semitones</div>
+<div class="sub" id="centsShift">Nearest semitone 0, offset +0 cents</div>
+</div>
+<div class="pitch-panel">
+<div class="pitch-top">
+<div class="mini">Pitch Fader</div>
+<div class="pct" id="pitchDisplay">+0%</div>
+<div class="caption">Top = slower / negative. Bottom = faster / positive.</div>
+<div class="range-row">
+<label class="label range-label" for="pitchRangeSelect">Pitch Range</label>
+<select class="range-select" id="pitchRangeSelect">
+<option selected="" value="8">±8%</option>
+<option value="10">±10%</option>
+<option value="16">±16%</option>
+</select>
+</div>
+</div>
+<div class="fader-wrap">
+<div aria-hidden="true" class="scale-col" id="leftScale"></div>
+<div class="fader-slot">
+<div class="fader-track"></div>
+<div class="fader-zero"></div>
+<div class="tick-stack" id="tickStack"></div>
+<input aria-label="Pitch fader" id="pitchSlider" max="16" min="-16" orient="vertical" step="1" type="range" value="0"/>
+<div class="fader-handle" id="faderHandle"></div>
+</div>
+<div aria-hidden="true" class="scale-col" id="rightScale"></div>
+</div>
+</div>
+</section>
+<section class="module target-readout">
+<div class="module-title">Target Readout</div>
+<div class="result-grid">
+<div class="result-box full">
+<div class="mini">Harmonic Mix Options</div>
+<div class="chip-row" id="harmonicChips"></div>
+<div class="sub">Same key, +1, -1, and relative major/minor from the shifted result.</div>
+</div>
+</div>
+<div class="result-box full smart-box">
+<div class="mini">Smart Suggestions</div>
+<div class="smart-list" id="smartList"></div>
+<div class="sub" id="smartSub">Suggested track BPM/key combos that can pitch to your current playing BPM and harmonic zone.</div>
+</div>
+<div class="skin-picker skin-picker-bottom">
+<label class="label" for="skinSelect">Skin</label>
+<select id="skinSelect">
+<option selected="" value="midnight">Midnight</option>
+<option value="silver">Silver</option>
+</select>
+</div>
+</section>
+</div>
+</div>
+<div class="deck-shell dual-shell" hidden="" id="dualDeckShell">
+<div class="dual-layout">
+<section class="module dual-module">
+<div class="module-title">Left Deck</div>
+<div class="dual-deck-wrap">
+<div class="dual-deck-main">
+<div class="platter dual-platter">
+<div class="source-meta">
+<div class="mini">Left Deck</div>
+<div class="strong" id="leftDeckSourceTitle">Source</div>
+<div class="small" id="leftDeckSourceSub">Pitch slider shell</div>
+</div>
+</div>
+</div>
+<div class="dual-deck-fader">
+<div class="pitch-panel dual-pitch-panel">
+<div class="pitch-top">
+<div class="mini">Pitch Fader</div>
+<div class="pct" id="leftPitchDisplay">+0%</div>
+<div class="caption">Step 4 shell only</div>
+</div>
+<div class="fader-wrap dual-fader-wrap">
+<div aria-hidden="true" class="scale-col dual-scale-col" id="leftScaleStep4"></div>
+<div class="fader-slot dual-fader-slot" id="leftFaderSlotStep4">
+<div class="fader-track"></div>
+<div class="fader-zero"></div>
+<div class="tick-stack" id="leftTickStackStep4"></div>
+<input aria-label="Left pitch fader" id="leftPitchSliderStep4" max="8" min="-8" orient="vertical" step="1" type="range" value="0"/>
+<div class="fader-handle" id="leftFaderHandleStep4"></div>
+</div>
+<div aria-hidden="true" class="scale-col dual-scale-col" id="leftScaleRightStep4"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="result-box full dual-deck-suggestions">
+<div class="mini">Smart Suggestions</div>
+<div class="smart-list dual-smart-placeholder" id="leftDeckSuggestionsList">
+<div class="smart-item smart-item-text-only">
+<div class="smart-text">
+<strong class="track-title">Left Deck Suggestions</strong>
+<span class="mini-line">Step placeholder</span>
+</div>
+</div>
+</div>
+</div>
+<div class="result-box full dual-deck-feedback" id="leftDeckFeedback">
+<div class="mini">Left Deck Mix Feedback</div>
+<div class="dual-feedback-grid">
+<div class="display-box dual-feedback-box">
+<div class="mini">Resulting BPM</div>
+<div class="big" id="leftResultBpm">—</div>
+<div class="sub" id="leftResultBpmSub">Load both decks</div>
+</div>
+<div class="display-box dual-feedback-box">
+<div class="mini">Resulting Key</div>
+<div class="big" id="leftResultKey">—</div>
+<div class="sub" id="leftResultKeySub">Move the Left pitch slider</div>
+</div>
+</div>
+<div class="sub" id="leftMatchQuality">Load a Left Deck and Right Deck track to see mix feedback.</div>
+</div>
+</section>
+<section class="module dual-module dual-center-module">
+<div class="module-title">Center</div>
+<div class="dual-center-stack">
+<div class="dual-load-row">
+<button class="tap-btn" id="loadLeftBtn" type="button">Load Left</button>
+<button class="tap-btn" id="loadRightBtn" type="button">Load Right</button>
+</div>
+<div class="pro-library dual-pro-library">
+<div class="mini">Pro Library</div>
+<div class="pro-library-grid">
+<input id="trackSearchDual" placeholder="Search artist or song" type="text"/>
+<select id="trackSelectDual"></select>
+</div>
+<div class="pro-filter-grid">
+<select id="genreFilterDual">
+<option value="">All Genres</option>
+</select>
+<select id="decadeFilterDual">
+<option value="">All Years</option>
+<option value="1940">1940s</option>
+<option value="1950">1950s</option>
+<option value="1960">1960s</option>
+<option value="1970">1970s</option>
+<option value="1980">1980s</option>
+<option value="1990">1990s</option>
+<option value="2000">2000s</option>
+<option value="2010">2010s</option>
+<option value="2020">2020s</option>
+</select>
+</div>
+<label class="year-lock-row" for="smartSuggestYearLockDual">
+<input id="smartSuggestYearLockDual" type="checkbox"/>
+<span>Smart Suggestions stay in selected decade</span>
+</label>
+<div class="pro-library-actions">
+<button class="tap-btn" id="loadTrackBtnDual" type="button">Preview</button>
+<label class="file-btn" for="csvFileInputDual">Import CSV</label>
+<input accept=".csv,text/csv" hidden="" id="csvFileInputDual" type="file"/>
+</div>
+<div class="pro-source-info" id="proSourceInfoDual">Using bundled sample library.</div>
+</div>
+</div>
+</section>
+<section class="module dual-module">
+<div class="module-title">Right Deck</div>
+<div class="dual-deck-wrap">
+<div class="dual-deck-main">
+<div class="platter dual-platter">
+<div class="source-meta">
+<div class="mini">Right Deck</div>
+<div class="strong" id="rightDeckSourceTitle">Source</div>
+<div class="small" id="rightDeckSourceSub">Pitch slider shell</div>
+</div>
+</div>
+</div>
+<div class="dual-deck-fader">
+<div class="pitch-panel dual-pitch-panel">
+<div class="pitch-top">
+<div class="mini">Pitch Fader</div>
+<div class="pct" id="rightPitchDisplay">+0%</div>
+<div class="caption">Step 4 shell only</div>
+</div>
+<div class="fader-wrap dual-fader-wrap">
+<div aria-hidden="true" class="scale-col dual-scale-col" id="rightScaleStep4"></div>
+<div class="fader-slot dual-fader-slot" id="rightFaderSlotStep4">
+<div class="fader-track"></div>
+<div class="fader-zero"></div>
+<div class="tick-stack" id="rightTickStackStep4"></div>
+<input aria-label="Right pitch fader" id="rightPitchSliderStep4" max="8" min="-8" orient="vertical" step="1" type="range" value="0"/>
+<div class="fader-handle" id="rightFaderHandleStep4"></div>
+</div>
+<div aria-hidden="true" class="scale-col dual-scale-col" id="rightScaleRightStep4"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="result-box full dual-deck-suggestions">
+<div class="mini">Smart Suggestions</div>
+<div class="smart-list dual-smart-placeholder" id="rightDeckSuggestionsList">
+<div class="smart-item smart-item-text-only">
+<div class="smart-text">
+<strong class="track-title">Left Deck Suggestions</strong>
+<span class="mini-line">Step placeholder</span>
+</div>
+</div>
+</div>
+</div>
+<div class="result-box full dual-deck-feedback" id="rightDeckFeedback">
+<div class="mini">Right Deck Mix Feedback</div>
+<div class="dual-feedback-grid">
+<div class="display-box dual-feedback-box">
+<div class="mini">Resulting BPM</div>
+<div class="big" id="rightResultBpm">—</div>
+<div class="sub" id="rightResultBpmSub">Load both decks</div>
+</div>
+<div class="display-box dual-feedback-box">
+<div class="mini">Resulting Key</div>
+<div class="big" id="rightResultKey">—</div>
+<div class="sub" id="rightResultKeySub">Move the Right pitch slider</div>
+</div>
+</div>
+<div class="sub" id="rightMatchQuality">Load a Left Deck and Right Deck track to see mix feedback.</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+<script>
 
     const embeddedLibrary = [{"artist": "Prince vs The Beatfreakz", "title": "Erotic City [Remix] - Dirty", "bpm": 124, "key": "2A", "year": "1984", "genre": "Pop"}, {"artist": "Peter Godwin", "title": "Images Of Heaven (Video XXX)", "bpm": 126, "key": "1B", "year": "1982", "genre": "Synth Pop"}, {"artist": "New Order", "title": "Blue Monday (Original 12 Inch Mix)", "bpm": 130, "key": "8A", "year": "1983", "genre": "Synth Pop"}, {"artist": "Philip Bailey n Phil Collins", "title": "Easy Lover [Xtendz] - Clean", "bpm": 134, "key": "4A", "year": "1984", "genre": "Pop"}, {"artist": "Donna Summer", "title": "She Works Hard For The Money", "bpm": 137, "key": "2A", "year": "1983", "genre": "Pop"}, {"artist": "MC Shy D", "title": "Shake It (Clean) (Extended)", "bpm": 134, "key": "1A", "year": "1988", "genre": "80's"}, {"artist": "Pet Shop Boys", "title": "Suburbia", "bpm": 126, "key": "5A", "year": "1986", "genre": "Dance"}];
     const skinSelect = document.getElementById('skinSelect');
@@ -1898,6 +2372,28 @@ body[data-skin="silver"] .file-btn {
     const doubleTempoBtn = document.getElementById('doubleTempoBtn');
     const tapStatus = document.getElementById('tapStatus');
     const proModeToggle = document.getElementById('proModeToggle');
+    const dualDeckToggle = document.getElementById('dualDeckToggle');
+    const dualDeckToggleWrapper = document.getElementById('dualDeckToggleWrapper');
+    const dualDeckNote = document.getElementById('dualDeckNote');
+    const singleDeckShell = document.querySelector('.deck-shell:not(.dual-shell)');
+    const dualDeckShell = document.getElementById('dualDeckShell');
+    const dualSmartMount = document.getElementById('dualSmartMount');
+    const loadLeftBtn = document.getElementById('loadLeftBtn');
+    const loadRightBtn = document.getElementById('loadRightBtn');
+    const leftPitchSliderStep4 = document.getElementById('leftPitchSliderStep4');
+    const rightPitchSliderStep4 = document.getElementById('rightPitchSliderStep4');
+    const leftFaderHandleStep4 = document.getElementById('leftFaderHandleStep4');
+    const rightFaderHandleStep4 = document.getElementById('rightFaderHandleStep4');
+    const leftFaderSlotStep4 = document.getElementById('leftFaderSlotStep4');
+    const rightFaderSlotStep4 = document.getElementById('rightFaderSlotStep4');
+    const leftScaleStep4 = document.getElementById('leftScaleStep4');
+    const rightScaleStep4 = document.getElementById('rightScaleStep4');
+    const leftScaleRightStep4 = document.getElementById('leftScaleRightStep4');
+    const rightScaleRightStep4 = document.getElementById('rightScaleRightStep4');
+    const targetReadout = document.querySelector('.target-readout');
+    const harmonicBlock = targetReadout?.querySelector('.result-grid');
+    const smartBlock = targetReadout?.querySelector('.smart-box');
+    const skinPickerBottom = targetReadout?.querySelector('.skin-picker-bottom');
     const proLibrary = document.getElementById('proLibrary');
     const trackSearch = document.getElementById('trackSearch');
     const trackSelect = document.getElementById('trackSelect');
@@ -1905,6 +2401,9 @@ body[data-skin="silver"] .file-btn {
     const csvFileInput = document.getElementById('csvFileInput');
     const proSourceInfo = document.getElementById('proSourceInfo');
     const smartSub = document.getElementById('smartSub');
+    const genreFilter = document.getElementById('genreFilter');
+    const decadeFilter = document.getElementById('decadeFilter');
+    const smartSuggestYearLock = document.getElementById('smartSuggestYearLock');
 
     let currentPitchRange = Number(pitchRangeSelect?.value || 8);
     let tapTimes = [];
@@ -1912,6 +2411,8 @@ body[data-skin="silver"] .file-btn {
 
     let libraryTracks = [...embeddedLibrary];
     let currentSourceTrack = null;
+    let leftDeckTrack = null;
+    let rightDeckTrack = null;
 
     function sanitizeKey(value) {
       return String(value || '').trim().toUpperCase().replace(/\s+/g, '');
@@ -1942,9 +2443,85 @@ body[data-skin="silver"] .file-btn {
       })).filter(t => t.artist && t.title && Number.isFinite(t.bpm) && t.key);
     }
 
-    function populateTrackSelect(filterText = '') {
+    function populateGenreFilter() {
+      if (!genreFilter) return;
+      const current = genreFilter.value;
+      const genres = [...new Set(libraryTracks.map(track => (track.genre || '').trim()).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+      genreFilter.innerHTML = '<option value="">All Genres</option>';
+      genres.forEach((genre) => {
+        const option = document.createElement('option');
+        option.value = genre;
+        option.textContent = genre;
+        genreFilter.appendChild(option);
+      });
+      if (genres.includes(current)) genreFilter.value = current;
+    }
+
+    function getFilteredTracks(filterText = '') {
       const q = String(filterText || '').trim().toLowerCase();
-      const filtered = libraryTracks.filter(track => !q || `${track.artist} ${track.title} ${track.genre} ${track.year}`.toLowerCase().includes(q));
+      const genre = String(genreFilter?.value || '').trim().toLowerCase();
+      const decade = Number(decadeFilter?.value || 0);
+
+      return libraryTracks.filter(track => {
+        const hay = `${track.artist} ${track.title} ${track.genre} ${track.year}`.toLowerCase();
+        if (q && !hay.includes(q)) return false;
+        if (genre && (track.genre || '').toLowerCase() !== genre) return false;
+        const year = Number(track.year || 0);
+        if (decade && (!year || year < decade || year > (decade + 9))) return false;
+        return true;
+      });
+    }
+
+    
+function populateGenreFilterDual() {
+  if (!genreFilterDual) return;
+  const current = genreFilterDual.value;
+  const genres = [...new Set(libraryTracks.map(track => (track.genre || '').trim()).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+  genreFilterDual.innerHTML = '<option value="">All Genres</option>';
+  genres.forEach((genre) => {
+    const option = document.createElement('option');
+    option.value = genre;
+    option.textContent = genre;
+    genreFilterDual.appendChild(option);
+  });
+  if (genres.includes(current)) genreFilterDual.value = current;
+}
+
+function getFilteredTracksDual(filterText = '') {
+  const q = String(filterText || '').trim().toLowerCase();
+  const genre = String(genreFilterDual?.value || '').trim().toLowerCase();
+  const decade = Number(decadeFilterDual?.value || 0);
+
+  return libraryTracks.filter(track => {
+    const hay = `${track.artist} ${track.title} ${track.genre} ${track.year}`.toLowerCase();
+    if (q && !hay.includes(q)) return false;
+    if (genre && (track.genre || '').toLowerCase() !== genre) return false;
+    const year = Number(track.year || 0);
+    if (decade && (!year || year < decade || year > (decade + 9))) return false;
+    return true;
+  });
+}
+
+function populateTrackSelectDual(filterText = '') {
+  if (!trackSelectDual) return;
+  const filtered = getFilteredTracksDual(filterText);
+  trackSelectDual.innerHTML = '';
+  filtered.forEach((track) => {
+    const option = document.createElement('option');
+    option.value = String(libraryTracks.indexOf(track));
+    option.textContent = `${track.artist} — ${track.title} · ${track.bpm} BPM · ${track.key}`;
+    trackSelectDual.appendChild(option);
+  });
+  if (!filtered.length) {
+    const option = document.createElement('option');
+    option.value = '';
+    option.textContent = 'No matching tracks';
+    trackSelectDual.appendChild(option);
+  }
+}
+
+function populateTrackSelect(filterText = '') {
+      const filtered = getFilteredTracks(filterText);
       trackSelect.innerHTML = '';
       filtered.forEach((track) => {
         const option = document.createElement('option');
@@ -1960,15 +2537,95 @@ body[data-skin="silver"] .file-btn {
       }
     }
 
+
+    function placeDualCenterBlocks(enabled) {
+      if (!smartBlock || !targetReadout) return;
+
+      if (enabled) {
+        // Move Smart Suggestions to center (top)
+        if (dualSmartMount && smartBlock.parentElement !== dualSmartMount) {
+          dualSmartMount.prepend(smartBlock);
+        }
+        // Hide Harmonic Mix Options in Dual mode
+        if (harmonicBlock && harmonicBlock.parentElement) {
+          harmonicBlock.style.display = 'none';
+        }
+      } else {
+        // Restore Smart Suggestions back under Target Readout
+        if (smartBlock.parentElement !== targetReadout) {
+          targetReadout.insertBefore(smartBlock, skinPickerBottom || null);
+        }
+        // Show Harmonic Mix Options again in Single Deck
+        if (harmonicBlock) {
+          harmonicBlock.style.display = '';
+          if (harmonicBlock.parentElement !== targetReadout) {
+            targetReadout.insertBefore(harmonicBlock, smartBlock);
+          }
+        }
+      }
+    }
+
+
+    function buildStep4Scale(leftCol, rightCol) {
+      if (leftCol) leftCol.innerHTML = ['-8','-6','-4','-2','0','+2','+4','+6','+8'].map(v => `<span>${v}</span>`).join('');
+      if (rightCol) rightCol.innerHTML = ['%','','','','0','','','','%'].map(v => `<span>${v}</span>`).join('');
+    }
+
+    function positionStep4Handle(slotEl, handleEl, sliderEl) {
+      if (!slotEl || !handleEl || !sliderEl) return;
+      const min = Number(sliderEl.min);
+      const max = Number(sliderEl.max);
+      const pct = Number(sliderEl.value || 0);
+      const ratio = (pct - min) / (max - min);
+      const slotRect = slotEl.getBoundingClientRect();
+      const handleHeight = 24;
+      const pad = 18;
+      const usable = Math.max(0, slotRect.height - (pad * 2));
+      const centerY = pad + (ratio * usable);
+      const minCenter = pad + (handleHeight / 2);
+      const maxCenter = slotRect.height - pad - (handleHeight / 2);
+      const clampedCenter = Math.min(maxCenter, Math.max(minCenter, centerY));
+      handleEl.style.top = `${clampedCenter}px`;
+    }
+
+    function updateStep4ShellSliders() {
+      if (!dualDeckToggle?.checked) return;
+      positionStep4Handle(leftFaderSlotStep4, leftFaderHandleStep4, leftPitchSliderStep4);
+      positionStep4Handle(rightFaderSlotStep4, rightFaderHandleStep4, rightPitchSliderStep4);
+      const leftVal = Number(leftPitchSliderStep4?.value || 0);
+      const rightVal = Number(rightPitchSliderStep4?.value || 0);
+      const leftDisp = document.getElementById('leftPitchDisplay');
+      const rightDisp = document.getElementById('rightPitchDisplay');
+      if (leftDisp) leftDisp.textContent = `${leftVal >= 0 ? '+' : ''}${leftVal}%`;
+      if (rightDisp) rightDisp.textContent = `${rightVal >= 0 ? '+' : ''}${rightVal}%`;
+    }
+
     function applyProMode(enabled) {
       if (proLibrary) proLibrary.hidden = !enabled;
+      if (dualDeckToggleWrapper) dualDeckToggleWrapper.hidden = !enabled;
+      if (!enabled && dualDeckToggle) {
+        dualDeckToggle.checked = false;
+        applyDualDeckMode(false);
+      } else if (enabled && dualDeckToggle) {
+        applyDualDeckMode(!!dualDeckToggle.checked);
+      }
       if (smartSub) {
         smartSub.textContent = enabled
-          ? 'Real songs from your track library that can pitch into the current source BPM and harmonic zone.'
+          ? 'Tap a real library suggestion to load that track into the Source Deck at the suggested pitch state.'
           : 'Suggested track BPM/key combos that can pitch to your current playing BPM and harmonic zone.';
       }
       try { localStorage.setItem('vinylProMode', enabled ? '1' : '0'); } catch (e) {}
       update();
+    }
+
+    function applyDualDeckMode(enabled) {
+      if (dualDeckNote) dualDeckNote.hidden = !enabled;
+      if (singleDeckShell) singleDeckShell.hidden = !!enabled;
+      if (dualDeckShell) dualDeckShell.hidden = !enabled;
+      placeDualCenterBlocks(!!enabled);
+      try { localStorage.setItem('vinylDualDeckMode', enabled ? '1' : '0'); } catch (e) {}
+      if (enabled) updateStep4ShellSliders();
+      if (!enabled) update();
     }
 
     function setSourceFromTrack(track) {
@@ -1984,6 +2641,27 @@ body[data-skin="silver"] .file-btn {
       update();
     }
 
+
+    function setLeftDeckFromTrack(track) {
+      if (!track) return;
+      leftDeckTrack = track;
+      if (dualDeckNote) {
+        dualDeckNote.hidden = false;
+        dualDeckNote.querySelector('.dual-deck-note-text').textContent =
+          `Left Deck: ${track.artist} — ${track.title} · ${track.year || 'Year ?'} · ${track.genre || 'Genre ?'}`;
+      }
+    }
+
+    function setRightDeckFromTrack(track) {
+      if (!track) return;
+      rightDeckTrack = track;
+      if (dualDeckNote) {
+        dualDeckNote.hidden = false;
+        dualDeckNote.querySelector('.dual-deck-note-text').textContent =
+          `Right Deck: ${track.artist} — ${track.title} · ${track.year || 'Year ?'} · ${track.genre || 'Genre ?'}`;
+      }
+    }
+
     function fillSelects() {
       keyData.forEach((entry, index) => {
         const c = document.createElement('option');
@@ -1992,6 +2670,7 @@ body[data-skin="silver"] .file-btn {
         camelotSelect.appendChild(c);
       });
       camelotSelect.value = '14';
+      populateGenreFilter();
       populateTrackSelect();
     }
 
@@ -2170,17 +2849,28 @@ body[data-skin="silver"] .file-btn {
 
       if (proModeToggle && proModeToggle.checked) {
         const allowedCamelots = new Set([same.camelot, plus.camelot, minus.camelot, relative.camelot]);
-        const matches = libraryTracks.map(track => {
+        const lockedDecade = Number(decadeFilter?.value || 0);
+        const useYearLock = !!smartSuggestYearLock?.checked;
+
+        const matches = libraryTracks.map((track, trackIndex) => {
           const sourceKeyEntry = getEntryByCamelot(track.key);
           if (!sourceKeyEntry) return null;
           if (currentSourceTrack && track.artist === currentSourceTrack.artist && track.title === currentSourceTrack.title) return null;
+
+          const trackYear = Number(track.year || 0);
+          if (useYearLock && lockedDecade) {
+            if (!trackYear || trackYear < lockedDecade || trackYear > (lockedDecade + 9)) return null;
+          }
+
           const requiredPct = ((newBpm / Math.max(0.01, Number(track.bpm))) - 1) * 100;
           if (!Number.isFinite(requiredPct) || Math.abs(requiredPct) > currentPitchRange) return null;
+
           const shiftedSemitones = 12 * Math.log2(1 + (requiredPct / 100));
           const resultingKey = findNearestKey(sourceKeyEntry, shiftedSemitones);
           if (!allowedCamelots.has(resultingKey.camelot)) return null;
+
           const targetLabel = harmonicTargets.find(h => h.entry.camelot === resultingKey.camelot)?.label || 'Compatible';
-          return { track, requiredPct, targetLabel, score: Math.abs(requiredPct) };
+          return { track, trackIndex, requiredPct, targetLabel, score: Math.abs(requiredPct) };
         }).filter(Boolean).sort((a, b) => a.score - b.score || a.track.bpm - b.track.bpm).slice(0, 6);
 
         if (matches.length) {
@@ -2188,7 +2878,7 @@ body[data-skin="silver"] .file-btn {
           smartList.innerHTML = matches.map(match => {
             const sign = match.requiredPct >= 0 ? '+' : '';
             const bestClass = match.score === bestScore ? ' best-suggestion' : '';
-            return `<div class="smart-item smart-item-text-only${bestClass}">
+            return `<div class="smart-item smart-item-text-only clickable-suggestion${bestClass}" data-track-index="${match.trackIndex}" data-required-pct="${match.requiredPct.toFixed(1)}">
               <div class="smart-text">
                 <strong class="track-title">${match.track.artist} — ${match.track.title}</strong>
                 <span class="camelot-keyline">${Number(match.track.bpm).toFixed(1)} BPM · ${match.track.key} · ${match.track.year || '—'} · ${match.track.genre || '—'}</span>
@@ -2381,8 +3071,42 @@ body[data-skin="silver"] .file-btn {
       applyProMode(proModeToggle.checked);
       proModeToggle.addEventListener('change', () => applyProMode(proModeToggle.checked));
     }
+
+    if (dualDeckToggle) {
+      try {
+        dualDeckToggle.checked = localStorage.getItem('vinylDualDeckMode') === '1';
+      } catch (e) {
+        dualDeckToggle.checked = false;
+      }
+      applyDualDeckMode(!!dualDeckToggle.checked && !!proModeToggle?.checked);
+      dualDeckToggle.addEventListener('change', () => {
+        applyDualDeckMode(!!dualDeckToggle.checked && !!proModeToggle?.checked);
+      });
+    }
     if (trackSearch) {
       trackSearch.addEventListener('input', () => populateTrackSelect(trackSearch.value));
+    }
+    if (genreFilter) {
+      genreFilter.addEventListener('change', () => populateTrackSelect(trackSearch?.value || ''));
+    }
+    if (decadeFilter) {
+      decadeFilter.addEventListener('change', () => {
+        populateTrackSelect(trackSearch?.value || '');
+        update();
+      });
+    }
+    if (smartSuggestYearLock) {
+      smartSuggestYearLock.checked = false;
+      smartSuggestYearLock.addEventListener('change', () => {
+        update();
+      });
+    }
+    if (trackSelect) {
+      trackSelect.addEventListener('change', () => {
+        const idx = Number(trackSelect.value);
+        if (dualDeckToggle?.checked) return;
+        if (Number.isFinite(idx) && libraryTracks[idx]) setSourceFromTrack(libraryTracks[idx]);
+      });
     }
     if (loadTrackBtn) {
       loadTrackBtn.addEventListener('click', () => {
@@ -2398,6 +3122,7 @@ body[data-skin="silver"] .file-btn {
         const parsed = parseCSVText(text);
         if (parsed.length) {
           libraryTracks = parsed;
+          populateGenreFilter();
           populateTrackSelect(trackSearch?.value || '');
           if (proSourceInfo) proSourceInfo.textContent = `Imported ${parsed.length} tracks from ${file.name}`;
           update();
@@ -2469,7 +3194,841 @@ body[data-skin="silver"] .file-btn {
       }
     });
 
-    window.addEventListener('resize', update);
-  </script>
+
+    if (smartList) {
+      smartList.addEventListener('click', (event) => {
+        const item = event.target.closest('.clickable-suggestion');
+        if (!item) return;
+        const idx = Number(item.dataset.trackIndex);
+        const requiredPct = Number(item.dataset.requiredPct || 0);
+        if (!Number.isFinite(idx) || !libraryTracks[idx]) return;
+        setSourceFromTrack(libraryTracks[idx]);
+        pitchSlider.value = String(clampPitchValue(requiredPct));
+        update();
+      });
+    }
+
+
+    if (loadLeftBtn) {
+      loadLeftBtn.addEventListener('click', () => {
+        const idx = Number(trackSelect?.value);
+        if (Number.isFinite(idx) && libraryTracks[idx]) setLeftDeckFromTrack(libraryTracks[idx]);
+      });
+    }
+
+    if (loadRightBtn) {
+      loadRightBtn.addEventListener('click', () => {
+        const idx = Number(trackSelect?.value);
+        if (Number.isFinite(idx) && libraryTracks[idx]) setRightDeckFromTrack(libraryTracks[idx]);
+      });
+    }
+
+
+    buildStep4Scale(leftScaleStep4, leftScaleRightStep4);
+    buildStep4Scale(rightScaleStep4, rightScaleRightStep4);
+
+    if (leftPitchSliderStep4) leftPitchSliderStep4.addEventListener('input', updateStep4ShellSliders);
+    if (rightPitchSliderStep4) rightPitchSliderStep4.addEventListener('input', updateStep4ShellSliders);
+
+    window.addEventListener('resize', () => { update(); updateStep4ShellSliders(); });
+  
+// v2.2.18: robust Right Deck suggestions wiring
+(function () {
+  const dualToggle = document.getElementById('dualDeckToggle');
+  const trackSearchDual = document.getElementById('trackSearchDual');
+  const trackSelectDual = document.getElementById('trackSelectDual');
+  const genreFilterDual = document.getElementById('genreFilterDual');
+  const decadeFilterDual = document.getElementById('decadeFilterDual');
+  const yearLockDual = document.getElementById('smartSuggestYearLockDual');
+  const csvFileInputDual = document.getElementById('csvFileInputDual');
+  const loadLeftBtn = document.getElementById('loadLeftBtn');
+  const loadRightBtn = document.getElementById('loadRightBtn');
+  const leftPitchSlider = document.getElementById('leftPitchSliderStep4');
+  const rightList = document.getElementById('rightDeckSuggestionsList');
+  const dualInfo = document.getElementById('proSourceInfoDual');
+
+  function dualFilteredTracks() {
+    const q = String(trackSearchDual && trackSearchDual.value || '').trim().toLowerCase();
+    const genre = String(genreFilterDual && genreFilterDual.value || '').trim().toLowerCase();
+    const decade = Number(decadeFilterDual && decadeFilterDual.value || 0);
+
+    return (libraryTracks || []).filter(track => {
+      const hay = `${track.artist || ''} ${track.title || ''} ${track.genre || ''} ${track.year || ''}`.toLowerCase();
+      if (q && !hay.includes(q)) return false;
+      if (genre && (track.genre || '').toLowerCase() !== genre) return false;
+      const year = Number(track.year || 0);
+      if (decade && (!year || year < decade || year > decade + 9)) return false;
+      return true;
+    });
+  }
+
+  function dualPopulateGenre() {
+    if (!genreFilterDual) return;
+    const current = genreFilterDual.value;
+    const genres = [...new Set((libraryTracks || []).map(t => (t.genre || '').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+    genreFilterDual.innerHTML = '<option value="">All Genres</option>';
+    genres.forEach(g => {
+      const opt = document.createElement('option');
+      opt.value = g;
+      opt.textContent = g;
+      genreFilterDual.appendChild(opt);
+    });
+    if (genres.includes(current)) genreFilterDual.value = current;
+  }
+
+  function dualPopulateSelect() {
+    if (!trackSelectDual) return;
+    const filtered = dualFilteredTracks();
+    trackSelectDual.innerHTML = '';
+    filtered.forEach(track => {
+      const opt = document.createElement('option');
+      opt.value = String((libraryTracks || []).indexOf(track));
+      opt.textContent = `${track.artist} — ${track.title} · ${track.bpm} BPM · ${track.key}`;
+      trackSelectDual.appendChild(opt);
+    });
+    if (!filtered.length) {
+      const opt = document.createElement('option');
+      opt.value = '';
+      opt.textContent = 'No matching tracks';
+      trackSelectDual.appendChild(opt);
+    }
+  }
+
+  function renderRightSuggestions() {
+    if (!rightList) return;
+    if (!(dualToggle && dualToggle.checked)) return;
+
+    if (!leftDeckTrack) {
+      rightList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">Load a Left Deck track</strong><span class="mini-line">Then this box will show compatible suggestions for the Right Deck.</span></div></div>';
+      return;
+    }
+
+    const leftEntry = getEntryByCamelot(leftDeckTrack.key);
+    if (!leftEntry) {
+      rightList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">Left Deck key not recognized</strong><span class="mini-line">Try a track with a valid Camelot key.</span></div></div>';
+      return;
+    }
+
+    const leftPct = Number(leftPitchSlider && leftPitchSlider.value || 0);
+    const leftNewBpm = Number(leftDeckTrack.bpm) * (1 + leftPct / 100);
+    const leftSemis = (1 + leftPct / 100) > 0 ? 12 * Math.log2(1 + leftPct / 100) : 0;
+    const shiftedLeft = findNearestKey(leftEntry, leftSemis);
+
+    const same = shiftedLeft;
+    const plus = camelotMove(shiftedLeft, 1, false);
+    const minus = camelotMove(shiftedLeft, -1, false);
+    const relative = camelotMove(shiftedLeft, 0, true);
+    const allowed = new Set([same.camelot, plus.camelot, minus.camelot, relative.camelot]);
+
+    const decade = Number(decadeFilterDual && decadeFilterDual.value || 0);
+
+    const matches = dualFilteredTracks().map(track => {
+      if (track.artist === leftDeckTrack.artist && track.title === leftDeckTrack.title) return null;
+      const entry = getEntryByCamelot(track.key);
+      if (!entry) return null;
+
+      if (yearLockDual && yearLockDual.checked && decade) {
+        const year = Number(track.year || 0);
+        if (!year || year < decade || year > decade + 9) return null;
+      }
+
+      const requiredPct = ((leftNewBpm / Math.max(0.01, Number(track.bpm))) - 1) * 100;
+      if (!Number.isFinite(requiredPct) || Math.abs(requiredPct) > 8) return null;
+
+      const shiftedSemis = 12 * Math.log2(1 + requiredPct / 100);
+      const resultKey = findNearestKey(entry, shiftedSemis);
+      if (!allowed.has(resultKey.camelot)) return null;
+
+      return {track, requiredPct, resultKey, score: Math.abs(requiredPct)};
+    }).filter(Boolean).sort((a,b)=>a.score-b.score || Number(a.track.bpm)-Number(b.track.bpm)).slice(0,6);
+
+    if (!matches.length) {
+      rightList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">No matching library tracks</strong><span class="mini-line">Try another Left Deck track, pitch setting, or filters.</span></div></div>';
+      return;
+    }
+
+    rightList.innerHTML = matches.map(match => {
+      const sign = match.requiredPct >= 0 ? '+' : '';
+      return `<div class="smart-item smart-item-text-only">
+        <div class="smart-text">
+          <strong class="track-title">${match.track.artist} — ${match.track.title}</strong>
+          <span class="camelot-keyline">${Number(match.track.bpm).toFixed(1)} BPM · ${match.track.key} · ${match.track.year || '—'} · ${match.track.genre || '—'}</span>
+          <span class="mini-line">Pitch ${sign}${match.requiredPct.toFixed(1)}% → ${leftNewBpm.toFixed(2)} BPM · Result key ${match.resultKey.camelot}</span>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function loadLeftFromDual() {
+    const idx = Number(trackSelectDual && trackSelectDual.value);
+    if (!Number.isFinite(idx) || !libraryTracks[idx]) return;
+    leftDeckTrack = libraryTracks[idx];
+    if (dualInfo) dualInfo.textContent = `Left Deck: ${leftDeckTrack.artist} — ${leftDeckTrack.title} · ${leftDeckTrack.year || 'Year ?'} · ${leftDeckTrack.genre || 'Genre ?'}`;
+    renderRightSuggestions();
+  }
+
+  function loadRightFromDual() {
+    const idx = Number(trackSelectDual && trackSelectDual.value);
+    if (!Number.isFinite(idx) || !libraryTracks[idx]) return;
+    rightDeckTrack = libraryTracks[idx];
+    if (dualInfo) dualInfo.textContent = `Right Deck: ${rightDeckTrack.artist} — ${rightDeckTrack.title} · ${rightDeckTrack.year || 'Year ?'} · ${rightDeckTrack.genre || 'Genre ?'}`;
+  }
+
+  if (loadLeftBtn) loadLeftBtn.onclick = loadLeftFromDual;
+  if (loadRightBtn) loadRightBtn.onclick = loadRightFromDual;
+
+  if (trackSearchDual) trackSearchDual.oninput = function(){ dualPopulateSelect(); renderRightSuggestions(); };
+  if (genreFilterDual) genreFilterDual.onchange = function(){ dualPopulateSelect(); renderRightSuggestions(); };
+  if (decadeFilterDual) decadeFilterDual.onchange = function(){ dualPopulateSelect(); renderRightSuggestions(); };
+  if (yearLockDual) yearLockDual.onchange = renderRightSuggestions;
+  if (leftPitchSlider) leftPitchSlider.oninput = function(){
+    const leftDisp = document.getElementById('leftPitchDisplay');
+    const v = Number(leftPitchSlider.value || 0);
+    if (leftDisp) leftDisp.textContent = `${v >= 0 ? '+' : ''}${v}%`;
+    renderRightSuggestions();
+  };
+  if (csvFileInputDual) {
+    csvFileInputDual.onchange = async function() {
+      const file = csvFileInputDual.files && csvFileInputDual.files[0];
+      if (!file) return;
+      const text = await file.text();
+      const parsed = parseCSVText(text);
+      if (parsed.length) {
+        libraryTracks = parsed;
+        dualPopulateGenre();
+        dualPopulateSelect();
+        if (dualInfo) dualInfo.textContent = `Imported ${parsed.length} tracks from ${file.name}`;
+        renderRightSuggestions();
+      } else if (dualInfo) {
+        dualInfo.textContent = `Could not read tracks from ${file.name}`;
+      }
+    };
+  }
+  if (dualToggle) dualToggle.addEventListener('change', renderRightSuggestions);
+
+  dualPopulateGenre();
+  dualPopulateSelect();
+  renderRightSuggestions();
+})();
+
+
+// v2.2.20: fix right-deck load + shell slider interaction
+(function () {
+  const dualToggle = document.getElementById('dualDeckToggle');
+  const trackSearchDual = document.getElementById('trackSearchDual');
+  const trackSelectDual = document.getElementById('trackSelectDual');
+  const genreFilterDual = document.getElementById('genreFilterDual');
+  const decadeFilterDual = document.getElementById('decadeFilterDual');
+  const yearLockDual = document.getElementById('smartSuggestYearLockDual');
+  const csvFileInputDual = document.getElementById('csvFileInputDual');
+  const loadLeftBtn0 = document.getElementById('loadLeftBtn');
+  const loadRightBtn0 = document.getElementById('loadRightBtn');
+  const leftPitchSlider = document.getElementById('leftPitchSliderStep4');
+  const rightPitchSlider = document.getElementById('rightPitchSliderStep4');
+  const leftPitchDisplay = document.getElementById('leftPitchDisplay');
+  const rightPitchDisplay = document.getElementById('rightPitchDisplay');
+  const leftTitle = document.getElementById('leftDeckSourceTitle');
+  const leftSub = document.getElementById('leftDeckSourceSub');
+  const rightTitle = document.getElementById('rightDeckSourceTitle');
+  const rightSub = document.getElementById('rightDeckSourceSub');
+  const rightList = document.getElementById('rightDeckSuggestionsList');
+  const dualInfo = document.getElementById('proSourceInfoDual');
+  const rightResultBpm = document.getElementById('rightResultBpm');
+  const rightResultBpmSub = document.getElementById('rightResultBpmSub');
+  const rightResultKey = document.getElementById('rightResultKey');
+  const rightResultKeySub = document.getElementById('rightResultKeySub');
+  const rightMatchQuality = document.getElementById('rightMatchQuality');
+  const leftSlot = document.getElementById('leftFaderSlotStep4');
+  const rightSlot = document.getElementById('rightFaderSlotStep4');
+  const leftHandle = document.getElementById('leftFaderHandleStep4');
+  const rightHandle = document.getElementById('rightFaderHandleStep4');
+
+  let activeSlot = null;
+
+  function setDeckText(side, track) {
+    const titleEl = side === 'left' ? leftTitle : rightTitle;
+    const subEl = side === 'left' ? leftSub : rightSub;
+    if (!titleEl || !subEl) return;
+    if (!track) {
+      titleEl.textContent = 'Source';
+      subEl.textContent = 'Pitch slider shell';
+      return;
+    }
+    titleEl.textContent = track.artist || 'Source';
+    subEl.textContent = `${track.title || ''} · ${track.bpm || '—'} BPM · ${track.key || '—'}`;
+  }
+
+  function positionHandle(slotEl, handleEl, sliderEl) {
+    if (!slotEl || !handleEl || !sliderEl) return;
+    const min = Number(sliderEl.min), max = Number(sliderEl.max), val = Number(sliderEl.value || 0);
+    const ratio = (val - min) / (max - min);
+    const rect = slotEl.getBoundingClientRect();
+    const handleH = 24, pad = 18;
+    const usable = Math.max(1, rect.height - pad * 2);
+    const center = pad + ratio * usable;
+    const minC = pad + handleH/2, maxC = rect.height - pad - handleH/2;
+    handleEl.style.top = `${Math.min(maxC, Math.max(minC, center))}px`;
+  }
+
+  function updateDisplays() {
+    if (leftPitchDisplay && leftPitchSlider) {
+      const v = Number(leftPitchSlider.value || 0);
+      leftPitchDisplay.textContent = `${v >= 0 ? '+' : ''}${v}%`;
+      positionHandle(leftSlot, leftHandle, leftPitchSlider);
+    }
+    if (rightPitchDisplay && rightPitchSlider) {
+      const v = Number(rightPitchSlider.value || 0);
+      rightPitchDisplay.textContent = `${v >= 0 ? '+' : ''}${v}%`;
+      positionHandle(rightSlot, rightHandle, rightPitchSlider);
+    }
+  }
+
+  function updateRightDeckFeedback() {
+    if (!rightResultBpm || !rightResultKey || !rightMatchQuality) return;
+    if (!(dualToggle && dualToggle.checked)) return;
+
+    if (!leftDeckTrack || !rightDeckTrack) {
+      rightResultBpm.textContent = '—';
+      rightResultBpmSub.textContent = 'Load both decks';
+      rightResultKey.textContent = '—';
+      rightResultKeySub.textContent = 'Move the Right pitch slider';
+      rightMatchQuality.textContent = 'Load a Left Deck and Right Deck track to see mix feedback.';
+      return;
+    }
+
+    const leftPct = Number(leftPitchSlider && leftPitchSlider.value || 0);
+    const rightPct = Number(rightPitchSlider && rightPitchSlider.value || 0);
+    const leftMultiplier = 1 + (leftPct / 100);
+    const rightMultiplier = 1 + (rightPct / 100);
+
+    const leftNewBpm = Number(leftDeckTrack.bpm || 0) * leftMultiplier;
+    const rightNewBpm = Number(rightDeckTrack.bpm || 0) * rightMultiplier;
+    const bpmDiff = Math.abs(leftNewBpm - rightNewBpm);
+
+    rightResultBpm.textContent = rightNewBpm ? rightNewBpm.toFixed(2) : '—';
+    rightResultBpmSub.textContent = `Δ ${bpmDiff.toFixed(2)} BPM from Left Deck target`;
+
+    const leftEntry = getEntryByCamelot(leftDeckTrack.key);
+    const rightEntry = getEntryByCamelot(rightDeckTrack.key);
+    if (!leftEntry || !rightEntry) {
+      rightResultKey.textContent = '—';
+      rightResultKeySub.textContent = 'Key unavailable';
+      rightMatchQuality.textContent = 'A deck key could not be evaluated.';
+      return;
+    }
+
+    const leftSemis = leftMultiplier > 0 ? 12 * Math.log2(leftMultiplier) : 0;
+    const rightSemis = rightMultiplier > 0 ? 12 * Math.log2(rightMultiplier) : 0;
+    const shiftedLeft = findNearestKey(leftEntry, leftSemis);
+    const shiftedRight = findNearestKey(rightEntry, rightSemis);
+
+    rightResultKey.textContent = `${shiftedRight.camelot} · ${shiftedRight.regular}`;
+    rightResultKeySub.textContent = `${rightPct >= 0 ? '+' : ''}${rightPct}% pitch on Right Deck`;
+
+    const same = shiftedLeft;
+    const plus = camelotMove(shiftedLeft, 1, false);
+    const minus = camelotMove(shiftedLeft, -1, false);
+    const relative = camelotMove(shiftedLeft, 0, true);
+
+    let keyQuality = 'Compatible';
+    if (shiftedRight.camelot === same.camelot) keyQuality = 'Perfect';
+    else if (shiftedRight.camelot === plus.camelot || shiftedRight.camelot === minus.camelot) keyQuality = 'Strong';
+    else if (shiftedRight.camelot === relative.camelot) keyQuality = 'Good';
+
+    let tempoQuality = 'Tight';
+    if (bpmDiff > 2) tempoQuality = 'Moderate';
+    if (bpmDiff > 5) tempoQuality = 'Stretch';
+
+    rightMatchQuality.textContent = `${keyQuality} harmonic fit · ${tempoQuality} tempo difference`;
+  }
+
+  function setSliderFromClientY(slotEl, sliderEl, clientY) {
+    const rect = slotEl.getBoundingClientRect();
+    const min = Number(sliderEl.min), max = Number(sliderEl.max);
+    const pad = 18;
+    const top = rect.top + pad, bottom = rect.bottom - pad;
+    const y = Math.min(bottom, Math.max(top, clientY));
+    const ratio = (y - top) / Math.max(1, bottom - top);
+    const val = min + ratio * (max - min);
+    sliderEl.value = String(Math.round(val));
+    updateDisplays();
+    if (sliderEl === leftPitchSlider) renderRightSuggestions();
+    if (sliderEl === rightPitchSlider) updateRightDeckFeedback();
+  }
+
+  function dualFilteredTracks() {
+    const q = String(trackSearchDual && trackSearchDual.value || '').trim().toLowerCase();
+    const genre = String(genreFilterDual && genreFilterDual.value || '').trim().toLowerCase();
+    const decade = Number(decadeFilterDual && decadeFilterDual.value || 0);
+    return (libraryTracks || []).filter(track => {
+      const hay = `${track.artist || ''} ${track.title || ''} ${track.genre || ''} ${track.year || ''}`.toLowerCase();
+      if (q && !hay.includes(q)) return false;
+      if (genre && (track.genre || '').toLowerCase() !== genre) return false;
+      const year = Number(track.year || 0);
+      if (decade && (!year || year < decade || year > decade + 9)) return false;
+      return true;
+    });
+  }
+
+  function dualPopulateGenre() {
+    if (!genreFilterDual) return;
+    const current = genreFilterDual.value;
+    const genres = [...new Set((libraryTracks || []).map(t => (t.genre || '').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+    genreFilterDual.innerHTML = '<option value="">All Genres</option>';
+    genres.forEach(g => {
+      const opt = document.createElement('option');
+      opt.value = g;
+      opt.textContent = g;
+      genreFilterDual.appendChild(opt);
+    });
+    if (genres.includes(current)) genreFilterDual.value = current;
+  }
+
+  function dualPopulateSelect() {
+    if (!trackSelectDual) return;
+    const filtered = dualFilteredTracks();
+    trackSelectDual.innerHTML = '';
+    filtered.forEach(track => {
+      const opt = document.createElement('option');
+      opt.value = String((libraryTracks || []).indexOf(track));
+      opt.textContent = `${track.artist} — ${track.title} · ${track.bpm} BPM · ${track.key}`;
+      trackSelectDual.appendChild(opt);
+    });
+    if (!filtered.length) {
+      const opt = document.createElement('option');
+      opt.value = '';
+      opt.textContent = 'No matching tracks';
+      trackSelectDual.appendChild(opt);
+    }
+  }
+
+  function renderRightSuggestions() {
+    if (!rightList) return;
+    if (!(dualToggle && dualToggle.checked)) return;
+
+    if (!leftDeckTrack) {
+      rightList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">Load a Left Deck track</strong><span class="mini-line">Then this box will show compatible suggestions for the Right Deck.</span></div></div>';
+      return;
+    }
+
+    const leftEntry = getEntryByCamelot(leftDeckTrack.key);
+    if (!leftEntry) {
+      rightList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">Left Deck key not recognized</strong><span class="mini-line">Try a track with a valid Camelot key.</span></div></div>';
+      return;
+    }
+
+    const leftPct = Number(leftPitchSlider && leftPitchSlider.value || 0);
+    const leftNewBpm = Number(leftDeckTrack.bpm) * (1 + leftPct / 100);
+    const leftSemis = (1 + leftPct / 100) > 0 ? 12 * Math.log2(1 + leftPct / 100) : 0;
+    const shiftedLeft = findNearestKey(leftEntry, leftSemis);
+
+    const same = shiftedLeft;
+    const plus = camelotMove(shiftedLeft, 1, false);
+    const minus = camelotMove(shiftedLeft, -1, false);
+    const relative = camelotMove(shiftedLeft, 0, true);
+    const allowed = new Set([same.camelot, plus.camelot, minus.camelot, relative.camelot]);
+    const decade = Number(decadeFilterDual && decadeFilterDual.value || 0);
+
+    const matches = dualFilteredTracks().map(track => {
+      if (track.artist === leftDeckTrack.artist && track.title === leftDeckTrack.title) return null;
+      const entry = getEntryByCamelot(track.key);
+      if (!entry) return null;
+
+      if (yearLockDual && yearLockDual.checked && decade) {
+        const year = Number(track.year || 0);
+        if (!year || year < decade || year > decade + 9) return null;
+      }
+
+      const requiredPct = ((leftNewBpm / Math.max(0.01, Number(track.bpm))) - 1) * 100;
+      if (!Number.isFinite(requiredPct) || Math.abs(requiredPct) > 8) return null;
+
+      const shiftedSemis = 12 * Math.log2(1 + requiredPct / 100);
+      const resultKey = findNearestKey(entry, shiftedSemis);
+      if (!allowed.has(resultKey.camelot)) return null;
+
+      return { track, requiredPct, resultKey, score: Math.abs(requiredPct), index: (libraryTracks || []).indexOf(track) };
+    }).filter(Boolean).sort((a,b)=>a.score-b.score || Number(a.track.bpm)-Number(b.track.bpm)).slice(0,6);
+
+    if (!matches.length) {
+      rightList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">No matching library tracks</strong><span class="mini-line">Try another Left Deck track, pitch setting, or filters.</span></div></div>';
+      return;
+    }
+
+    rightList.innerHTML = matches.map(match => {
+      const sign = match.requiredPct >= 0 ? '+' : '';
+      return `<div class="smart-item smart-item-text-only clickable-right-suggestion" data-track-index="${match.index}" data-required-pct="${match.requiredPct.toFixed(1)}">
+        <div class="smart-text">
+          <strong class="track-title">${match.track.artist} — ${match.track.title}</strong>
+          <span class="camelot-keyline">${Number(match.track.bpm).toFixed(1)} BPM · ${match.track.key} · ${match.track.year || '—'} · ${match.track.genre || '—'}</span>
+          <span class="mini-line">Pitch ${sign}${match.requiredPct.toFixed(1)}% → ${leftNewBpm.toFixed(2)} BPM · Result key ${match.resultKey.camelot}</span>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function loadLeftFromDual() {
+    const idx = Number(trackSelectDual && trackSelectDual.value);
+    if (!Number.isFinite(idx) || !libraryTracks[idx]) return;
+    leftDeckTrack = libraryTracks[idx];
+    setDeckText('left', leftDeckTrack);
+    if (dualInfo) dualInfo.textContent = `Left Deck: ${leftDeckTrack.artist} — ${leftDeckTrack.title} · ${leftDeckTrack.year || 'Year ?'} · ${leftDeckTrack.genre || 'Genre ?'}`;
+    renderRightSuggestions();
+    updateRightDeckFeedback();
+  }
+
+  function loadRightTrack(track, requiredPct) {
+    rightDeckTrack = track;
+    setDeckText('right', rightDeckTrack);
+    if (rightPitchSlider) rightPitchSlider.value = String(Math.max(-8, Math.min(8, Math.round(requiredPct))));
+    updateDisplays();
+    if (dualInfo) dualInfo.textContent = `Right Deck: ${rightDeckTrack.artist} — ${rightDeckTrack.title} · ${rightDeckTrack.year || 'Year ?'} · ${rightDeckTrack.genre || 'Genre ?'}`;
+    updateRightDeckFeedback();
+  }
+
+  function loadRightFromDual() {
+    const idx = Number(trackSelectDual && trackSelectDual.value);
+    if (!Number.isFinite(idx) || !libraryTracks[idx]) return;
+    loadRightTrack(libraryTracks[idx], Number(rightPitchSlider && rightPitchSlider.value || 0));
+  }
+
+  // hard override button behavior by replacing buttons to drop old listeners
+  if (loadLeftBtn0) {
+    const btn = loadLeftBtn0.cloneNode(true);
+    loadLeftBtn0.parentNode.replaceChild(btn, loadLeftBtn0);
+    btn.addEventListener('click', loadLeftFromDual);
+  }
+  if (loadRightBtn0) {
+    const btn = loadRightBtn0.cloneNode(true);
+    loadRightBtn0.parentNode.replaceChild(btn, loadRightBtn0);
+    btn.addEventListener('click', loadRightFromDual);
+  }
+
+  if (rightList) {
+    rightList.addEventListener('click', (event) => {
+      const item = event.target.closest('.clickable-right-suggestion');
+      if (!item) return;
+      const idx = Number(item.getAttribute('data-track-index'));
+      const requiredPct = Number(item.getAttribute('data-required-pct') || 0);
+      if (!Number.isFinite(idx) || !libraryTracks[idx]) return;
+      loadRightTrack(libraryTracks[idx], requiredPct);
+    });
+  }
+
+  // slider interaction
+  if (leftPitchSlider) leftPitchSlider.addEventListener('input', () => { updateDisplays(); renderRightSuggestions(); });
+  if (rightPitchSlider) rightPitchSlider.addEventListener('input', () => { updateDisplays(); updateRightDeckFeedback(); });
+
+  if (leftSlot) {
+    leftSlot.addEventListener('pointerdown', (e) => { if (!(dualToggle && dualToggle.checked)) return; activeSlot = 'left'; setSliderFromClientY(leftSlot, leftPitchSlider, e.clientY); });
+  }
+  if (rightSlot) {
+    rightSlot.addEventListener('pointerdown', (e) => { if (!(dualToggle && dualToggle.checked)) return; activeSlot = 'right'; setSliderFromClientY(rightSlot, rightPitchSlider, e.clientY); });
+  }
+  window.addEventListener('pointermove', (e) => {
+    if (activeSlot === 'left') setSliderFromClientY(leftSlot, leftPitchSlider, e.clientY);
+    if (activeSlot === 'right') setSliderFromClientY(rightSlot, rightPitchSlider, e.clientY);
+  });
+  window.addEventListener('pointerup', () => { activeSlot = null; });
+
+  if (trackSearchDual) trackSearchDual.oninput = function(){ dualPopulateSelect(); renderRightSuggestions(); };
+  if (genreFilterDual) genreFilterDual.onchange = function(){ dualPopulateSelect(); renderRightSuggestions(); };
+  if (decadeFilterDual) decadeFilterDual.onchange = function(){ dualPopulateSelect(); renderRightSuggestions(); };
+  if (yearLockDual) yearLockDual.onchange = renderRightSuggestions;
+
+  if (csvFileInputDual) {
+    csvFileInputDual.onchange = async function() {
+      const file = csvFileInputDual.files && csvFileInputDual.files[0];
+      if (!file) return;
+      const text = await file.text();
+      const parsed = parseCSVText(text);
+      if (parsed.length) {
+        libraryTracks = parsed;
+        dualPopulateGenre();
+        dualPopulateSelect();
+        if (dualInfo) dualInfo.textContent = `Imported ${parsed.length} tracks from ${file.name}`;
+        renderRightSuggestions();
+      } else if (dualInfo) {
+        dualInfo.textContent = `Could not read tracks from ${file.name}`;
+      }
+    };
+  }
+
+  if (dualToggle) dualToggle.addEventListener('change', () => {
+    updateDisplays();
+    renderRightSuggestions();
+    updateRightDeckFeedback();
+  });
+
+  dualPopulateGenre();
+  dualPopulateSelect();
+  setDeckText('left', leftDeckTrack);
+  setDeckText('right', rightDeckTrack);
+  updateDisplays();
+  renderRightSuggestions();
+  updateRightDeckFeedback();
+})();
+
+
+// v2.2.29: mirror right-deck logic for Left Deck suggestions + feedback
+(function () {
+  const dualToggle = document.getElementById('dualDeckToggle');
+  const leftList = document.getElementById('leftDeckSuggestionsList');
+  const rightList = document.getElementById('rightDeckSuggestionsList');
+  const leftPitchSlider = document.getElementById('leftPitchSliderStep4');
+  const rightPitchSlider = document.getElementById('rightPitchSliderStep4');
+  const leftTitle = document.getElementById('leftDeckSourceTitle');
+  const leftSub = document.getElementById('leftDeckSourceSub');
+  const rightTitle = document.getElementById('rightDeckSourceTitle');
+  const rightSub = document.getElementById('rightDeckSourceSub');
+  const leftResultBpm = document.getElementById('leftResultBpm');
+  const leftResultBpmSub = document.getElementById('leftResultBpmSub');
+  const leftResultKey = document.getElementById('leftResultKey');
+  const leftResultKeySub = document.getElementById('leftResultKeySub');
+  const leftMatchQuality = document.getElementById('leftMatchQuality');
+  const loadLeftBtn = document.getElementById('loadLeftBtn');
+  const loadRightBtn = document.getElementById('loadRightBtn');
+  const trackSelectDual = document.getElementById('trackSelectDual');
+  const trackSearchDual = document.getElementById('trackSearchDual');
+  const genreFilterDual = document.getElementById('genreFilterDual');
+  const decadeFilterDual = document.getElementById('decadeFilterDual');
+  const yearLockDual = document.getElementById('smartSuggestYearLockDual');
+
+  function dualFilteredTracksMirror() {
+    const q = String(trackSearchDual && trackSearchDual.value || '').trim().toLowerCase();
+    const genre = String(genreFilterDual && genreFilterDual.value || '').trim().toLowerCase();
+    const decade = Number(decadeFilterDual && decadeFilterDual.value || 0);
+    return (libraryTracks || []).filter(track => {
+      const hay = `${track.artist || ''} ${track.title || ''} ${track.genre || ''} ${track.year || ''}`.toLowerCase();
+      if (q && !hay.includes(q)) return false;
+      if (genre && (track.genre || '').toLowerCase() !== genre) return false;
+      const year = Number(track.year || 0);
+      if (decade && (!year || year < decade || year > decade + 9)) return false;
+      return true;
+    });
+  }
+
+  function setDeckTextMirror(side, track) {
+    const titleEl = side === 'left' ? leftTitle : rightTitle;
+    const subEl = side === 'left' ? leftSub : rightSub;
+    if (!titleEl || !subEl) return;
+    if (!track) {
+      titleEl.textContent = 'Source';
+      subEl.textContent = 'Pitch slider shell';
+      return;
+    }
+    titleEl.textContent = track.artist || 'Source';
+    subEl.textContent = `${track.title || ''} · ${track.bpm || '—'} BPM · ${track.key || '—'}`;
+  }
+
+  function updateLeftDeckFeedback() {
+    if (!leftResultBpm || !leftResultKey || !leftMatchQuality) return;
+    if (!(dualToggle && dualToggle.checked)) return;
+
+    if (!leftDeckTrack || !rightDeckTrack) {
+      leftResultBpm.textContent = '—';
+      leftResultBpmSub.textContent = 'Load both decks';
+      leftResultKey.textContent = '—';
+      leftResultKeySub.textContent = 'Move the Left pitch slider';
+      leftMatchQuality.textContent = 'Load a Left Deck and Right Deck track to see mix feedback.';
+      return;
+    }
+
+    const leftPct = Number(leftPitchSlider && leftPitchSlider.value || 0);
+    const rightPct = Number(rightPitchSlider && rightPitchSlider.value || 0);
+    const leftMultiplier = 1 + (leftPct / 100);
+    const rightMultiplier = 1 + (rightPct / 100);
+
+    const leftNewBpm = Number(leftDeckTrack.bpm || 0) * leftMultiplier;
+    const rightNewBpm = Number(rightDeckTrack.bpm || 0) * rightMultiplier;
+    const bpmDiff = Math.abs(leftNewBpm - rightNewBpm);
+
+    leftResultBpm.textContent = leftNewBpm ? leftNewBpm.toFixed(2) : '—';
+    leftResultBpmSub.textContent = `Δ ${bpmDiff.toFixed(2)} BPM from Right Deck target`;
+
+    const leftEntry = getEntryByCamelot(leftDeckTrack.key);
+    const rightEntry = getEntryByCamelot(rightDeckTrack.key);
+    if (!leftEntry || !rightEntry) {
+      leftResultKey.textContent = '—';
+      leftResultKeySub.textContent = 'Key unavailable';
+      leftMatchQuality.textContent = 'A deck key could not be evaluated.';
+      return;
+    }
+
+    const leftSemis = leftMultiplier > 0 ? 12 * Math.log2(leftMultiplier) : 0;
+    const rightSemis = rightMultiplier > 0 ? 12 * Math.log2(rightMultiplier) : 0;
+    const shiftedLeft = findNearestKey(leftEntry, leftSemis);
+    const shiftedRight = findNearestKey(rightEntry, rightSemis);
+
+    leftResultKey.textContent = `${shiftedLeft.camelot} · ${shiftedLeft.regular}`;
+    leftResultKeySub.textContent = `${leftPct >= 0 ? '+' : ''}${leftPct}% pitch on Left Deck`;
+
+    const same = shiftedRight;
+    const plus = camelotMove(shiftedRight, 1, false);
+    const minus = camelotMove(shiftedRight, -1, false);
+    const relative = camelotMove(shiftedRight, 0, true);
+
+    let keyQuality = 'Compatible';
+    if (shiftedLeft.camelot === same.camelot) keyQuality = 'Perfect';
+    else if (shiftedLeft.camelot === plus.camelot || shiftedLeft.camelot === minus.camelot) keyQuality = 'Strong';
+    else if (shiftedLeft.camelot === relative.camelot) keyQuality = 'Good';
+
+    let tempoQuality = 'Tight';
+    if (bpmDiff > 2) tempoQuality = 'Moderate';
+    if (bpmDiff > 5) tempoQuality = 'Stretch';
+
+    leftMatchQuality.textContent = `${keyQuality} harmonic fit · ${tempoQuality} tempo difference`;
+  }
+
+  function renderLeftSuggestions() {
+    if (!leftList) return;
+    if (!(dualToggle && dualToggle.checked)) return;
+
+    if (!rightDeckTrack) {
+      leftList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">Load a Right Deck track</strong><span class="mini-line">Then this box will show compatible suggestions for the Left Deck.</span></div></div>';
+      return;
+    }
+
+    const rightEntry = getEntryByCamelot(rightDeckTrack.key);
+    if (!rightEntry) {
+      leftList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">Right Deck key not recognized</strong><span class="mini-line">Try a track with a valid Camelot key.</span></div></div>';
+      return;
+    }
+
+    const rightPct = Number(rightPitchSlider && rightPitchSlider.value || 0);
+    const rightNewBpm = Number(rightDeckTrack.bpm || 0) * (1 + rightPct / 100);
+    const rightSemis = (1 + rightPct / 100) > 0 ? 12 * Math.log2(1 + rightPct / 100) : 0;
+    const shiftedRight = findNearestKey(rightEntry, rightSemis);
+
+    const same = shiftedRight;
+    const plus = camelotMove(shiftedRight, 1, false);
+    const minus = camelotMove(shiftedRight, -1, false);
+    const relative = camelotMove(shiftedRight, 0, true);
+    const allowed = new Set([same.camelot, plus.camelot, minus.camelot, relative.camelot]);
+    const decade = Number(decadeFilterDual && decadeFilterDual.value || 0);
+
+    const matches = dualFilteredTracksMirror().map(track => {
+      if (track.artist === rightDeckTrack.artist && track.title === rightDeckTrack.title) return null;
+      const entry = getEntryByCamelot(track.key);
+      if (!entry) return null;
+
+      if (yearLockDual && yearLockDual.checked && decade) {
+        const year = Number(track.year || 0);
+        if (!year || year < decade || year > decade + 9) return null;
+      }
+
+      const requiredPct = ((rightNewBpm / Math.max(0.01, Number(track.bpm))) - 1) * 100;
+      if (!Number.isFinite(requiredPct) || Math.abs(requiredPct) > 8) return null;
+
+      const shiftedSemis = 12 * Math.log2(1 + requiredPct / 100);
+      const resultKey = findNearestKey(entry, shiftedSemis);
+      if (!allowed.has(resultKey.camelot)) return null;
+
+      return { track, requiredPct, resultKey, score: Math.abs(requiredPct), index: (libraryTracks || []).indexOf(track) };
+    }).filter(Boolean).sort((a,b)=>a.score-b.score || Number(a.track.bpm)-Number(b.track.bpm)).slice(0,6);
+
+    if (!matches.length) {
+      leftList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">No matching library tracks</strong><span class="mini-line">Try another Right Deck track, pitch setting, or filters.</span></div></div>';
+      return;
+    }
+
+    leftList.innerHTML = matches.map(match => {
+      const sign = match.requiredPct >= 0 ? '+' : '';
+      return `<div class="smart-item smart-item-text-only clickable-left-suggestion" data-track-index="${match.index}" data-required-pct="${match.requiredPct.toFixed(1)}">
+        <div class="smart-text">
+          <strong class="track-title">${match.track.artist} — ${match.track.title}</strong>
+          <span class="camelot-keyline">${Number(match.track.bpm).toFixed(1)} BPM · ${match.track.key} · ${match.track.year || '—'} · ${match.track.genre || '—'}</span>
+          <span class="mini-line">Pitch ${sign}${match.requiredPct.toFixed(1)}% → ${rightNewBpm.toFixed(2)} BPM · Result key ${match.resultKey.camelot}</span>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function loadLeftTrackMirror(track, requiredPct) {
+    leftDeckTrack = track;
+    setDeckTextMirror('left', leftDeckTrack);
+    if (leftPitchSlider) {
+      const clamped = Math.max(-8, Math.min(8, Math.round(requiredPct)));
+      leftPitchSlider.value = String(clamped);
+    }
+    const leftDisplay = document.getElementById('leftPitchDisplay');
+    const leftHandle = document.getElementById('leftFaderHandleStep4');
+    const leftSlot = document.getElementById('leftFaderSlotStep4');
+    if (typeof positionHandle === 'function' && leftPitchSlider) positionHandle(leftSlot, leftHandle, leftPitchSlider);
+    if (leftDisplay && leftPitchSlider) {
+      const v = Number(leftPitchSlider.value || 0);
+      leftDisplay.textContent = `${v >= 0 ? '+' : ''}${v}%`;
+    }
+    if (typeof renderRightSuggestions === 'function') renderRightSuggestions();
+    renderLeftSuggestions();
+    updateLeftDeckFeedback();
+  }
+
+  if (leftList) {
+    leftList.addEventListener('click', (event) => {
+      const item = event.target.closest('.clickable-left-suggestion');
+      if (!item) return;
+      const idx = Number(item.getAttribute('data-track-index'));
+      const requiredPct = Number(item.getAttribute('data-required-pct') || 0);
+      if (!Number.isFinite(idx) || !libraryTracks[idx]) return;
+      loadLeftTrackMirror(libraryTracks[idx], requiredPct);
+    });
+  }
+
+  if (rightList) {
+    rightList.addEventListener('click', () => {
+      // right suggestion click loads the Right Deck in the earlier working block;
+      // then we mirror that state into the Left suggestions on the next tick
+      setTimeout(() => {
+        renderLeftSuggestions();
+        updateLeftDeckFeedback();
+      }, 0);
+    });
+  }
+
+  if (loadRightBtn) loadRightBtn.addEventListener('click', () => setTimeout(() => {
+    setDeckTextMirror('right', rightDeckTrack);
+    renderLeftSuggestions();
+    updateLeftDeckFeedback();
+  }, 0));
+
+  if (loadLeftBtn) loadLeftBtn.addEventListener('click', () => setTimeout(() => {
+    renderRightSuggestions();
+    renderLeftSuggestions();
+    updateLeftDeckFeedback();
+  }, 0));
+
+  if (rightPitchSlider) rightPitchSlider.addEventListener('input', () => {
+    renderLeftSuggestions();
+  });
+  if (leftPitchSlider) leftPitchSlider.addEventListener('input', () => {
+    const leftDisplay = document.getElementById('leftPitchDisplay');
+    const leftHandle = document.getElementById('leftFaderHandleStep4');
+    const leftSlot = document.getElementById('leftFaderSlotStep4');
+    if (typeof positionHandle === 'function' && leftPitchSlider) positionHandle(leftSlot, leftHandle, leftPitchSlider);
+    if (leftDisplay && leftPitchSlider) {
+      const v = Number(leftPitchSlider.value || 0);
+      leftDisplay.textContent = `${v >= 0 ? '+' : ''}${v}%`;
+    }
+    renderRightSuggestions();
+    updateLeftDeckFeedback();
+  });
+  if (dualToggle) dualToggle.addEventListener('change', () => setTimeout(() => {
+    renderLeftSuggestions();
+    updateLeftDeckFeedback();
+  }, 0));
+
+  updateLeftDeckFeedback();
+  renderLeftSuggestions();
+
+  // keep Left Deck feedback and suggestions live when left slider is dragged by slot/handle
+  const leftSlotMirror = document.getElementById('leftFaderSlotStep4');
+  if (leftSlotMirror && leftPitchSlider) {
+    leftSlotMirror.addEventListener('pointermove', () => {
+      if (typeof updateLeftDeckFeedback === 'function') updateLeftDeckFeedback();
+    });
+  }
+})();
+
+</script>
 </body>
 </html>
