@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" name="viewport"/>
-<title>Vinyl BPM + Key Helper Pro v2.2.37-step5a</title>
+<title>Vinyl BPM + Key Helper Pro v2.2.54-step5a</title>
 <style>
     :root {
       --bg: #0b0d14;
@@ -1969,6 +1969,86 @@ body[data-skin="silver"] .file-btn {
   box-shadow: 0 8px 18px rgba(0,0,0,0.18);
 }
 
+
+/* v2.2.45: feedback windows only, no deck layout changes */
+.dual-deck-feedback {
+  margin-top: 10px;
+  max-width: 220px;
+}
+
+.dual-deck-feedback-compact {
+  font-size: 0.74rem;
+  padding: 11px 12px;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)),
+    linear-gradient(180deg, #111825, #0b1119);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.feedback-main {
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.98rem;
+  min-height: 1.4em;
+}
+
+.feedback-sub {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.66rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 1.8em;
+}
+
+.feedback-sub span:first-child,
+.feedback-sub span:last-child {
+  flex: 1 1 0;
+}
+
+.feedback-sub span:last-child {
+  text-align: right;
+}
+
+.separator {
+  opacity: 0.45;
+  flex: 0 0 auto;
+}
+
+#leftDeckFeedback .mini,
+#rightDeckFeedback .mini {
+  margin-bottom: 6px;
+}
+
+#leftResultBpmSub,
+#rightResultBpmSub,
+#leftMatchQuality,
+#rightMatchQuality {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* v2.2.49: move feedback beside fader without changing layout/sizing */
+section.module.dual-module {
+  position: relative;
+}
+
+#leftDeckFeedback,
+#rightDeckFeedback {
+  position: absolute;
+  margin: 0;
+  z-index: 3;
+}
+
 </style>
 </head>
 <body>
@@ -2180,19 +2260,18 @@ body[data-skin="silver"] .file-btn {
 </div>
 <div class="result-box full dual-deck-feedback" id="leftDeckFeedback">
 <div class="mini">Left Deck Mix Feedback</div>
-<div class="dual-feedback-grid">
-<div class="display-box dual-feedback-box">
-<div class="mini">Resulting BPM</div>
-<div class="big" id="leftResultBpm">—</div>
-<div class="sub" id="leftResultBpmSub">Load both decks</div>
+<div class="dual-deck-feedback-compact">
+<div class="feedback-main">
+<span><span id="leftResultBpm">—</span> BPM</span>
+<span class="separator">|</span>
+<span id="leftResultKey">—</span>
 </div>
-<div class="display-box dual-feedback-box">
-<div class="mini">Resulting Key</div>
-<div class="big" id="leftResultKey">—</div>
-<div class="sub" id="leftResultKeySub">Move the Left pitch slider</div>
+<div class="feedback-sub">
+<span id="leftResultBpmSub">Load both decks</span>
+<span class="separator">|</span>
+<span id="leftMatchQuality">Load tracks</span>
 </div>
 </div>
-<div class="sub" id="leftMatchQuality">Load a Left Deck and Right Deck track to see mix feedback.</div>
 </div>
 </section>
 <section class="module dual-module dual-center-module">
@@ -2284,19 +2363,18 @@ body[data-skin="silver"] .file-btn {
 </div>
 <div class="result-box full dual-deck-feedback" id="rightDeckFeedback">
 <div class="mini">Right Deck Mix Feedback</div>
-<div class="dual-feedback-grid">
-<div class="display-box dual-feedback-box">
-<div class="mini">Resulting BPM</div>
-<div class="big" id="rightResultBpm">—</div>
-<div class="sub" id="rightResultBpmSub">Load both decks</div>
+<div class="dual-deck-feedback-compact">
+<div class="feedback-main">
+<span><span id="rightResultBpm">—</span> BPM</span>
+<span class="separator">|</span>
+<span id="rightResultKey">—</span>
 </div>
-<div class="display-box dual-feedback-box">
-<div class="mini">Resulting Key</div>
-<div class="big" id="rightResultKey">—</div>
-<div class="sub" id="rightResultKeySub">Move the Right pitch slider</div>
+<div class="feedback-sub">
+<span id="rightResultBpmSub">Load both decks</span>
+<span class="separator">|</span>
+<span id="rightMatchQuality">Load tracks</span>
 </div>
 </div>
-<div class="sub" id="rightMatchQuality">Load a Left Deck and Right Deck track to see mix feedback.</div>
 </div>
 </section>
 </div>
@@ -4045,6 +4123,46 @@ function populateTrackSelect(filterText = '') {
       if (typeof updateLeftDeckFeedback === 'function') updateLeftDeckFeedback();
     });
   }
+})();
+
+
+(function () {
+  function placeDeckFeedback(feedbackId, slotId) {
+    const feedback = document.getElementById(feedbackId);
+    const slot = document.getElementById(slotId);
+    if (!feedback || !slot) return;
+
+    const section = feedback.closest('section.module.dual-module');
+    if (!section) return;
+
+    // temporarily show for measurement
+    const prevVis = feedback.style.visibility;
+    feedback.style.visibility = 'hidden';
+    feedback.style.left = '0px';
+    feedback.style.top = '0px';
+
+    const sectionRect = section.getBoundingClientRect();
+    const slotRect = slot.getBoundingClientRect();
+    const feedbackRect = feedback.getBoundingClientRect();
+
+    const gap = 12;
+    const left = (slotRect.left - sectionRect.left) - feedbackRect.width - gap;
+    const top = (slotRect.top - sectionRect.top) + ((slotRect.height - feedbackRect.height) / 2) + 305;
+
+    feedback.style.left = `${Math.max(8, left) + 25}px`;
+    feedback.style.top = `${Math.max(40, top)}px`;
+    feedback.style.visibility = prevVis || 'visible';
+  }
+
+  function placeAllDeckFeedback() {
+    placeDeckFeedback('leftDeckFeedback', 'leftFaderSlotStep4');
+    placeDeckFeedback('rightDeckFeedback', 'rightFaderSlotStep4');
+  }
+
+  window.addEventListener('load', placeAllDeckFeedback);
+  window.addEventListener('resize', placeAllDeckFeedback);
+  // run once now too
+  placeAllDeckFeedback();
 })();
 
 </script>
