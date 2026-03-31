@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" name="viewport"/>
-<title>Vinyl BPM + Key Helper Pro v2.2.54-step5a</title>
+<title>Vinyl BPM + Key Helper Pro v2.2.57-speed-library</title>
 <style>
     :root {
       --bg: #0b0d14;
@@ -119,7 +119,7 @@
     }
 
     .module-title {
-      font-size: 0.78rem;
+      font-size: 0.68rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--muted);
@@ -212,7 +212,7 @@
     }
 
     .source-meta .mini {
-      font-size: 0.72rem;
+      font-size: 0.64rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: rgba(236,242,255,0.72);
@@ -289,7 +289,7 @@
     }
 
     .pitch-panel {
-      border-radius: 22px;
+      border-radius: 10px;
       padding: 16px 12px 14px;
       background:
         linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015)),
@@ -666,7 +666,7 @@
     }
     .title-bar {
       display: flex;
-      gap: 16px;
+      gap: 12px;
       align-items: flex-start;
       justify-content: space-between;
       flex-wrap: wrap;
@@ -1137,7 +1137,7 @@ body[data-skin="midnight"] .platter::after {
     }
     .tap-btn {
       min-height: 38px;
-      border-radius: 12px;
+      border-radius: 8px;
       border: 1px solid rgba(255,255,255,0.08);
       background:
         linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)),
@@ -1153,7 +1153,7 @@ body[data-skin="midnight"] .platter::after {
       width: 100%;
       text-align: center;
       color: var(--muted);
-      font-size: 0.78rem;
+      font-size: 0.68rem;
       line-height: 1.2;
       min-height: 1.2em;
       margin-top: 6px;
@@ -1175,7 +1175,7 @@ body[data-skin="midnight"] .platter::after {
     .range-select {
       width: auto;
       min-width: 92px;
-      min-height: 34px;
+      min-height: 28px;
       padding: 6px 28px 6px 10px;
       border-radius: 10px;
       font-size: 0.88rem;
@@ -1191,7 +1191,7 @@ body[data-skin="midnight"] .platter::after {
     .smart-item {
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
       border-radius: 14px;
       padding: 10px 12px;
@@ -1495,7 +1495,7 @@ body[data-skin="silver"] .tap-btn:hover {
 
 /* Center readout boxes more like CDJ displays */
 .display-box {
-  border-radius: 12px;
+  border-radius: 8px;
   background:
     linear-gradient(180deg, rgba(8,12,20,0.96), rgba(16,22,34,0.96)),
     linear-gradient(180deg, #0a0f17, #161e2c) !important;
@@ -1509,7 +1509,7 @@ body[data-skin="silver"] .tap-btn:hover {
 .display-box .mini {
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  font-size: 0.7rem;
+  font-size: 0.62rem;
   color: #8ea0bf !important;
 }
 
@@ -1561,6 +1561,70 @@ body[data-skin="silver"] .field-grid select:focus {
     inset 0 1px 0 rgba(255,255,255,0.98),
     inset 0 -10px 18px rgba(90,104,124,0.08) !important;
 }
+
+
+    .speed-control {
+      margin-top: 12px;
+      display: grid;
+      gap: 8px;
+      justify-items: center;
+    }
+    .speed-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+    }
+    .speed-buttons {
+      display: inline-flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .speed-btn {
+      min-width: 72px;
+      min-height: 36px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 120ms ease, box-shadow 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+    .speed-btn.active {
+      border-color: rgba(109,211,255,0.45);
+      box-shadow: 0 0 0 2px rgba(109,211,255,0.12), 0 8px 18px rgba(0,0,0,0.16);
+      background: rgba(109,211,255,0.12);
+    }
+    .speed-meta {
+      color: var(--muted);
+      font-size: 0.75rem;
+      line-height: 1.25;
+      text-align: center;
+      min-height: 2.4em;
+    }
+    body[data-skin="silver"] .speed-btn {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.98), rgba(232,237,243,0.92)),
+        #e7edf4 !important;
+      color: #11161d !important;
+      border: 1px solid rgba(63,76,91,0.16) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.96),
+        0 4px 10px rgba(61,72,90,0.08) !important;
+    }
+    body[data-skin="silver"] .speed-btn.active {
+      border-color: rgba(63,76,91,0.28) !important;
+      box-shadow:
+        0 0 0 2px rgba(63,76,91,0.08),
+        0 8px 18px rgba(61,72,90,0.10) !important;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,1), rgba(240,244,249,0.96)),
+        #eef3f8 !important;
+    }
 
 
 .pro-mode-row {
@@ -1626,7 +1690,7 @@ body[data-skin="silver"] .pro-toggle .slider-pill {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 .pro-library-grid {
   display: grid;
@@ -1641,7 +1705,7 @@ body[data-skin="silver"] .pro-toggle .slider-pill {
 }
 .file-btn {
   min-height: 38px;
-  border-radius: 12px;
+  border-radius: 8px;
   border: 1px solid rgba(255,255,255,0.08);
   background:
     linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)),
@@ -1689,8 +1753,8 @@ body[data-skin="silver"] .file-btn {
 /* v2.1.0: Pro branch UX upgrades */
 .pro-filter-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  grid-template-columns: 1fr;
+  gap: 6px;
   margin-top: 8px;
 }
 .smart-item.clickable-suggestion {
@@ -1760,7 +1824,7 @@ body[data-skin="silver"] .file-btn {
 
 .dual-deck-note-text {
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.68rem;
   line-height: 1.3;
 }
 
@@ -2037,16 +2101,1570 @@ body[data-skin="silver"] .file-btn {
 }
 
 
-/* v2.2.49: move feedback beside fader without changing layout/sizing */
-section.module.dual-module {
-  position: relative;
-}
+.library-table-wrap {
+      margin-top: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)), linear-gradient(180deg, #111825, #0b1119);
+      overflow: hidden;
+    }
+    .library-table-scroll {
+      max-height: 260px;
+      overflow: auto;
+    }
+    .library-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+    .library-table th,
+    .library-table td {
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      white-space: nowrap;
+    }
+    .library-table th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: rgba(12,18,28,0.96);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      user-select: none;
+    }
+    .library-table tr:hover td {
+      background: rgba(255,255,255,0.04);
+    }
+    .library-table tr.selected td {
+      background: rgba(109,211,255,0.12);
+    }
+    .library-table .num-cell {
+      text-align: right;
+    }
+    .library-table-empty {
+      padding: 14px;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    body[data-skin="silver"] .library-table-wrap {
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(233,238,244,0.92)), #e7edf4;
+      border-color: rgba(63, 76, 91, 0.14);
+    }
+    body[data-skin="silver"] .library-table th {
+      background: rgba(236,241,247,0.98);
+      color: #516074 !important;
+    }
+    body[data-skin="silver"] .library-table tr.selected td {
+      background: rgba(63,76,91,0.10);
+    }
 
+
+
+/* v2.3.0: clean dual-deck rebuild start */
+.dual-clean-module > .module-title { display:none; }
+.dual-clean-module {
+  padding: 18px;
+}
+.dual-clean-top {
+  display: grid;
+  grid-template-columns: 150px minmax(0,1fr) 100px;
+  gap: 16px;
+  align-items: stretch;
+}
+.dual-art-frame {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)), linear-gradient(180deg, #0f1520, #141c29);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+.dual-art-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+.dual-art-img.has-art { opacity: 1; }
+.dual-art-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: radial-gradient(circle at 50% 30%, rgba(109,211,255,0.10), transparent 40%);
+}
+.dual-art-frame.has-art .dual-art-fallback { display:none; }
+.dual-track-card,
+.dual-fader-card {
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)), linear-gradient(180deg, #121926, #0d131d);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+.dual-track-card {
+  padding: 12px 14px;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  align-content: start;
+  min-width: 0;
+}
+.dual-deck-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.dual-track-title {
+  font-size: clamp(1.1rem, 1.5vw, 1.5rem);
+  line-height: 1.02;
+  font-weight: 900;
+  margin: 0 0 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dual-track-artist {
+  font-size: 0.92rem;
+  color: #dbe4fb;
+  margin-bottom: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dual-track-meta-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 10px;
+}
+.dual-track-meta {
+  border-radius: 10px;
+  padding: 8px 8px 7px;
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.06);
+  min-width: 0;
+}
+.meta-k {
+  display:block;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.meta-v {
+  display:block;
+  font-weight: 800;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dual-fader-card {
+  width: 100px;
+  min-width: 100px;
+  padding: 10px 8px;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr auto;
+  min-height: 150px;
+}
+.dual-fader-head {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.dual-pitch-big {
+  font-size: 1.05rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-top: 6px;
+}
+.dual-range-row,
+.dual-speed-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.dual-toggle-btn {
+  min-height: 28px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  font-size: 0.68rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.dual-toggle-btn.active,
+.speed-btn.active {
+  border-color: rgba(109,211,255,0.42);
+  box-shadow: 0 0 0 2px rgba(109,211,255,0.12);
+}
+.dual-clean-fader-wrap {
+  min-height: 0;
+  height: 100%;
+  grid-template-columns: 10px 1fr 10px;
+}
+.dual-clean-fader-wrap .fader-slot { min-height: 0; }
+.dual-clean-fader-wrap { height: 300px; }
+.dual-clean-fader-wrap .fader-track { width: 2px; background: rgba(255,255,255,0.65); box-shadow: none; }
+.dual-clean-fader-wrap .fader-handle { width: 16px; height: 10px; border-radius: 3px; background: #d7dce6; box-shadow: none; }
+.dual-clean-fader-wrap .fader-handle::before { display:none; }
+.dual-clean-fader-wrap .fader-zero { left: 24%; right: 24%; opacity: 0.55; }
+.dual-clean-fader-wrap .tick-mark { left: 35%; right: 35%; }
+.dual-clean-fader-wrap .tick-mark.major { left: 28%; right: 28%; }
+.dual-speed-meta {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.dual-clean-module .dual-deck-suggestions,
+.dual-clean-module .dual-deck-feedback {
+  margin-top: 14px;
+}
 #leftDeckFeedback,
 #rightDeckFeedback {
-  position: absolute;
-  margin: 0;
-  z-index: 3;
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  margin-top: 14px !important;
+  max-width: none;
+}
+body[data-skin="silver"] .dual-track-card,
+body[data-skin="silver"] .dual-fader-card,
+body[data-skin="silver"] .dual-art-frame {
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(233,238,244,0.90)), #e7edf4 !important;
+  border-color: rgba(63, 76, 91, 0.16) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.96), 0 8px 18px rgba(61,72,90,0.08) !important;
+}
+body[data-skin="silver"] .dual-track-artist,
+body[data-skin="silver"] .meta-v,
+body[data-skin="silver"] .dual-track-title,
+body[data-skin="silver"] .dual-pitch-big {
+  color: #10151b !important;
+}
+body[data-skin="silver"] .dual-deck-label,
+body[data-skin="silver"] .meta-k,
+body[data-skin="silver"] .dual-speed-meta,
+body[data-skin="silver"] .dual-art-fallback {
+  color: #516074 !important;
+}
+@media (max-width: 1400px) {
+  .dual-clean-top {
+    grid-template-columns: 150px minmax(0,1fr) 100px;
+  }
+  .dual-art-frame { width: 150px; height: 150px; }
+}
+@media (max-width: 1020px) and (orientation: portrait) {
+  .dual-clean-top {
+    grid-template-columns: 1fr;
+  }
+  .dual-art-frame { width: 150px; height: 150px; max-width: none; }
+  .dual-fader-card { width: 100px; min-width: 100px; min-height: 150px; }
+}
+
+
+.dual-art-frame {
+  width: 150px !important;
+  height: 150px !important;
+  min-width: 150px !important;
+  min-height: 150px !important;
+}
+.dual-clean-top {
+  align-items: flex-start !important;
+  gap: 14px !important;
+}
+.dual-track-card {
+  min-height: 150px;
+  padding: 12px 14px !important;
+}
+.dual-track-title {
+  font-size: 1.25rem !important;
+  line-height: 1.05 !important;
+}
+.dual-track-artist {
+  font-size: 0.95rem !important;
+  margin-top: 4px !important;
+}
+.dual-fader-card {
+  width: 100px !important;
+  min-width: 100px !important;
+  padding: 10px 8px 12px !important;
+  gap: 8px !important;
+}
+.dual-fader-head .mini { margin-bottom: 4px !important; }
+.dual-pitch-big {
+  font-size: 1.05rem !important;
+  line-height: 1 !important;
+}
+.dual-fader-select {
+  width: 84px;
+  min-height: 30px;
+  height: 30px;
+  padding: 4px 22px 4px 8px;
+  font-size: 0.76rem;
+  border-radius: 10px;
+  text-align: center;
+}
+.dual-fader-wrap.dual-clean-fader-wrap {
+  grid-template-columns: 12px 1fr 12px !important;
+  min-height: 300px !important;
+  height: 300px !important;
+  gap: 4px !important;
+}
+.dual-clean-fader-wrap .dual-fader-slot {
+  width: 30px !important;
+  justify-self: center;
+}
+.dual-clean-fader-wrap .fader-track {
+  width: 4px !important;
+}
+.dual-clean-fader-wrap .fader-handle {
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 999px !important;
+  background: linear-gradient(180deg, #f3f6fd, #b4bed1) !important;
+}
+.dual-clean-fader-wrap .fader-handle::before {
+  display: none !important;
+}
+.dual-speed-meta.dual-speed-meta {
+  margin-top: 2px;
+  font-size: 0.64rem !important;
+  line-height: 1.25 !important;
+  text-align: center;
+}
+
+
+/* v2.3.3: stack track info under artwork */
+.dual-clean-top{
+  display:flex !important;
+  align-items:flex-start !important;
+  justify-content:flex-start !important;
+  gap:16px !important;
+}
+.dual-info-stack{
+  width:190px;
+  min-width:190px;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:10px;
+}
+.dual-art-frame{
+  margin:0 auto;
+}
+.dual-track-card{
+  min-height:auto !important;
+  padding:12px 12px !important;
+}
+.dual-track-title{
+  white-space:normal !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+  line-height:1.1 !important;
+  min-height:2.2em;
+}
+.dual-track-artist{
+  white-space:normal !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+  line-height:1.2 !important;
+  min-height:2.4em;
+  margin-bottom:10px !important;
+}
+.dual-track-meta-row{
+  grid-template-columns:1fr !important;
+  gap:8px !important;
+}
+.dual-track-meta{
+  padding:7px 8px 6px !important;
+}
+.dual-fader-card{
+  align-self:flex-start;
+}
+@media (max-width: 1020px) and (orientation: portrait){
+  .dual-clean-top{
+    flex-direction:row !important;
+  }
+}
+
+
+/* v2.3.4: condensed BPM/Key/Speed meta window for dual deck cards */
+.dual-track-card-condensed{
+  padding: 10px 10px !important;
+}
+.dual-track-card-condensed .dual-deck-label{
+  margin-bottom: 6px !important;
+}
+.dual-track-card-condensed .dual-track-title{
+  min-height: auto !important;
+  margin-bottom: 4px !important;
+  font-size: 1.05rem !important;
+  line-height: 1.08 !important;
+}
+.dual-track-card-condensed .dual-track-artist{
+  min-height: auto !important;
+  margin-bottom: 8px !important;
+  font-size: 0.82rem !important;
+  line-height: 1.2 !important;
+}
+.dual-track-meta-window{
+  border-radius: 10px;
+  padding: 7px 8px 6px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.012)),
+    linear-gradient(180deg, #121721, #0d121a);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.dual-track-meta-head,
+.dual-track-meta-values{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+  align-items:center;
+  text-align:center;
+}
+.dual-track-meta-head{
+  margin-bottom: 4px;
+  font-size: 0.53rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.dual-track-meta-values{
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--text);
+}
+body[data-skin="silver"] .dual-track-meta-window{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.96), rgba(233,238,244,0.90)),
+    #e7edf4 !important;
+  border-color: rgba(63, 76, 91, 0.16) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.96),
+    0 4px 10px rgba(61,72,90,0.06) !important;
+}
+body[data-skin="silver"] .dual-track-meta-head{
+  color:#516074 !important;
+}
+body[data-skin="silver"] .dual-track-meta-values{
+  color:#111a24 !important;
+}
+
+
+/* v2.3.5: tighter dual deck title/artist sizing */
+.dual-track-card-condensed .dual-track-title{
+  min-height: 2.45em !important;
+  margin-bottom: 4px !important;
+  font-size: 0.90rem !important;
+  line-height: 1.22 !important;
+  font-weight: 700 !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  white-space: normal !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  word-break: break-word !important;
+}
+.dual-track-card-condensed .dual-track-artist{
+  min-height: auto !important;
+  margin-bottom: 8px !important;
+  font-size: 0.76rem !important;
+  line-height: 1.15 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+.dual-track-card-condensed .dual-deck-label{
+  margin-bottom: 5px !important;
+}
+
+
+/* v2.3.6: make artwork box match track info box height */
+.dual-info-stack{
+  width:150px !important;
+  min-width:150px !important;
+}
+.dual-info-stack .dual-art-frame,
+.dual-info-stack .dual-track-card{
+  width:150px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+.dual-info-stack .dual-art-frame{
+  height:auto !important;
+  min-height:150px !important;
+  aspect-ratio:auto !important;
+}
+.dual-info-stack .dual-track-card{
+  min-height:auto !important;
+}
+
+
+/* v2.3.15: feedback cards truly under deck boxes with 5px gap */
+.dual-clean-top{
+  display:grid !important;
+  grid-template-columns:150px 100px !important;
+  column-gap:18px !important;
+  row-gap:5px !important;
+  align-items:start !important;
+}
+.dual-info-stack{
+  grid-column:1 !important;
+  grid-row:1 !important;
+  width:150px !important;
+  min-width:150px !important;
+}
+#leftDeckFeedback,
+#rightDeckFeedback{
+  grid-column:1 !important;
+  grid-row:2 !important;
+  position:static !important;
+  left:auto !important;
+  top:auto !important;
+  right:auto !important;
+  bottom:auto !important;
+  width:150px !important;
+  min-width:150px !important;
+  max-width:150px !important;
+  margin:5px 0 0 0 !important;
+  align-self:start !important;
+}
+.dual-fader-card{
+  grid-column:2 !important;
+  grid-row:1 / span 2 !important;
+  align-self:start !important;
+}
+.dual-clean-deck > .dual-deck-suggestions{
+  margin-top:10px !important;
+}
+#leftDeckFeedback .mini,
+#rightDeckFeedback .mini{
+  margin-bottom:5px !important;
+  font-size:0.62rem !important;
+  line-height:1.1 !important;
+  letter-spacing:0.12em !important;
+  text-transform:uppercase !important;
+  color:var(--muted) !important;
+}
+#leftDeckFeedback .dual-deck-feedback-compact,
+#rightDeckFeedback .dual-deck-feedback-compact{
+  padding:0 !important;
+  border-radius:0 !important;
+  background:none !important;
+  border:none !important;
+  box-shadow:none !important;
+}
+#leftDeckFeedback .feedback-main,
+#rightDeckFeedback .feedback-main{
+  min-height:auto !important;
+  display:block !important;
+  font-size:0.90rem !important;
+  line-height:1.22 !important;
+  font-weight:700 !important;
+}
+#leftDeckFeedback .feedback-main span,
+#rightDeckFeedback .feedback-main span,
+#leftDeckFeedback .feedback-sub span,
+#rightDeckFeedback .feedback-sub span{
+  display:block !important;
+  text-align:left !important;
+}
+#leftDeckFeedback .feedback-main .separator,
+#rightDeckFeedback .feedback-main .separator,
+#leftDeckFeedback .feedback-sub .separator,
+#rightDeckFeedback .feedback-sub .separator{
+  display:none !important;
+}
+#leftDeckFeedback .feedback-sub,
+#rightDeckFeedback .feedback-sub{
+  margin-top:8px !important;
+  min-height:auto !important;
+  display:block !important;
+  font-size:0.76rem !important;
+  line-height:1.15 !important;
+  color:#d6def1 !important;
+}
+#leftResultBpmSub,
+#rightResultBpmSub,
+#leftMatchQuality,
+#rightMatchQuality{
+  white-space:normal !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+}
+
+
+/* v2.3.19: truly align art, track card, and feedback card in one stack */
+.dual-clean-top{
+  display:flex !important;
+  align-items:flex-start !important;
+  gap:16px !important;
+}
+.dual-info-stack{
+  width:150px !important;
+  min-width:150px !important;
+  max-width:150px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:stretch !important;
+  gap:10px !important;
+}
+.dual-info-stack .dual-art-frame,
+.dual-info-stack .dual-track-card,
+.dual-info-stack #leftDeckFeedback,
+.dual-info-stack #rightDeckFeedback{
+  width:150px !important;
+  min-width:150px !important;
+  max-width:150px !important;
+  margin:0 !important;
+}
+#leftDeckFeedback,
+#rightDeckFeedback{
+  position:static !important;
+  left:auto !important;
+  top:auto !important;
+  right:auto !important;
+  bottom:auto !important;
+  z-index:auto !important;
+  align-self:stretch !important;
+}
+.dual-fader-card{
+  width:100px !important;
+  min-width:100px !important;
+  max-width:100px !important;
+  align-self:flex-start !important;
+}
+.dual-clean-deck > .dual-deck-suggestions{
+  margin-top:10px !important;
+}
+
+
+/* v2.4.7: manual fader resize only, based on stable aligned file */
+.dual-fader-card{
+  width: 100px !important;
+  min-width: 100px !important;
+  max-width: 100px !important;
+  height: 332px !important;
+  min-height: 332px !important;
+  max-height: 332px !important;
+  padding: 8px 8px 8px !important;
+  gap: 6px !important;
+  align-self: flex-start !important;
+  overflow: hidden !important;
+}
+.dual-fader-head{
+  margin-bottom: 2px !important;
+}
+.dual-fader-head .mini{
+  margin-bottom: 3px !important;
+  font-size: 0.58rem !important;
+}
+.dual-pitch-big{
+  margin-top: 2px !important;
+  font-size: 0.92rem !important;
+  line-height: 1 !important;
+}
+.dual-fader-select{
+  width: 84px !important;
+  min-height: 26px !important;
+  height: 26px !important;
+  padding: 3px 22px 3px 8px !important;
+  font-size: 0.72rem !important;
+}
+.dual-fader-wrap.dual-clean-fader-wrap{
+  height: 206px !important;
+  min-height: 206px !important;
+  max-height: 206px !important;
+  grid-template-columns: 10px 1fr 10px !important;
+  gap: 3px !important;
+}
+.dual-clean-fader-wrap .dual-fader-slot{
+  height: 206px !important;
+  min-height: 206px !important;
+  max-height: 206px !important;
+  width: 26px !important;
+}
+.dual-clean-fader-wrap .fader-track{
+  width: 3px !important;
+}
+.dual-clean-fader-wrap .fader-handle{
+  width: 16px !important;
+  height: 12px !important;
+}
+.dual-speed-meta{
+  margin-top: 1px !important;
+  font-size: 0.58rem !important;
+  line-height: 1.1 !important;
+}
+
+
+/* v2.4.8: fine tune fader height to hit bottom of feedback */
+.dual-fader-card{
+  height: 360px !important;
+  min-height: 360px !important;
+  max-height: 360px !important;
+}
+.dual-fader-wrap.dual-clean-fader-wrap{
+  height: 235px !important;
+  min-height: 235px !important;
+  max-height: 235px !important;
+}
+.dual-clean-fader-wrap .dual-fader-slot{
+  height: 235px !important;
+  min-height: 235px !important;
+  max-height: 235px !important;
+}
+
+
+/* v2.4.9: +100px fader height */
+.dual-fader-card{
+  height: 460px !important;
+  min-height: 460px !important;
+  max-height: 460px !important;
+}
+.dual-fader-wrap.dual-clean-fader-wrap{
+  height: 335px !important;
+  min-height: 335px !important;
+  max-height: 335px !important;
+}
+.dual-clean-fader-wrap .dual-fader-slot{
+  height: 335px !important;
+  min-height: 335px !important;
+  max-height: 335px !important;
+}
+
+
+/* v2.4.10: -2px height + fix bottom text clipping */
+.dual-fader-card{
+  height: 458px !important;
+  min-height: 458px !important;
+  max-height: 458px !important;
+  padding-bottom: 14px !important; /* extra room for bottom text */
+}
+.dual-fader-wrap.dual-clean-fader-wrap{
+  height: 330px !important;
+  min-height: 330px !important;
+  max-height: 330px !important;
+}
+.dual-clean-fader-wrap .dual-fader-slot{
+  height: 330px !important;
+  min-height: 330px !important;
+  max-height: 330px !important;
+}
+.dual-speed-meta{
+  margin-top: 6px !important;
+  padding-bottom: 2px !important;
+}
+
+
+/* v2.4.11: keep fader size, make bottom text visible */
+.dual-fader-card{
+  overflow: visible !important;
+  padding-bottom: 20px !important;
+}
+.dual-fader-wrap.dual-clean-fader-wrap{
+  height: 322px !important;
+  min-height: 322px !important;
+  max-height: 322px !important;
+}
+.dual-clean-fader-wrap .dual-fader-slot{
+  height: 322px !important;
+  min-height: 322px !important;
+  max-height: 322px !important;
+}
+.dual-speed-meta{
+  display: block !important;
+  margin-top: 8px !important;
+  padding-bottom: 4px !important;
+  line-height: 1.2 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+
+/* v2.4.12: move bottom text up 5px */
+.dual-speed-meta{
+  margin-top: 3px !important; /* was ~8px */
+  transform: translateY(-5px);
+}
+
+
+/* v2.5.0: clean center column rebuild */
+.dual-center-module{
+  border-radius: 14px !important;
+  padding: 14px !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)),
+    linear-gradient(180deg, #111825, #0b1119) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    0 8px 18px rgba(0,0,0,0.18) !important;
+}
+
+.dual-center-module .module-title{
+  margin-bottom: 10px !important;
+  font-size: 0.62rem !important;
+  line-height: 1.05 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: var(--muted) !important;
+}
+
+.dual-center-stack{
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.dual-load-row{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px !important;
+  margin-bottom: 0 !important;
+}
+
+.dual-load-row .tap-btn{
+  min-width: 0 !important;
+  min-height: 34px !important;
+  border-radius: 10px !important;
+  font-size: 0.78rem !important;
+  font-weight: 800 !important;
+  padding: 8px 10px !important;
+}
+
+.dual-center-module .pro-library{
+  margin-top: 0 !important;
+  padding: 12px !important;
+  border-radius: 12px !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.012)),
+    linear-gradient(180deg, #0f151f, #0b1018) !important;
+  border: 1px solid rgba(255,255,255,0.07) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.03) !important;
+}
+
+.dual-center-module .pro-library .mini{
+  margin-bottom: 8px !important;
+  font-size: 0.58rem !important;
+  line-height: 1.05 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: var(--muted) !important;
+}
+
+.dual-center-module .pro-library-grid{
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 8px !important;
+}
+
+.dual-center-module input[type="text"],
+.dual-center-module select{
+  min-height: 34px !important;
+  border-radius: 10px !important;
+  font-size: 0.78rem !important;
+  padding: 8px 10px !important;
+}
+
+.dual-center-module .pro-filter-grid{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px !important;
+  margin-top: 8px !important;
+}
+
+.dual-center-module .year-lock-row{
+  margin-top: 8px !important;
+  font-size: 0.74rem !important;
+  line-height: 1.2 !important;
+}
+
+.dual-center-module .pro-library-actions{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px !important;
+  margin-top: 10px !important;
+}
+
+.dual-center-module .pro-library-actions .tap-btn,
+.dual-center-module .pro-library-actions .file-btn{
+  min-height: 34px !important;
+  border-radius: 10px !important;
+  font-size: 0.78rem !important;
+  font-weight: 800 !important;
+  padding: 8px 10px !important;
+  width: 100% !important;
+  justify-content: center !important;
+}
+
+.dual-center-module .pro-source-info{
+  margin-top: 10px !important;
+  min-height: 2.4em !important;
+  font-size: 0.68rem !important;
+  line-height: 1.25 !important;
+  color: var(--muted) !important;
+}
+
+body[data-skin="silver"] .dual-center-module{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.96), rgba(233,238,244,0.90)),
+    #e7edf4 !important;
+  border-color: rgba(63, 76, 91, 0.16) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.96),
+    0 8px 18px rgba(61,72,90,0.08) !important;
+}
+
+body[data-skin="silver"] .dual-center-module .module-title,
+body[data-skin="silver"] .dual-center-module .pro-library .mini,
+body[data-skin="silver"] .dual-center-module .pro-source-info{
+  color: #516074 !important;
+}
+
+body[data-skin="silver"] .dual-center-module .pro-library{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.98), rgba(238,242,247,0.92)),
+    #eef2f6 !important;
+  border-color: rgba(63, 76, 91, 0.13) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.96) !important;
+}
+
+
+/* v2.5.1: library polish pass */
+.dual-center-module .pro-library{
+  padding: 10px !important;
+}
+
+.dual-center-module .pro-library .mini{
+  margin-bottom: 6px !important;
+}
+
+.dual-center-module .pro-library-grid{
+  gap: 6px !important;
+}
+
+.dual-center-module #trackSearchDual,
+.dual-center-module #trackSelectDual,
+.dual-center-module #genreFilterDual,
+.dual-center-module #decadeFilterDual{
+  width: 100% !important;
+  min-height: 32px !important;
+  height: 32px !important;
+  border-radius: 8px !important;
+  font-size: 0.74rem !important;
+  padding: 6px 9px !important;
+}
+
+.dual-center-module #trackSelectDual{
+  font-weight: 700 !important;
+}
+
+.dual-center-module .pro-filter-grid{
+  grid-template-columns: 1fr 1fr !important;
+  gap: 6px !important;
+  margin-top: 6px !important;
+}
+
+.dual-center-module .year-lock-row{
+  margin-top: 6px !important;
+  padding: 6px 8px !important;
+  border-radius: 8px !important;
+  background: rgba(255,255,255,0.03) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  font-size: 0.70rem !important;
+}
+
+.dual-center-module .year-lock-row input{
+  transform: scale(0.92);
+}
+
+.dual-center-module .pro-library-actions{
+  grid-template-columns: 1fr 1fr !important;
+  gap: 6px !important;
+  margin-top: 8px !important;
+}
+
+.dual-center-module .pro-library-actions .tap-btn,
+.dual-center-module .pro-library-actions .file-btn{
+  min-height: 32px !important;
+  height: 32px !important;
+  border-radius: 8px !important;
+  font-size: 0.72rem !important;
+  padding: 6px 8px !important;
+}
+
+.dual-center-module .pro-source-info{
+  margin-top: 8px !important;
+  min-height: 2.2em !important;
+  padding: 7px 8px !important;
+  border-radius: 8px !important;
+  background: rgba(255,255,255,0.03) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  font-size: 0.66rem !important;
+}
+
+.dual-center-module .pro-library::before{
+  content: "";
+  display: block;
+  height: 0;
+}
+
+body[data-skin="silver"] .dual-center-module .year-lock-row,
+body[data-skin="silver"] .dual-center-module .pro-source-info{
+  background: rgba(255,255,255,0.72) !important;
+  border-color: rgba(63, 76, 91, 0.10) !important;
+}
+
+
+/* v2.6.2: keep search controls, remove inline library list, add popup library */
+.dual-center-module #trackSearchDual{
+  width:100% !important;
+}
+.dual-center-module .pro-library-grid{
+  grid-template-columns:1fr !important;
+}
+.dual-center-module .pro-library-actions{
+  grid-template-columns: 1fr 1fr !important;
+}
+.library-expand-btn{
+  min-height: 32px !important;
+  height: 32px !important;
+  border-radius: 8px !important;
+  font-size: 0.72rem !important;
+  padding: 6px 8px !important;
+}
+.library-popup-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(5,8,12,0.66);
+  backdrop-filter: blur(4px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 24px;
+  z-index: 9999;
+}
+.library-popup-overlay[hidden]{ display:none !important; }
+.library-popup{
+  width: min(1240px, 96vw);
+  max-height: min(86vh, 900px);
+  display:flex;
+  flex-direction:column;
+  border-radius: 16px;
+  overflow:hidden;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)),
+    linear-gradient(180deg, #111825, #0b1119);
+  border:1px solid rgba(255,255,255,0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    0 20px 48px rgba(0,0,0,0.35);
+}
+.library-popup-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+  padding: 14px 14px 12px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.library-popup-title{
+  font-size:0.64rem;
+  line-height:1.05;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:700;
+}
+.library-popup-sub{
+  margin-top:4px;
+  color:var(--muted);
+  font-size:0.70rem;
+  line-height:1.2;
+}
+.library-popup-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.library-popup-actions .tap-btn{
+  min-height:32px !important;
+  border-radius:8px !important;
+  font-size:0.72rem !important;
+  padding:6px 10px !important;
+}
+.library-popup-table-wrap{
+  overflow:auto;
+  padding: 0;
+}
+.library-popup-table{
+  width:100%;
+  min-width:980px;
+  border-collapse:collapse;
+  font-size:0.74rem;
+}
+.library-popup-table thead th{
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)),
+    linear-gradient(180deg, #101722, #0c121a);
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:0.09em;
+  font-size:0.58rem;
+  padding:9px 10px;
+  text-align:left;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  cursor:pointer;
+  white-space:nowrap;
+}
+.library-popup-table tbody td{
+  padding:9px 10px;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  color:var(--text);
+  white-space:nowrap;
+}
+.library-popup-table tbody tr{
+  cursor:pointer;
+}
+.library-popup-table tbody tr:hover{
+  background: rgba(255,255,255,0.04);
+}
+.library-popup-table tbody tr.is-selected{
+  background: rgba(109,211,255,0.12);
+  box-shadow: inset 0 0 0 1px rgba(109,211,255,0.18);
+}
+.library-popup-table .col-song,
+.library-popup-table .col-artist,
+.library-popup-table .col-album{
+  max-width:260px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+body[data-skin="silver"] .library-popup{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.96), rgba(233,238,244,0.90)),
+    #e7edf4 !important;
+  border-color: rgba(63, 76, 91, 0.16) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.96),
+    0 20px 48px rgba(61,72,90,0.18) !important;
+}
+body[data-skin="silver"] .library-popup-title,
+body[data-skin="silver"] .library-popup-sub{
+  color:#516074 !important;
+}
+body[data-skin="silver"] .library-popup-head{
+  border-bottom-color: rgba(63,76,91,0.12) !important;
+}
+body[data-skin="silver"] .library-popup-table thead th{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.99), rgba(240,244,248,0.95)),
+    #f3f6fa !important;
+  color:#516074 !important;
+  border-bottom-color: rgba(63,76,91,0.12) !important;
+}
+body[data-skin="silver"] .library-popup-table tbody td{
+  color:#10151b !important;
+  border-bottom-color: rgba(63,76,91,0.08) !important;
+}
+body[data-skin="silver"] .library-popup-table tbody tr:hover{
+  background: rgba(63,76,91,0.05) !important;
+}
+body[data-skin="silver"] .library-popup-table tbody tr.is-selected{
+  background: rgba(63,76,91,0.10) !important;
+  box-shadow: inset 0 0 0 1px rgba(63,76,91,0.14) !important;
+}
+
+
+/* v2.8.0: suggestion pagination */
+.suggestion-nav{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:8px;
+  margin-top:8px;
+}
+.suggestion-nav-btn{
+  min-height:30px !important;
+  height:30px !important;
+  padding:6px 10px !important;
+  border-radius:8px !important;
+  font-size:0.68rem !important;
+  font-weight:800 !important;
+}
+.suggestion-nav-btn[disabled]{
+  opacity:0.42 !important;
+  cursor:default !important;
+}
+.suggestion-page-indicator{
+  text-align:center;
+  font-size:0.64rem;
+  line-height:1.1;
+  color:var(--muted);
+  white-space:nowrap;
+}
+body[data-skin="silver"] .suggestion-page-indicator{
+  color:#516074 !important;
+}
+
+
+/* v2.8.3: keep paged suggestion boxes stable */
+#leftDeckSuggestionsList,
+#rightDeckSuggestionsList{
+  display:grid !important;
+  gap:8px !important;
+}
+
+
+/* v2.8.5: subtle match coloring for suggestions */
+.dual-deck-suggestions .smart-item.match-perfect,
+#leftDeckSuggestionsList .smart-item.match-perfect,
+#rightDeckSuggestionsList .smart-item.match-perfect{
+  border-color: rgba(105, 222, 143, 0.20) !important;
+  box-shadow: inset 0 0 0 1px rgba(105, 222, 143, 0.08) !important;
+  background: linear-gradient(180deg, rgba(105,222,143,0.05), rgba(255,255,255,0.02)) !important;
+}
+.dual-deck-suggestions .smart-item.match-good,
+#leftDeckSuggestionsList .smart-item.match-good,
+#rightDeckSuggestionsList .smart-item.match-good{
+  border-color: rgba(109, 211, 255, 0.18) !important;
+  box-shadow: inset 0 0 0 1px rgba(109, 211, 255, 0.07) !important;
+  background: linear-gradient(180deg, rgba(109,211,255,0.045), rgba(255,255,255,0.02)) !important;
+}
+.dual-deck-suggestions .smart-item.match-loose,
+#leftDeckSuggestionsList .smart-item.match-loose,
+#rightDeckSuggestionsList .smart-item.match-loose{
+  border-color: rgba(255, 211, 106, 0.18) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 211, 106, 0.07) !important;
+  background: linear-gradient(180deg, rgba(255,211,106,0.04), rgba(255,255,255,0.02)) !important;
+}
+.dual-deck-suggestions .smart-item.match-stretch,
+#leftDeckSuggestionsList .smart-item.match-stretch,
+#rightDeckSuggestionsList .smart-item.match-stretch{
+  border-color: rgba(255, 115, 179, 0.16) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 115, 179, 0.06) !important;
+  background: linear-gradient(180deg, rgba(255,115,179,0.035), rgba(255,255,255,0.02)) !important;
+}
+
+/* subtle inline match badge */
+.suggestion-match-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-top:4px;
+  font-size:0.62rem;
+  line-height:1;
+  color: var(--muted);
+}
+.suggestion-match-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  flex:0 0 auto;
+}
+.suggestion-match-dot.match-perfect{ background: rgba(105,222,143,0.75); }
+.suggestion-match-dot.match-good{ background: rgba(109,211,255,0.75); }
+.suggestion-match-dot.match-loose{ background: rgba(255,211,106,0.75); }
+.suggestion-match-dot.match-stretch{ background: rgba(255,115,179,0.70); }
+
+body[data-skin="silver"] .dual-deck-suggestions .smart-item.match-perfect,
+body[data-skin="silver"] #leftDeckSuggestionsList .smart-item.match-perfect,
+body[data-skin="silver"] #rightDeckSuggestionsList .smart-item.match-perfect{
+  background: linear-gradient(180deg, rgba(105,222,143,0.06), rgba(255,255,255,0.55)) !important;
+}
+body[data-skin="silver"] .dual-deck-suggestions .smart-item.match-good,
+body[data-skin="silver"] #leftDeckSuggestionsList .smart-item.match-good,
+body[data-skin="silver"] #rightDeckSuggestionsList .smart-item.match-good{
+  background: linear-gradient(180deg, rgba(109,211,255,0.055), rgba(255,255,255,0.55)) !important;
+}
+body[data-skin="silver"] .dual-deck-suggestions .smart-item.match-loose,
+body[data-skin="silver"] #leftDeckSuggestionsList .smart-item.match-loose,
+body[data-skin="silver"] #rightDeckSuggestionsList .smart-item.match-loose{
+  background: linear-gradient(180deg, rgba(255,211,106,0.05), rgba(255,255,255,0.55)) !important;
+}
+body[data-skin="silver"] .dual-deck-suggestions .smart-item.match-stretch,
+body[data-skin="silver"] #leftDeckSuggestionsList .smart-item.match-stretch,
+body[data-skin="silver"] #rightDeckSuggestionsList .smart-item.match-stretch{
+  background: linear-gradient(180deg, rgba(255,115,179,0.045), rgba(255,255,255,0.55)) !important;
+}
+
+
+/* v2.8.7: lock suggestion box text layout to fixed 4-line structure */
+#leftDeckSuggestionsList .smart-item,
+#rightDeckSuggestionsList .smart-item{
+  min-height: 86px !important;
+  max-height: 86px !important;
+  overflow: hidden !important;
+}
+
+#leftDeckSuggestionsList .smart-text,
+#rightDeckSuggestionsList .smart-text{
+  display: grid !important;
+  grid-template-rows: 1.15em 1.15em 1.2em 1.2em auto !important;
+  align-content: start !important;
+  min-height: 0 !important;
+}
+
+#leftDeckSuggestionsList .track-artist-line,
+#rightDeckSuggestionsList .track-artist-line{
+  display: block !important;
+  font-size: 0.78rem !important;
+  line-height: 1.15 !important;
+  font-weight: 800 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+#leftDeckSuggestionsList .track-title-line,
+#rightDeckSuggestionsList .track-title-line{
+  display: block !important;
+  font-size: 0.78rem !important;
+  line-height: 1.15 !important;
+  font-weight: 800 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+#leftDeckSuggestionsList .camelot-keyline,
+#rightDeckSuggestionsList .camelot-keyline{
+  display: block !important;
+  font-size: 0.66rem !important;
+  line-height: 1.15 !important;
+  color: var(--muted) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+#leftDeckSuggestionsList .mini-line,
+#rightDeckSuggestionsList .mini-line{
+  display: block !important;
+  font-size: 0.66rem !important;
+  line-height: 1.15 !important;
+  color: var(--muted) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+#leftDeckSuggestionsList .suggestion-match-badge,
+#rightDeckSuggestionsList .suggestion-match-badge{
+  margin-top: 2px !important;
+}
+
+
+/* v2.8.9: popup-local search box */
+.library-popup-search-row{
+  margin-top:8px;
+}
+#libraryPopupSearch{
+  width: min(360px, 100%);
+  min-height: 34px !important;
+  height: 34px !important;
+  border-radius: 10px !important;
+  font-size: 0.76rem !important;
+  padding: 8px 10px !important;
+}
+@media (max-width: 900px){
+  #libraryPopupSearch{
+    width:100%;
+  }
+}
+
+
+
+
+
+/* v2.8.14: deck eject buttons */
+.dual-deck-label-row{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:8px !important;
+  margin-bottom:4px !important;
+}
+.dual-deck-label-row .dual-deck-label{
+  margin-bottom:0 !important;
+}
+.deck-eject-btn{
+  min-height:22px !important;
+  height:22px !important;
+  padding:2px 7px !important;
+  border-radius:999px !important;
+  border:1px solid rgba(255,255,255,0.10) !important;
+  background:rgba(255,255,255,0.04) !important;
+  color:var(--muted) !important;
+  font-size:0.58rem !important;
+  line-height:1 !important;
+  letter-spacing:0.08em !important;
+  text-transform:uppercase !important;
+  cursor:pointer !important;
+}
+.deck-eject-btn:hover{
+  background:rgba(255,255,255,0.08) !important;
+  color:var(--text) !important;
+}
+body[data-skin="silver"] .deck-eject-btn{
+  background:rgba(255,255,255,0.72) !important;
+  border-color:rgba(63,76,91,0.12) !important;
+  color:#516074 !important;
+}
+body[data-skin="silver"] .deck-eject-btn:hover{
+  background:#fff !important;
+  color:#10151b !important;
+}
+
+
+/* v2.9.0: library finishing pass */
+.library-popup-table{
+  table-layout: fixed !important;
+}
+.library-popup-table th:nth-child(1),
+.library-popup-table td:nth-child(1){ width: 18%; }   /* Artist */
+.library-popup-table th:nth-child(2),
+.library-popup-table td:nth-child(2){ width: 24%; }   /* Song */
+.library-popup-table th:nth-child(3),
+.library-popup-table td:nth-child(3){ width: 7%; }    /* BPM */
+.library-popup-table th:nth-child(4),
+.library-popup-table td:nth-child(4){ width: 7%; }    /* Key */
+.library-popup-table th:nth-child(5),
+.library-popup-table td:nth-child(5){ width: 13%; }   /* Genre */
+.library-popup-table th:nth-child(6),
+.library-popup-table td:nth-child(6){ width: 19%; }   /* Album */
+.library-popup-table th:nth-child(7),
+.library-popup-table td:nth-child(7){ width: 5%; }    /* Speed */
+.library-popup-table th:nth-child(8),
+.library-popup-table td:nth-child(8){ width: 7%; }    /* Year */
+
+.library-popup-table tbody tr{
+  position: relative;
+  transition: background-color 120ms ease, box-shadow 120ms ease;
+}
+.library-popup-table tbody tr:hover{
+  background: rgba(255,255,255,0.055) !important;
+}
+.library-popup-table tbody tr.is-selected{
+  background: rgba(109,211,255,0.14) !important;
+  box-shadow: inset 0 0 0 1px rgba(109,211,255,0.22) !important;
+}
+.library-popup-table tbody tr.is-left-loaded{
+  box-shadow: inset 3px 0 0 rgba(109,211,255,0.85), inset 0 0 0 1px rgba(109,211,255,0.12) !important;
+}
+.library-popup-table tbody tr.is-right-loaded{
+  box-shadow: inset -3px 0 0 rgba(255,211,106,0.90), inset 0 0 0 1px rgba(255,211,106,0.12) !important;
+}
+.library-popup-table tbody tr.is-left-loaded.is-right-loaded{
+  box-shadow: inset 3px 0 0 rgba(109,211,255,0.85), inset -3px 0 0 rgba(255,211,106,0.90), inset 0 0 0 1px rgba(255,255,255,0.12) !important;
+}
+.library-popup-table tbody tr.is-selected.is-left-loaded{
+  box-shadow: inset 3px 0 0 rgba(109,211,255,0.95), inset 0 0 0 1px rgba(109,211,255,0.28) !important;
+}
+.library-popup-table tbody tr.is-selected.is-right-loaded{
+  box-shadow: inset -3px 0 0 rgba(255,211,106,0.95), inset 0 0 0 1px rgba(255,211,106,0.28) !important;
+}
+.library-popup-table tbody tr.is-selected.is-left-loaded.is-right-loaded{
+  box-shadow: inset 3px 0 0 rgba(109,211,255,0.95), inset -3px 0 0 rgba(255,211,106,0.95), inset 0 0 0 1px rgba(255,255,255,0.18) !important;
+}
+
+.library-row-markers{
+  display:inline-flex;
+  gap:4px;
+  margin-left:8px;
+  vertical-align:middle;
+}
+.library-row-marker{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:16px;
+  height:16px;
+  padding:0 4px;
+  border-radius:999px;
+  font-size:0.52rem;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:0.06em;
+}
+.library-row-marker.marker-left{
+  background: rgba(109,211,255,0.18);
+  color: #8fdbff;
+  border: 1px solid rgba(109,211,255,0.22);
+}
+.library-row-marker.marker-right{
+  background: rgba(255,211,106,0.16);
+  color: #ffd36a;
+  border: 1px solid rgba(255,211,106,0.20);
+}
+
+.library-popup-table .col-artist,
+.library-popup-table .col-song,
+.library-popup-table .col-album,
+.library-popup-table .col-genre{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.library-popup-table .col-song{
+  font-weight: 700;
+}
+
+.library-popup-table th .sort-indicator{
+  margin-left: 5px;
+  opacity: 0.55;
+  font-size: 0.8em;
+}
+.library-popup-table th.is-sort-active .sort-indicator{
+  opacity: 1;
+}
+
+.library-popup-footnote{
+  margin-top: 8px;
+  font-size: 0.62rem;
+  line-height: 1.2;
+  color: var(--muted);
+}
+
+body[data-skin="silver"] .library-popup-table tbody tr:hover{
+  background: rgba(63,76,91,0.06) !important;
+}
+body[data-skin="silver"] .library-popup-table tbody tr.is-selected{
+  background: rgba(63,76,91,0.10) !important;
+  box-shadow: inset 0 0 0 1px rgba(63,76,91,0.16) !important;
+}
+body[data-skin="silver"] .library-row-marker.marker-left{
+  background: rgba(109,211,255,0.14) !important;
+  color: #255d74 !important;
+  border-color: rgba(109,211,255,0.16) !important;
+}
+body[data-skin="silver"] .library-row-marker.marker-right{
+  background: rgba(255,211,106,0.18) !important;
+  color: #7f5a00 !important;
+  border-color: rgba(255,211,106,0.22) !important;
 }
 
 </style>
@@ -2056,7 +3674,7 @@ section.module.dual-module {
 <div class="title-wrap">
 <div class="title-bar">
 <div class="title-copy">
-<h1>Vinyl BPM + Key Helper <span class="version-tag">v2.0.0 Pro</span></h1>
+<h1>Vinyl BPM + Key Helper <span class="version-tag">v2.3.4 Condensed Meta Full</span></h1>
 <p class="subtitle">Turntable-style pitch simulation with Standard and Pro modes. Single Deck is the current view. Dual Deck is now available as a separate shell in Pro mode, built one step at a time.</p>
 <div class="pro-mode-row">
 <label class="pro-toggle" for="proModeToggle">
@@ -2099,6 +3717,14 @@ section.module.dual-module {
 <div class="tap-status" id="tapStatus">Tap 4+ times</div>
 </div>
 </div>
+<div class="speed-control" id="singleSpeedControl">
+<div class="speed-label">Deck Speed</div>
+<div class="speed-buttons">
+<button class="speed-btn active" data-speed="33" id="singleSpeed33" type="button">33⅓</button>
+<button class="speed-btn" data-speed="45" id="singleSpeed45" type="button">45</button>
+</div>
+<div class="speed-meta" id="singleSpeedMeta">Deck 33⅓ · Source native speed 33⅓</div>
+</div>
 <div class="dual-deck-note" hidden="" id="dualDeckNote">
 <div class="mini">Dual Deck</div>
 <div class="dual-deck-note-text">Dual Deck mode foundation is enabled. Auto-load from library is disabled in this mode.</div>
@@ -2136,6 +3762,23 @@ section.module.dual-module {
 <input accept=".csv,text/csv" hidden="" id="csvFileInput" type="file"/>
 </div>
 <div class="pro-source-info" id="proSourceInfo">Using bundled sample library.</div>
+<div class="library-table-wrap" id="libraryTableWrap">
+<div class="library-table-scroll">
+<table class="library-table" id="libraryTable">
+<thead><tr>
+<th data-sort-key="artist">Artist</th>
+<th data-sort-key="album">Album</th>
+<th data-sort-key="title">Song</th>
+<th data-sort-key="bpm" class="num-cell">BPM</th>
+<th data-sort-key="key">Key</th>
+<th data-sort-key="year">Year</th>
+<th data-sort-key="genre">Genre</th>
+<th data-sort-key="speed">Speed</th>
+</tr></thead>
+<tbody id="libraryTableBody"></tbody>
+</table>
+</div>
+</div>
 </div>
 <div class="platter">
 <div class="source-meta">
@@ -2214,47 +3857,29 @@ section.module.dual-module {
 </div>
 <div class="deck-shell dual-shell" hidden="" id="dualDeckShell">
 <div class="dual-layout">
-<section class="module dual-module">
-<div class="module-title">Left Deck</div>
-<div class="dual-deck-wrap">
-<div class="dual-deck-main">
-<div class="platter dual-platter">
-<div class="source-meta">
-<div class="mini">Left Deck</div>
-<div class="strong" id="leftDeckSourceTitle">Source</div>
-<div class="small" id="leftDeckSourceSub">Pitch slider shell</div>
+<section class="module dual-module dual-clean-module">
+<div class="dual-clean-deck">
+<div class="dual-clean-top">
+<div class="dual-info-stack">
+<div class="dual-art-frame">
+<img alt="Left deck artwork" class="dual-art-img" id="leftDeckArtImg"/>
+<div class="dual-art-fallback" id="leftDeckArtFallback">No Art</div>
+
 </div>
+<div class="dual-track-card dual-track-card-condensed">
+<div class="dual-deck-label-row"><div class="dual-deck-label">Left Deck</div><button class="deck-eject-btn" id="leftDeckEjectBtn" type="button" onclick="window.ejectLeftDeck && window.ejectLeftDeck()">Eject</button></div>
+<div class="dual-track-title" id="leftDeckSourceTitle">Source</div>
+<div class="dual-track-artist" id="leftDeckSourceSub">Load a track from the library</div>
+<div class="dual-track-meta-window">
+<div class="dual-track-meta-head">
+<span>BPM</span>
+<span>Key</span>
+<span>Speed</span>
 </div>
-</div>
-<div class="dual-deck-fader">
-<div class="pitch-panel dual-pitch-panel">
-<div class="pitch-top">
-<div class="mini">Pitch Fader</div>
-<div class="pct" id="leftPitchDisplay">+0%</div>
-<div class="caption">Step 4 shell only</div>
-</div>
-<div class="fader-wrap dual-fader-wrap">
-<div aria-hidden="true" class="scale-col dual-scale-col" id="leftScaleStep4"></div>
-<div class="fader-slot dual-fader-slot" id="leftFaderSlotStep4">
-<div class="fader-track"></div>
-<div class="fader-zero"></div>
-<div class="tick-stack" id="leftTickStackStep4"></div>
-<input aria-label="Left pitch fader" id="leftPitchSliderStep4" max="8" min="-8" orient="vertical" step="1" type="range" value="0"/>
-<div class="fader-handle" id="leftFaderHandleStep4"></div>
-</div>
-<div aria-hidden="true" class="scale-col dual-scale-col" id="leftScaleRightStep4"></div>
-</div>
-</div>
-</div>
-</div>
-<div class="result-box full dual-deck-suggestions">
-<div class="mini">Smart Suggestions</div>
-<div class="smart-list dual-smart-placeholder" id="leftDeckSuggestionsList">
-<div class="smart-item smart-item-text-only">
-<div class="smart-text">
-<strong class="track-title">Left Deck Suggestions</strong>
-<span class="mini-line">Step placeholder</span>
-</div>
+<div class="dual-track-meta-values">
+<span id="leftDeckOrigBpm">—</span>
+<span id="leftDeckOrigKey">—</span>
+<span id="leftDeckNativeSpeed">33⅓</span>
 </div>
 </div>
 </div>
@@ -2273,6 +3898,51 @@ section.module.dual-module {
 </div>
 </div>
 </div>
+</div>
+<div class="dual-fader-card">
+<div class="dual-fader-head">
+<div class="mini">Pitch Fader</div>
+<div class="dual-pitch-big" id="leftPitchDisplay">+0%</div>
+</div>
+<select aria-label="Left deck pitch range" class="dual-fader-select" id="leftRangeSelect">
+<option selected="" value="8">±8%</option>
+<option value="16">±16%</option>
+</select>
+<select aria-label="Left deck speed" class="dual-fader-select" id="leftDeckSpeedSelect">
+<option selected="" value="33">33⅓</option>
+<option value="45">45</option>
+</select>
+<div class="fader-wrap dual-fader-wrap dual-clean-fader-wrap">
+<div aria-hidden="true" class="scale-col dual-scale-col" id="leftScaleStep4"></div>
+<div class="fader-slot dual-fader-slot" id="leftFaderSlotStep4">
+<div class="fader-track"></div>
+<div class="fader-zero"></div>
+<div class="tick-stack" id="leftTickStackStep4"></div>
+<input aria-label="Left pitch fader" id="leftPitchSliderStep4" max="8" min="-8" orient="vertical" step="1" type="range" value="0"/>
+<div class="fader-handle" id="leftFaderHandleStep4"></div>
+</div>
+<div aria-hidden="true" class="scale-col dual-scale-col" id="leftScaleRightStep4"></div>
+</div>
+
+</div>
+</div>
+<div class="result-box full dual-deck-suggestions">
+<div class="mini">Smart Suggestions</div>
+<div class="smart-list dual-smart-placeholder" id="leftDeckSuggestionsList">
+<div class="smart-item smart-item-text-only">
+<div class="smart-text">
+<strong class="track-title">Left Deck Suggestions</strong>
+<span class="mini-line">Step placeholder</span>
+</div>
+</div>
+</div>
+<div class="suggestion-nav">
+<button class="tap-btn suggestion-nav-btn" id="leftSuggestionsPrevBtn" type="button">◀ Previous</button>
+<div class="suggestion-page-indicator" id="leftSuggestionsPageIndicator">Page 1 / 1</div>
+<button class="tap-btn suggestion-nav-btn" id="leftSuggestionsNextBtn" type="button">Next ▶</button>
+</div>
+</div>
+</div>
 </section>
 <section class="module dual-module dual-center-module">
 <div class="module-title">Center</div>
@@ -2285,7 +3955,6 @@ section.module.dual-module {
 <div class="mini">Pro Library</div>
 <div class="pro-library-grid">
 <input id="trackSearchDual" placeholder="Search artist or song" type="text"/>
-<select id="trackSelectDual"></select>
 </div>
 <div class="pro-filter-grid">
 <select id="genreFilterDual">
@@ -2309,55 +3978,37 @@ section.module.dual-module {
 <span>Smart Suggestions stay in selected decade</span>
 </label>
 <div class="pro-library-actions">
-<button class="tap-btn" id="loadTrackBtnDual" type="button">Preview</button>
+<button class="tap-btn library-expand-btn" id="expandLibraryBtn" type="button" onclick="window.openLibraryPopup && window.openLibraryPopup()">Open Library</button>
 <label class="file-btn" for="csvFileInputDual">Import CSV</label>
 <input accept=".csv,text/csv" hidden="" id="csvFileInputDual" type="file"/>
 </div>
-<div class="pro-source-info" id="proSourceInfoDual">Using bundled sample library.</div>
+
 </div>
 </div>
 </section>
-<section class="module dual-module">
-<div class="module-title">Right Deck</div>
-<div class="dual-deck-wrap">
-<div class="dual-deck-main">
-<div class="platter dual-platter">
-<div class="source-meta">
-<div class="mini">Right Deck</div>
-<div class="strong" id="rightDeckSourceTitle">Source</div>
-<div class="small" id="rightDeckSourceSub">Pitch slider shell</div>
+<section class="module dual-module dual-clean-module">
+<div class="dual-clean-deck">
+<div class="dual-clean-top">
+<div class="dual-info-stack">
+<div class="dual-art-frame">
+<img alt="Right deck artwork" class="dual-art-img" id="rightDeckArtImg"/>
+<div class="dual-art-fallback" id="rightDeckArtFallback">No Art</div>
+
 </div>
+<div class="dual-track-card dual-track-card-condensed">
+<div class="dual-deck-label-row"><div class="dual-deck-label">Right Deck</div><button class="deck-eject-btn" id="rightDeckEjectBtn" type="button" onclick="window.ejectRightDeck && window.ejectRightDeck()">Eject</button></div>
+<div class="dual-track-title" id="rightDeckSourceTitle">Source</div>
+<div class="dual-track-artist" id="rightDeckSourceSub">Load a track from the library</div>
+<div class="dual-track-meta-window">
+<div class="dual-track-meta-head">
+<span>BPM</span>
+<span>Key</span>
+<span>Speed</span>
 </div>
-</div>
-<div class="dual-deck-fader">
-<div class="pitch-panel dual-pitch-panel">
-<div class="pitch-top">
-<div class="mini">Pitch Fader</div>
-<div class="pct" id="rightPitchDisplay">+0%</div>
-<div class="caption">Step 4 shell only</div>
-</div>
-<div class="fader-wrap dual-fader-wrap">
-<div aria-hidden="true" class="scale-col dual-scale-col" id="rightScaleStep4"></div>
-<div class="fader-slot dual-fader-slot" id="rightFaderSlotStep4">
-<div class="fader-track"></div>
-<div class="fader-zero"></div>
-<div class="tick-stack" id="rightTickStackStep4"></div>
-<input aria-label="Right pitch fader" id="rightPitchSliderStep4" max="8" min="-8" orient="vertical" step="1" type="range" value="0"/>
-<div class="fader-handle" id="rightFaderHandleStep4"></div>
-</div>
-<div aria-hidden="true" class="scale-col dual-scale-col" id="rightScaleRightStep4"></div>
-</div>
-</div>
-</div>
-</div>
-<div class="result-box full dual-deck-suggestions">
-<div class="mini">Smart Suggestions</div>
-<div class="smart-list dual-smart-placeholder" id="rightDeckSuggestionsList">
-<div class="smart-item smart-item-text-only">
-<div class="smart-text">
-<strong class="track-title">Left Deck Suggestions</strong>
-<span class="mini-line">Step placeholder</span>
-</div>
+<div class="dual-track-meta-values">
+<span id="rightDeckOrigBpm">—</span>
+<span id="rightDeckOrigKey">—</span>
+<span id="rightDeckNativeSpeed">33⅓</span>
 </div>
 </div>
 </div>
@@ -2376,13 +4027,98 @@ section.module.dual-module {
 </div>
 </div>
 </div>
+</div>
+<div class="dual-fader-card">
+<div class="dual-fader-head">
+<div class="mini">Pitch Fader</div>
+<div class="dual-pitch-big" id="rightPitchDisplay">+0%</div>
+</div>
+<select aria-label="Right deck pitch range" class="dual-fader-select" id="rightRangeSelect">
+<option selected="" value="8">±8%</option>
+<option value="16">±16%</option>
+</select>
+<select aria-label="Right deck speed" class="dual-fader-select" id="rightDeckSpeedSelect">
+<option selected="" value="33">33⅓</option>
+<option value="45">45</option>
+</select>
+<div class="fader-wrap dual-fader-wrap dual-clean-fader-wrap">
+<div aria-hidden="true" class="scale-col dual-scale-col" id="rightScaleStep4"></div>
+<div class="fader-slot dual-fader-slot" id="rightFaderSlotStep4">
+<div class="fader-track"></div>
+<div class="fader-zero"></div>
+<div class="tick-stack" id="rightTickStackStep4"></div>
+<input aria-label="Right pitch fader" id="rightPitchSliderStep4" max="8" min="-8" orient="vertical" step="1" type="range" value="0"/>
+<div class="fader-handle" id="rightFaderHandleStep4"></div>
+</div>
+<div aria-hidden="true" class="scale-col dual-scale-col" id="rightScaleRightStep4"></div>
+</div>
+
+</div>
+</div>
+<div class="result-box full dual-deck-suggestions">
+<div class="mini">Smart Suggestions</div>
+<div class="smart-list dual-smart-placeholder" id="rightDeckSuggestionsList">
+<div class="smart-item smart-item-text-only">
+<div class="smart-text">
+<strong class="track-title">Right Deck Suggestions</strong>
+<span class="mini-line">Step placeholder</span>
+</div>
+</div>
+</div>
+<div class="suggestion-nav">
+<button class="tap-btn suggestion-nav-btn" id="rightSuggestionsPrevBtn" type="button">◀ Previous</button>
+<div class="suggestion-page-indicator" id="rightSuggestionsPageIndicator">Page 1 / 1</div>
+<button class="tap-btn suggestion-nav-btn" id="rightSuggestionsNextBtn" type="button">Next ▶</button>
+</div>
+</div>
+</div>
 </section>
+
+<div class="library-popup-overlay" id="libraryPopupOverlay" hidden>
+  <div class="library-popup" id="libraryPopup">
+    <div class="library-popup-head">
+      <div>
+        <div class="library-popup-title">Library</div>
+        <div class="library-popup-sub" id="libraryPopupSub">Browse columns, sort, select a row, then load left or right.</div>
+        <div class="library-popup-search-row">
+          <input id="libraryPopupSearch" type="text" placeholder="Search inside library popup" />
+        </div>
+      </div>
+      <div class="library-popup-actions">
+        <label class="file-btn" for="libraryPopupCsvInput">Import CSV</label>
+        <input accept=".csv,text/csv" hidden id="libraryPopupCsvInput" type="file" />
+        <button class="tap-btn" id="libraryPopupClose" type="button" onclick="window.closeLibraryPopup && window.closeLibraryPopup()">Close</button>
+        <button class="tap-btn" id="libraryPopupLoadLeft" type="button" onclick="window.loadPopupSelected && window.loadPopupSelected('left')">Load Left</button>
+        <button class="tap-btn" id="libraryPopupLoadRight" type="button" onclick="window.loadPopupSelected && window.loadPopupSelected('right')">Load Right</button>
+      </div>
+    </div>
+    <div class="library-popup-table-wrap">
+      <table class="library-popup-table" id="libraryPopupTable">
+        <thead>
+          <tr>
+            <th data-sort="artist">Artist</th>
+            <th data-sort="title">Song</th>
+            <th data-sort="bpm">BPM</th>
+            <th data-sort="key">Key</th>
+            <th data-sort="genre">Genre</th>
+            <th data-sort="album">Album</th>
+            <th data-sort="speed">Speed</th>
+            <th data-sort="year">Year</th>
+          </tr>
+        </thead>
+        <tbody id="libraryPopupBody"></tbody>
+      </table>
+    </div>
+    <div class="library-popup-footnote">Tip: Arrow keys move selection · Enter loads to the last-used side · Double-click loads the row · Esc closes the popup.</div>
+  </div>
+</div>
+
 </div>
 </div>
 </div>
 <script>
 
-    const embeddedLibrary = [{"artist": "Prince vs The Beatfreakz", "title": "Erotic City [Remix] - Dirty", "bpm": 124, "key": "2A", "year": "1984", "genre": "Pop"}, {"artist": "Peter Godwin", "title": "Images Of Heaven (Video XXX)", "bpm": 126, "key": "1B", "year": "1982", "genre": "Synth Pop"}, {"artist": "New Order", "title": "Blue Monday (Original 12 Inch Mix)", "bpm": 130, "key": "8A", "year": "1983", "genre": "Synth Pop"}, {"artist": "Philip Bailey n Phil Collins", "title": "Easy Lover [Xtendz] - Clean", "bpm": 134, "key": "4A", "year": "1984", "genre": "Pop"}, {"artist": "Donna Summer", "title": "She Works Hard For The Money", "bpm": 137, "key": "2A", "year": "1983", "genre": "Pop"}, {"artist": "MC Shy D", "title": "Shake It (Clean) (Extended)", "bpm": 134, "key": "1A", "year": "1988", "genre": "80's"}, {"artist": "Pet Shop Boys", "title": "Suburbia", "bpm": 126, "key": "5A", "year": "1986", "genre": "Dance"}];
+    const embeddedLibrary = [{"artist": "Prince vs The Beatfreakz", "title": "Erotic City [Remix] - Dirty", "bpm": 124, "key": "2A", "year": "1984", "genre": "Pop", "speed": 45}, {"artist": "Peter Godwin", "title": "Images Of Heaven (Video XXX)", "bpm": 126, "key": "1B", "year": "1982", "genre": "Synth Pop", "speed": 33}, {"artist": "New Order", "title": "Blue Monday (Original 12 Inch Mix)", "bpm": 130, "key": "8A", "year": "1983", "genre": "Synth Pop", "speed": 33}, {"artist": "Philip Bailey n Phil Collins", "title": "Easy Lover [Xtendz] - Clean", "bpm": 134, "key": "4A", "year": "1984", "genre": "Pop", "speed": 45}, {"artist": "Donna Summer", "title": "She Works Hard For The Money", "bpm": 137, "key": "2A", "year": "1983", "genre": "Pop", "speed": 45}, {"artist": "MC Shy D", "title": "Shake It (Clean) (Extended)", "bpm": 134, "key": "1A", "year": "1988", "genre": "80's", "speed": 45}, {"artist": "Pet Shop Boys", "title": "Suburbia", "bpm": 126, "key": "5A", "year": "1986", "genre": "Dance", "speed": 45}];
     const skinSelect = document.getElementById('skinSelect');
 
     function applySkin(skin) {
@@ -2478,22 +4214,117 @@ section.module.dual-module {
     const loadTrackBtn = document.getElementById('loadTrackBtn');
     const csvFileInput = document.getElementById('csvFileInput');
     const proSourceInfo = document.getElementById('proSourceInfo');
+    const trackSearchDual = document.getElementById('trackSearchDual');
+    const trackSelectDual = document.getElementById('trackSelectDual');
+    const genreFilterDual = document.getElementById('genreFilterDual');
+    const decadeFilterDual = document.getElementById('decadeFilterDual');
+    const smartSuggestYearLockDual = document.getElementById('smartSuggestYearLockDual');
+    const csvFileInputDual = document.getElementById('csvFileInputDual');
+    const proSourceInfoDual = document.getElementById('proSourceInfoDual');
     const smartSub = document.getElementById('smartSub');
     const genreFilter = document.getElementById('genreFilter');
     const decadeFilter = document.getElementById('decadeFilter');
     const smartSuggestYearLock = document.getElementById('smartSuggestYearLock');
+    const singleSpeed33 = document.getElementById('singleSpeed33');
+    const singleSpeed45 = document.getElementById('singleSpeed45');
+    const singleSpeedMeta = document.getElementById('singleSpeedMeta');
+    const leftDeckSpeedSelect = document.getElementById('leftDeckSpeedSelect');
+    const leftDeckSpeedMeta = document.getElementById('leftDeckSpeedMeta');
+    const rightDeckSpeedSelect = document.getElementById('rightDeckSpeedSelect');
+    const rightDeckSpeedMeta = document.getElementById('rightDeckSpeedMeta');
+    const libraryTableBody = document.getElementById('libraryTableBody');
+    const libraryTableBodyDual = document.getElementById('libraryTableBodyDual');
 
+    let librarySort = { key: 'artist', direction: 'asc' };
+    let librarySortDual = { key: 'artist', direction: 'asc' };
     let currentPitchRange = Number(pitchRangeSelect?.value || 8);
     let tapTimes = [];
-
 
     let libraryTracks = [...embeddedLibrary];
     let currentSourceTrack = null;
     let leftDeckTrack = null;
     let rightDeckTrack = null;
 
+    const SUGGESTIONS_PER_PAGE = 6;
+    window.leftSuggestionPage = 0;
+    window.rightSuggestionPage = 0;
+
+    function resetDualSuggestionPages() {
+      window.leftSuggestionPage = 0;
+      window.rightSuggestionPage = 0;
+    }
+
+    function clampSuggestionPage(page, totalItems) {
+      const totalPages = Math.max(1, Math.ceil((totalItems || 0) / SUGGESTIONS_PER_PAGE));
+      return Math.max(0, Math.min(page, totalPages - 1));
+    }
+
+    function getSuggestionPageSlice(items, page) {
+      const totalPages = Math.max(1, Math.ceil((items?.length || 0) / SUGGESTIONS_PER_PAGE));
+      const safePage = clampSuggestionPage(page, items?.length || 0);
+      const start = safePage * SUGGESTIONS_PER_PAGE;
+      return {
+        safePage,
+        totalPages,
+        pageItems: (items || []).slice(start, start + SUGGESTIONS_PER_PAGE)
+      };
+    }
+
+    function updateSuggestionPagerUI(side, totalItems, currentPage) {
+      const prevBtn = document.getElementById(side === 'left' ? 'leftSuggestionsPrevBtn' : 'rightSuggestionsPrevBtn');
+      const nextBtn = document.getElementById(side === 'left' ? 'leftSuggestionsNextBtn' : 'rightSuggestionsNextBtn');
+      const indicator = document.getElementById(side === 'left' ? 'leftSuggestionsPageIndicator' : 'rightSuggestionsPageIndicator');
+      const totalPages = Math.max(1, Math.ceil((totalItems || 0) / SUGGESTIONS_PER_PAGE));
+      const safePage = clampSuggestionPage(currentPage, totalItems || 0);
+      if (prevBtn) prevBtn.disabled = safePage <= 0;
+      if (nextBtn) nextBtn.disabled = safePage >= (totalPages - 1);
+      if (indicator) indicator.textContent = `Page ${safePage + 1} / ${totalPages}`;
+    }
+    function getSuggestionMatchClass(requiredPct) {
+      const abs = Math.abs(Number(requiredPct || 0));
+      if (abs <= 1) return 'match-perfect';
+      if (abs <= 3) return 'match-good';
+      if (abs <= 5) return 'match-loose';
+      return 'match-stretch';
+    }
+
+    function getSuggestionMatchLabel(requiredPct) {
+      const abs = Math.abs(Number(requiredPct || 0));
+      if (abs <= 1) return 'Perfect';
+      if (abs <= 3) return 'Good';
+      if (abs <= 5) return 'Loose';
+      return 'Stretch';
+    }
+
+    let singleDeckSpeed = 33;
+    let leftDeckSpeed = 33;
+    let rightDeckSpeed = 33;
+
     function sanitizeKey(value) {
       return String(value || '').trim().toUpperCase().replace(/\s+/g, '');
+    }
+
+    function normalizeSpeed(value, fallback = 33) {
+      const raw = String(value ?? '').trim().toLowerCase().replace(/rpm/g, '').replace(/⅓/g, '.3');
+      if (!raw) return fallback;
+      const num = Number(raw);
+      if (raw.includes('45') || Math.abs(num - 45) < 1) return 45;
+      if (raw.includes('33') || Math.abs(num - 33.3) < 1 || Math.abs(num - 33) < 1) return 33;
+      return fallback;
+    }
+
+    function formatSpeedLabel(speed) {
+      return normalizeSpeed(speed) === 45 ? '45' : '33⅓';
+    }
+
+    function getTrackNativeSpeed(track, fallback = 33) {
+      return normalizeSpeed(track && track.speed, fallback);
+    }
+
+    function playbackMultiplierFor(trackOrNativeSpeed, deckSpeed, pitchPct = 0) {
+      const nativeSpeed = typeof trackOrNativeSpeed === 'object' ? getTrackNativeSpeed(trackOrNativeSpeed) : normalizeSpeed(trackOrNativeSpeed);
+      const rpmRatio = normalizeSpeed(deckSpeed) / nativeSpeed;
+      return rpmRatio * (1 + ((Number(pitchPct) || 0) / 100));
     }
 
     function parseCSVText(text) {
@@ -2505,20 +4336,89 @@ section.module.dual-module {
       const findIndex = (name) => headers.findIndex(h => h.includes(name));
       const idx = {
         artist: findIndex('artist'),
+        album: findIndex('album'),
         title: Math.max(findIndex('song'), findIndex('title')),
         bpm: findIndex('bpm'),
         key: findIndex('key'),
         year: findIndex('year'),
-        genre: findIndex('genre')
+        genre: findIndex('genre'),
+        speed: Math.max(findIndex('speed'), findIndex('rpm'), findIndex('record speed'))
       };
       return lines.slice(1).map(line => parseLine(line)).map(parts => ({
         artist: (parts[idx.artist] || '').trim(),
+        album: (parts[idx.album] || '').trim(),
         title: (parts[idx.title] || '').trim(),
         bpm: Number(parts[idx.bpm]),
         key: sanitizeKey(parts[idx.key]),
         year: (parts[idx.year] || '').trim(),
-        genre: (parts[idx.genre] || '').trim()
+        genre: (parts[idx.genre] || '').trim(),
+        speed: normalizeSpeed(parts[idx.speed], 33)
       })).filter(t => t.artist && t.title && Number.isFinite(t.bpm) && t.key);
+    }
+
+
+    function getTrackFieldValue(track, key) {
+      if (key === 'speed') return normalizeSpeed(track?.speed, 33);
+      if (key === 'bpm') return Number(track?.bpm || 0);
+      if (key === 'year') return Number(track?.year || 0);
+      return String(track?.[key] || '').toLowerCase();
+    }
+
+    function sortTracks(tracks, sortState) {
+      const dir = sortState?.direction === 'desc' ? -1 : 1;
+      const key = sortState?.key || 'artist';
+      return [...tracks].sort((a, b) => {
+        const av = getTrackFieldValue(a, key);
+        const bv = getTrackFieldValue(b, key);
+        if (typeof av === 'number' && typeof bv === 'number') return (av - bv) * dir;
+        return String(av).localeCompare(String(bv), undefined, { numeric: true, sensitivity: 'base' }) * dir;
+      });
+    }
+
+    function getDisplayTracks(isDual = false, filterText = '') {
+      const base = isDual ? getFilteredTracksDual(filterText) : getFilteredTracks(filterText);
+      return sortTracks(base, isDual ? librarySortDual : librarySort);
+    }
+
+    function renderLibraryTable(isDual = false, filterText = '') {
+      const body = isDual ? libraryTableBodyDual : libraryTableBody;
+      if (!body) return;
+      const tracks = getDisplayTracks(isDual, filterText);
+      const selectedValue = isDual ? String(trackSelectDual?.value || '') : String(trackSelect?.value || '');
+      body.innerHTML = '';
+      if (!tracks.length) {
+        body.innerHTML = '<tr><td colspan="8" class="library-table-empty">No matching tracks.</td></tr>';
+        return;
+      }
+      tracks.forEach(track => {
+        const idx = String(libraryTracks.indexOf(track));
+        const row = document.createElement('tr');
+        row.dataset.trackIndex = idx;
+        if (idx === selectedValue) row.classList.add('selected');
+        row.innerHTML = `
+          <td>${track.artist || ''}</td>
+          <td>${track.album || ''}</td>
+          <td>${track.title || ''}</td>
+          <td class="num-cell">${Number(track.bpm || 0).toFixed(1)}</td>
+          <td>${track.key || ''}</td>
+          <td>${track.year || ''}</td>
+          <td>${track.genre || ''}</td>
+          <td>${formatSpeedLabel(track.speed)}</td>`;
+        body.appendChild(row);
+      });
+    }
+
+    function updateLibrarySort(key, isDual = false) {
+      const target = isDual ? librarySortDual : librarySort;
+      if (target.key === key) target.direction = target.direction === 'asc' ? 'desc' : 'asc';
+      else { target.key = key; target.direction = 'asc'; }
+      if (isDual) {
+        populateTrackSelectDual(trackSearchDual?.value || '');
+        renderLibraryTable(true, trackSearchDual?.value || '');
+      } else {
+        populateTrackSelect(trackSearch?.value || '');
+        renderLibraryTable(false, trackSearch?.value || '');
+      }
     }
 
     function populateGenreFilter() {
@@ -2582,12 +4482,12 @@ function getFilteredTracksDual(filterText = '') {
 
 function populateTrackSelectDual(filterText = '') {
   if (!trackSelectDual) return;
-  const filtered = getFilteredTracksDual(filterText);
+  const filtered = getDisplayTracks(true, filterText);
   trackSelectDual.innerHTML = '';
   filtered.forEach((track) => {
     const option = document.createElement('option');
     option.value = String(libraryTracks.indexOf(track));
-    option.textContent = `${track.artist} — ${track.title} · ${track.bpm} BPM · ${track.key}`;
+    option.textContent = `${track.artist} — ${track.title} · ${track.bpm} BPM · ${track.key} · ${formatSpeedLabel(track.speed)}`;
     trackSelectDual.appendChild(option);
   });
   if (!filtered.length) {
@@ -2599,12 +4499,12 @@ function populateTrackSelectDual(filterText = '') {
 }
 
 function populateTrackSelect(filterText = '') {
-      const filtered = getFilteredTracks(filterText);
+      const filtered = getDisplayTracks(false, filterText);
       trackSelect.innerHTML = '';
       filtered.forEach((track) => {
         const option = document.createElement('option');
         option.value = String(libraryTracks.indexOf(track));
-        option.textContent = `${track.artist} — ${track.title} · ${track.bpm} BPM · ${track.key}`;
+        option.textContent = `${track.artist} — ${track.title} · ${track.bpm} BPM · ${track.key} · ${formatSpeedLabel(track.speed)}`;
         trackSelect.appendChild(option);
       });
       if (!filtered.length) {
@@ -2710,34 +4610,51 @@ function populateTrackSelect(filterText = '') {
       if (!track) return;
       const matchIdx = keyData.findIndex(k => k.camelot === sanitizeKey(track.key));
       if (matchIdx >= 0) camelotSelect.value = String(matchIdx);
+      const idx = libraryTracks.indexOf(track);
+      if (trackSelect && idx >= 0) trackSelect.value = String(idx);
       bpmInput.value = (Math.round(Number(track.bpm) * 2) / 2).toFixed(1);
       lastValidBpm = Number(bpmInput.value);
       currentSourceTrack = track;
+      singleDeckSpeed = getTrackNativeSpeed(track, 33);
       if (proSourceInfo) {
-        proSourceInfo.textContent = `${track.artist} — ${track.title} · ${track.year || 'Year ?'} · ${track.genre || 'Genre ?'}`;
+        proSourceInfo.textContent = `${track.artist} — ${track.title} · ${track.year || 'Year ?'} · ${track.genre || 'Genre ?'} · ${formatSpeedLabel(track.speed)}`;
       }
+      updateSpeedMeta();
+      renderLibraryTable(false, trackSearch?.value || '');
       update();
     }
 
 
     function setLeftDeckFromTrack(track) {
       if (!track) return;
+      window.rightSuggestionPage = 0;
       leftDeckTrack = track;
+      leftDeckSpeed = getTrackNativeSpeed(track, 33);
       if (dualDeckNote) {
         dualDeckNote.hidden = false;
         dualDeckNote.querySelector('.dual-deck-note-text').textContent =
-          `Left Deck: ${track.artist} — ${track.title} · ${track.year || 'Year ?'} · ${track.genre || 'Genre ?'}`;
+          `Left Deck: ${track.artist} — ${track.title} · ${track.year || 'Year ?'} · ${track.genre || 'Genre ?'} · ${formatSpeedLabel(track.speed)}`;
       }
+      const idx = libraryTracks.indexOf(track);
+      if (trackSelectDual && idx >= 0) trackSelectDual.value = String(idx);
+      updateSpeedMeta();
+      renderLibraryTable(true, trackSearchDual?.value || '');
     }
 
     function setRightDeckFromTrack(track) {
       if (!track) return;
+      window.leftSuggestionPage = 0;
       rightDeckTrack = track;
+      rightDeckSpeed = getTrackNativeSpeed(track, 33);
       if (dualDeckNote) {
         dualDeckNote.hidden = false;
         dualDeckNote.querySelector('.dual-deck-note-text').textContent =
-          `Right Deck: ${track.artist} — ${track.title} · ${track.year || 'Year ?'} · ${track.genre || 'Genre ?'}`;
+          `Right Deck: ${track.artist} — ${track.title} · ${track.year || 'Year ?'} · ${track.genre || 'Genre ?'} · ${formatSpeedLabel(track.speed)}`;
       }
+      const idx = libraryTracks.indexOf(track);
+      if (trackSelectDual && idx >= 0) trackSelectDual.value = String(idx);
+      updateSpeedMeta();
+      renderLibraryTable(true, trackSearchDual?.value || '');
     }
 
     function fillSelects() {
@@ -2750,6 +4667,10 @@ function populateTrackSelect(filterText = '') {
       camelotSelect.value = '14';
       populateGenreFilter();
       populateTrackSelect();
+      populateGenreFilterDual();
+      populateTrackSelectDual();
+      renderLibraryTable(false);
+      renderLibraryTable(true);
     }
 
     function getSelectedEntry() {
@@ -2846,6 +4767,29 @@ function populateTrackSelect(filterText = '') {
       return keyData.find(k => k.camelot === `${movedNumber}${movedLetter}`) || entry;
     }
 
+    function setSpeedButtonState(buttonA, buttonB, value) {
+      if (buttonA) buttonA.classList.toggle('active', normalizeSpeed(value) === 33);
+      if (buttonB) buttonB.classList.toggle('active', normalizeSpeed(value) === 45);
+    }
+
+    function updateSpeedMeta() {
+      if (singleSpeedMeta) {
+        const nativeSpeed = currentSourceTrack ? getTrackNativeSpeed(currentSourceTrack, singleDeckSpeed) : singleDeckSpeed;
+        singleSpeedMeta.textContent = `Deck ${formatSpeedLabel(singleDeckSpeed)} · Source native speed ${formatSpeedLabel(nativeSpeed)}`;
+      }
+      if (leftDeckSpeedMeta) {
+        const nativeSpeed = leftDeckTrack ? getTrackNativeSpeed(leftDeckTrack, leftDeckSpeed) : leftDeckSpeed;
+        leftDeckSpeedMeta.textContent = `Deck ${formatSpeedLabel(leftDeckSpeed)} · Native speed ${formatSpeedLabel(nativeSpeed)}`;
+      }
+      if (rightDeckSpeedMeta) {
+        const nativeSpeed = rightDeckTrack ? getTrackNativeSpeed(rightDeckTrack, rightDeckSpeed) : rightDeckSpeed;
+        rightDeckSpeedMeta.textContent = `Deck ${formatSpeedLabel(rightDeckSpeed)} · Native speed ${formatSpeedLabel(nativeSpeed)}`;
+      }
+      setSpeedButtonState(singleSpeed33, singleSpeed45, singleDeckSpeed);
+      if (leftDeckSpeedSelect) leftDeckSpeedSelect.value = String(leftDeckSpeed);
+      if (rightDeckSpeedSelect) rightDeckSpeedSelect.value = String(rightDeckSpeed);
+    }
+
     function chipHTML(entry, label) {
       const color = getCamelotColor(entry.camelot);
       return `<span class="chip"><span class="dot" style="color:${color};background:${color}"></span><strong>${label}</strong> ${entry.camelot} ${entry.regular}</span>`;
@@ -2856,9 +4800,11 @@ function populateTrackSelect(filterText = '') {
       const pct = clampPitchValue(Number(pitchSlider.value) || 0);
       positionHandle(pct);
 
-      const multiplier = 1 + (pct / 100);
-      const newBpm = bpm * multiplier;
-      const semitoneShift = multiplier > 0 ? 12 * Math.log2(multiplier) : 0;
+      const pitchMultiplier = 1 + (pct / 100);
+      const nativeSpeed = currentSourceTrack ? getTrackNativeSpeed(currentSourceTrack, singleDeckSpeed) : singleDeckSpeed;
+      const playbackMultiplier = playbackMultiplierFor(nativeSpeed, singleDeckSpeed, pct);
+      const newBpm = bpm * playbackMultiplier;
+      const semitoneShift = playbackMultiplier > 0 ? 12 * Math.log2(playbackMultiplier) : 0;
       const nearestSemitone = Math.round(semitoneShift);
       const cents = (semitoneShift - nearestSemitone) * 100;
       const selected = getSelectedEntry();
@@ -2866,7 +4812,7 @@ function populateTrackSelect(filterText = '') {
 
       document.getElementById('pitchDisplay').textContent = `${pct >= 0 ? '+' : ''}${pct}%`;
       document.getElementById('newBpm').textContent = newBpm.toFixed(2);
-      document.getElementById('newBpmSub').textContent = `Orig ${bpm.toFixed(2)} × ${multiplier.toFixed(4)}`;
+      document.getElementById('newBpmSub').textContent = `Orig ${bpm.toFixed(2)} × ${playbackMultiplier.toFixed(4)} (${formatSpeedLabel(singleDeckSpeed)}/${formatSpeedLabel(nativeSpeed)} · pitch ${pitchMultiplier.toFixed(4)})`;
       document.getElementById('semiShift').textContent = `${semitoneShift >= 0 ? '+' : ''}${semitoneShift.toFixed(2)} semitones`;
       document.getElementById('centsShift').textContent = `Nearest ${nearestSemitone >= 0 ? '+' : ''}${nearestSemitone} st · ${cents >= 0 ? '+' : ''}${cents.toFixed(0)} cents`;
 
@@ -2990,8 +4936,9 @@ function populateTrackSelect(filterText = '') {
         const bestPitchAbs = Math.min(...uniquePlans.map(p => Math.abs(p.pitchPct)));
 
         smartList.innerHTML = uniquePlans.map((plan) => {
-          const candidateBpm = roundToHalf(newBpm / (1 + (plan.pitchPct / 100)));
-          const semitoneApplied = 12 * Math.log2(1 + (plan.pitchPct / 100));
+          const candidateMultiplier = playbackMultiplierFor(singleDeckSpeed, singleDeckSpeed, plan.pitchPct);
+          const candidateBpm = roundToHalf(newBpm / candidateMultiplier);
+          const semitoneApplied = 12 * Math.log2(candidateMultiplier);
           const originalKey = keyShift(plan.target.entry, -Math.round(semitoneApplied));
           const sign = plan.pitchPct >= 0 ? '+' : '';
           const verb = plan.dir === 'down' ? 'Pitch down' : 'Pitch up';
@@ -3087,6 +5034,7 @@ function populateTrackSelect(filterText = '') {
     }
 
     fillSelects();
+    updateSpeedMeta();
     setPitchRange(currentPitchRange);
 
     let lastValidBpm = Math.max(1, Number(bpmInput.value) || 128);
@@ -3162,14 +5110,15 @@ function populateTrackSelect(filterText = '') {
       });
     }
     if (trackSearch) {
-      trackSearch.addEventListener('input', () => populateTrackSelect(trackSearch.value));
+      trackSearch.addEventListener('input', () => { populateTrackSelect(trackSearch.value); renderLibraryTable(false, trackSearch.value); });
     }
     if (genreFilter) {
-      genreFilter.addEventListener('change', () => populateTrackSelect(trackSearch?.value || ''));
+      genreFilter.addEventListener('change', () => { populateTrackSelect(trackSearch?.value || ''); renderLibraryTable(false, trackSearch?.value || ''); });
     }
     if (decadeFilter) {
       decadeFilter.addEventListener('change', () => {
         populateTrackSelect(trackSearch?.value || '');
+        renderLibraryTable(false, trackSearch?.value || '');
         update();
       });
     }
@@ -3181,6 +5130,7 @@ function populateTrackSelect(filterText = '') {
     }
     if (trackSelect) {
       trackSelect.addEventListener('change', () => {
+        renderLibraryTable(false, trackSearch?.value || '');
         const idx = Number(trackSelect.value);
         if (dualDeckToggle?.checked) return;
         if (Number.isFinite(idx) && libraryTracks[idx]) setSourceFromTrack(libraryTracks[idx]);
@@ -3202,6 +5152,10 @@ function populateTrackSelect(filterText = '') {
           libraryTracks = parsed;
           populateGenreFilter();
           populateTrackSelect(trackSearch?.value || '');
+          populateGenreFilterDual();
+          populateTrackSelectDual(trackSearchDual?.value || '');
+          renderLibraryTable(false, trackSearch?.value || '');
+          renderLibraryTable(true, trackSearchDual?.value || '');
           if (proSourceInfo) proSourceInfo.textContent = `Imported ${parsed.length} tracks from ${file.name}`;
           update();
         } else {
@@ -3210,6 +5164,49 @@ function populateTrackSelect(filterText = '') {
       });
     }
 
+    if (trackSearchDual) {
+      trackSearchDual.addEventListener('input', () => { populateTrackSelectDual(trackSearchDual.value); renderLibraryTable(true, trackSearchDual.value); });
+    }
+    if (genreFilterDual) {
+      genreFilterDual.addEventListener('change', () => { populateTrackSelectDual(trackSearchDual?.value || ''); renderLibraryTable(true, trackSearchDual?.value || ''); });
+    }
+    if (decadeFilterDual) {
+      decadeFilterDual.addEventListener('change', () => { populateTrackSelectDual(trackSearchDual?.value || ''); renderLibraryTable(true, trackSearchDual?.value || ''); });
+    }
+    if (smartSuggestYearLockDual) {
+      smartSuggestYearLockDual.addEventListener('change', () => { renderLibraryTable(true, trackSearchDual?.value || ''); });
+    }
+    if (trackSelectDual) {
+      trackSelectDual.addEventListener('change', () => { renderLibraryTable(true, trackSearchDual?.value || ''); });
+    }
+
+
+    if (singleSpeed33) singleSpeed33.addEventListener('click', () => { singleDeckSpeed = 33; updateSpeedMeta(); update(); });
+    if (singleSpeed45) singleSpeed45.addEventListener('click', () => { singleDeckSpeed = 45; updateSpeedMeta(); update(); });
+    if (leftDeckSpeedSelect) leftDeckSpeedSelect.addEventListener('change', () => { leftDeckSpeed = Number(leftDeckSpeedSelect.value || 33); updateSpeedMeta(); renderLibraryTable(true, trackSearchDual?.value || ''); updateStep4ShellSliders(); });
+    if (rightDeckSpeedSelect) rightDeckSpeedSelect.addEventListener('change', () => { rightDeckSpeed = Number(rightDeckSpeedSelect.value || 33); updateSpeedMeta(); renderLibraryTable(true, trackSearchDual?.value || ''); updateStep4ShellSliders(); });
+
+
+    function bindLibraryTable(tableBody, isDual = false) {
+      if (!tableBody) return;
+      tableBody.addEventListener('click', (event) => {
+        const row = event.target.closest('tr[data-track-index]');
+        if (!row) return;
+        const idx = Number(row.dataset.trackIndex);
+        if (!Number.isFinite(idx) || !libraryTracks[idx]) return;
+        if (isDual) {
+          if (trackSelectDual) trackSelectDual.value = String(idx);
+          renderLibraryTable(true, trackSearchDual?.value || '');
+        } else {
+          if (trackSelect) trackSelect.value = String(idx);
+          setSourceFromTrack(libraryTracks[idx]);
+        }
+      });
+    }
+    bindLibraryTable(libraryTableBody, false);
+    bindLibraryTable(libraryTableBodyDual, true);
+    document.querySelectorAll('#libraryTable th').forEach(th => th.addEventListener('click', () => updateLibrarySort(th.dataset.sortKey, false)));
+    document.querySelectorAll('#libraryTableDual th').forEach(th => th.addEventListener('click', () => updateLibrarySort(th.dataset.sortKey, true)));
     faderSlot.addEventListener('pointerdown', (event) => {
       event.preventDefault();
       faderSlot.setPointerCapture?.(event.pointerId);
@@ -3372,24 +5369,29 @@ function populateTrackSelect(filterText = '') {
     }
   }
 
-  function renderRightSuggestions() {
+  window.renderRightSuggestions = function renderRightSuggestions() {
     if (!rightList) return;
     if (!(dualToggle && dualToggle.checked)) return;
 
     if (!leftDeckTrack) {
+      window.rightSuggestionPage = 0;
+      updateSuggestionPagerUI('right', 0, 0);
       rightList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">Load a Left Deck track</strong><span class="mini-line">Then this box will show compatible suggestions for the Right Deck.</span></div></div>';
       return;
     }
 
     const leftEntry = getEntryByCamelot(leftDeckTrack.key);
     if (!leftEntry) {
+      window.rightSuggestionPage = 0;
+      updateSuggestionPagerUI('right', 0, 0);
       rightList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">Left Deck key not recognized</strong><span class="mini-line">Try a track with a valid Camelot key.</span></div></div>';
       return;
     }
 
     const leftPct = Number(leftPitchSlider && leftPitchSlider.value || 0);
-    const leftNewBpm = Number(leftDeckTrack.bpm) * (1 + leftPct / 100);
-    const leftSemis = (1 + leftPct / 100) > 0 ? 12 * Math.log2(1 + leftPct / 100) : 0;
+    const leftPlaybackMultiplier = playbackMultiplierFor(leftDeckTrack, leftDeckSpeed, leftPct);
+    const leftNewBpm = Number(leftDeckTrack.bpm) * leftPlaybackMultiplier;
+    const leftSemis = leftPlaybackMultiplier > 0 ? 12 * Math.log2(leftPlaybackMultiplier) : 0;
     const shiftedLeft = findNearestKey(leftEntry, leftSemis);
 
     const same = shiftedLeft;
@@ -3411,27 +5413,38 @@ function populateTrackSelect(filterText = '') {
       }
 
       const requiredPct = ((leftNewBpm / Math.max(0.01, Number(track.bpm))) - 1) * 100;
-      if (!Number.isFinite(requiredPct) || Math.abs(requiredPct) > 8) return null;
+      if (!Number.isFinite(requiredPct) || Math.abs(requiredPct) > (Number(leftPitchSlider && leftPitchSlider.max || 8))) return null;
 
       const shiftedSemis = 12 * Math.log2(1 + requiredPct / 100);
       const resultKey = findNearestKey(entry, shiftedSemis);
       if (!allowed.has(resultKey.camelot)) return null;
 
-      return {track, requiredPct, resultKey, score: Math.abs(requiredPct)};
-    }).filter(Boolean).sort((a,b)=>a.score-b.score || Number(a.track.bpm)-Number(b.track.bpm)).slice(0,6);
+      return { track, requiredPct, resultKey, score: Math.abs(requiredPct), index: (libraryTracks || []).indexOf(track) };
+    }).filter(Boolean).sort((a,b)=>a.score-b.score || Number(a.track.bpm)-Number(b.track.bpm));
 
     if (!matches.length) {
+      window.rightSuggestionPage = 0;
+      updateSuggestionPagerUI('right', 0, 0);
       rightList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">No matching library tracks</strong><span class="mini-line">Try another Left Deck track, pitch setting, or filters.</span></div></div>';
       return;
     }
 
-    rightList.innerHTML = matches.map(match => {
+    window.rightSuggestionPage = clampSuggestionPage(window.rightSuggestionPage || 0, matches.length);
+    const rightPaged = getSuggestionPageSlice(matches, window.rightSuggestionPage);
+    window.rightSuggestionPage = rightPaged.safePage;
+    updateSuggestionPagerUI('right', matches.length, window.rightSuggestionPage);
+
+    rightList.innerHTML = rightPaged.pageItems.map(match => {
       const sign = match.requiredPct >= 0 ? '+' : '';
-      return `<div class="smart-item smart-item-text-only">
+      const matchClass = getSuggestionMatchClass(match.requiredPct);
+      const matchLabel = getSuggestionMatchLabel(match.requiredPct);
+      return `<div class="smart-item smart-item-text-only clickable-right-suggestion ${matchClass}" data-track-index="${match.index}" data-required-pct="${match.requiredPct.toFixed(1)}">
         <div class="smart-text">
-          <strong class="track-title">${match.track.artist} — ${match.track.title}</strong>
+          <span class="track-artist-line">${match.track.artist || '—'}</span>
+          <span class="track-title-line">${match.track.title || '—'}</span>
           <span class="camelot-keyline">${Number(match.track.bpm).toFixed(1)} BPM · ${match.track.key} · ${match.track.year || '—'} · ${match.track.genre || '—'}</span>
-          <span class="mini-line">Pitch ${sign}${match.requiredPct.toFixed(1)}% → ${leftNewBpm.toFixed(2)} BPM · Result key ${match.resultKey.camelot}</span>
+          <span class="mini-line">Pitch ${sign}${match.requiredPct.toFixed(1)}% · Result ${match.resultKey.camelot}</span>
+          <span class="suggestion-match-badge"><span class="suggestion-match-dot ${matchClass}"></span>${matchLabel} match</span>
         </div>
       </div>`;
     }).join('');
@@ -3440,24 +5453,35 @@ function populateTrackSelect(filterText = '') {
   function loadLeftFromDual() {
     const idx = Number(trackSelectDual && trackSelectDual.value);
     if (!Number.isFinite(idx) || !libraryTracks[idx]) return;
+    window.rightSuggestionPage = 0;
     leftDeckTrack = libraryTracks[idx];
-    if (dualInfo) dualInfo.textContent = `Left Deck: ${leftDeckTrack.artist} — ${leftDeckTrack.title} · ${leftDeckTrack.year || 'Year ?'} · ${leftDeckTrack.genre || 'Genre ?'}`;
+    leftDeckSpeed = getTrackNativeSpeed(leftDeckTrack, 33);
+    updateSpeedMeta();
+    renderLibraryTable(true, trackSearchDual?.value || '');
+    if (dualInfo) dualInfo.textContent = `Left Deck: ${leftDeckTrack.artist} — ${leftDeckTrack.title} · ${leftDeckTrack.year || 'Year ?'} · ${leftDeckTrack.genre || 'Genre ?'} · ${formatSpeedLabel(leftDeckTrack.speed)}`;
     renderRightSuggestions();
+    updateSuggestionPagerUI('right', 0, 0);
   }
 
   function loadRightFromDual() {
     const idx = Number(trackSelectDual && trackSelectDual.value);
     if (!Number.isFinite(idx) || !libraryTracks[idx]) return;
+    window.leftSuggestionPage = 0;
     rightDeckTrack = libraryTracks[idx];
-    if (dualInfo) dualInfo.textContent = `Right Deck: ${rightDeckTrack.artist} — ${rightDeckTrack.title} · ${rightDeckTrack.year || 'Year ?'} · ${rightDeckTrack.genre || 'Genre ?'}`;
+    rightDeckSpeed = getTrackNativeSpeed(rightDeckTrack, 33);
+    updateSpeedMeta();
+    renderLibraryTable(true, trackSearchDual?.value || '');
+    if (dualInfo) dualInfo.textContent = `Right Deck: ${rightDeckTrack.artist} — ${rightDeckTrack.title} · ${rightDeckTrack.year || 'Year ?'} · ${rightDeckTrack.genre || 'Genre ?'} · ${formatSpeedLabel(rightDeckTrack.speed)}`;
+    renderLeftSuggestions();
+    updateSuggestionPagerUI('left', 0, 0);
   }
 
   if (loadLeftBtn) loadLeftBtn.onclick = loadLeftFromDual;
   if (loadRightBtn) loadRightBtn.onclick = loadRightFromDual;
 
-  if (trackSearchDual) trackSearchDual.oninput = function(){ dualPopulateSelect(); renderRightSuggestions(); };
-  if (genreFilterDual) genreFilterDual.onchange = function(){ dualPopulateSelect(); renderRightSuggestions(); };
-  if (decadeFilterDual) decadeFilterDual.onchange = function(){ dualPopulateSelect(); renderRightSuggestions(); };
+  if (trackSearchDual) trackSearchDual.oninput = function(){ dualPopulateSelect(); renderLibraryTable(true, trackSearchDual.value); renderRightSuggestions(); };
+  if (genreFilterDual) genreFilterDual.onchange = function(){ dualPopulateSelect(); renderLibraryTable(true, trackSearchDual?.value || ''); renderRightSuggestions(); };
+  if (decadeFilterDual) decadeFilterDual.onchange = function(){ dualPopulateSelect(); renderLibraryTable(true, trackSearchDual?.value || ''); renderRightSuggestions(); };
   if (yearLockDual) yearLockDual.onchange = renderRightSuggestions;
   if (leftPitchSlider) leftPitchSlider.oninput = function(){
     const leftDisp = document.getElementById('leftPitchDisplay');
@@ -3475,6 +5499,10 @@ function populateTrackSelect(filterText = '') {
         libraryTracks = parsed;
         dualPopulateGenre();
         dualPopulateSelect();
+        populateGenreFilter();
+        populateTrackSelect(trackSearch?.value || '');
+        renderLibraryTable(false, trackSearch?.value || '');
+        renderLibraryTable(true, trackSearchDual?.value || '');
         if (dualInfo) dualInfo.textContent = `Imported ${parsed.length} tracks from ${file.name}`;
         renderRightSuggestions();
       } else if (dualInfo) {
@@ -3486,6 +5514,7 @@ function populateTrackSelect(filterText = '') {
 
   dualPopulateGenre();
   dualPopulateSelect();
+  renderLibraryTable(true, trackSearchDual?.value || '');
   renderRightSuggestions();
 })();
 
@@ -3576,8 +5605,8 @@ function populateTrackSelect(filterText = '') {
 
     const leftPct = Number(leftPitchSlider && leftPitchSlider.value || 0);
     const rightPct = Number(rightPitchSlider && rightPitchSlider.value || 0);
-    const leftMultiplier = 1 + (leftPct / 100);
-    const rightMultiplier = 1 + (rightPct / 100);
+    const leftMultiplier = playbackMultiplierFor(leftDeckTrack, leftDeckSpeed, leftPct);
+    const rightMultiplier = playbackMultiplierFor(rightDeckTrack, rightDeckSpeed, rightPct);
 
     const leftNewBpm = Number(leftDeckTrack.bpm || 0) * leftMultiplier;
     const rightNewBpm = Number(rightDeckTrack.bpm || 0) * rightMultiplier;
@@ -3601,7 +5630,7 @@ function populateTrackSelect(filterText = '') {
     const shiftedRight = findNearestKey(rightEntry, rightSemis);
 
     rightResultKey.textContent = `${shiftedRight.camelot} · ${shiftedRight.regular}`;
-    rightResultKeySub.textContent = `${rightPct >= 0 ? '+' : ''}${rightPct}% pitch on Right Deck`;
+    rightResultKeySub.textContent = `${rightPct >= 0 ? '+' : ''}${rightPct}% on ${formatSpeedLabel(rightDeckSpeed)} deck / ${formatSpeedLabel(getTrackNativeSpeed(rightDeckTrack, rightDeckSpeed))} native`;
 
     const same = shiftedLeft;
     const plus = camelotMove(shiftedLeft, 1, false);
@@ -3631,7 +5660,10 @@ function populateTrackSelect(filterText = '') {
     sliderEl.value = String(Math.round(val));
     updateDisplays();
     if (sliderEl === leftPitchSlider) renderRightSuggestions();
-    if (sliderEl === rightPitchSlider) updateRightDeckFeedback();
+    if (sliderEl === rightPitchSlider) {
+      renderLeftSuggestions();
+      updateRightDeckFeedback();
+    }
   }
 
   function dualFilteredTracks() {
@@ -3718,21 +5750,28 @@ function populateTrackSelect(filterText = '') {
       }
 
       const requiredPct = ((leftNewBpm / Math.max(0.01, Number(track.bpm))) - 1) * 100;
-      if (!Number.isFinite(requiredPct) || Math.abs(requiredPct) > 8) return null;
+      if (!Number.isFinite(requiredPct) || Math.abs(requiredPct) > (Number(leftPitchSlider && leftPitchSlider.max || 8))) return null;
 
       const shiftedSemis = 12 * Math.log2(1 + requiredPct / 100);
       const resultKey = findNearestKey(entry, shiftedSemis);
       if (!allowed.has(resultKey.camelot)) return null;
 
       return { track, requiredPct, resultKey, score: Math.abs(requiredPct), index: (libraryTracks || []).indexOf(track) };
-    }).filter(Boolean).sort((a,b)=>a.score-b.score || Number(a.track.bpm)-Number(b.track.bpm)).slice(0,6);
+    }).filter(Boolean).sort((a,b)=>a.score-b.score || Number(a.track.bpm)-Number(b.track.bpm));
 
     if (!matches.length) {
+      window.rightSuggestionPage = 0;
+      updateSuggestionPagerUI('right', 0, 0);
       rightList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">No matching library tracks</strong><span class="mini-line">Try another Left Deck track, pitch setting, or filters.</span></div></div>';
       return;
     }
 
-    rightList.innerHTML = matches.map(match => {
+    window.rightSuggestionPage = clampSuggestionPage(window.rightSuggestionPage || 0, matches.length);
+    const rightPaged = getSuggestionPageSlice(matches, window.rightSuggestionPage);
+    window.rightSuggestionPage = rightPaged.safePage;
+    updateSuggestionPagerUI('right', matches.length, window.rightSuggestionPage);
+
+    rightList.innerHTML = rightPaged.pageItems.map(match => {
       const sign = match.requiredPct >= 0 ? '+' : '';
       return `<div class="smart-item smart-item-text-only clickable-right-suggestion" data-track-index="${match.index}" data-required-pct="${match.requiredPct.toFixed(1)}">
         <div class="smart-text">
@@ -3749,17 +5788,23 @@ function populateTrackSelect(filterText = '') {
     if (!Number.isFinite(idx) || !libraryTracks[idx]) return;
     leftDeckTrack = libraryTracks[idx];
     setDeckText('left', leftDeckTrack);
-    if (dualInfo) dualInfo.textContent = `Left Deck: ${leftDeckTrack.artist} — ${leftDeckTrack.title} · ${leftDeckTrack.year || 'Year ?'} · ${leftDeckTrack.genre || 'Genre ?'}`;
+    if (dualInfo) dualInfo.textContent = `Left Deck: ${leftDeckTrack.artist} — ${leftDeckTrack.title} · ${leftDeckTrack.year || 'Year ?'} · ${leftDeckTrack.genre || 'Genre ?'} · ${formatSpeedLabel(leftDeckTrack.speed)}`;
+    updateSpeedMeta();
     renderRightSuggestions();
     updateRightDeckFeedback();
   }
 
   function loadRightTrack(track, requiredPct) {
+    window.leftSuggestionPage = 0;
     rightDeckTrack = track;
+    rightDeckSpeed = getTrackNativeSpeed(rightDeckTrack, 33);
+    updateSpeedMeta();
     setDeckText('right', rightDeckTrack);
-    if (rightPitchSlider) rightPitchSlider.value = String(Math.max(-8, Math.min(8, Math.round(requiredPct))));
+    updateSpeedMeta();
+    if (rightPitchSlider) rightPitchSlider.value = String(Math.max(-Number(rightPitchSlider && rightPitchSlider.max || 8), Math.min(Number(rightPitchSlider && rightPitchSlider.max || 8), Math.round(requiredPct))));
     updateDisplays();
-    if (dualInfo) dualInfo.textContent = `Right Deck: ${rightDeckTrack.artist} — ${rightDeckTrack.title} · ${rightDeckTrack.year || 'Year ?'} · ${rightDeckTrack.genre || 'Genre ?'}`;
+    if (dualInfo) dualInfo.textContent = `Right Deck: ${rightDeckTrack.artist} — ${rightDeckTrack.title} · ${rightDeckTrack.year || 'Year ?'} · ${rightDeckTrack.genre || 'Genre ?'} · ${formatSpeedLabel(rightDeckTrack.speed)}`;
+    renderLeftSuggestions();
     updateRightDeckFeedback();
   }
 
@@ -3794,7 +5839,7 @@ function populateTrackSelect(filterText = '') {
 
   // slider interaction
   if (leftPitchSlider) leftPitchSlider.addEventListener('input', () => { updateDisplays(); renderRightSuggestions(); });
-  if (rightPitchSlider) rightPitchSlider.addEventListener('input', () => { updateDisplays(); updateRightDeckFeedback(); });
+  if (rightPitchSlider) rightPitchSlider.addEventListener('input', () => { updateDisplays(); renderLeftSuggestions(); updateRightDeckFeedback(); });
 
   if (leftSlot) {
     leftSlot.addEventListener('pointerdown', (e) => { if (!(dualToggle && dualToggle.checked)) return; activeSlot = 'left'; setSliderFromClientY(leftSlot, leftPitchSlider, e.clientY); });
@@ -3808,9 +5853,9 @@ function populateTrackSelect(filterText = '') {
   });
   window.addEventListener('pointerup', () => { activeSlot = null; });
 
-  if (trackSearchDual) trackSearchDual.oninput = function(){ dualPopulateSelect(); renderRightSuggestions(); };
-  if (genreFilterDual) genreFilterDual.onchange = function(){ dualPopulateSelect(); renderRightSuggestions(); };
-  if (decadeFilterDual) decadeFilterDual.onchange = function(){ dualPopulateSelect(); renderRightSuggestions(); };
+  if (trackSearchDual) trackSearchDual.oninput = function(){ dualPopulateSelect(); renderLibraryTable(true, trackSearchDual.value); renderRightSuggestions(); };
+  if (genreFilterDual) genreFilterDual.onchange = function(){ dualPopulateSelect(); renderLibraryTable(true, trackSearchDual?.value || ''); renderRightSuggestions(); };
+  if (decadeFilterDual) decadeFilterDual.onchange = function(){ dualPopulateSelect(); renderLibraryTable(true, trackSearchDual?.value || ''); renderRightSuggestions(); };
   if (yearLockDual) yearLockDual.onchange = renderRightSuggestions;
 
   if (csvFileInputDual) {
@@ -3823,6 +5868,10 @@ function populateTrackSelect(filterText = '') {
         libraryTracks = parsed;
         dualPopulateGenre();
         dualPopulateSelect();
+        populateGenreFilter();
+        populateTrackSelect(trackSearch?.value || '');
+        renderLibraryTable(false, trackSearch?.value || '');
+        renderLibraryTable(true, trackSearchDual?.value || '');
         if (dualInfo) dualInfo.textContent = `Imported ${parsed.length} tracks from ${file.name}`;
         renderRightSuggestions();
       } else if (dualInfo) {
@@ -3839,6 +5888,7 @@ function populateTrackSelect(filterText = '') {
 
   dualPopulateGenre();
   dualPopulateSelect();
+  renderLibraryTable(true, trackSearchDual?.value || '');
   setDeckText('left', leftDeckTrack);
   setDeckText('right', rightDeckTrack);
   updateDisplays();
@@ -3925,7 +5975,7 @@ function populateTrackSelect(filterText = '') {
     }
   }
 
-  function updateLeftDeckFeedback() {
+  window.updateLeftDeckFeedback = function updateLeftDeckFeedback() {
     if (!leftResultBpm || !leftResultKey || !leftMatchQuality) return;
     if (!(dualToggle && dualToggle.checked)) return;
 
@@ -3940,8 +5990,8 @@ function populateTrackSelect(filterText = '') {
 
     const leftPct = Number(leftPitchSlider && leftPitchSlider.value || 0);
     const rightPct = Number(rightPitchSlider && rightPitchSlider.value || 0);
-    const leftMultiplier = 1 + (leftPct / 100);
-    const rightMultiplier = 1 + (rightPct / 100);
+    const leftMultiplier = playbackMultiplierFor(leftDeckTrack, leftDeckSpeed, leftPct);
+    const rightMultiplier = playbackMultiplierFor(rightDeckTrack, rightDeckSpeed, rightPct);
 
     const leftNewBpm = Number(leftDeckTrack.bpm || 0) * leftMultiplier;
     const rightNewBpm = Number(rightDeckTrack.bpm || 0) * rightMultiplier;
@@ -3965,7 +6015,7 @@ function populateTrackSelect(filterText = '') {
     const shiftedRight = findNearestKey(rightEntry, rightSemis);
 
     leftResultKey.textContent = `${shiftedLeft.camelot} · ${shiftedLeft.regular}`;
-    leftResultKeySub.textContent = `${leftPct >= 0 ? '+' : ''}${leftPct}% pitch on Left Deck`;
+    leftResultKeySub.textContent = `${leftPct >= 0 ? '+' : ''}${leftPct}% on ${formatSpeedLabel(leftDeckSpeed)} deck / ${formatSpeedLabel(getTrackNativeSpeed(leftDeckTrack, leftDeckSpeed))} native`;
 
     const same = shiftedRight;
     const plus = camelotMove(shiftedRight, 1, false);
@@ -3984,24 +6034,29 @@ function populateTrackSelect(filterText = '') {
     leftMatchQuality.textContent = `${keyQuality} harmonic fit · ${tempoQuality} tempo difference`;
   }
 
-  function renderLeftSuggestions() {
+  window.renderLeftSuggestions = function renderLeftSuggestions() {
     if (!leftList) return;
     if (!(dualToggle && dualToggle.checked)) return;
 
     if (!rightDeckTrack) {
+      window.leftSuggestionPage = 0;
+      updateSuggestionPagerUI('left', 0, 0);
       leftList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">Load a Right Deck track</strong><span class="mini-line">Then this box will show compatible suggestions for the Left Deck.</span></div></div>';
       return;
     }
 
     const rightEntry = getEntryByCamelot(rightDeckTrack.key);
     if (!rightEntry) {
+      window.leftSuggestionPage = 0;
+      updateSuggestionPagerUI('left', 0, 0);
       leftList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">Right Deck key not recognized</strong><span class="mini-line">Try a track with a valid Camelot key.</span></div></div>';
       return;
     }
 
     const rightPct = Number(rightPitchSlider && rightPitchSlider.value || 0);
-    const rightNewBpm = Number(rightDeckTrack.bpm || 0) * (1 + rightPct / 100);
-    const rightSemis = (1 + rightPct / 100) > 0 ? 12 * Math.log2(1 + rightPct / 100) : 0;
+    const rightPlaybackMultiplier = playbackMultiplierFor(rightDeckTrack, rightDeckSpeed, rightPct);
+    const rightNewBpm = Number(rightDeckTrack.bpm || 0) * rightPlaybackMultiplier;
+    const rightSemis = rightPlaybackMultiplier > 0 ? 12 * Math.log2(rightPlaybackMultiplier) : 0;
     const shiftedRight = findNearestKey(rightEntry, rightSemis);
 
     const same = shiftedRight;
@@ -4022,37 +6077,52 @@ function populateTrackSelect(filterText = '') {
       }
 
       const requiredPct = ((rightNewBpm / Math.max(0.01, Number(track.bpm))) - 1) * 100;
-      if (!Number.isFinite(requiredPct) || Math.abs(requiredPct) > 8) return null;
+      if (!Number.isFinite(requiredPct) || Math.abs(requiredPct) > (Number(rightPitchSlider && rightPitchSlider.max || 8))) return null;
 
       const shiftedSemis = 12 * Math.log2(1 + requiredPct / 100);
       const resultKey = findNearestKey(entry, shiftedSemis);
       if (!allowed.has(resultKey.camelot)) return null;
 
       return { track, requiredPct, resultKey, score: Math.abs(requiredPct), index: (libraryTracks || []).indexOf(track) };
-    }).filter(Boolean).sort((a,b)=>a.score-b.score || Number(a.track.bpm)-Number(b.track.bpm)).slice(0,6);
+    }).filter(Boolean).sort((a,b)=>a.score-b.score || Number(a.track.bpm)-Number(b.track.bpm));
 
     if (!matches.length) {
+      window.leftSuggestionPage = 0;
+      updateSuggestionPagerUI('left', 0, 0);
       leftList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">No matching library tracks</strong><span class="mini-line">Try another Right Deck track, pitch setting, or filters.</span></div></div>';
       return;
     }
 
-    leftList.innerHTML = matches.map(match => {
+    window.leftSuggestionPage = clampSuggestionPage(window.leftSuggestionPage || 0, matches.length);
+    const leftPaged = getSuggestionPageSlice(matches, window.leftSuggestionPage);
+    window.leftSuggestionPage = leftPaged.safePage;
+    updateSuggestionPagerUI('left', matches.length, window.leftSuggestionPage);
+
+    leftList.innerHTML = leftPaged.pageItems.map(match => {
       const sign = match.requiredPct >= 0 ? '+' : '';
-      return `<div class="smart-item smart-item-text-only clickable-left-suggestion" data-track-index="${match.index}" data-required-pct="${match.requiredPct.toFixed(1)}">
+      const matchClass = getSuggestionMatchClass(match.requiredPct);
+      const matchLabel = getSuggestionMatchLabel(match.requiredPct);
+      return `<div class="smart-item smart-item-text-only clickable-left-suggestion ${matchClass}" data-track-index="${match.index}" data-required-pct="${match.requiredPct.toFixed(1)}">
         <div class="smart-text">
-          <strong class="track-title">${match.track.artist} — ${match.track.title}</strong>
+          <span class="track-artist-line">${match.track.artist || '—'}</span>
+          <span class="track-title-line">${match.track.title || '—'}</span>
           <span class="camelot-keyline">${Number(match.track.bpm).toFixed(1)} BPM · ${match.track.key} · ${match.track.year || '—'} · ${match.track.genre || '—'}</span>
-          <span class="mini-line">Pitch ${sign}${match.requiredPct.toFixed(1)}% → ${rightNewBpm.toFixed(2)} BPM · Result key ${match.resultKey.camelot}</span>
+          <span class="mini-line">Pitch ${sign}${match.requiredPct.toFixed(1)}% · Result ${match.resultKey.camelot}</span>
+          <span class="suggestion-match-badge"><span class="suggestion-match-dot ${matchClass}"></span>${matchLabel} match</span>
         </div>
       </div>`;
     }).join('');
   }
 
   function loadLeftTrackMirror(track, requiredPct) {
+    window.rightSuggestionPage = 0;
     leftDeckTrack = track;
+    leftDeckSpeed = getTrackNativeSpeed(leftDeckTrack, 33);
+    updateSpeedMeta();
     setDeckTextMirror('left', leftDeckTrack);
+    updateSpeedMeta();
 
-    const clamped = Math.max(-8, Math.min(8, Math.round(requiredPct)));
+    const clamped = Math.max(-Number(leftPitchSlider && leftPitchSlider.max || 8), Math.min(Number(leftPitchSlider && leftPitchSlider.max || 8), Math.round(requiredPct)));
     if (leftPitchSlider) {
       leftPitchSlider.value = String(clamped);
     }
@@ -4063,6 +6133,7 @@ function populateTrackSelect(filterText = '') {
     if (typeof renderRightSuggestions === 'function') renderRightSuggestions();
     renderLeftSuggestions();
     updateLeftDeckFeedback();
+    updateSuggestionPagerUI('right', 0, 0);
   }
 
   if (leftList) {
@@ -4127,44 +6198,1080 @@ function populateTrackSelect(filterText = '') {
 
 
 (function () {
-  function placeDeckFeedback(feedbackId, slotId) {
-    const feedback = document.getElementById(feedbackId);
-    const slot = document.getElementById(slotId);
-    if (!feedback || !slot) return;
+  const leftRangeSelect = document.getElementById('leftRangeSelect');
+  const rightRangeSelect = document.getElementById('rightRangeSelect');
+  const leftOrigBpm = document.getElementById('leftDeckOrigBpm');
+  const leftOrigKey = document.getElementById('leftDeckOrigKey');
+  const leftNativeSpeed = document.getElementById('leftDeckNativeSpeed');
+  const rightOrigBpm = document.getElementById('rightDeckOrigBpm');
+  const rightOrigKey = document.getElementById('rightDeckOrigKey');
+  const rightNativeSpeed = document.getElementById('rightDeckNativeSpeed');
+  const leftArtImg = document.getElementById('leftDeckArtImg');
+  const rightArtImg = document.getElementById('rightDeckArtImg');
+  const leftArtFallback = document.getElementById('leftDeckArtFallback');
+  const rightArtFallback = document.getElementById('rightDeckArtFallback');
+  const dualRanges = { left: 8, right: 8 };
+  const artCache = new Map();
+  const artTokens = { left: 0, right: 0 };
 
-    const section = feedback.closest('section.module.dual-module');
-    if (!section) return;
-
-    // temporarily show for measurement
-    const prevVis = feedback.style.visibility;
-    feedback.style.visibility = 'hidden';
-    feedback.style.left = '0px';
-    feedback.style.top = '0px';
-
-    const sectionRect = section.getBoundingClientRect();
-    const slotRect = slot.getBoundingClientRect();
-    const feedbackRect = feedback.getBoundingClientRect();
-
-    const gap = 12;
-    const left = (slotRect.left - sectionRect.left) - feedbackRect.width - gap;
-    const top = (slotRect.top - sectionRect.top) + ((slotRect.height - feedbackRect.height) / 2) + 305;
-
-    feedback.style.left = `${Math.max(8, left) + 25}px`;
-    feedback.style.top = `${Math.max(40, top)}px`;
-    feedback.style.visibility = prevVis || 'visible';
+  function setToggleState(a, b, active) {
+    if (a) a.classList.toggle('active', active === 8 || active === 33);
+    if (b) b.classList.toggle('active', active === 16 || active === 45);
   }
 
-  function placeAllDeckFeedback() {
-    placeDeckFeedback('leftDeckFeedback', 'leftFaderSlotStep4');
-    placeDeckFeedback('rightDeckFeedback', 'rightFaderSlotStep4');
+  function buildScaleLabelsForRange(side) {
+    const range = dualRanges[side] || 8;
+    const leftCol = document.getElementById(side === 'left' ? 'leftScaleStep4' : 'rightScaleStep4');
+    const rightCol = document.getElementById(side === 'left' ? 'leftScaleRightStep4' : 'rightScaleRightStep4');
+    const tickStack = document.getElementById(side === 'left' ? 'leftTickStackStep4' : 'rightTickStackStep4');
+    const slider = document.getElementById(side === 'left' ? 'leftPitchSliderStep4' : 'rightPitchSliderStep4');
+    if (!slider) return;
+    slider.min = String(-range);
+    slider.max = String(range);
+    slider.value = String(Math.max(-range, Math.min(range, Number(slider.value || 0))));
+    const quarter = Math.round(range * 0.25);
+    const half = Math.round(range * 0.5);
+    const three = Math.round(range * 0.75);
+    if (leftCol) leftCol.innerHTML = [`-${range}`, `-${three}`, `-${half}`, `-${quarter}`, '0', `+${quarter}`, `+${half}`, `+${three}`, `+${range}`].map(v => `<span>${v}</span>`).join('');
+    if (rightCol) rightCol.innerHTML = ['%','','','','0','','','','%'].map(v => `<span>${v}</span>`).join('');
+    if (tickStack) {
+      tickStack.innerHTML = '';
+      for (let i = -range; i <= range; i++) {
+        const tick = document.createElement('div');
+        tick.className = `tick-mark${i % 4 === 0 ? ' major' : ''}`;
+        const ratio = (range - i) / (range * 2);
+        tick.style.top = `${ratio * 100}%`;
+        tickStack.appendChild(tick);
+      }
+    }
   }
 
-  window.addEventListener('load', placeAllDeckFeedback);
-  window.addEventListener('resize', placeAllDeckFeedback);
-  // run once now too
-  placeAllDeckFeedback();
+  function applyDualRange(side, range) {
+    dualRanges[side] = range;
+    buildScaleLabelsForRange(side);
+    if (side === 'left') setToggleState(leftRangeSelect, null, range);
+    if (side === 'right') setToggleState(rightRangeSelect, null, range);
+    if (typeof updateStep4ShellSliders === 'function') updateStep4ShellSliders();
+    const slider = document.getElementById(side === 'left' ? 'leftPitchSliderStep4' : 'rightPitchSliderStep4');
+    if (slider) slider.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+
+  function setArtwork(side, url) {
+    const img = side === 'left' ? leftArtImg : rightArtImg;
+    const fallback = side === 'left' ? leftArtFallback : rightArtFallback;
+    const frame = img?.closest('.dual-art-frame');
+    if (!img || !fallback || !frame) return;
+    if (url) {
+      img.src = url;
+      img.classList.add('has-art');
+      frame.classList.add('has-art');
+    } else {
+      img.removeAttribute('src');
+      img.classList.remove('has-art');
+      frame.classList.remove('has-art');
+    }
+  }
+
+  async function fetchArtwork(track) {
+    if (!track || !track.artist || !track.title) return '';
+    const key = `${track.artist}__${track.title}__${track.album || ''}`;
+    if (artCache.has(key)) return artCache.get(key);
+    try {
+      const term = encodeURIComponent(`${track.artist} ${track.title} ${track.album || ''}`.trim());
+      const res = await fetch(`https://itunes.apple.com/search?term=${term}&entity=song&limit=5`);
+      const data = await res.json();
+      const pick = (data.results || [])[0];
+      const art = pick && (pick.artworkUrl100 || pick.artworkUrl60 || pick.artworkUrl30) ? String(pick.artworkUrl100 || pick.artworkUrl60 || pick.artworkUrl30).replace(/\/[0-9]+x[0-9]+bb\./, '/600x600bb.') : '';
+      artCache.set(key, art || '');
+      return art || '';
+    } catch (err) {
+      artCache.set(key, '');
+      return '';
+    }
+  }
+
+  async function refreshDeckCard(side) {
+    const track = side === 'left' ? leftDeckTrack : rightDeckTrack;
+    const titleEl = document.getElementById(side === 'left' ? 'leftDeckSourceTitle' : 'rightDeckSourceTitle');
+    const artistEl = document.getElementById(side === 'left' ? 'leftDeckSourceSub' : 'rightDeckSourceSub');
+    const bpmEl = side === 'left' ? leftOrigBpm : rightOrigBpm;
+    const keyEl = side === 'left' ? leftOrigKey : rightOrigKey;
+    const speedEl = side === 'left' ? leftNativeSpeed : rightNativeSpeed;
+    if (titleEl) titleEl.textContent = track?.title || 'Source';
+    if (artistEl) artistEl.textContent = track?.artist || 'Load a track from the library';
+    if (bpmEl) bpmEl.textContent = track && Number.isFinite(Number(track.bpm)) ? Number(track.bpm).toFixed(1) : '—';
+    if (keyEl) keyEl.textContent = track?.key || '—';
+    if (speedEl) speedEl.textContent = formatSpeedLabel(track ? getTrackNativeSpeed(track) : 33);
+    const token = ++artTokens[side];
+    if (!track) {
+      setArtwork(side, '');
+      return;
+    }
+    const url = await fetchArtwork(track);
+    if (token === artTokens[side]) setArtwork(side, url);
+  }
+
+  function refreshBothDeckCards() {
+    refreshDeckCard('left');
+    refreshDeckCard('right');
+  }
+
+  if (leftRangeSelect) leftRangeSelect.addEventListener('change', () => applyDualRange('left', Number(leftRangeSelect.value || 8)));
+  if (rightRangeSelect) rightRangeSelect.addEventListener('change', () => applyDualRange('right', Number(rightRangeSelect.value || 8)));
+
+  ['loadLeftBtn','loadRightBtn','leftDeckSuggestionsList','rightDeckSuggestionsList','trackSelectDual','dualDeckToggle'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', () => setTimeout(refreshBothDeckCards, 0));
+    if (el && (id === 'trackSelectDual' || id === 'dualDeckToggle')) el.addEventListener('change', () => setTimeout(refreshBothDeckCards, 0));
+  });
+  const lp = document.getElementById('leftPitchSliderStep4');
+  const rp = document.getElementById('rightPitchSliderStep4');
+  if (lp) lp.addEventListener('input', () => refreshDeckCard('left'));
+  if (rp) rp.addEventListener('input', () => refreshDeckCard('right'));
+
+  applyDualRange('left', 8);
+  applyDualRange('right', 8);
+  refreshBothDeckCards();
 })();
 
+
+/* v2.3.6: sync artwork height to track info box */
+function syncDualArtHeights(){
+  const pairs = [
+    ['leftDeckArtImg','leftDeckArtFallback'],
+    ['rightDeckArtImg','rightDeckArtFallback']
+  ];
+  document.querySelectorAll('.dual-info-stack').forEach((stack) => {
+    const art = stack.querySelector('.dual-art-frame');
+    const card = stack.querySelector('.dual-track-card');
+    if (!art || !card) return;
+    const h = Math.max(150, Math.ceil(card.getBoundingClientRect().height));
+    art.style.height = h + 'px';
+  });
+}
+window.addEventListener('load', syncDualArtHeights);
+window.addEventListener('resize', syncDualArtHeights);
+setTimeout(syncDualArtHeights, 0);
+setTimeout(syncDualArtHeights, 150);
+
 </script>
+
+<script>
+(function(){
+  const target = document.getElementById('dualDeckShell');
+  if (!target) return;
+  const obs = new MutationObserver(() => { if (window.syncDualArtHeights) window.syncDualArtHeights(); });
+  obs.observe(target, { subtree:true, childList:true, characterData:true, attributes:true });
+})();
+</script>
+
+
+
+<script>
+/* v2.9.0: popup library controller with selection, markers, dblclick, keyboard nav */
+(function(){
+  let popupSelectedIndex = null;
+  let popupSortKey = 'artist';
+  let popupSortDir = 'asc';
+  let popupLastLoadSide = 'left';
+
+  function speedDisplay(v){
+    return Number(v) === 45 ? '45' : '33⅓';
+  }
+
+  function camelotSortValue(key){
+    const m = String(key || '').trim().match(/^(\d{1,2})([ABab])$/);
+    if (!m) return 999;
+    const num = Math.max(1, Math.min(12, Number(m[1])));
+    const letter = m[2].toUpperCase() === 'A' ? 0 : 1;
+    return ((num - 1) * 2) + letter;
+  }
+
+  function getPopupRows(){
+    const centerQ = String(document.getElementById('trackSearchDual')?.value || '').trim().toLowerCase();
+    const popupQ = String(document.getElementById('libraryPopupSearch')?.value || '').trim().toLowerCase();
+    const q = popupQ || centerQ;
+    const g = String(document.getElementById('genreFilterDual')?.value || '').trim().toLowerCase();
+    const d = Number(document.getElementById('decadeFilterDual')?.value || 0);
+
+    return (window.libraryTracks || []).map((track, idx) => ({...track, __idx: idx})).filter(track => {
+      const hay = `${track.artist || ''} ${track.album || ''} ${track.title || ''} ${track.genre || ''} ${track.year || ''}`.toLowerCase();
+      if (q && !hay.includes(q)) return false;
+      if (g && String(track.genre || '').toLowerCase() !== g) return false;
+      const year = Number(track.year || 0);
+      if (d && (!year || year < d || year > d + 9)) return false;
+      return true;
+    }).sort((a,b)=>{
+      const dir = popupSortDir === 'asc' ? 1 : -1;
+
+      if (popupSortKey === 'bpm'){
+        const bpmA = Number(a.bpm || 0);
+        const bpmB = Number(b.bpm || 0);
+        if (bpmA !== bpmB) return (bpmA - bpmB) * dir;
+
+        const keyA = camelotSortValue(a.key);
+        const keyB = camelotSortValue(b.key);
+        if (keyA !== keyB) return (keyA - keyB) * dir;
+      } else if (popupSortKey === 'key'){
+        const keyA = camelotSortValue(a.key);
+        const keyB = camelotSortValue(b.key);
+        if (keyA !== keyB) return (keyA - keyB) * dir;
+
+        const bpmA = Number(a.bpm || 0);
+        const bpmB = Number(b.bpm || 0);
+        if (bpmA !== bpmB) return bpmA - bpmB;
+      } else {
+        let av = a[popupSortKey];
+        let bv = b[popupSortKey];
+        if (popupSortKey === 'year' || popupSortKey === 'speed'){
+          av = Number(av || 0);
+          bv = Number(bv || 0);
+        } else {
+          av = String(av || '').toLowerCase();
+          bv = String(bv || '').toLowerCase();
+        }
+        if (av < bv) return -1 * dir;
+        if (av > bv) return 1 * dir;
+      }
+
+      const artistA = String(a.artist || '').toLowerCase();
+      const artistB = String(b.artist || '').toLowerCase();
+      if (artistA < artistB) return -1;
+      if (artistA > artistB) return 1;
+
+      const titleA = String(a.title || '').toLowerCase();
+      const titleB = String(b.title || '').toLowerCase();
+      if (titleA < titleB) return -1;
+      if (titleA > titleB) return 1;
+      return 0;
+    });
+  }
+
+  window.loadedLeftLibraryIndex = null;
+  window.loadedRightLibraryIndex = null;
+
+  function findLibraryIndexForTrack(track){
+    try{
+      if (!track || !window.libraryTracks) return null;
+      const exactIdx = window.libraryTracks.findIndex(t => t === track);
+      if (exactIdx >= 0) return exactIdx;
+      const softIdx = window.libraryTracks.findIndex(t =>
+        String(t.artist || '').trim() === String(track.artist || '').trim() &&
+        String(t.title || '').trim() === String(track.title || '').trim() &&
+        String(t.album || '').trim() === String(track.album || '').trim() &&
+        String(t.key || '').trim() === String(track.key || '').trim() &&
+        String(t.bpm ?? '').trim() === String(track.bpm ?? '').trim()
+      );
+      return softIdx >= 0 ? softIdx : null;
+    }catch(e){
+      return null;
+    }
+  }
+
+  function getLoadedTrackIndex(side){
+    return side === 'left' ? window.loadedLeftLibraryIndex : window.loadedRightLibraryIndex;
+  }
+
+  function rowMarkersFor(trackIdx){
+    const bits = [];
+    if (trackIdx === getLoadedTrackIndex('left')) bits.push('<span class="library-row-marker marker-left">L</span>');
+    if (trackIdx === getLoadedTrackIndex('right')) bits.push('<span class="library-row-marker marker-right">R</span>');
+    return bits.length ? `<span class="library-row-markers">${bits.join('')}</span>` : '';
+  }
+
+  function renderSortHeaderIndicators(){
+    document.querySelectorAll('#libraryPopupTable thead th[data-sort]').forEach(th => {
+      th.classList.toggle('is-sort-active', th.getAttribute('data-sort') === popupSortKey);
+      let indicator = th.querySelector('.sort-indicator');
+      if (!indicator){
+        indicator = document.createElement('span');
+        indicator.className = 'sort-indicator';
+        th.appendChild(indicator);
+      }
+      if (th.getAttribute('data-sort') === popupSortKey){
+        indicator.textContent = popupSortDir === 'asc' ? '↑' : '↓';
+      } else {
+        indicator.textContent = '↕';
+      }
+    });
+  }
+
+  function renderLibraryPopup(){
+    const body = document.getElementById('libraryPopupBody');
+    const sub = document.getElementById('libraryPopupSub');
+    if (!body) return;
+    const rows = getPopupRows();
+
+    if (popupSelectedIndex != null && !rows.some(r => r.__idx === popupSelectedIndex)){
+      popupSelectedIndex = rows.length ? rows[0].__idx : null;
+    }
+
+    body.innerHTML = rows.map(track => `
+      <tr data-track-index="${track.__idx}"
+          class="${popupSelectedIndex === track.__idx ? 'is-selected' : ''} ${track.__idx === getLoadedTrackIndex('left') ? 'is-left-loaded' : ''} ${track.__idx === getLoadedTrackIndex('right') ? 'is-right-loaded' : ''}">
+        <td class="col-artist">${track.artist || ''}${rowMarkersFor(track.__idx)}</td>
+        <td class="col-song">${track.title || ''}</td>
+        <td>${track.bpm ?? ''}</td>
+        <td>${track.key || ''}</td>
+        <td class="col-genre">${track.genre || ''}</td>
+        <td class="col-album">${track.album || ''}</td>
+        <td>${speedDisplay(track.speed)}</td>
+        <td>${track.year || ''}</td>
+      </tr>
+    `).join('');
+
+    renderSortHeaderIndicators();
+
+    if (sub){
+      if (popupSelectedIndex != null && window.libraryTracks && window.libraryTracks[popupSelectedIndex]){
+        const t = window.libraryTracks[popupSelectedIndex];
+        sub.textContent = `Selected: ${t.artist || ''} — ${t.title || ''}`;
+      } else {
+        sub.textContent = 'Browse columns, sort, select a row, then load left or right.';
+      }
+    }
+  }
+
+  window.renderLibraryPopup = renderLibraryPopup;
+
+  window.openLibraryPopup = function(){
+    const overlay = document.getElementById('libraryPopupOverlay');
+    if (!overlay) return;
+    overlay.hidden = false;
+    const rows = getPopupRows();
+    if (popupSelectedIndex == null && rows.length) popupSelectedIndex = rows[0].__idx;
+    renderLibraryPopup();
+    const popupSearch = document.getElementById('libraryPopupSearch');
+    if (popupSearch) setTimeout(() => { try { popupSearch.focus(); popupSearch.select(); } catch(e){} }, 0);
+  };
+
+  window.closeLibraryPopup = function(){
+    const overlay = document.getElementById('libraryPopupOverlay');
+    if (!overlay) return;
+    overlay.hidden = true;
+  };
+
+  window.loadPopupSelected = function(side){
+    if (popupSelectedIndex == null || !window.libraryTracks || !window.libraryTracks[popupSelectedIndex]) return;
+    const track = window.libraryTracks[popupSelectedIndex];
+    popupLastLoadSide = side;
+    window.popupLastLoadSide = side;
+    if (side === 'left' && typeof window.setLeftDeckFromTrack === 'function') window.setLeftDeckFromTrack(track);
+    if (side === 'right' && typeof window.setRightDeckFromTrack === 'function') window.setRightDeckFromTrack(track);
+    renderLibraryPopup();
+    setTimeout(renderLibraryPopup, 30);
+    setTimeout(renderLibraryPopup, 100);
+  };
+
+  const overlay = document.getElementById('libraryPopupOverlay');
+  if (overlay){
+    overlay.addEventListener('click', (e)=>{
+      if (e.target === overlay) window.closeLibraryPopup();
+    });
+  }
+
+  const popupTable = document.getElementById('libraryPopupTable');
+  if (popupTable){
+    popupTable.addEventListener('click', (event)=>{
+      const th = event.target.closest('th[data-sort]');
+      if (th){
+        const next = th.getAttribute('data-sort');
+        if (popupSortKey === next){
+          popupSortDir = popupSortDir === 'asc' ? 'desc' : 'asc';
+        } else {
+          popupSortKey = next;
+          popupSortDir = 'asc';
+        }
+        renderLibraryPopup();
+        return;
+      }
+
+      const row = event.target.closest('tbody tr[data-track-index]');
+      if (!row) return;
+      popupSelectedIndex = Number(row.getAttribute('data-track-index'));
+      renderLibraryPopup();
+    });
+
+    popupTable.addEventListener('dblclick', (event)=>{
+      const row = event.target.closest('tbody tr[data-track-index]');
+      if (!row) return;
+      event.preventDefault();
+      popupSelectedIndex = Number(row.getAttribute('data-track-index'));
+      renderLibraryPopup();
+      const side = window.popupLastLoadSide || popupLastLoadSide || 'left';
+      window.loadPopupSelected(side);
+    });
+  }
+
+  ['trackSearchDual','genreFilterDual','decadeFilterDual','libraryPopupSearch'].forEach(id=>{
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('change', renderLibraryPopup);
+    if (el.tagName === 'INPUT') el.addEventListener('input', renderLibraryPopup);
+  });
+
+  document.addEventListener('keydown', (event)=>{
+    const overlay = document.getElementById('libraryPopupOverlay');
+    if (!overlay || overlay.hidden) return;
+
+    const rows = getPopupRows();
+    if (!rows.length) return;
+
+    const currentIdx = rows.findIndex(r => r.__idx === popupSelectedIndex);
+    const safeIdx = currentIdx >= 0 ? currentIdx : 0;
+
+    if (event.key === 'Escape'){
+      event.preventDefault();
+      window.closeLibraryPopup();
+      return;
+    }
+
+    if (event.key === 'ArrowDown'){
+      event.preventDefault();
+      const next = Math.min(rows.length - 1, safeIdx + 1);
+      popupSelectedIndex = rows[next].__idx;
+      renderLibraryPopup();
+      const rowEl = document.querySelector(`#libraryPopupBody tr[data-track-index="${popupSelectedIndex}"]`);
+      if (rowEl) rowEl.scrollIntoView({block:'nearest'});
+      return;
+    }
+
+    if (event.key === 'ArrowUp'){
+      event.preventDefault();
+      const prev = Math.max(0, safeIdx - 1);
+      popupSelectedIndex = rows[prev].__idx;
+      renderLibraryPopup();
+      const rowEl = document.querySelector(`#libraryPopupBody tr[data-track-index="${popupSelectedIndex}"]`);
+      if (rowEl) rowEl.scrollIntoView({block:'nearest'});
+      return;
+    }
+
+    if (event.key === 'Enter'){
+      event.preventDefault();
+      window.loadPopupSelected(popupLastLoadSide || 'left');
+      return;
+    }
+  });
+})();
+</script>
+
+
+
+<script>
+/* v2.6.4: sync popup library data with app libraryTracks */
+(function(){
+  function syncPopupLibraryTracks(){
+    try{
+      if (typeof libraryTracks !== 'undefined'){
+        window.libraryTracks = libraryTracks;
+      }
+    }catch(e){}
+  }
+
+  window.syncPopupLibraryTracks = syncPopupLibraryTracks;
+
+  // initial sync
+  syncPopupLibraryTracks();
+
+  // sync after load and resize just in case
+  window.addEventListener('load', syncPopupLibraryTracks);
+
+  // patch CSV dual import to resync after file load
+  const csvDual = document.getElementById('csvFileInputDual');
+  if (csvDual){
+    csvDual.addEventListener('change', () => {
+      setTimeout(() => {
+        syncPopupLibraryTracks();
+        if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup();
+      }, 50);
+      setTimeout(() => {
+        syncPopupLibraryTracks();
+        if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup();
+      }, 200);
+    });
+  }
+
+  // patch any open action to sync first
+  const openBtn = document.getElementById('expandLibraryBtn');
+  if (openBtn){
+    openBtn.addEventListener('click', () => {
+      syncPopupLibraryTracks();
+      if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup();
+    });
+  }
+})();
+</script>
+
+
+<script>
+/* v2.6.7: force right deck controls to refresh left suggestions */
+(function(){
+  const rp = document.getElementById('rightPitchSliderStep4');
+  const rs = document.getElementById('rightDeckSpeedSelect');
+  const rr = document.getElementById('rightRangeSelect');
+  const rightSlot = document.getElementById('rightFaderSlotStep4');
+
+  function refreshLeftSideFromRight(){
+    try{
+      if (typeof window.renderLeftSuggestions === 'function') window.renderLeftSuggestions();
+      if (typeof window.updateLeftDeckFeedback === 'function') window.updateLeftDeckFeedback();
+    }catch(e){}
+  }
+
+  if (rp){
+    rp.addEventListener('input', refreshLeftSideFromRight);
+    rp.addEventListener('change', refreshLeftSideFromRight);
+  }
+  if (rs){
+    rs.addEventListener('change', refreshLeftSideFromRight);
+    rs.addEventListener('input', refreshLeftSideFromRight);
+  }
+  if (rr){
+    rr.addEventListener('change', refreshLeftSideFromRight);
+    rr.addEventListener('input', refreshLeftSideFromRight);
+  }
+  if (rightSlot){
+    rightSlot.addEventListener('pointermove', refreshLeftSideFromRight);
+    rightSlot.addEventListener('touchmove', refreshLeftSideFromRight, {passive:true});
+  }
+
+  // run after load so current state is reflected
+  window.addEventListener('load', () => setTimeout(refreshLeftSideFromRight, 0));
+})();
+</script>
+
+
+<script>
+/* v2.6.9: force immediate deck UI refresh after popup/center loads */
+(function(){
+  function syncDeckDisplay(side, track){
+    if (!track) return;
+    const titleEl = document.getElementById(side === 'left' ? 'leftDeckSourceTitle' : 'rightDeckSourceTitle');
+    const subEl = document.getElementById(side === 'left' ? 'leftDeckSourceSub' : 'rightDeckSourceSub');
+    const bpmEl = document.getElementById(side === 'left' ? 'leftDeckOrigBpm' : 'rightDeckOrigBpm');
+    const keyEl = document.getElementById(side === 'left' ? 'leftDeckOrigKey' : 'rightDeckOrigKey');
+    const speedEl = document.getElementById(side === 'left' ? 'leftDeckNativeSpeed' : 'rightDeckNativeSpeed');
+    const imgEl = document.getElementById(side === 'left' ? 'leftDeckArtImg' : 'rightDeckArtImg');
+    const fallbackEl = document.getElementById(side === 'left' ? 'leftDeckArtFallback' : 'rightDeckArtFallback');
+    const speedSelect = document.getElementById(side === 'left' ? 'leftDeckSpeedSelect' : 'rightDeckSpeedSelect');
+
+    if (titleEl) titleEl.textContent = track.title || 'Source';
+    if (subEl) subEl.textContent = track.artist || 'Load a track from the library';
+    if (bpmEl) bpmEl.textContent = track.bpm ?? '—';
+    if (keyEl) keyEl.textContent = track.key || '—';
+    const speedText = Number(track.speed) === 45 ? '45' : '33⅓';
+    if (speedEl) speedEl.textContent = speedText;
+    if (speedSelect) speedSelect.value = Number(track.speed) === 45 ? '45' : '33';
+
+    // Keep artwork state coherent even if async fetch hasn't finished yet
+    if (imgEl && fallbackEl){
+      const hasSrc = !!imgEl.getAttribute('src');
+      fallbackEl.style.display = hasSrc ? 'none' : '';
+    }
+
+    // Trigger layout helpers if present
+    try { if (typeof window.syncDualArtHeights === 'function') window.syncDualArtHeights(); } catch(e){}
+    try { if (typeof window.updateStep4ShellSliders === 'function') window.updateStep4ShellSliders(); } catch(e){}
+    try { if (typeof window.renderRightSuggestions === 'function' && side === 'left') window.renderRightSuggestions(); } catch(e){}
+    try { if (typeof window.renderLeftSuggestions === 'function' && side === 'right') window.renderLeftSuggestions(); } catch(e){}
+    try { if (typeof window.updateLeftDeckFeedback === 'function') window.updateLeftDeckFeedback(); } catch(e){}
+    try { if (typeof window.updateRightDeckFeedback === 'function') window.updateRightDeckFeedback(); } catch(e){}
+  }
+
+  window.syncDeckDisplay = syncDeckDisplay;
+
+  // Wrap the app's left/right load helpers so UI refresh happens immediately
+  if (typeof window.setLeftDeckFromTrack === 'function') {
+    const originalSetLeftDeckFromTrack = window.setLeftDeckFromTrack;
+    window.setLeftDeckFromTrack = function(track){
+      const result = originalSetLeftDeckFromTrack.apply(this, arguments);
+      syncDeckDisplay('left', track);
+      return result;
+    };
+  }
+
+  if (typeof window.setRightDeckFromTrack === 'function') {
+    const originalSetRightDeckFromTrack = window.setRightDeckFromTrack;
+    window.setRightDeckFromTrack = function(track){
+      const result = originalSetRightDeckFromTrack.apply(this, arguments);
+      syncDeckDisplay('right', track);
+      return result;
+    };
+  }
+
+  // Also patch button flows in case they bypass the wrapper timing
+  const loadLeftBtn = document.getElementById('loadLeftBtn');
+  const loadRightBtn = document.getElementById('loadRightBtn');
+  const popupLoadLeft = document.getElementById('libraryPopupLoadLeft');
+  const popupLoadRight = document.getElementById('libraryPopupLoadRight');
+
+  function forceRefreshFromCurrentDecks(){
+    try { if (typeof leftDeckTrack !== 'undefined' && leftDeckTrack) syncDeckDisplay('left', leftDeckTrack); } catch(e){}
+    try { if (typeof rightDeckTrack !== 'undefined' && rightDeckTrack) syncDeckDisplay('right', rightDeckTrack); } catch(e){}
+  }
+
+  [loadLeftBtn, loadRightBtn, popupLoadLeft, popupLoadRight].forEach(btn=>{
+    if (!btn) return;
+    btn.addEventListener('click', ()=>setTimeout(forceRefreshFromCurrentDecks, 0));
+    btn.addEventListener('click', ()=>setTimeout(forceRefreshFromCurrentDecks, 60));
+  });
+})();
+</script>
+
+
+
+
+<script>
+/* v2.7.2: unified CSV import sync for center + popup */
+(function(){
+  async function importCsvIntoApp(file){
+    if (!file || typeof parseCSVText !== 'function') return false;
+    try{
+      const text = await file.text();
+      const parsed = parseCSVText(text);
+      if (!parsed || !parsed.length) return false;
+
+      // single source of truth
+      try { libraryTracks = parsed; } catch(e) {}
+      window.libraryTracks = parsed;
+
+      // refresh center controls
+      try { if (typeof populateGenreFilter === 'function') populateGenreFilter(); } catch(e) {}
+      try { if (typeof populateTrackSelect === 'function') populateTrackSelect((typeof trackSearch !== 'undefined' && trackSearch) ? trackSearch.value || '' : ''); } catch(e) {}
+
+      try { if (typeof populateGenreFilterDual === 'function') populateGenreFilterDual(); } catch(e) {}
+      try { if (typeof populateTrackSelectDual === 'function') populateTrackSelectDual((typeof trackSearchDual !== 'undefined' && trackSearchDual) ? trackSearchDual.value || '' : ''); } catch(e) {}
+
+      // refresh popup
+      try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e) {}
+
+      // update status text
+      const msg = `Imported ${parsed.length} tracks from ${file.name}`;
+      const dualInfo = document.getElementById('proSourceInfoDual');
+      if (dualInfo) dualInfo.textContent = msg;
+      const popupSub = document.getElementById('libraryPopupSub');
+      if (popupSub) popupSub.textContent = msg;
+
+      return true;
+    } catch (e){
+      console.error(e);
+      return false;
+    }
+  }
+
+  window.importCsvIntoApp = importCsvIntoApp;
+
+  const centerCsv = document.getElementById('csvFileInputDual');
+  if (centerCsv){
+    centerCsv.addEventListener('change', async ()=>{
+      const file = centerCsv.files && centerCsv.files[0];
+      await importCsvIntoApp(file);
+    });
+  }
+
+  const popupCsv = document.getElementById('libraryPopupCsvInput');
+  if (popupCsv){
+    popupCsv.addEventListener('change', async ()=>{
+      const file = popupCsv.files && popupCsv.files[0];
+      await importCsvIntoApp(file);
+    });
+  }
+})();
+</script>
+
+
+<script>
+/* v2.8.0: suggestion paging controls */
+(function(){
+  const leftPrev = document.getElementById('leftSuggestionsPrevBtn');
+  const leftNext = document.getElementById('leftSuggestionsNextBtn');
+  const rightPrev = document.getElementById('rightSuggestionsPrevBtn');
+  const rightNext = document.getElementById('rightSuggestionsNextBtn');
+
+  function refreshLeftPage(){
+    try {
+      if (typeof window.renderLeftSuggestions === 'function') {
+        window.renderLeftSuggestions();
+      }
+    } catch(e){}
+  }
+
+  function refreshRightPage(){
+    try {
+      if (typeof window.renderRightSuggestions === 'function') {
+        window.renderRightSuggestions();
+      }
+    } catch(e){}
+  }
+
+  if (leftPrev) leftPrev.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.leftSuggestionPage = Math.max(0, (window.leftSuggestionPage || 0) - 1);
+    refreshLeftPage();
+  });
+
+  if (leftNext) leftNext.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.leftSuggestionPage = (window.leftSuggestionPage || 0) + 1;
+    refreshLeftPage();
+  });
+
+  if (rightPrev) rightPrev.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.rightSuggestionPage = Math.max(0, (window.rightSuggestionPage || 0) - 1);
+    refreshRightPage();
+  });
+
+  if (rightNext) rightNext.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.rightSuggestionPage = (window.rightSuggestionPage || 0) + 1;
+    refreshRightPage();
+  });
+
+  updateSuggestionPagerUI('left', 0, 0);
+  updateSuggestionPagerUI('right', 0, 0);
+})();
+</script>
+
+
+<script>
+/* v2.8.8: fix popup library search */
+(function(){
+  function refreshPopup(){
+    try{
+      if (typeof window.renderLibraryPopup === 'function'){
+        window.renderLibraryPopup();
+      }
+    }catch(e){}
+  }
+
+  const searchInput = document.getElementById('trackSearchDual');
+  if (searchInput){
+    searchInput.addEventListener('input', refreshPopup);
+    searchInput.addEventListener('keyup', refreshPopup);
+  }
+
+  const genre = document.getElementById('genreFilterDual');
+  if (genre){
+    genre.addEventListener('change', refreshPopup);
+  }
+
+  const decade = document.getElementById('decadeFilterDual');
+  if (decade){
+    decade.addEventListener('change', refreshPopup);
+  }
+})();
+</script>
+
+
+<script>
+/* v2.8.9: popup-local search */
+(function(){
+  const popupSearch = document.getElementById('libraryPopupSearch');
+  if (popupSearch){
+    popupSearch.addEventListener('input', () => {
+      try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e){}
+    });
+  }
+
+  const openBtn = document.getElementById('expandLibraryBtn');
+  if (openBtn && popupSearch){
+    openBtn.addEventListener('click', () => {
+      // seed popup search from center search only if popup field is empty
+      const centerSearch = document.getElementById('trackSearchDual');
+      if (!popupSearch.value && centerSearch && centerSearch.value){
+        popupSearch.value = centerSearch.value;
+      }
+      try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e){}
+      setTimeout(() => { try { popupSearch.focus(); popupSearch.select(); } catch(e){} }, 0);
+    });
+  }
+})();
+</script>
+
+
+<script>
+
+
+
+<script>
+/* v2.8.14: eject deck buttons */
+(function(){
+  function clearDeckArtwork(side){
+    const img = document.getElementById(side === 'left' ? 'leftDeckArtImg' : 'rightDeckArtImg');
+    const fallback = document.getElementById(side === 'left' ? 'leftDeckArtFallback' : 'rightDeckArtFallback');
+    if (img){
+      img.removeAttribute('src');
+      img.removeAttribute('data-fallback-tried');
+    }
+    if (fallback) fallback.style.display = '';
+  }
+
+  function clearDeckUI(side){
+    const titleEl = document.getElementById(side === 'left' ? 'leftDeckSourceTitle' : 'rightDeckSourceTitle');
+    const subEl = document.getElementById(side === 'left' ? 'leftDeckSourceSub' : 'rightDeckSourceSub');
+    const bpmEl = document.getElementById(side === 'left' ? 'leftDeckOrigBpm' : 'rightDeckOrigBpm');
+    const keyEl = document.getElementById(side === 'left' ? 'leftDeckOrigKey' : 'rightDeckOrigKey');
+    const speedEl = document.getElementById(side === 'left' ? 'leftDeckNativeSpeed' : 'rightDeckNativeSpeed');
+    const pitchDisplay = document.getElementById(side === 'left' ? 'leftPitchDisplay' : 'rightPitchDisplay');
+    const slider = document.getElementById(side === 'left' ? 'leftPitchSliderStep4' : 'rightPitchSliderStep4');
+    const speedSelect = document.getElementById(side === 'left' ? 'leftDeckSpeedSelect' : 'rightDeckSpeedSelect');
+    const rangeSelect = document.getElementById(side === 'left' ? 'leftRangeSelect' : 'rightRangeSelect');
+    const dualInfo = document.getElementById('proSourceInfoDual');
+
+    if (titleEl) titleEl.textContent = 'Source';
+    if (subEl) subEl.textContent = 'Load a track from the library';
+    if (bpmEl) bpmEl.textContent = '—';
+    if (keyEl) keyEl.textContent = '—';
+    if (speedEl) speedEl.textContent = '33⅓';
+    if (pitchDisplay) pitchDisplay.textContent = '+0%';
+    if (slider) slider.value = '0';
+    if (speedSelect) speedSelect.value = '33';
+    if (rangeSelect && !rangeSelect.value) rangeSelect.value = '8';
+
+    clearDeckArtwork(side);
+
+    if (dualInfo){
+      dualInfo.textContent = 'Load a track to Left or Right to begin.';
+    }
+  }
+
+  function clearDeckState(side){
+    if (side === 'left'){
+      try { leftDeckTrack = null; } catch(e){}
+      window.rightSuggestionPage = 0;
+    } else {
+      try { rightDeckTrack = null; } catch(e){}
+      window.leftSuggestionPage = 0;
+    }
+  }
+
+  function refreshAfterEject(){
+    try { if (typeof window.renderLeftSuggestions === 'function') window.renderLeftSuggestions(); } catch(e){}
+    try { if (typeof window.renderRightSuggestions === 'function') window.renderRightSuggestions(); } catch(e){}
+    try { if (typeof window.updateLeftDeckFeedback === 'function') window.updateLeftDeckFeedback(); } catch(e){}
+    try { if (typeof window.updateRightDeckFeedback === 'function') window.updateRightDeckFeedback(); } catch(e){}
+    try { if (typeof window.updateStep4ShellSliders === 'function') window.updateStep4ShellSliders(); } catch(e){}
+    try { if (typeof window.syncDualArtHeights === 'function') window.syncDualArtHeights(); } catch(e){}
+  }
+
+  function ejectDeck(side){
+    clearDeckState(side);
+    clearDeckUI(side);
+    refreshAfterEject();
+  }
+
+  const leftBtn = document.getElementById('leftDeckEjectBtn');
+  const rightBtn = document.getElementById('rightDeckEjectBtn');
+
+  if (leftBtn) leftBtn.addEventListener('click', ()=>ejectDeck('left'));
+  if (rightBtn) rightBtn.addEventListener('click', ()=>ejectDeck('right'));
+})();
+</script>
+
+
+<script>
+/* v2.8.15: robust global eject handlers */
+(function(){
+  function clearDeckArtwork(side){
+    const img = document.getElementById(side === 'left' ? 'leftDeckArtImg' : 'rightDeckArtImg');
+    const fallback = document.getElementById(side === 'left' ? 'leftDeckArtFallback' : 'rightDeckArtFallback');
+    if (img){
+      img.removeAttribute('src');
+      img.removeAttribute('data-fallback-tried');
+    }
+    if (fallback) fallback.style.display = '';
+  }
+
+  function clearDeckUI(side){
+    const titleEl = document.getElementById(side === 'left' ? 'leftDeckSourceTitle' : 'rightDeckSourceTitle');
+    const subEl = document.getElementById(side === 'left' ? 'leftDeckSourceSub' : 'rightDeckSourceSub');
+    const bpmEl = document.getElementById(side === 'left' ? 'leftDeckOrigBpm' : 'rightDeckOrigBpm');
+    const keyEl = document.getElementById(side === 'left' ? 'leftDeckOrigKey' : 'rightDeckOrigKey');
+    const speedEl = document.getElementById(side === 'left' ? 'leftDeckNativeSpeed' : 'rightDeckNativeSpeed');
+    const pitchDisplay = document.getElementById(side === 'left' ? 'leftPitchDisplay' : 'rightPitchDisplay');
+    const slider = document.getElementById(side === 'left' ? 'leftPitchSliderStep4' : 'rightPitchSliderStep4');
+    const speedSelect = document.getElementById(side === 'left' ? 'leftDeckSpeedSelect' : 'rightDeckSpeedSelect');
+
+    if (titleEl) titleEl.textContent = 'Source';
+    if (subEl) subEl.textContent = 'Load a track from the library';
+    if (bpmEl) bpmEl.textContent = '—';
+    if (keyEl) keyEl.textContent = '—';
+    if (speedEl) speedEl.textContent = '33⅓';
+    if (pitchDisplay) pitchDisplay.textContent = '+0%';
+    if (slider) {
+      slider.value = '0';
+      slider.dispatchEvent(new Event('input', {bubbles:true}));
+    }
+    if (speedSelect) speedSelect.value = '33';
+
+    clearDeckArtwork(side);
+  }
+
+  function refreshEverything(){
+    try { if (typeof window.renderLeftSuggestions === 'function') window.renderLeftSuggestions(); } catch(e){}
+    try { if (typeof window.renderRightSuggestions === 'function') window.renderRightSuggestions(); } catch(e){}
+    try { if (typeof window.updateLeftDeckFeedback === 'function') window.updateLeftDeckFeedback(); } catch(e){}
+    try { if (typeof window.updateRightDeckFeedback === 'function') window.updateRightDeckFeedback(); } catch(e){}
+    try { if (typeof window.updateStep4ShellSliders === 'function') window.updateStep4ShellSliders(); } catch(e){}
+    try { if (typeof window.syncDualArtHeights === 'function') window.syncDualArtHeights(); } catch(e){}
+  }
+
+  window.ejectLeftDeck = function(){
+    try { leftDeckTrack = null; } catch(e){}
+    try { window.rightSuggestionPage = 0; } catch(e){}
+    clearDeckUI('left');
+    refreshEverything();
+  };
+
+  window.ejectRightDeck = function(){
+    try { rightDeckTrack = null; } catch(e){}
+    try { window.leftSuggestionPage = 0; } catch(e){}
+    clearDeckUI('right');
+    refreshEverything();
+  };
+})();
+</script>
+
+
+<script>
+/* v2.9.0: remember last load side + rerender row markers after loads */
+(function(){
+  const leftBtn = document.getElementById('libraryPopupLoadLeft');
+  const rightBtn = document.getElementById('libraryPopupLoadRight');
+  if (leftBtn) leftBtn.addEventListener('click', ()=>{ window.popupLastLoadSide = 'left'; setTimeout(()=>{ try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e){} }, 20); });
+  if (rightBtn) rightBtn.addEventListener('click', ()=>{ window.popupLastLoadSide = 'right'; setTimeout(()=>{ try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e){} }, 20); });
+})();
+</script>
+
+
+<script>
+/* v2.9.1: robust L/R markers + double-click load */
+(function(){
+  const popupLeft = document.getElementById('libraryPopupLoadLeft');
+  const popupRight = document.getElementById('libraryPopupLoadRight');
+  const centerLeft = document.getElementById('loadLeftBtn');
+  const centerRight = document.getElementById('loadRightBtn');
+
+  if (popupLeft) popupLeft.addEventListener('click', ()=>{ window.popupLastLoadSide = 'left'; setTimeout(()=>{ try { window.renderLibraryPopup && window.renderLibraryPopup(); } catch(e){} }, 60); });
+  if (popupRight) popupRight.addEventListener('click', ()=>{ window.popupLastLoadSide = 'right'; setTimeout(()=>{ try { window.renderLibraryPopup && window.renderLibraryPopup(); } catch(e){} }, 60); });
+  if (centerLeft) centerLeft.addEventListener('click', ()=>{ window.popupLastLoadSide = 'left'; setTimeout(()=>{ try { window.renderLibraryPopup && window.renderLibraryPopup(); } catch(e){} }, 60); });
+  if (centerRight) centerRight.addEventListener('click', ()=>{ window.popupLastLoadSide = 'right'; setTimeout(()=>{ try { window.renderLibraryPopup && window.renderLibraryPopup(); } catch(e){} }, 60); });
+})();
+</script>
+
+
+<script>
+/* v2.9.2: reliable L/R markers using explicit loaded library indices */
+(function(){
+  function updateLoadedIndexForSide(side, track){
+    try{
+      if (!window.libraryTracks || !track) {
+        if (side === 'left') window.loadedLeftLibraryIndex = null;
+        else window.loadedRightLibraryIndex = null;
+        return;
+      }
+
+      let idx = window.libraryTracks.findIndex(t => t === track);
+      if (idx < 0){
+        idx = window.libraryTracks.findIndex(t =>
+          String(t.artist || '').trim() === String(track.artist || '').trim() &&
+          String(t.title || '').trim() === String(track.title || '').trim() &&
+          String(t.album || '').trim() === String(track.album || '').trim() &&
+          String(t.key || '').trim() === String(track.key || '').trim() &&
+          String(t.bpm ?? '').trim() === String(track.bpm ?? '').trim()
+        );
+      }
+
+      if (side === 'left') window.loadedLeftLibraryIndex = idx >= 0 ? idx : null;
+      else window.loadedRightLibraryIndex = idx >= 0 ? idx : null;
+    } catch(e){}
+  }
+
+  if (typeof window.setLeftDeckFromTrack === 'function' && !window.__wrappedLeftDeckForMarkers){
+    const orig = window.setLeftDeckFromTrack;
+    window.setLeftDeckFromTrack = function(track){
+      const result = orig.apply(this, arguments);
+      updateLoadedIndexForSide('left', track);
+      try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e){}
+      return result;
+    };
+    window.__wrappedLeftDeckForMarkers = true;
+  }
+
+  if (typeof window.setRightDeckFromTrack === 'function' && !window.__wrappedRightDeckForMarkers){
+    const orig = window.setRightDeckFromTrack;
+    window.setRightDeckFromTrack = function(track){
+      const result = orig.apply(this, arguments);
+      updateLoadedIndexForSide('right', track);
+      try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e){}
+      return result;
+    };
+    window.__wrappedRightDeckForMarkers = true;
+  }
+
+  if (typeof window.ejectLeftDeck === 'function' && !window.__wrappedEjectLeftForMarkers){
+    const orig = window.ejectLeftDeck;
+    window.ejectLeftDeck = function(){
+      const result = orig.apply(this, arguments);
+      window.loadedLeftLibraryIndex = null;
+      try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e){}
+      return result;
+    };
+    window.__wrappedEjectLeftForMarkers = true;
+  }
+
+  if (typeof window.ejectRightDeck === 'function' && !window.__wrappedEjectRightForMarkers){
+    const orig = window.ejectRightDeck;
+    window.ejectRightDeck = function(){
+      const result = orig.apply(this, arguments);
+      window.loadedRightLibraryIndex = null;
+      try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e){}
+      return result;
+    };
+    window.__wrappedEjectRightForMarkers = true;
+  }
+
+  // If popup load buttons exist, make their side explicit for markers
+  const popupLeft = document.getElementById('libraryPopupLoadLeft');
+  const popupRight = document.getElementById('libraryPopupLoadRight');
+  if (popupLeft) popupLeft.addEventListener('click', ()=>setTimeout(()=>{ try { window.renderLibraryPopup && window.renderLibraryPopup(); } catch(e){} }, 30));
+  if (popupRight) popupRight.addEventListener('click', ()=>setTimeout(()=>{ try { window.renderLibraryPopup && window.renderLibraryPopup(); } catch(e){} }, 30));
+})();
+</script>
+
+
+<script>
+/* v2.9.3: option + arrow load shortcuts */
+(function(){
+  document.addEventListener('keydown', function(e){
+    const overlay = document.getElementById('libraryPopupOverlay');
+    if (!overlay || overlay.hidden) return;
+
+    // Only trigger when option/alt is pressed
+    if (!e.altKey) return;
+
+    // prevent browser behavior
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight'){
+      e.preventDefault();
+    }
+
+    if (e.key === 'ArrowLeft'){
+      if (typeof window.loadPopupSelected === 'function'){
+        window.popupLastLoadSide = 'left';
+        window.loadPopupSelected('left');
+      }
+    }
+
+    if (e.key === 'ArrowRight'){
+      if (typeof window.loadPopupSelected === 'function'){
+        window.popupLastLoadSide = 'right';
+        window.loadPopupSelected('right');
+      }
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
