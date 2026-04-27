@@ -1960,6 +1960,53 @@ body[data-skin="silver"] .file-btn {
 #leftPitchSliderStep4,
 #rightPitchSliderStep4 {
   width: 40px;
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 50%;
+  height: auto;
+  margin: 0;
+  transform: translateX(-50%);
+  opacity: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  writing-mode: bt-lr;
+  z-index: 1;
+  pointer-events: none;
+}
+
+#leftPitchSliderStep4::-webkit-slider-thumb,
+#rightPitchSliderStep4::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 36px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+#leftPitchSliderStep4::-webkit-slider-runnable-track,
+#rightPitchSliderStep4::-webkit-slider-runnable-track {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+#leftPitchSliderStep4::-moz-range-thumb,
+#rightPitchSliderStep4::-moz-range-thumb {
+  width: 100%;
+  height: 36px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+#leftPitchSliderStep4::-moz-range-track,
+#rightPitchSliderStep4::-moz-range-track {
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .dual-scale-col {
@@ -2937,7 +2984,7 @@ body[data-skin="silver"] .dual-track-meta-values{
 
 .dual-load-row{
   display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
+  grid-template-columns: 1fr auto 1fr !important;
   gap: 8px !important;
   margin-bottom: 0 !important;
 }
@@ -2949,6 +2996,300 @@ body[data-skin="silver"] .dual-track-meta-values{
   font-size: 0.78rem !important;
   font-weight: 800 !important;
   padding: 8px 10px !important;
+}
+
+.dual-load-row .dual-sync-btn{
+  min-width: 72px !important;
+  padding: 8px 12px !important;
+}
+
+.dual-load-row .dual-sync-btn.is-active{
+  border-color: rgba(109,211,255,0.42) !important;
+  box-shadow: 0 0 0 2px rgba(109,211,255,0.12) !important;
+  background: rgba(109,211,255,0.10) !important;
+}
+
+.dual-library-dock{
+  grid-column: 1 / -1;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+    linear-gradient(180deg, #0f151d, #090d14);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    0 14px 28px rgba(0,0,0,0.24);
+}
+
+.dual-library-dock[hidden]{
+  display:none !important;
+}
+
+.dual-library-dock-head{
+  display:grid;
+  grid-template-columns: auto minmax(220px, 1fr) auto;
+  gap: 12px;
+  align-items:center;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015)),
+    linear-gradient(180deg, #141b26, #0d131d);
+}
+
+.dual-library-dock-title{
+  display:flex;
+  flex-direction:column;
+  gap: 3px;
+}
+
+.dual-library-dock-sub{
+  color: var(--muted);
+  font-size: 0.68rem;
+  line-height: 1.2;
+}
+
+.dual-library-search-shell{
+  display:grid;
+  grid-template-columns: auto 1fr;
+  align-items:center;
+  gap: 8px;
+  min-height: 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.035);
+  padding: 0 12px;
+}
+
+.dual-library-search-shell span{
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dual-library-search-shell input{
+  min-height: 38px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 0.88rem;
+}
+
+.dual-library-dock-actions,
+.dual-library-main-actions{
+  display:flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content:flex-end;
+}
+
+.dual-library-dock-body{
+  display:grid;
+  grid-template-columns: minmax(180px, 0.24fr) minmax(0, 1fr);
+  min-height: 46vh;
+}
+
+.dual-library-sidebar{
+  border-right: 1px solid rgba(255,255,255,0.08);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+    linear-gradient(180deg, #0c1119, #0a0f16);
+  padding: 12px;
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+}
+
+.dual-library-pane-title{
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.dual-crate-list{
+  display:flex;
+  flex-direction:column;
+  gap: 6px;
+  overflow:auto;
+  min-height: 0;
+}
+
+.dual-crate-item{
+  display:grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 8px;
+  align-items:center;
+  width:100%;
+  min-height: 34px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: rgba(255,255,255,0.03);
+  color: var(--text);
+  text-align:left;
+  cursor:pointer;
+}
+
+.dual-crate-item.is-active{
+  border-color: rgba(109,211,255,0.34);
+  background: rgba(109,211,255,0.10);
+}
+
+.dual-crate-count{
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.dual-crate-remove{
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255,255,255,0.08);
+  color: var(--muted);
+  cursor:pointer;
+}
+
+.dual-library-main{
+  display:grid;
+  grid-template-rows: auto minmax(0, 1fr) 180px;
+  min-height: 0;
+}
+
+.dual-library-toolbar{
+  display:grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 10px;
+  align-items:center;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.dual-library-toolbar-copy{
+  color: var(--muted);
+  font-size: 0.74rem;
+  min-height: 1.2em;
+}
+
+.dual-library-table-wrap{
+  overflow:auto;
+  min-height: 0;
+}
+
+.dual-library-table{
+  width:100%;
+  border-collapse: collapse;
+  font-size: 0.79rem;
+}
+
+.dual-library-table th,
+.dual-library-table td{
+  padding: 8px 10px;
+  text-align:left;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  white-space: nowrap;
+}
+
+.dual-library-table th{
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: rgba(12,18,28,0.98);
+  font-size: 0.67rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor:pointer;
+  user-select:none;
+}
+
+.dual-library-table tr:hover td{
+  background: rgba(255,255,255,0.04);
+}
+
+.dual-library-table tr.selected td{
+  background: rgba(109,211,255,0.12);
+}
+
+.dual-library-table .num-cell{
+  text-align:right;
+}
+
+.dual-library-empty{
+  padding: 16px;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.dual-prepare-panel{
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display:grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-height: 0;
+}
+
+.dual-prepare-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 8px;
+  padding: 10px 14px;
+}
+
+.dual-prepare-body{
+  overflow:auto;
+  padding: 0 14px 14px;
+}
+
+.dual-prepare-list{
+  display:flex;
+  flex-direction:column;
+  gap: 6px;
+}
+
+.dual-prepare-item{
+  display:grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items:center;
+  padding: 9px 10px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.dual-prepare-meta{
+  display:flex;
+  flex-direction:column;
+  gap: 3px;
+  min-width:0;
+}
+
+.dual-prepare-title{
+  font-weight: 800;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dual-prepare-sub{
+  color: var(--muted);
+  font-size: 0.72rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dual-prepare-actions{
+  display:flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content:flex-end;
 }
 
 .dual-center-module .pro-library{
@@ -3155,17 +3496,20 @@ body[data-skin="silver"] .dual-center-module .pro-source-info{
 .library-popup-overlay{
   position: fixed;
   inset: 0;
-  background: rgba(5,8,12,0.66);
-  backdrop-filter: blur(4px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  background: transparent;
+  backdrop-filter: none;
   padding: 24px;
   z-index: 9999;
+  pointer-events: none;
 }
 .library-popup-overlay[hidden]{ display:none !important; }
 .library-popup{
+  position: fixed;
+  top: 7vh;
+  left: 50%;
+  transform: translateX(-50%);
   width: min(1240px, 96vw);
+  height: min(86vh, 900px);
   max-height: min(86vh, 900px);
   display:flex;
   flex-direction:column;
@@ -3178,6 +3522,9 @@ body[data-skin="silver"] .dual-center-module .pro-source-info{
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.04),
     0 20px 48px rgba(0,0,0,0.35);
+  min-width: 760px;
+  min-height: 420px;
+  pointer-events: auto;
 }
 .library-popup-head{
   display:flex;
@@ -3186,6 +3533,13 @@ body[data-skin="silver"] .dual-center-module .pro-source-info{
   gap:14px;
   padding: 14px 14px 12px;
   border-bottom:1px solid rgba(255,255,255,0.08);
+  cursor: move;
+  user-select: none;
+}
+.library-popup-head input,
+.library-popup-head button,
+.library-popup-head label{
+  cursor:auto;
 }
 .library-popup-title{
   font-size:0.64rem;
@@ -3216,6 +3570,8 @@ body[data-skin="silver"] .dual-center-module .pro-source-info{
 .library-popup-table-wrap{
   overflow:auto;
   padding: 0;
+  flex: 1 1 auto;
+  min-height: 0;
 }
 .library-popup-table{
   width:100%;
@@ -3648,6 +4004,16 @@ body[data-skin="silver"] .deck-eject-btn:hover{
   line-height: 1.2;
   color: var(--muted);
 }
+.library-popup-resize{
+  position:absolute;
+  right:0;
+  bottom:0;
+  width:20px;
+  height:20px;
+  cursor:nwse-resize;
+  background:
+    linear-gradient(135deg, transparent 0 42%, rgba(255,255,255,0.18) 42% 48%, transparent 48% 58%, rgba(255,255,255,0.12) 58% 64%, transparent 64%);
+}
 
 body[data-skin="silver"] .library-popup-table tbody tr:hover{
   background: rgba(63,76,91,0.06) !important;
@@ -3665,6 +4031,194 @@ body[data-skin="silver"] .library-row-marker.marker-right{
   background: rgba(255,211,106,0.18) !important;
   color: #7f5a00 !important;
   border-color: rgba(255,211,106,0.22) !important;
+}
+
+
+/* v2.9.6: aged loaded tracks turn light red until app closes */
+.library-popup-table tbody tr.is-aged-loaded td{
+  color: #ffb3b3 !important;
+}
+body[data-skin="silver"] .library-popup-table tbody tr.is-aged-loaded td{
+  color: #b85c5c !important;
+}
+
+
+/* v3.0.0: session play history popup */
+.history-popup-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(5,8,12,0.66);
+  backdrop-filter: blur(4px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  z-index:10000;
+}
+.history-popup-overlay[hidden]{ display:none !important; }
+.history-popup{
+  width:min(1260px, 96vw);
+  max-height:min(86vh, 900px);
+  display:flex;
+  flex-direction:column;
+  border-radius:16px;
+  overflow:hidden;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)),
+    linear-gradient(180deg, #111825, #0b1119);
+  border:1px solid rgba(255,255,255,0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    0 20px 48px rgba(0,0,0,0.35);
+}
+.history-popup-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+  padding:14px 14px 12px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.history-popup-title{
+  font-size:0.64rem;
+  line-height:1.05;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:700;
+}
+.history-popup-sub{
+  margin-top:4px;
+  color:var(--muted);
+  font-size:0.70rem;
+  line-height:1.2;
+}
+.history-popup-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.history-popup-actions .tap-btn{
+  min-height:32px !important;
+  border-radius:8px !important;
+  font-size:0.72rem !important;
+  padding:6px 10px !important;
+}
+.history-popup-table-wrap{
+  overflow:auto;
+}
+.history-popup-table{
+  width:100%;
+  min-width:1080px;
+  table-layout:fixed;
+  border-collapse:collapse;
+  font-size:0.73rem;
+}
+.history-popup-table thead th{
+  position:sticky;
+  top:0;
+  z-index:1;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)),
+    linear-gradient(180deg, #101722, #0c121a);
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:0.09em;
+  font-size:0.58rem;
+  padding:9px 10px;
+  text-align:left;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  white-space:nowrap;
+}
+.history-popup-table tbody td{
+  padding:9px 10px;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  color:var(--text);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.history-popup-table th:nth-child(1), .history-popup-table td:nth-child(1){ width: 14%; }
+.history-popup-table th:nth-child(2), .history-popup-table td:nth-child(2){ width: 6%; }
+.history-popup-table th:nth-child(3), .history-popup-table td:nth-child(3){ width: 16%; }
+.history-popup-table th:nth-child(4), .history-popup-table td:nth-child(4){ width: 20%; }
+.history-popup-table th:nth-child(5), .history-popup-table td:nth-child(5){ width: 7%; }
+.history-popup-table th:nth-child(6), .history-popup-table td:nth-child(6){ width: 7%; }
+.history-popup-table th:nth-child(7), .history-popup-table td:nth-child(7){ width: 12%; }
+.history-popup-table th:nth-child(8), .history-popup-table td:nth-child(8){ width: 14%; }
+.history-popup-table th:nth-child(9), .history-popup-table td:nth-child(9){ width: 6%; }
+.history-popup-table th:nth-child(10), .history-popup-table td:nth-child(10){ width: 8%; }
+.history-popup-table tbody tr:hover{
+  background:rgba(255,255,255,0.04);
+}
+.history-popup-footnote{
+  padding:8px 12px 12px;
+  font-size:0.62rem;
+  line-height:1.2;
+  color:var(--muted);
+}
+body[data-skin="silver"] .history-popup{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.96), rgba(233,238,244,0.90)),
+    #e7edf4 !important;
+  border-color: rgba(63, 76, 91, 0.16) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.96),
+    0 20px 48px rgba(61,72,90,0.18) !important;
+}
+body[data-skin="silver"] .history-popup-title,
+body[data-skin="silver"] .history-popup-sub,
+body[data-skin="silver"] .history-popup-footnote{
+  color:#516074 !important;
+}
+body[data-skin="silver"] .history-popup-head{
+  border-bottom-color: rgba(63,76,91,0.12) !important;
+}
+body[data-skin="silver"] .history-popup-table thead th{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.99), rgba(240,244,248,0.95)),
+    #f3f6fa !important;
+  color:#516074 !important;
+  border-bottom-color: rgba(63,76,91,0.12) !important;
+}
+body[data-skin="silver"] .history-popup-table tbody td{
+  color:#10151b !important;
+  border-bottom-color: rgba(63,76,91,0.08) !important;
+}
+body[data-skin="silver"] .history-popup-table tbody tr:hover{
+  background: rgba(63,76,91,0.05) !important;
+}
+
+
+/* v3.0.1: ensure history button is always visible */
+.history-visible-btn{
+  display:inline-flex !important;
+  opacity:1 !important;
+  visibility:visible !important;
+  position:relative !important;
+  z-index:50 !important;
+}
+.pro-library-actions{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:8px !important;
+}
+
+
+/* v3.0.2: visible history button in dual center controls */
+.dual-center-module .pro-library-actions{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:8px !important;
+  align-items:center !important;
+}
+.dual-center-module .history-visible-btn{
+  display:inline-flex !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  position:relative !important;
+  z-index:20 !important;
 }
 
 </style>
@@ -3759,7 +4313,7 @@ body[data-skin="silver"] .library-row-marker.marker-right{
 <div class="pro-library-actions">
 <button class="tap-btn" id="loadTrackBtn" type="button">Load to Source Deck</button>
 <label class="file-btn" for="csvFileInput">Import CSV</label>
-<input accept=".csv,text/csv" hidden="" id="csvFileInput" type="file"/>
+<input accept=".csv,.txt,text/csv,text/plain,text/tab-separated-values" hidden="" id="csvFileInput" type="file"/>
 </div>
 <div class="pro-source-info" id="proSourceInfo">Using bundled sample library.</div>
 <div class="library-table-wrap" id="libraryTableWrap">
@@ -3949,12 +4503,13 @@ body[data-skin="silver"] .library-row-marker.marker-right{
 <div class="dual-center-stack">
 <div class="dual-load-row">
 <button class="tap-btn" id="loadLeftBtn" type="button">Load Left</button>
+<button aria-pressed="false" class="tap-btn dual-sync-btn" id="dualSyncBtn" type="button">Sync</button>
 <button class="tap-btn" id="loadRightBtn" type="button">Load Right</button>
 </div>
 <div class="pro-library dual-pro-library">
 <div class="mini">Pro Library</div>
 <div class="pro-library-grid">
-<input id="trackSearchDual" placeholder="Search artist or song" type="text"/>
+<input id="trackSearchDual" placeholder="Search artist, title, album, key, or BPM" type="text"/>
 </div>
 <div class="pro-filter-grid">
 <select id="genreFilterDual">
@@ -3978,10 +4533,13 @@ body[data-skin="silver"] .library-row-marker.marker-right{
 <span>Smart Suggestions stay in selected decade</span>
 </label>
 <div class="pro-library-actions">
+<button class="tap-btn library-expand-btn" id="toggleDockLibraryBtn" type="button">Dock Library</button>
 <button class="tap-btn library-expand-btn" id="expandLibraryBtn" type="button" onclick="window.openLibraryPopup && window.openLibraryPopup()">Open Library</button>
+<button class="tap-btn library-expand-btn history-visible-btn" id="openHistoryBtn" type="button">History</button>
 <label class="file-btn" for="csvFileInputDual">Import CSV</label>
-<input accept=".csv,text/csv" hidden="" id="csvFileInputDual" type="file"/>
+<input accept=".csv,.txt,text/csv,text/plain,text/tab-separated-values" hidden="" id="csvFileInputDual" type="file"/>
 </div>
+<div class="pro-source-info" id="proSourceInfoDual">Import a CSV to build the deck library.</div>
 
 </div>
 </div>
@@ -4074,6 +4632,71 @@ body[data-skin="silver"] .library-row-marker.marker-right{
 </div>
 </section>
 
+<section class="dual-library-dock" hidden id="dualLibraryDock">
+<div class="dual-library-dock-head">
+<div class="dual-library-dock-title">
+<div class="mini">Library Dock</div>
+<div class="dual-library-dock-sub">Serato-style browse view with crates, library, and prepare.</div>
+</div>
+<label class="dual-library-search-shell" for="dualDockSearch">
+<span>Search</span>
+<input id="dualDockSearch" placeholder="Search library like Serato" type="text"/>
+</label>
+<div class="dual-library-dock-actions">
+<button class="tap-btn" id="dualDockHideBtn" type="button">Hide</button>
+</div>
+</div>
+<div class="dual-library-dock-body">
+<aside class="dual-library-sidebar">
+<div class="dual-library-pane-title">Crates</div>
+<div class="dual-crate-list" id="dualCrateList"></div>
+<button class="tap-btn" id="dualCreateCrateBtn" type="button">New Crate</button>
+</aside>
+<section class="dual-library-main">
+<div class="dual-library-toolbar">
+<div class="dual-library-toolbar-copy" id="dualDockLibraryStatus">Library ready.</div>
+<div class="dual-library-main-actions">
+<button class="tap-btn" id="dualDockAddToPrepareBtn" type="button">Add to Prepare</button>
+<button class="tap-btn" id="dualDockAddToCrateBtn" type="button">Add to Crate</button>
+</div>
+<div class="dual-library-main-actions">
+<button class="tap-btn" id="dualDockLoadLeftBtn" type="button">Load Left</button>
+<button class="tap-btn" id="dualDockLoadRightBtn" type="button">Load Right</button>
+</div>
+</div>
+<div class="dual-library-table-wrap">
+<table class="dual-library-table" id="dualDockLibraryTable">
+<thead><tr>
+<th data-sort-key="artist">Artist</th>
+<th data-sort-key="title">Song</th>
+<th data-sort-key="bpm" class="num-cell">BPM</th>
+<th data-sort-key="key">Key</th>
+<th data-sort-key="genre">Genre</th>
+<th data-sort-key="album">Album</th>
+<th data-sort-key="speed">Speed</th>
+<th data-sort-key="year">Year</th>
+</tr></thead>
+<tbody id="dualDockLibraryBody"></tbody>
+</table>
+</div>
+<div class="dual-prepare-panel">
+<div class="dual-prepare-head">
+<div>
+<div class="dual-library-pane-title">Prepare</div>
+<div class="dual-library-dock-sub">Quick-load picks for either deck.</div>
+</div>
+<div class="dual-library-main-actions">
+<button class="tap-btn" id="dualDockClearPrepareBtn" type="button">Clear</button>
+</div>
+</div>
+<div class="dual-prepare-body">
+<div class="dual-prepare-list" id="dualPrepareList"></div>
+</div>
+</div>
+</section>
+</div>
+</section>
+
 <div class="library-popup-overlay" id="libraryPopupOverlay" hidden>
   <div class="library-popup" id="libraryPopup">
     <div class="library-popup-head">
@@ -4086,7 +4709,7 @@ body[data-skin="silver"] .library-row-marker.marker-right{
       </div>
       <div class="library-popup-actions">
         <label class="file-btn" for="libraryPopupCsvInput">Import CSV</label>
-        <input accept=".csv,text/csv" hidden id="libraryPopupCsvInput" type="file" />
+        <input accept=".csv,.txt,text/csv,text/plain,text/tab-separated-values" hidden id="libraryPopupCsvInput" type="file" />
         <button class="tap-btn" id="libraryPopupClose" type="button" onclick="window.closeLibraryPopup && window.closeLibraryPopup()">Close</button>
         <button class="tap-btn" id="libraryPopupLoadLeft" type="button" onclick="window.loadPopupSelected && window.loadPopupSelected('left')">Load Left</button>
         <button class="tap-btn" id="libraryPopupLoadRight" type="button" onclick="window.loadPopupSelected && window.loadPopupSelected('right')">Load Right</button>
@@ -4110,6 +4733,44 @@ body[data-skin="silver"] .library-row-marker.marker-right{
       </table>
     </div>
     <div class="library-popup-footnote">Tip: Arrow keys move selection · Enter loads to the last-used side · Double-click loads the row · Esc closes the popup.</div>
+    <div class="library-popup-resize" id="libraryPopupResize" aria-hidden="true"></div>
+  </div>
+</div>
+
+
+<div class="history-popup-overlay" id="historyPopupOverlay" hidden>
+  <div class="history-popup" id="historyPopup">
+    <div class="history-popup-head">
+      <div>
+        <div class="history-popup-title">Play History</div>
+        <div class="history-popup-sub" id="historyPopupSub">Tracks are added after 60 seconds on a deck. Session only. Export includes all original loaded CSV fields.</div>
+      </div>
+      <div class="history-popup-actions">
+        <button class="tap-btn" id="exportHistoryCsvBtn" type="button">Export CSV</button>
+        <button class="tap-btn" id="clearHistoryBtn" type="button">Clear History</button>
+        <button class="tap-btn" id="closeHistoryBtn" type="button">Close</button>
+      </div>
+    </div>
+    <div class="history-popup-table-wrap">
+      <table class="history-popup-table" id="historyPopupTable">
+        <thead>
+          <tr>
+            <th>Played</th>
+            <th>Deck</th>
+            <th>Artist</th>
+            <th>Song</th>
+            <th>BPM</th>
+            <th>Key</th>
+            <th>Genre</th>
+            <th>Album</th>
+            <th>Speed</th>
+            <th>Year</th>
+          </tr>
+        </thead>
+        <tbody id="historyPopupBody"></tbody>
+      </table>
+    </div>
+    <div class="history-popup-footnote">Ordered by play time in this session. Export includes all visible history rows.</div>
   </div>
 </div>
 
@@ -4317,6 +4978,32 @@ body[data-skin="silver"] .library-row-marker.marker-right{
       return normalizeSpeed(speed) === 45 ? '45' : '33⅓';
     }
 
+    function normalizeTrackText(value) {
+      return String(value || '').trim().replace(/\s+/g, ' ').toLowerCase();
+    }
+
+    function normalizeTrackBpm(value) {
+      const num = Number(String(value ?? '').trim());
+      return Number.isFinite(num) ? Number(num.toFixed(3)) : null;
+    }
+
+    function buildTrackSearchText(track) {
+      if (!track) return '';
+      const bpmNum = Number(track.bpm);
+      const bpmText = Number.isFinite(bpmNum) ? bpmNum.toFixed(1) : '';
+      return normalizeTrackText([
+        track.artist,
+        track.title,
+        track.album,
+        track.genre,
+        track.year,
+        track.key,
+        bpmText,
+        track.speed,
+        formatSpeedLabel(track.speed)
+      ].join(' '));
+    }
+
     function getTrackNativeSpeed(track, fallback = 33) {
       return normalizeSpeed(track && track.speed, fallback);
     }
@@ -4328,27 +5015,100 @@ body[data-skin="silver"] .library-row-marker.marker-right{
     }
 
     function parseCSVText(text) {
-      const lines = text.split(/\r?\n/).filter(Boolean);
+      const lines = String(text || '').replace(/^\uFEFF/, '').split(/\r?\n/).filter(line => line.trim());
       if (!lines.length) return [];
-      const parseLine = (line) => line.split(',').map(part => part.trim());
-      const rawHeaders = parseLine(lines[0]).filter(Boolean);
-      const headers = rawHeaders.map(h => h.toLowerCase());
-      const findIndex = (name) => headers.findIndex(h => h.includes(name));
+
+      function parseDelimitedLine(line, delimiter) {
+        const out = [];
+        let current = '';
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+          const ch = line[i];
+          if (ch === '"') {
+            if (inQuotes && line[i + 1] === '"') {
+              current += '"';
+              i++;
+            } else {
+              inQuotes = !inQuotes;
+            }
+          } else if (ch === delimiter && !inQuotes) {
+            out.push(current.trim());
+            current = '';
+          } else {
+            current += ch;
+          }
+        }
+        out.push(current.trim());
+        return out.map(part => part.replace(/^"(.*)"$/, '$1').trim());
+      }
+
+      function countDelimiter(line, delimiter) {
+        let count = 0;
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+          const ch = line[i];
+          if (ch === '"') {
+            if (inQuotes && line[i + 1] === '"') {
+              i++;
+            } else {
+              inQuotes = !inQuotes;
+            }
+          } else if (ch === delimiter && !inQuotes) {
+            count++;
+          }
+        }
+        return count;
+      }
+
+      function detectDelimiter(line) {
+        const candidates = ['\t', ',', ';', '|'];
+        let best = ',';
+        let bestCount = -1;
+        candidates.forEach((candidate) => {
+          const count = countDelimiter(line, candidate);
+          if (count > bestCount) {
+            best = candidate;
+            bestCount = count;
+          }
+        });
+        return best;
+      }
+
+      function normalizeHeader(value) {
+        return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+      }
+
+      function findHeaderIndex(headers, aliases) {
+        for (const alias of aliases) {
+          const exact = headers.findIndex(h => h === alias);
+          if (exact >= 0) return exact;
+        }
+        for (const alias of aliases) {
+          const partial = headers.findIndex(h => h.includes(alias));
+          if (partial >= 0) return partial;
+        }
+        return -1;
+      }
+
+      const delimiter = detectDelimiter(lines[0]);
+      const rawHeaders = parseDelimitedLine(lines[0], delimiter);
+      const headers = rawHeaders.map(normalizeHeader);
       const idx = {
-        artist: findIndex('artist'),
-        album: findIndex('album'),
-        title: Math.max(findIndex('song'), findIndex('title')),
-        bpm: findIndex('bpm'),
-        key: findIndex('key'),
-        year: findIndex('year'),
-        genre: findIndex('genre'),
-        speed: Math.max(findIndex('speed'), findIndex('rpm'), findIndex('record speed'))
+        artist: findHeaderIndex(headers, ['artist', 'artists', 'artist name']),
+        album: findHeaderIndex(headers, ['album', 'release', 'record']),
+        title: findHeaderIndex(headers, ['song', 'title', 'track title', 'track name', 'name']),
+        bpm: findHeaderIndex(headers, ['bpm', 'tempo']),
+        key: findHeaderIndex(headers, ['key', 'camelot', 'musical key']),
+        year: findHeaderIndex(headers, ['year', 'date', 'release year']),
+        genre: findHeaderIndex(headers, ['genre', 'style']),
+        speed: findHeaderIndex(headers, ['speed', 'rpm', 'record speed'])
       };
-      return lines.slice(1).map(line => parseLine(line)).map(parts => ({
+
+      return lines.slice(1).map(line => parseDelimitedLine(line, delimiter)).map(parts => ({
         artist: (parts[idx.artist] || '').trim(),
         album: (parts[idx.album] || '').trim(),
         title: (parts[idx.title] || '').trim(),
-        bpm: Number(parts[idx.bpm]),
+        bpm: Number((parts[idx.bpm] || '').replace(/[^0-9.]+/g, '')),
         key: sanitizeKey(parts[idx.key]),
         year: (parts[idx.year] || '').trim(),
         genre: (parts[idx.genre] || '').trim(),
@@ -4441,7 +5201,7 @@ body[data-skin="silver"] .library-row-marker.marker-right{
       const decade = Number(decadeFilter?.value || 0);
 
       return libraryTracks.filter(track => {
-        const hay = `${track.artist} ${track.title} ${track.genre} ${track.year}`.toLowerCase();
+        const hay = buildTrackSearchText(track);
         if (q && !hay.includes(q)) return false;
         if (genre && (track.genre || '').toLowerCase() !== genre) return false;
         const year = Number(track.year || 0);
@@ -4471,7 +5231,7 @@ function getFilteredTracksDual(filterText = '') {
   const decade = Number(decadeFilterDual?.value || 0);
 
   return libraryTracks.filter(track => {
-    const hay = `${track.artist} ${track.title} ${track.genre} ${track.year}`.toLowerCase();
+    const hay = buildTrackSearchText(track);
     if (q && !hay.includes(q)) return false;
     if (genre && (track.genre || '').toLowerCase() !== genre) return false;
     const year = Number(track.year || 0);
@@ -4889,7 +5649,8 @@ function populateTrackSelect(filterText = '') {
           const requiredPct = ((newBpm / Math.max(0.01, Number(track.bpm))) - 1) * 100;
           if (!Number.isFinite(requiredPct) || Math.abs(requiredPct) > currentPitchRange) return null;
 
-          const shiftedSemitones = 12 * Math.log2(1 + (requiredPct / 100));
+          const shiftedPlaybackMultiplier = playbackMultiplierFor(track, singleDeckSpeed, requiredPct);
+          const shiftedSemitones = shiftedPlaybackMultiplier > 0 ? 12 * Math.log2(shiftedPlaybackMultiplier) : 0;
           const resultingKey = findNearestKey(sourceKeyEntry, shiftedSemitones);
           if (!allowedCamelots.has(resultingKey.camelot)) return null;
 
@@ -5146,10 +5907,16 @@ function populateTrackSelect(filterText = '') {
       csvFileInput.addEventListener('change', async () => {
         const file = csvFileInput.files && csvFileInput.files[0];
         if (!file) return;
+        if (typeof window.importCsvIntoApp === 'function') {
+          const ok = await window.importCsvIntoApp(file);
+          if (!ok && proSourceInfo) proSourceInfo.textContent = `Could not read tracks from ${file.name}`;
+          return;
+        }
         const text = await file.text();
         const parsed = parseCSVText(text);
         if (parsed.length) {
           libraryTracks = parsed;
+          window.libraryTracks = parsed;
           populateGenreFilter();
           populateTrackSelect(trackSearch?.value || '');
           populateGenreFilterDual();
@@ -5307,216 +6074,8 @@ function populateTrackSelect(filterText = '') {
 
     window.addEventListener('resize', () => { update(); updateStep4ShellSliders(); });
   
-// v2.2.18: robust Right Deck suggestions wiring
-(function () {
-  const dualToggle = document.getElementById('dualDeckToggle');
-  const trackSearchDual = document.getElementById('trackSearchDual');
-  const trackSelectDual = document.getElementById('trackSelectDual');
-  const genreFilterDual = document.getElementById('genreFilterDual');
-  const decadeFilterDual = document.getElementById('decadeFilterDual');
-  const yearLockDual = document.getElementById('smartSuggestYearLockDual');
-  const csvFileInputDual = document.getElementById('csvFileInputDual');
-  const loadLeftBtn = document.getElementById('loadLeftBtn');
-  const loadRightBtn = document.getElementById('loadRightBtn');
-  const leftPitchSlider = document.getElementById('leftPitchSliderStep4');
-  const rightList = document.getElementById('rightDeckSuggestionsList');
-  const dualInfo = document.getElementById('proSourceInfoDual');
-
-  function dualFilteredTracks() {
-    const q = String(trackSearchDual && trackSearchDual.value || '').trim().toLowerCase();
-    const genre = String(genreFilterDual && genreFilterDual.value || '').trim().toLowerCase();
-    const decade = Number(decadeFilterDual && decadeFilterDual.value || 0);
-
-    return (libraryTracks || []).filter(track => {
-      const hay = `${track.artist || ''} ${track.title || ''} ${track.genre || ''} ${track.year || ''}`.toLowerCase();
-      if (q && !hay.includes(q)) return false;
-      if (genre && (track.genre || '').toLowerCase() !== genre) return false;
-      const year = Number(track.year || 0);
-      if (decade && (!year || year < decade || year > decade + 9)) return false;
-      return true;
-    });
-  }
-
-  function dualPopulateGenre() {
-    if (!genreFilterDual) return;
-    const current = genreFilterDual.value;
-    const genres = [...new Set((libraryTracks || []).map(t => (t.genre || '').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
-    genreFilterDual.innerHTML = '<option value="">All Genres</option>';
-    genres.forEach(g => {
-      const opt = document.createElement('option');
-      opt.value = g;
-      opt.textContent = g;
-      genreFilterDual.appendChild(opt);
-    });
-    if (genres.includes(current)) genreFilterDual.value = current;
-  }
-
-  function dualPopulateSelect() {
-    if (!trackSelectDual) return;
-    const filtered = dualFilteredTracks();
-    trackSelectDual.innerHTML = '';
-    filtered.forEach(track => {
-      const opt = document.createElement('option');
-      opt.value = String((libraryTracks || []).indexOf(track));
-      opt.textContent = `${track.artist} — ${track.title} · ${track.bpm} BPM · ${track.key}`;
-      trackSelectDual.appendChild(opt);
-    });
-    if (!filtered.length) {
-      const opt = document.createElement('option');
-      opt.value = '';
-      opt.textContent = 'No matching tracks';
-      trackSelectDual.appendChild(opt);
-    }
-  }
-
-  window.renderRightSuggestions = function renderRightSuggestions() {
-    if (!rightList) return;
-    if (!(dualToggle && dualToggle.checked)) return;
-
-    if (!leftDeckTrack) {
-      window.rightSuggestionPage = 0;
-      updateSuggestionPagerUI('right', 0, 0);
-      rightList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">Load a Left Deck track</strong><span class="mini-line">Then this box will show compatible suggestions for the Right Deck.</span></div></div>';
-      return;
-    }
-
-    const leftEntry = getEntryByCamelot(leftDeckTrack.key);
-    if (!leftEntry) {
-      window.rightSuggestionPage = 0;
-      updateSuggestionPagerUI('right', 0, 0);
-      rightList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">Left Deck key not recognized</strong><span class="mini-line">Try a track with a valid Camelot key.</span></div></div>';
-      return;
-    }
-
-    const leftPct = Number(leftPitchSlider && leftPitchSlider.value || 0);
-    const leftPlaybackMultiplier = playbackMultiplierFor(leftDeckTrack, leftDeckSpeed, leftPct);
-    const leftNewBpm = Number(leftDeckTrack.bpm) * leftPlaybackMultiplier;
-    const leftSemis = leftPlaybackMultiplier > 0 ? 12 * Math.log2(leftPlaybackMultiplier) : 0;
-    const shiftedLeft = findNearestKey(leftEntry, leftSemis);
-
-    const same = shiftedLeft;
-    const plus = camelotMove(shiftedLeft, 1, false);
-    const minus = camelotMove(shiftedLeft, -1, false);
-    const relative = camelotMove(shiftedLeft, 0, true);
-    const allowed = new Set([same.camelot, plus.camelot, minus.camelot, relative.camelot]);
-
-    const decade = Number(decadeFilterDual && decadeFilterDual.value || 0);
-
-    const matches = dualFilteredTracks().map(track => {
-      if (track.artist === leftDeckTrack.artist && track.title === leftDeckTrack.title) return null;
-      const entry = getEntryByCamelot(track.key);
-      if (!entry) return null;
-
-      if (yearLockDual && yearLockDual.checked && decade) {
-        const year = Number(track.year || 0);
-        if (!year || year < decade || year > decade + 9) return null;
-      }
-
-      const requiredPct = ((leftNewBpm / Math.max(0.01, Number(track.bpm))) - 1) * 100;
-      if (!Number.isFinite(requiredPct) || Math.abs(requiredPct) > (Number(leftPitchSlider && leftPitchSlider.max || 8))) return null;
-
-      const shiftedSemis = 12 * Math.log2(1 + requiredPct / 100);
-      const resultKey = findNearestKey(entry, shiftedSemis);
-      if (!allowed.has(resultKey.camelot)) return null;
-
-      return { track, requiredPct, resultKey, score: Math.abs(requiredPct), index: (libraryTracks || []).indexOf(track) };
-    }).filter(Boolean).sort((a,b)=>a.score-b.score || Number(a.track.bpm)-Number(b.track.bpm));
-
-    if (!matches.length) {
-      window.rightSuggestionPage = 0;
-      updateSuggestionPagerUI('right', 0, 0);
-      rightList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">No matching library tracks</strong><span class="mini-line">Try another Left Deck track, pitch setting, or filters.</span></div></div>';
-      return;
-    }
-
-    window.rightSuggestionPage = clampSuggestionPage(window.rightSuggestionPage || 0, matches.length);
-    const rightPaged = getSuggestionPageSlice(matches, window.rightSuggestionPage);
-    window.rightSuggestionPage = rightPaged.safePage;
-    updateSuggestionPagerUI('right', matches.length, window.rightSuggestionPage);
-
-    rightList.innerHTML = rightPaged.pageItems.map(match => {
-      const sign = match.requiredPct >= 0 ? '+' : '';
-      const matchClass = getSuggestionMatchClass(match.requiredPct);
-      const matchLabel = getSuggestionMatchLabel(match.requiredPct);
-      return `<div class="smart-item smart-item-text-only clickable-right-suggestion ${matchClass}" data-track-index="${match.index}" data-required-pct="${match.requiredPct.toFixed(1)}">
-        <div class="smart-text">
-          <span class="track-artist-line">${match.track.artist || '—'}</span>
-          <span class="track-title-line">${match.track.title || '—'}</span>
-          <span class="camelot-keyline">${Number(match.track.bpm).toFixed(1)} BPM · ${match.track.key} · ${match.track.year || '—'} · ${match.track.genre || '—'}</span>
-          <span class="mini-line">Pitch ${sign}${match.requiredPct.toFixed(1)}% · Result ${match.resultKey.camelot}</span>
-          <span class="suggestion-match-badge"><span class="suggestion-match-dot ${matchClass}"></span>${matchLabel} match</span>
-        </div>
-      </div>`;
-    }).join('');
-  }
-
-  function loadLeftFromDual() {
-    const idx = Number(trackSelectDual && trackSelectDual.value);
-    if (!Number.isFinite(idx) || !libraryTracks[idx]) return;
-    window.rightSuggestionPage = 0;
-    leftDeckTrack = libraryTracks[idx];
-    leftDeckSpeed = getTrackNativeSpeed(leftDeckTrack, 33);
-    updateSpeedMeta();
-    renderLibraryTable(true, trackSearchDual?.value || '');
-    if (dualInfo) dualInfo.textContent = `Left Deck: ${leftDeckTrack.artist} — ${leftDeckTrack.title} · ${leftDeckTrack.year || 'Year ?'} · ${leftDeckTrack.genre || 'Genre ?'} · ${formatSpeedLabel(leftDeckTrack.speed)}`;
-    renderRightSuggestions();
-    updateSuggestionPagerUI('right', 0, 0);
-  }
-
-  function loadRightFromDual() {
-    const idx = Number(trackSelectDual && trackSelectDual.value);
-    if (!Number.isFinite(idx) || !libraryTracks[idx]) return;
-    window.leftSuggestionPage = 0;
-    rightDeckTrack = libraryTracks[idx];
-    rightDeckSpeed = getTrackNativeSpeed(rightDeckTrack, 33);
-    updateSpeedMeta();
-    renderLibraryTable(true, trackSearchDual?.value || '');
-    if (dualInfo) dualInfo.textContent = `Right Deck: ${rightDeckTrack.artist} — ${rightDeckTrack.title} · ${rightDeckTrack.year || 'Year ?'} · ${rightDeckTrack.genre || 'Genre ?'} · ${formatSpeedLabel(rightDeckTrack.speed)}`;
-    renderLeftSuggestions();
-    updateSuggestionPagerUI('left', 0, 0);
-  }
-
-  if (loadLeftBtn) loadLeftBtn.onclick = loadLeftFromDual;
-  if (loadRightBtn) loadRightBtn.onclick = loadRightFromDual;
-
-  if (trackSearchDual) trackSearchDual.oninput = function(){ dualPopulateSelect(); renderLibraryTable(true, trackSearchDual.value); renderRightSuggestions(); };
-  if (genreFilterDual) genreFilterDual.onchange = function(){ dualPopulateSelect(); renderLibraryTable(true, trackSearchDual?.value || ''); renderRightSuggestions(); };
-  if (decadeFilterDual) decadeFilterDual.onchange = function(){ dualPopulateSelect(); renderLibraryTable(true, trackSearchDual?.value || ''); renderRightSuggestions(); };
-  if (yearLockDual) yearLockDual.onchange = renderRightSuggestions;
-  if (leftPitchSlider) leftPitchSlider.oninput = function(){
-    const leftDisp = document.getElementById('leftPitchDisplay');
-    const v = Number(leftPitchSlider.value || 0);
-    if (leftDisp) leftDisp.textContent = `${v >= 0 ? '+' : ''}${v}%`;
-    renderRightSuggestions();
-  };
-  if (csvFileInputDual) {
-    csvFileInputDual.onchange = async function() {
-      const file = csvFileInputDual.files && csvFileInputDual.files[0];
-      if (!file) return;
-      const text = await file.text();
-      const parsed = parseCSVText(text);
-      if (parsed.length) {
-        libraryTracks = parsed;
-        dualPopulateGenre();
-        dualPopulateSelect();
-        populateGenreFilter();
-        populateTrackSelect(trackSearch?.value || '');
-        renderLibraryTable(false, trackSearch?.value || '');
-        renderLibraryTable(true, trackSearchDual?.value || '');
-        if (dualInfo) dualInfo.textContent = `Imported ${parsed.length} tracks from ${file.name}`;
-        renderRightSuggestions();
-      } else if (dualInfo) {
-        dualInfo.textContent = `Could not read tracks from ${file.name}`;
-      }
-    };
-  }
-  if (dualToggle) dualToggle.addEventListener('change', renderRightSuggestions);
-
-  dualPopulateGenre();
-  dualPopulateSelect();
-  renderLibraryTable(true, trackSearchDual?.value || '');
-  renderRightSuggestions();
-})();
+// v2.2.18: removed obsolete right-deck suggestions block.
+// The newer dual-deck controller below is now the single source of truth.
 
 
 // v2.2.20: fix right-deck load + shell slider interaction
@@ -5530,6 +6089,7 @@ function populateTrackSelect(filterText = '') {
   const csvFileInputDual = document.getElementById('csvFileInputDual');
   const loadLeftBtn0 = document.getElementById('loadLeftBtn');
   const loadRightBtn0 = document.getElementById('loadRightBtn');
+  const dualSyncBtn = document.getElementById('dualSyncBtn');
   const leftPitchSlider = document.getElementById('leftPitchSliderStep4');
   const rightPitchSlider = document.getElementById('rightPitchSliderStep4');
   const leftPitchDisplay = document.getElementById('leftPitchDisplay');
@@ -5551,6 +6111,64 @@ function populateTrackSelect(filterText = '') {
   const rightHandle = document.getElementById('rightFaderHandleStep4');
 
   let activeSlot = null;
+  let syncUpdating = false;
+
+  function isDualSyncEnabled() {
+    return !!dualSyncBtn?.classList.contains('is-active');
+  }
+
+  function setDualSyncEnabled(enabled) {
+    if (!dualSyncBtn) return;
+    dualSyncBtn.classList.toggle('is-active', !!enabled);
+    dualSyncBtn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+    dualSyncBtn.textContent = enabled ? 'Sync On' : 'Sync';
+  }
+
+  function clampPitchForSlider(sliderEl, value) {
+    const min = Number(sliderEl?.min || -8);
+    const max = Number(sliderEl?.max || 8);
+    const next = Math.round(Number(value) || 0);
+    return Math.max(min, Math.min(max, next));
+  }
+
+  function getDeckLiveBpm(side) {
+    const track = side === 'left' ? leftDeckTrack : rightDeckTrack;
+    const slider = side === 'left' ? leftPitchSlider : rightPitchSlider;
+    const deckSpeed = side === 'left' ? leftDeckSpeed : rightDeckSpeed;
+    if (!track || !slider) return null;
+    const bpm = Number(track.bpm || 0);
+    if (!(bpm > 0)) return null;
+    return bpm * playbackMultiplierFor(track, deckSpeed, Number(slider.value || 0));
+  }
+
+  function syncOtherDeckPitch(driverSide) {
+    if (syncUpdating || !isDualSyncEnabled()) return;
+    const targetSide = driverSide === 'left' ? 'right' : 'left';
+    const targetTrack = targetSide === 'left' ? leftDeckTrack : rightDeckTrack;
+    const targetSlider = targetSide === 'left' ? leftPitchSlider : rightPitchSlider;
+    const targetDeckSpeed = targetSide === 'left' ? leftDeckSpeed : rightDeckSpeed;
+    const sourceBpm = getDeckLiveBpm(driverSide);
+    if (!targetTrack || !targetSlider || !(sourceBpm > 0)) return;
+
+    const nativeMultiplier = playbackMultiplierFor(targetTrack, targetDeckSpeed, 0);
+    const targetBaseBpm = Number(targetTrack.bpm || 0);
+    if (!(nativeMultiplier > 0) || !(targetBaseBpm > 0)) return;
+
+    const requiredPct = (((sourceBpm / targetBaseBpm) / nativeMultiplier) - 1) * 100;
+    syncUpdating = true;
+    targetSlider.value = String(clampPitchForSlider(targetSlider, requiredPct));
+    updateDisplays();
+    syncUpdating = false;
+  }
+
+  function refreshAfterDualPitchChange(driverSide) {
+    updateDisplays();
+    syncOtherDeckPitch(driverSide);
+    try { if (typeof window.renderRightSuggestions === 'function') window.renderRightSuggestions(); } catch(e){}
+    try { if (typeof window.renderLeftSuggestions === 'function') window.renderLeftSuggestions(); } catch(e){}
+    try { if (typeof window.updateLeftDeckFeedback === 'function') window.updateLeftDeckFeedback(); } catch(e){}
+    updateRightDeckFeedback();
+  }
 
   function setDeckText(side, track) {
     const titleEl = side === 'left' ? leftTitle : rightTitle;
@@ -5558,11 +6176,11 @@ function populateTrackSelect(filterText = '') {
     if (!titleEl || !subEl) return;
     if (!track) {
       titleEl.textContent = 'Source';
-      subEl.textContent = 'Pitch slider shell';
+      subEl.textContent = 'Load a track from the library';
       return;
     }
-    titleEl.textContent = track.artist || 'Source';
-    subEl.textContent = `${track.title || ''} · ${track.bpm || '—'} BPM · ${track.key || '—'}`;
+    titleEl.textContent = track.title || 'Source';
+    subEl.textContent = track.artist || 'Load a track from the library';
   }
 
   function positionHandle(slotEl, handleEl, sliderEl) {
@@ -5657,13 +6275,8 @@ function populateTrackSelect(filterText = '') {
     const y = Math.min(bottom, Math.max(top, clientY));
     const ratio = (y - top) / Math.max(1, bottom - top);
     const val = min + ratio * (max - min);
-    sliderEl.value = String(Math.round(val));
-    updateDisplays();
-    if (sliderEl === leftPitchSlider) renderRightSuggestions();
-    if (sliderEl === rightPitchSlider) {
-      renderLeftSuggestions();
-      updateRightDeckFeedback();
-    }
+    sliderEl.value = String(clampPitchForSlider(sliderEl, val));
+    refreshAfterDualPitchChange(sliderEl === leftPitchSlider ? 'left' : 'right');
   }
 
   function dualFilteredTracks() {
@@ -5671,7 +6284,7 @@ function populateTrackSelect(filterText = '') {
     const genre = String(genreFilterDual && genreFilterDual.value || '').trim().toLowerCase();
     const decade = Number(decadeFilterDual && decadeFilterDual.value || 0);
     return (libraryTracks || []).filter(track => {
-      const hay = `${track.artist || ''} ${track.title || ''} ${track.genre || ''} ${track.year || ''}`.toLowerCase();
+      const hay = buildTrackSearchText(track);
       if (q && !hay.includes(q)) return false;
       if (genre && (track.genre || '').toLowerCase() !== genre) return false;
       const year = Number(track.year || 0);
@@ -5679,6 +6292,29 @@ function populateTrackSelect(filterText = '') {
       return true;
     });
   }
+
+  function updateDualLibraryStatus(message = ''){
+    if (!dualInfo) return;
+    if (message) {
+      dualInfo.textContent = message;
+      return;
+    }
+    const total = (libraryTracks || []).length;
+    const visible = dualFilteredTracks().length;
+    const hasQuery = !!String(trackSearchDual && trackSearchDual.value || '').trim();
+    const hasGenre = !!String(genreFilterDual && genreFilterDual.value || '').trim();
+    const hasDecade = !!String(decadeFilterDual && decadeFilterDual.value || '').trim();
+    if (!total) {
+      dualInfo.textContent = 'Import a CSV to build the deck library.';
+      return;
+    }
+    if (hasQuery || hasGenre || hasDecade) {
+      dualInfo.textContent = `Showing ${visible} of ${total} tracks.`;
+      return;
+    }
+    dualInfo.textContent = `${total} tracks loaded.`;
+  }
+  window.updateDualLibraryStatus = updateDualLibraryStatus;
 
   function dualPopulateGenre() {
     if (!genreFilterDual) return;
@@ -5728,8 +6364,9 @@ function populateTrackSelect(filterText = '') {
     }
 
     const leftPct = Number(leftPitchSlider && leftPitchSlider.value || 0);
-    const leftNewBpm = Number(leftDeckTrack.bpm) * (1 + leftPct / 100);
-    const leftSemis = (1 + leftPct / 100) > 0 ? 12 * Math.log2(1 + leftPct / 100) : 0;
+    const leftPlaybackMultiplier = playbackMultiplierFor(leftDeckTrack, leftDeckSpeed, leftPct);
+    const leftNewBpm = Number(leftDeckTrack.bpm || 0) * leftPlaybackMultiplier;
+    const leftSemis = leftPlaybackMultiplier > 0 ? 12 * Math.log2(leftPlaybackMultiplier) : 0;
     const shiftedLeft = findNearestKey(leftEntry, leftSemis);
 
     const same = shiftedLeft;
@@ -5750,9 +6387,10 @@ function populateTrackSelect(filterText = '') {
       }
 
       const requiredPct = ((leftNewBpm / Math.max(0.01, Number(track.bpm))) - 1) * 100;
-      if (!Number.isFinite(requiredPct) || Math.abs(requiredPct) > (Number(leftPitchSlider && leftPitchSlider.max || 8))) return null;
+      if (!Number.isFinite(requiredPct) || Math.abs(requiredPct) > (Number(rightPitchSlider && rightPitchSlider.max || 8))) return null;
 
-      const shiftedSemis = 12 * Math.log2(1 + requiredPct / 100);
+      const shiftedPlaybackMultiplier = playbackMultiplierFor(track, rightDeckSpeed, requiredPct);
+      const shiftedSemis = shiftedPlaybackMultiplier > 0 ? 12 * Math.log2(shiftedPlaybackMultiplier) : 0;
       const resultKey = findNearestKey(entry, shiftedSemis);
       if (!allowed.has(resultKey.camelot)) return null;
 
@@ -5773,25 +6411,52 @@ function populateTrackSelect(filterText = '') {
 
     rightList.innerHTML = rightPaged.pageItems.map(match => {
       const sign = match.requiredPct >= 0 ? '+' : '';
-      return `<div class="smart-item smart-item-text-only clickable-right-suggestion" data-track-index="${match.index}" data-required-pct="${match.requiredPct.toFixed(1)}">
+      const matchClass = getSuggestionMatchClass(match.requiredPct);
+      const matchLabel = getSuggestionMatchLabel(match.requiredPct);
+      return `<div class="smart-item smart-item-text-only clickable-right-suggestion ${matchClass}" data-track-index="${match.index}" data-required-pct="${match.requiredPct.toFixed(1)}">
         <div class="smart-text">
-          <strong class="track-title">${match.track.artist} — ${match.track.title}</strong>
+          <span class="track-artist-line">${match.track.artist || '—'}</span>
+          <span class="track-title-line">${match.track.title || '—'}</span>
           <span class="camelot-keyline">${Number(match.track.bpm).toFixed(1)} BPM · ${match.track.key} · ${match.track.year || '—'} · ${match.track.genre || '—'}</span>
-          <span class="mini-line">Pitch ${sign}${match.requiredPct.toFixed(1)}% → ${leftNewBpm.toFixed(2)} BPM · Result key ${match.resultKey.camelot}</span>
+          <span class="mini-line">Pitch ${sign}${match.requiredPct.toFixed(1)}% · Result ${match.resultKey.camelot}</span>
+          <span class="suggestion-match-badge"><span class="suggestion-match-dot ${matchClass}"></span>${matchLabel} match</span>
         </div>
       </div>`;
     }).join('');
   }
 
+  window.updateRightDeckFeedback = updateRightDeckFeedback;
+  window.renderRightSuggestions = renderRightSuggestions;
+
   function loadLeftFromDual() {
     const idx = Number(trackSelectDual && trackSelectDual.value);
     if (!Number.isFinite(idx) || !libraryTracks[idx]) return;
-    leftDeckTrack = libraryTracks[idx];
-    setDeckText('left', leftDeckTrack);
-    if (dualInfo) dualInfo.textContent = `Left Deck: ${leftDeckTrack.artist} — ${leftDeckTrack.title} · ${leftDeckTrack.year || 'Year ?'} · ${leftDeckTrack.genre || 'Genre ?'} · ${formatSpeedLabel(leftDeckTrack.speed)}`;
-    updateSpeedMeta();
-    renderRightSuggestions();
-    updateRightDeckFeedback();
+    const track = libraryTracks[idx];
+    window.rightSuggestionPage = 0;
+    if (typeof window.setLeftDeckFromTrack === 'function') {
+      window.setLeftDeckFromTrack(track);
+    } else {
+      leftDeckTrack = track;
+      leftDeckSpeed = getTrackNativeSpeed(leftDeckTrack, 33);
+    }
+    if (dualInfo) dualInfo.textContent = `Left Deck: ${track.artist} — ${track.title} · ${track.year || 'Year ?'} · ${track.genre || 'Genre ?'} · ${formatSpeedLabel(track.speed)}`;
+    try { if (typeof window.syncDeckDisplay === 'function') window.syncDeckDisplay('left', track); } catch(e){}
+    try { if (typeof window.refreshDeckCard === 'function') window.refreshDeckCard('left'); } catch(e){}
+    try { if (typeof window.renderRightSuggestions === 'function') window.renderRightSuggestions(); } catch(e){}
+    try { if (typeof window.updateRightDeckFeedback === 'function') window.updateRightDeckFeedback(); } catch(e){}
+    updateSuggestionPagerUI('right', 0, 0);
+    if (leftPitchSlider) {
+      setTimeout(() => {
+        try {
+          leftPitchSlider.dispatchEvent(new Event('input', { bubbles: true }));
+        } catch(e){}
+      }, 0);
+      setTimeout(() => {
+        try {
+          leftPitchSlider.dispatchEvent(new Event('input', { bubbles: true }));
+        } catch(e){}
+      }, 50);
+    }
   }
 
   function loadRightTrack(track, requiredPct) {
@@ -5800,6 +6465,8 @@ function populateTrackSelect(filterText = '') {
     rightDeckSpeed = getTrackNativeSpeed(rightDeckTrack, 33);
     updateSpeedMeta();
     setDeckText('right', rightDeckTrack);
+    try { if (typeof window.syncDeckDisplay === 'function') window.syncDeckDisplay('right', rightDeckTrack); } catch(e){}
+    try { if (typeof window.refreshDeckCard === 'function') window.refreshDeckCard('right'); } catch(e){}
     updateSpeedMeta();
     if (rightPitchSlider) rightPitchSlider.value = String(Math.max(-Number(rightPitchSlider && rightPitchSlider.max || 8), Math.min(Number(rightPitchSlider && rightPitchSlider.max || 8), Math.round(requiredPct))));
     updateDisplays();
@@ -5838,8 +6505,12 @@ function populateTrackSelect(filterText = '') {
   }
 
   // slider interaction
-  if (leftPitchSlider) leftPitchSlider.addEventListener('input', () => { updateDisplays(); renderRightSuggestions(); });
-  if (rightPitchSlider) rightPitchSlider.addEventListener('input', () => { updateDisplays(); renderLeftSuggestions(); updateRightDeckFeedback(); });
+  if (leftPitchSlider) leftPitchSlider.addEventListener('input', () => {
+    refreshAfterDualPitchChange('left');
+  });
+  if (rightPitchSlider) rightPitchSlider.addEventListener('input', () => {
+    refreshAfterDualPitchChange('right');
+  });
 
   if (leftSlot) {
     leftSlot.addEventListener('pointerdown', (e) => { if (!(dualToggle && dualToggle.checked)) return; activeSlot = 'left'; setSliderFromClientY(leftSlot, leftPitchSlider, e.clientY); });
@@ -5853,29 +6524,19 @@ function populateTrackSelect(filterText = '') {
   });
   window.addEventListener('pointerup', () => { activeSlot = null; });
 
-  if (trackSearchDual) trackSearchDual.oninput = function(){ dualPopulateSelect(); renderLibraryTable(true, trackSearchDual.value); renderRightSuggestions(); };
-  if (genreFilterDual) genreFilterDual.onchange = function(){ dualPopulateSelect(); renderLibraryTable(true, trackSearchDual?.value || ''); renderRightSuggestions(); };
-  if (decadeFilterDual) decadeFilterDual.onchange = function(){ dualPopulateSelect(); renderLibraryTable(true, trackSearchDual?.value || ''); renderRightSuggestions(); };
-  if (yearLockDual) yearLockDual.onchange = renderRightSuggestions;
+  if (trackSearchDual) trackSearchDual.oninput = function(){ dualPopulateSelect(); renderLibraryTable(true, trackSearchDual.value); renderRightSuggestions(); try { if (typeof window.renderLeftSuggestions === 'function') window.renderLeftSuggestions(); } catch(e){} updateDualLibraryStatus(); };
+  if (genreFilterDual) genreFilterDual.onchange = function(){ dualPopulateSelect(); renderLibraryTable(true, trackSearchDual?.value || ''); renderRightSuggestions(); try { if (typeof window.renderLeftSuggestions === 'function') window.renderLeftSuggestions(); } catch(e){} updateDualLibraryStatus(); };
+  if (decadeFilterDual) decadeFilterDual.onchange = function(){ dualPopulateSelect(); renderLibraryTable(true, trackSearchDual?.value || ''); renderRightSuggestions(); try { if (typeof window.renderLeftSuggestions === 'function') window.renderLeftSuggestions(); } catch(e){} updateDualLibraryStatus(); };
+  if (yearLockDual) yearLockDual.onchange = function(){ renderRightSuggestions(); try { if (typeof window.renderLeftSuggestions === 'function') window.renderLeftSuggestions(); } catch(e){} updateDualLibraryStatus(); };
 
   if (csvFileInputDual) {
     csvFileInputDual.onchange = async function() {
       const file = csvFileInputDual.files && csvFileInputDual.files[0];
       if (!file) return;
-      const text = await file.text();
-      const parsed = parseCSVText(text);
-      if (parsed.length) {
-        libraryTracks = parsed;
-        dualPopulateGenre();
-        dualPopulateSelect();
-        populateGenreFilter();
-        populateTrackSelect(trackSearch?.value || '');
-        renderLibraryTable(false, trackSearch?.value || '');
-        renderLibraryTable(true, trackSearchDual?.value || '');
-        if (dualInfo) dualInfo.textContent = `Imported ${parsed.length} tracks from ${file.name}`;
-        renderRightSuggestions();
-      } else if (dualInfo) {
-        dualInfo.textContent = `Could not read tracks from ${file.name}`;
+      if (typeof window.importCsvIntoApp === 'function') {
+        const ok = await window.importCsvIntoApp(file);
+        if (!ok && dualInfo) dualInfo.textContent = `Could not read tracks from ${file.name}`;
+        return;
       }
     };
   }
@@ -5885,12 +6546,20 @@ function populateTrackSelect(filterText = '') {
     renderRightSuggestions();
     updateRightDeckFeedback();
   });
+  if (dualSyncBtn) {
+    dualSyncBtn.addEventListener('click', () => {
+      const next = !isDualSyncEnabled();
+      setDualSyncEnabled(next);
+      if (next) refreshAfterDualPitchChange('left');
+    });
+  }
 
   dualPopulateGenre();
   dualPopulateSelect();
   renderLibraryTable(true, trackSearchDual?.value || '');
   setDeckText('left', leftDeckTrack);
   setDeckText('right', rightDeckTrack);
+  setDualSyncEnabled(false);
   updateDisplays();
   renderRightSuggestions();
   updateRightDeckFeedback();
@@ -5926,7 +6595,7 @@ function populateTrackSelect(filterText = '') {
     const genre = String(genreFilterDual && genreFilterDual.value || '').trim().toLowerCase();
     const decade = Number(decadeFilterDual && decadeFilterDual.value || 0);
     return (libraryTracks || []).filter(track => {
-      const hay = `${track.artist || ''} ${track.title || ''} ${track.genre || ''} ${track.year || ''}`.toLowerCase();
+      const hay = buildTrackSearchText(track);
       if (q && !hay.includes(q)) return false;
       if (genre && (track.genre || '').toLowerCase() !== genre) return false;
       const year = Number(track.year || 0);
@@ -5941,11 +6610,11 @@ function populateTrackSelect(filterText = '') {
     if (!titleEl || !subEl) return;
     if (!track) {
       titleEl.textContent = 'Source';
-      subEl.textContent = 'Pitch slider shell';
+      subEl.textContent = 'Load a track from the library';
       return;
     }
-    titleEl.textContent = track.artist || 'Source';
-    subEl.textContent = `${track.title || ''} · ${track.bpm || '—'} BPM · ${track.key || '—'}`;
+    titleEl.textContent = track.title || 'Source';
+    subEl.textContent = track.artist || 'Load a track from the library';
   }
 
   function positionLeftMirrorHandle() {
@@ -6041,7 +6710,7 @@ function populateTrackSelect(filterText = '') {
     if (!rightDeckTrack) {
       window.leftSuggestionPage = 0;
       updateSuggestionPagerUI('left', 0, 0);
-      leftList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">Load a Right Deck track</strong><span class="mini-line">Then this box will show compatible suggestions for the Left Deck.</span></div></div>';
+      leftList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">Load the other deck</strong><span class="mini-line">Compatible suggestions appear here.</span></div></div>';
       return;
     }
 
@@ -6049,7 +6718,7 @@ function populateTrackSelect(filterText = '') {
     if (!rightEntry) {
       window.leftSuggestionPage = 0;
       updateSuggestionPagerUI('left', 0, 0);
-      leftList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">Right Deck key not recognized</strong><span class="mini-line">Try a track with a valid Camelot key.</span></div></div>';
+      leftList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">Key not recognized</strong><span class="mini-line">Try a valid Camelot key.</span></div></div>';
       return;
     }
 
@@ -6077,9 +6746,10 @@ function populateTrackSelect(filterText = '') {
       }
 
       const requiredPct = ((rightNewBpm / Math.max(0.01, Number(track.bpm))) - 1) * 100;
-      if (!Number.isFinite(requiredPct) || Math.abs(requiredPct) > (Number(rightPitchSlider && rightPitchSlider.max || 8))) return null;
+      if (!Number.isFinite(requiredPct) || Math.abs(requiredPct) > (Number(leftPitchSlider && leftPitchSlider.max || 8))) return null;
 
-      const shiftedSemis = 12 * Math.log2(1 + requiredPct / 100);
+      const shiftedPlaybackMultiplier = playbackMultiplierFor(track, leftDeckSpeed, requiredPct);
+      const shiftedSemis = shiftedPlaybackMultiplier > 0 ? 12 * Math.log2(shiftedPlaybackMultiplier) : 0;
       const resultKey = findNearestKey(entry, shiftedSemis);
       if (!allowed.has(resultKey.camelot)) return null;
 
@@ -6089,7 +6759,7 @@ function populateTrackSelect(filterText = '') {
     if (!matches.length) {
       window.leftSuggestionPage = 0;
       updateSuggestionPagerUI('left', 0, 0);
-      leftList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">No matching library tracks</strong><span class="mini-line">Try another Right Deck track, pitch setting, or filters.</span></div></div>';
+      leftList.innerHTML = '<div class="smart-item smart-item-text-only"><div class="smart-text"><strong class="track-title">No matching tracks</strong><span class="mini-line">Try another track, pitch, or filter.</span></div></div>';
       return;
     }
 
@@ -6120,6 +6790,8 @@ function populateTrackSelect(filterText = '') {
     leftDeckSpeed = getTrackNativeSpeed(leftDeckTrack, 33);
     updateSpeedMeta();
     setDeckTextMirror('left', leftDeckTrack);
+    try { if (typeof window.syncDeckDisplay === 'function') window.syncDeckDisplay('left', leftDeckTrack); } catch(e){}
+    try { if (typeof window.refreshDeckCard === 'function') window.refreshDeckCard('left'); } catch(e){}
     updateSpeedMeta();
 
     const clamped = Math.max(-Number(leftPitchSlider && leftPitchSlider.max || 8), Math.min(Number(leftPitchSlider && leftPitchSlider.max || 8), Math.round(requiredPct)));
@@ -6178,6 +6850,22 @@ function populateTrackSelect(filterText = '') {
     renderRightSuggestions();
     updateLeftDeckFeedback();
   });
+  const leftSpeedSelect = document.getElementById('leftDeckSpeedSelect');
+  const rightSpeedSelect = document.getElementById('rightDeckSpeedSelect');
+  if (leftSpeedSelect) leftSpeedSelect.addEventListener('change', () => {
+    if (typeof renderRightSuggestions === 'function') renderRightSuggestions();
+    if (typeof updateRightDeckFeedback === 'function') updateRightDeckFeedback();
+    renderLeftSuggestions();
+    updateLeftDeckFeedback();
+    try { if (typeof window.updateDualLibraryStatus === 'function') window.updateDualLibraryStatus(); } catch(e){}
+  });
+  if (rightSpeedSelect) rightSpeedSelect.addEventListener('change', () => {
+    if (typeof renderRightSuggestions === 'function') renderRightSuggestions();
+    if (typeof updateRightDeckFeedback === 'function') updateRightDeckFeedback();
+    renderLeftSuggestions();
+    updateLeftDeckFeedback();
+    try { if (typeof window.updateDualLibraryStatus === 'function') window.updateDualLibraryStatus(); } catch(e){}
+  });
   if (dualToggle) dualToggle.addEventListener('change', () => setTimeout(() => {
     renderLeftSuggestions();
     updateLeftDeckFeedback();
@@ -6186,6 +6874,7 @@ function populateTrackSelect(filterText = '') {
   positionLeftMirrorHandle();
   updateLeftDeckFeedback();
   renderLeftSuggestions();
+  try { if (typeof window.updateDualLibraryStatus === 'function') window.updateDualLibraryStatus(); } catch(e){}
 
   // keep Left Deck feedback and suggestions live when left slider is dragged by slot/handle
   const leftSlotMirror = document.getElementById('leftFaderSlotStep4');
@@ -6315,6 +7004,8 @@ function populateTrackSelect(filterText = '') {
     refreshDeckCard('left');
     refreshDeckCard('right');
   }
+  window.refreshDeckCard = refreshDeckCard;
+  window.refreshBothDeckCards = refreshBothDeckCards;
 
   if (leftRangeSelect) leftRangeSelect.addEventListener('change', () => applyDualRange('left', Number(leftRangeSelect.value || 8)));
   if (rightRangeSelect) rightRangeSelect.addEventListener('change', () => applyDualRange('right', Number(rightRangeSelect.value || 8)));
@@ -6374,6 +7065,49 @@ setTimeout(syncDualArtHeights, 150);
   let popupSortKey = 'artist';
   let popupSortDir = 'asc';
   let popupLastLoadSide = 'left';
+  const popupStateKey = 'vinylLibraryPopupState';
+
+  function clampPopupState(state){
+    const pad = 24;
+    const minWidth = 760;
+    const minHeight = 420;
+    const maxWidth = Math.max(minWidth, window.innerWidth - (pad * 2));
+    const maxHeight = Math.max(minHeight, window.innerHeight - (pad * 2));
+    const width = Math.max(minWidth, Math.min(maxWidth, Number(state?.width) || Math.min(1240, window.innerWidth - (pad * 2))));
+    const height = Math.max(minHeight, Math.min(maxHeight, Number(state?.height) || Math.min(900, window.innerHeight - (pad * 2))));
+    const left = Math.max(pad, Math.min(window.innerWidth - width - pad, Number(state?.left)));
+    const top = Math.max(pad, Math.min(window.innerHeight - height - pad, Number(state?.top)));
+    return {
+      width,
+      height,
+      left: Number.isFinite(left) ? left : Math.max(pad, Math.round((window.innerWidth - width) / 2)),
+      top: Number.isFinite(top) ? top : Math.max(pad, Math.round(window.innerHeight * 0.08))
+    };
+  }
+
+  function readPopupState(){
+    try{
+      const raw = localStorage.getItem(popupStateKey);
+      return raw ? clampPopupState(JSON.parse(raw)) : clampPopupState(null);
+    }catch(e){
+      return clampPopupState(null);
+    }
+  }
+
+  function savePopupState(state){
+    try { localStorage.setItem(popupStateKey, JSON.stringify(clampPopupState(state))); } catch(e){}
+  }
+
+  function applyPopupState(){
+    const popup = document.getElementById('libraryPopup');
+    if (!popup) return;
+    const state = readPopupState();
+    popup.style.width = `${state.width}px`;
+    popup.style.height = `${state.height}px`;
+    popup.style.left = `${state.left}px`;
+    popup.style.top = `${state.top}px`;
+    popup.style.transform = 'none';
+  }
 
   function speedDisplay(v){
     return Number(v) === 45 ? '45' : '33⅓';
@@ -6456,11 +7190,11 @@ setTimeout(syncDualArtHeights, 150);
       const exactIdx = window.libraryTracks.findIndex(t => t === track);
       if (exactIdx >= 0) return exactIdx;
       const softIdx = window.libraryTracks.findIndex(t =>
-        String(t.artist || '').trim() === String(track.artist || '').trim() &&
-        String(t.title || '').trim() === String(track.title || '').trim() &&
-        String(t.album || '').trim() === String(track.album || '').trim() &&
-        String(t.key || '').trim() === String(track.key || '').trim() &&
-        String(t.bpm ?? '').trim() === String(track.bpm ?? '').trim()
+        normalizeTrackText(t.artist || '') === normalizeTrackText(track.artist || '') &&
+        normalizeTrackText(t.title || '') === normalizeTrackText(track.title || '') &&
+        normalizeTrackText(t.album || '') === normalizeTrackText(track.album || '') &&
+        sanitizeKey(t.key || '') === sanitizeKey(track.key || '') &&
+        normalizeTrackBpm(t.bpm) === normalizeTrackBpm(track.bpm)
       );
       return softIdx >= 0 ? softIdx : null;
     }catch(e){
@@ -6508,7 +7242,7 @@ setTimeout(syncDualArtHeights, 150);
 
     body.innerHTML = rows.map(track => `
       <tr data-track-index="${track.__idx}"
-          class="${popupSelectedIndex === track.__idx ? 'is-selected' : ''} ${track.__idx === getLoadedTrackIndex('left') ? 'is-left-loaded' : ''} ${track.__idx === getLoadedTrackIndex('right') ? 'is-right-loaded' : ''}">
+          class="${popupSelectedIndex === track.__idx ? 'is-selected' : ''} ${track.__idx === getLoadedTrackIndex('left') ? 'is-left-loaded' : ''} ${track.__idx === getLoadedTrackIndex('right') ? 'is-right-loaded' : ''} ${window.isTrackAgedLoaded && window.isTrackAgedLoaded(track.__idx) ? 'is-aged-loaded' : ''}">
         <td class="col-artist">${track.artist || ''}${rowMarkersFor(track.__idx)}</td>
         <td class="col-song">${track.title || ''}</td>
         <td>${track.bpm ?? ''}</td>
@@ -6538,6 +7272,7 @@ setTimeout(syncDualArtHeights, 150);
     const overlay = document.getElementById('libraryPopupOverlay');
     if (!overlay) return;
     overlay.hidden = false;
+    applyPopupState();
     const rows = getPopupRows();
     if (popupSelectedIndex == null && rows.length) popupSelectedIndex = rows[0].__idx;
     renderLibraryPopup();
@@ -6546,9 +7281,16 @@ setTimeout(syncDualArtHeights, 150);
   };
 
   window.closeLibraryPopup = function(){
+    const popupSearch = document.getElementById('libraryPopupSearch');
+    if (popupSearch) popupSearch.value = '';
+
+    const centerSearch = document.getElementById('trackSearchDual');
+    if (centerSearch) centerSearch.value = '';
+
     const overlay = document.getElementById('libraryPopupOverlay');
     if (!overlay) return;
     overlay.hidden = true;
+    try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e){}
   };
 
   window.loadPopupSelected = function(side){
@@ -6566,9 +7308,101 @@ setTimeout(syncDualArtHeights, 150);
   const overlay = document.getElementById('libraryPopupOverlay');
   if (overlay){
     overlay.addEventListener('click', (e)=>{
-      if (e.target === overlay) window.closeLibraryPopup();
+      if (e.target === overlay && overlay.style.pointerEvents !== 'none') window.closeLibraryPopup();
     });
   }
+
+  (function enablePopupDraggingAndResizing(){
+    const popup = document.getElementById('libraryPopup');
+    const head = popup?.querySelector('.library-popup-head');
+    const resize = document.getElementById('libraryPopupResize');
+    if (!popup || !head || !resize) return;
+
+    function currentState(){
+      return clampPopupState({
+        left: parseFloat(popup.style.left),
+        top: parseFloat(popup.style.top),
+        width: parseFloat(popup.style.width) || popup.offsetWidth,
+        height: parseFloat(popup.style.height) || popup.offsetHeight
+      });
+    }
+
+    head.addEventListener('pointerdown', (event)=>{
+      if (event.target.closest('button, input, label, select, a')) return;
+      event.preventDefault();
+      const start = currentState();
+      const startX = event.clientX;
+      const startY = event.clientY;
+      const pointerId = event.pointerId;
+      head.setPointerCapture?.(pointerId);
+
+      function move(e){
+        const next = clampPopupState({
+          ...start,
+          left: start.left + (e.clientX - startX),
+          top: start.top + (e.clientY - startY)
+        });
+        popup.style.left = `${next.left}px`;
+        popup.style.top = `${next.top}px`;
+        popup.style.transform = 'none';
+      }
+
+      function end(){
+        head.removeEventListener('pointermove', move);
+        head.removeEventListener('pointerup', end);
+        head.removeEventListener('pointercancel', end);
+        savePopupState(currentState());
+      }
+
+      head.addEventListener('pointermove', move);
+      head.addEventListener('pointerup', end);
+      head.addEventListener('pointercancel', end);
+    });
+
+    resize.addEventListener('pointerdown', (event)=>{
+      event.preventDefault();
+      event.stopPropagation();
+      const start = currentState();
+      const startX = event.clientX;
+      const startY = event.clientY;
+      const pointerId = event.pointerId;
+      resize.setPointerCapture?.(pointerId);
+
+      function move(e){
+        const next = clampPopupState({
+          ...start,
+          width: start.width + (e.clientX - startX),
+          height: start.height + (e.clientY - startY)
+        });
+        popup.style.width = `${next.width}px`;
+        popup.style.height = `${next.height}px`;
+        popup.style.left = `${next.left}px`;
+        popup.style.top = `${next.top}px`;
+        popup.style.transform = 'none';
+      }
+
+      function end(){
+        resize.removeEventListener('pointermove', move);
+        resize.removeEventListener('pointerup', end);
+        resize.removeEventListener('pointercancel', end);
+        savePopupState(currentState());
+      }
+
+      resize.addEventListener('pointermove', move);
+      resize.addEventListener('pointerup', end);
+      resize.addEventListener('pointercancel', end);
+    });
+
+    window.addEventListener('resize', () => {
+      const next = clampPopupState(currentState());
+      popup.style.width = `${next.width}px`;
+      popup.style.height = `${next.height}px`;
+      popup.style.left = `${next.left}px`;
+      popup.style.top = `${next.top}px`;
+      popup.style.transform = 'none';
+      savePopupState(next);
+    });
+  })();
 
   const popupTable = document.getElementById('libraryPopupTable');
   if (popupTable){
@@ -6772,6 +7606,7 @@ setTimeout(syncDualArtHeights, 150);
     // Trigger layout helpers if present
     try { if (typeof window.syncDualArtHeights === 'function') window.syncDualArtHeights(); } catch(e){}
     try { if (typeof window.updateStep4ShellSliders === 'function') window.updateStep4ShellSliders(); } catch(e){}
+    try { if (typeof window.refreshDeckCard === 'function') window.refreshDeckCard(side); } catch(e){}
     try { if (typeof window.renderRightSuggestions === 'function' && side === 'left') window.renderRightSuggestions(); } catch(e){}
     try { if (typeof window.renderLeftSuggestions === 'function' && side === 'right') window.renderLeftSuggestions(); } catch(e){}
     try { if (typeof window.updateLeftDeckFeedback === 'function') window.updateLeftDeckFeedback(); } catch(e){}
@@ -6838,15 +7673,24 @@ setTimeout(syncDualArtHeights, 150);
       // refresh center controls
       try { if (typeof populateGenreFilter === 'function') populateGenreFilter(); } catch(e) {}
       try { if (typeof populateTrackSelect === 'function') populateTrackSelect((typeof trackSearch !== 'undefined' && trackSearch) ? trackSearch.value || '' : ''); } catch(e) {}
+      try { if (typeof renderLibraryTable === 'function') renderLibraryTable(false, (typeof trackSearch !== 'undefined' && trackSearch) ? trackSearch.value || '' : ''); } catch(e) {}
 
       try { if (typeof populateGenreFilterDual === 'function') populateGenreFilterDual(); } catch(e) {}
       try { if (typeof populateTrackSelectDual === 'function') populateTrackSelectDual((typeof trackSearchDual !== 'undefined' && trackSearchDual) ? trackSearchDual.value || '' : ''); } catch(e) {}
+      try { if (typeof renderLibraryTable === 'function') renderLibraryTable(true, (typeof trackSearchDual !== 'undefined' && trackSearchDual) ? trackSearchDual.value || '' : ''); } catch(e) {}
 
       // refresh popup
       try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e) {}
+      try { if (typeof window.renderRightSuggestions === 'function') window.renderRightSuggestions(); } catch(e) {}
+      try { if (typeof window.renderLeftSuggestions === 'function') window.renderLeftSuggestions(); } catch(e) {}
+      try { if (typeof window.updateRightDeckFeedback === 'function') window.updateRightDeckFeedback(); } catch(e) {}
+      try { if (typeof window.updateLeftDeckFeedback === 'function') window.updateLeftDeckFeedback(); } catch(e) {}
+      try { if (typeof update === 'function') update(); } catch(e) {}
 
       // update status text
       const msg = `Imported ${parsed.length} tracks from ${file.name}`;
+      const singleInfo = document.getElementById('proSourceInfo');
+      if (singleInfo) singleInfo.textContent = msg;
       const dualInfo = document.getElementById('proSourceInfoDual');
       if (dualInfo) dualInfo.textContent = msg;
       const popupSub = document.getElementById('libraryPopupSub');
@@ -6991,86 +7835,6 @@ setTimeout(syncDualArtHeights, 150);
 
 
 <script>
-
-
-
-<script>
-/* v2.8.14: eject deck buttons */
-(function(){
-  function clearDeckArtwork(side){
-    const img = document.getElementById(side === 'left' ? 'leftDeckArtImg' : 'rightDeckArtImg');
-    const fallback = document.getElementById(side === 'left' ? 'leftDeckArtFallback' : 'rightDeckArtFallback');
-    if (img){
-      img.removeAttribute('src');
-      img.removeAttribute('data-fallback-tried');
-    }
-    if (fallback) fallback.style.display = '';
-  }
-
-  function clearDeckUI(side){
-    const titleEl = document.getElementById(side === 'left' ? 'leftDeckSourceTitle' : 'rightDeckSourceTitle');
-    const subEl = document.getElementById(side === 'left' ? 'leftDeckSourceSub' : 'rightDeckSourceSub');
-    const bpmEl = document.getElementById(side === 'left' ? 'leftDeckOrigBpm' : 'rightDeckOrigBpm');
-    const keyEl = document.getElementById(side === 'left' ? 'leftDeckOrigKey' : 'rightDeckOrigKey');
-    const speedEl = document.getElementById(side === 'left' ? 'leftDeckNativeSpeed' : 'rightDeckNativeSpeed');
-    const pitchDisplay = document.getElementById(side === 'left' ? 'leftPitchDisplay' : 'rightPitchDisplay');
-    const slider = document.getElementById(side === 'left' ? 'leftPitchSliderStep4' : 'rightPitchSliderStep4');
-    const speedSelect = document.getElementById(side === 'left' ? 'leftDeckSpeedSelect' : 'rightDeckSpeedSelect');
-    const rangeSelect = document.getElementById(side === 'left' ? 'leftRangeSelect' : 'rightRangeSelect');
-    const dualInfo = document.getElementById('proSourceInfoDual');
-
-    if (titleEl) titleEl.textContent = 'Source';
-    if (subEl) subEl.textContent = 'Load a track from the library';
-    if (bpmEl) bpmEl.textContent = '—';
-    if (keyEl) keyEl.textContent = '—';
-    if (speedEl) speedEl.textContent = '33⅓';
-    if (pitchDisplay) pitchDisplay.textContent = '+0%';
-    if (slider) slider.value = '0';
-    if (speedSelect) speedSelect.value = '33';
-    if (rangeSelect && !rangeSelect.value) rangeSelect.value = '8';
-
-    clearDeckArtwork(side);
-
-    if (dualInfo){
-      dualInfo.textContent = 'Load a track to Left or Right to begin.';
-    }
-  }
-
-  function clearDeckState(side){
-    if (side === 'left'){
-      try { leftDeckTrack = null; } catch(e){}
-      window.rightSuggestionPage = 0;
-    } else {
-      try { rightDeckTrack = null; } catch(e){}
-      window.leftSuggestionPage = 0;
-    }
-  }
-
-  function refreshAfterEject(){
-    try { if (typeof window.renderLeftSuggestions === 'function') window.renderLeftSuggestions(); } catch(e){}
-    try { if (typeof window.renderRightSuggestions === 'function') window.renderRightSuggestions(); } catch(e){}
-    try { if (typeof window.updateLeftDeckFeedback === 'function') window.updateLeftDeckFeedback(); } catch(e){}
-    try { if (typeof window.updateRightDeckFeedback === 'function') window.updateRightDeckFeedback(); } catch(e){}
-    try { if (typeof window.updateStep4ShellSliders === 'function') window.updateStep4ShellSliders(); } catch(e){}
-    try { if (typeof window.syncDualArtHeights === 'function') window.syncDualArtHeights(); } catch(e){}
-  }
-
-  function ejectDeck(side){
-    clearDeckState(side);
-    clearDeckUI(side);
-    refreshAfterEject();
-  }
-
-  const leftBtn = document.getElementById('leftDeckEjectBtn');
-  const rightBtn = document.getElementById('rightDeckEjectBtn');
-
-  if (leftBtn) leftBtn.addEventListener('click', ()=>ejectDeck('left'));
-  if (rightBtn) rightBtn.addEventListener('click', ()=>ejectDeck('right'));
-})();
-</script>
-
-
-<script>
 /* v2.8.15: robust global eject handlers */
 (function(){
   function clearDeckArtwork(side){
@@ -7121,6 +7885,10 @@ setTimeout(syncDualArtHeights, 150);
     try { leftDeckTrack = null; } catch(e){}
     try { window.rightSuggestionPage = 0; } catch(e){}
     clearDeckUI('left');
+    try {
+      const dualInfo = document.getElementById('proSourceInfoDual');
+      if (dualInfo) dualInfo.textContent = 'Left deck cleared.';
+    } catch(e){}
     refreshEverything();
   };
 
@@ -7128,6 +7896,10 @@ setTimeout(syncDualArtHeights, 150);
     try { rightDeckTrack = null; } catch(e){}
     try { window.leftSuggestionPage = 0; } catch(e){}
     clearDeckUI('right');
+    try {
+      const dualInfo = document.getElementById('proSourceInfoDual');
+      if (dualInfo) dualInfo.textContent = 'Right deck cleared.';
+    } catch(e){}
     refreshEverything();
   };
 })();
@@ -7175,11 +7947,11 @@ setTimeout(syncDualArtHeights, 150);
       let idx = window.libraryTracks.findIndex(t => t === track);
       if (idx < 0){
         idx = window.libraryTracks.findIndex(t =>
-          String(t.artist || '').trim() === String(track.artist || '').trim() &&
-          String(t.title || '').trim() === String(track.title || '').trim() &&
-          String(t.album || '').trim() === String(track.album || '').trim() &&
-          String(t.key || '').trim() === String(track.key || '').trim() &&
-          String(t.bpm ?? '').trim() === String(track.bpm ?? '').trim()
+          normalizeTrackText(t.artist || '') === normalizeTrackText(track.artist || '') &&
+          normalizeTrackText(t.title || '') === normalizeTrackText(track.title || '') &&
+          normalizeTrackText(t.album || '') === normalizeTrackText(track.album || '') &&
+          sanitizeKey(t.key || '') === sanitizeKey(track.key || '') &&
+          normalizeTrackBpm(t.bpm) === normalizeTrackBpm(track.bpm)
         );
       }
 
@@ -7270,6 +8042,1031 @@ setTimeout(syncDualArtHeights, 150);
       }
     }
   });
+})();
+</script>
+
+
+<script>
+/* v2.9.6: mark tracks light red after 60s loaded, until app closes */
+(function(){
+  window.loadedTrackAgeState = window.loadedTrackAgeState || {};
+
+  function markLoadedTimestamp(side, idx){
+    if (idx == null || idx < 0) return;
+    const key = String(idx);
+    if (!window.loadedTrackAgeState[key]){
+      window.loadedTrackAgeState[key] = {
+        firstLoadedAt: Date.now(),
+        aged: false,
+        sides: {}
+      };
+    }
+    window.loadedTrackAgeState[key].sides[side] = true;
+
+    setTimeout(() => {
+      const entry = window.loadedTrackAgeState[key];
+      if (!entry) return;
+      entry.aged = true;
+      try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e){}
+    }, 60000);
+  }
+
+  window.isTrackAgedLoaded = function(idx){
+    const entry = window.loadedTrackAgeState && window.loadedTrackAgeState[String(idx)];
+    return !!(entry && entry.aged);
+  };
+
+  function updateAgeStateForSide(side){
+    try{
+      const idx = side === 'left' ? window.loadedLeftLibraryIndex : window.loadedRightLibraryIndex;
+      if (idx == null || idx < 0) return;
+      markLoadedTimestamp(side, idx);
+    }catch(e){}
+  }
+
+  // Wrap deck loaders so timestamps start when loaded
+  if (typeof window.setLeftDeckFromTrack === 'function' && !window.__agedWrapLeft){
+    const orig = window.setLeftDeckFromTrack;
+    window.setLeftDeckFromTrack = function(track){
+      const result = orig.apply(this, arguments);
+      setTimeout(() => {
+        updateAgeStateForSide('left');
+        try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e){}
+      }, 20);
+      return result;
+    };
+    window.__agedWrapLeft = true;
+  }
+
+  if (typeof window.setRightDeckFromTrack === 'function' && !window.__agedWrapRight){
+    const orig = window.setRightDeckFromTrack;
+    window.setRightDeckFromTrack = function(track){
+      const result = orig.apply(this, arguments);
+      setTimeout(() => {
+        updateAgeStateForSide('right');
+        try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e){}
+      }, 20);
+      return result;
+    };
+    window.__agedWrapRight = true;
+  }
+
+  // Also refresh popup after popup/center loads
+  ['libraryPopupLoadLeft','libraryPopupLoadRight','loadLeftBtn','loadRightBtn'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('click', () => {
+      setTimeout(() => {
+        updateAgeStateForSide('left');
+        updateAgeStateForSide('right');
+        try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e){}
+      }, 50);
+    });
+  });
+})();
+</script>
+
+
+<script>
+/* v2.9.7: fix aged-loaded red text */
+(function(){
+  window.loadedTrackAgeState = window.loadedTrackAgeState || {};
+
+  function ensureAgeEntry(idx){
+    const key = String(idx);
+    if (!window.loadedTrackAgeState[key]){
+      window.loadedTrackAgeState[key] = {
+        firstLoadedAt: Date.now(),
+        aged: false
+      };
+      setTimeout(() => {
+        const entry = window.loadedTrackAgeState[key];
+        if (!entry) return;
+        entry.aged = true;
+        try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e){}
+      }, 60000);
+    }
+    return window.loadedTrackAgeState[key];
+  }
+
+  window.isTrackAgedLoaded = function(idx){
+    const entry = window.loadedTrackAgeState[String(idx)];
+    return !!(entry && entry.aged);
+  };
+
+  function markCurrentLoadedRows(){
+    try{
+      if (window.loadedLeftLibraryIndex != null && window.loadedLeftLibraryIndex >= 0){
+        ensureAgeEntry(window.loadedLeftLibraryIndex);
+      }
+    } catch(e){}
+    try{
+      if (window.loadedRightLibraryIndex != null && window.loadedRightLibraryIndex >= 0){
+        ensureAgeEntry(window.loadedRightLibraryIndex);
+      }
+    } catch(e){}
+    try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e){}
+  }
+
+  // mark immediately after any load button path
+  ['libraryPopupLoadLeft','libraryPopupLoadRight','loadLeftBtn','loadRightBtn'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('click', () => {
+      setTimeout(markCurrentLoadedRows, 80);
+      setTimeout(markCurrentLoadedRows, 250);
+    });
+  });
+
+  // if keyboard shortcut / double-click / any other path loads a track, poll lightly while popup is open
+  setInterval(() => {
+    const overlay = document.getElementById('libraryPopupOverlay');
+    if (!overlay || overlay.hidden) return;
+    markCurrentLoadedRows();
+  }, 5000);
+})();
+</script>
+
+
+<script>
+/* v3.0.0: session play history + export CSV */
+(function(){
+  window.playHistory = window.playHistory || [];
+  window.leftDeckSession = window.leftDeckSession || null;
+  window.rightDeckSession = window.rightDeckSession || null;
+
+  function speedDisplay(v){
+    return Number(v) === 45 ? '45' : '33⅓';
+  }
+
+  function formatPlayedTime(ts){
+    try{
+      const d = new Date(ts);
+      return d.toLocaleString();
+    }catch(e){
+      return '';
+    }
+  }
+
+  function trackToHistoryRow(track, side, playedAt){
+    const raw = {...(track || {})};
+    return {
+      ...raw,
+      playedAt,
+      deck: side.toUpperCase(),
+      artist: raw.artist ?? raw.Artist ?? '',
+      title: raw.title ?? raw.song ?? raw.Song ?? '',
+      bpm: raw.bpm ?? raw.BPM ?? '',
+      key: raw.key ?? raw.Key ?? '',
+      genre: raw.genre ?? raw.Genre ?? '',
+      album: raw.album ?? raw.Album ?? '',
+      speed: speedDisplay(raw.speed ?? raw.Speed),
+      year: raw.year ?? raw.Year ?? ''
+    };
+  }
+
+  function pushHistoryIfEligible(side){
+    const session = side === 'left' ? window.leftDeckSession : window.rightDeckSession;
+    if (!session || !session.track || session.logged) return;
+    if (Date.now() - session.loadedAt < 60000) return;
+
+    session.logged = true;
+    window.playHistory.push(trackToHistoryRow(session.track, side, session.loadedAt + 60000));
+    try { if (typeof window.renderHistoryPopup === 'function') window.renderHistoryPopup(); } catch(e){}
+  }
+
+  function startDeckSession(side, track){
+    const idx = side === 'left' ? window.loadedLeftLibraryIndex : window.loadedRightLibraryIndex;
+    const session = {
+      track,
+      libraryIndex: idx,
+      loadedAt: Date.now(),
+      logged: false
+    };
+    if (side === 'left') window.leftDeckSession = session;
+    else window.rightDeckSession = session;
+
+    setTimeout(() => {
+      pushHistoryIfEligible(side);
+    }, 60000);
+  }
+
+  function clearDeckSession(side){
+    if (side === 'left') window.leftDeckSession = null;
+    else window.rightDeckSession = null;
+  }
+
+  if (typeof window.setLeftDeckFromTrack === 'function' && !window.__historyWrapLeft){
+    const orig = window.setLeftDeckFromTrack;
+    window.setLeftDeckFromTrack = function(track){
+      const result = orig.apply(this, arguments);
+      startDeckSession('left', track);
+      return result;
+    };
+    window.__historyWrapLeft = true;
+  }
+
+  if (typeof window.setRightDeckFromTrack === 'function' && !window.__historyWrapRight){
+    const orig = window.setRightDeckFromTrack;
+    window.setRightDeckFromTrack = function(track){
+      const result = orig.apply(this, arguments);
+      startDeckSession('right', track);
+      return result;
+    };
+    window.__historyWrapRight = true;
+  }
+
+  if (typeof window.ejectLeftDeck === 'function' && !window.__historyWrapEjectLeft){
+    const orig = window.ejectLeftDeck;
+    window.ejectLeftDeck = function(){
+      clearDeckSession('left');
+      return orig.apply(this, arguments);
+    };
+    window.__historyWrapEjectLeft = true;
+  }
+
+  if (typeof window.ejectRightDeck === 'function' && !window.__historyWrapEjectRight){
+    const orig = window.ejectRightDeck;
+    window.ejectRightDeck = function(){
+      clearDeckSession('right');
+      return orig.apply(this, arguments);
+    };
+    window.__historyWrapEjectRight = true;
+  }
+
+  window.renderHistoryPopup = function(){
+    const body = document.getElementById('historyPopupBody');
+    const sub = document.getElementById('historyPopupSub');
+    if (!body) return;
+
+    const rows = [...(window.playHistory || [])].sort((a,b) => a.playedAt - b.playedAt);
+
+    body.innerHTML = rows.map(row => `
+      <tr>
+        <td>${formatPlayedTime(row.playedAt)}</td>
+        <td>${row.deck}</td>
+        <td>${row.artist}</td>
+        <td>${row.title}</td>
+        <td>${row.bpm}</td>
+        <td>${row.key}</td>
+        <td>${row.genre}</td>
+        <td>${row.album}</td>
+        <td>${row.speed}</td>
+        <td>${row.year}</td>
+      </tr>
+    `).join('');
+
+    if (sub){
+      sub.textContent = rows.length
+        ? `${rows.length} played track${rows.length === 1 ? '' : 's'} in this session.`
+        : 'Tracks are added after 60 seconds on a deck. Session only.';
+    }
+  };
+
+  window.openHistoryPopup = function(){
+    const overlay = document.getElementById('historyPopupOverlay');
+    if (!overlay) return;
+    overlay.hidden = false;
+    window.renderHistoryPopup();
+  };
+
+  window.closeHistoryPopup = function(){
+    const overlay = document.getElementById('historyPopupOverlay');
+    if (!overlay) return;
+    overlay.hidden = true;
+  };
+
+  window.exportHistoryCsv = function(){
+    const rows = [...(window.playHistory || [])].sort((a,b) => a.playedAt - b.playedAt);
+
+    const preferred = [
+      ['Played','__played_display__'],
+      ['Deck','deck'],
+      ['Artist','artist'],
+      ['Song','title'],
+      ['BPM','bpm'],
+      ['Key','key'],
+      ['Genre','genre'],
+      ['Album','album'],
+      ['Speed','speed'],
+      ['Year','year']
+    ];
+
+    const internalOmit = new Set(['playedAt']);
+    const extraKeys = [];
+    const seen = new Set(preferred.map(([_, key]) => key));
+
+    rows.forEach(row => {
+      Object.keys(row || {}).forEach(key => {
+        if (internalOmit.has(key)) return;
+        if (seen.has(key)) return;
+        seen.add(key);
+        extraKeys.push(key);
+      });
+    });
+
+    const headers = [...preferred.map(([label]) => label), ...extraKeys];
+    const headerKeys = [...preferred.map(([_, key]) => key), ...extraKeys];
+    const lines = [headers.join(',')];
+
+    function esc(v){
+      const s = String(v ?? '');
+      return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+    }
+
+    rows.forEach(row => {
+      const exportRow = {
+        ...row,
+        __played_display__: formatPlayedTime(row.playedAt)
+      };
+      lines.push(headerKeys.map(key => esc(exportRow[key])).join(','));
+    });
+
+    const blob = new Blob([lines.join('\n')], {type:'text/csv;charset=utf-8;'});
+    const a = document.createElement('a');
+    const stamp = new Date().toISOString().slice(0,19).replace(/[:T]/g, '-');
+    a.href = URL.createObjectURL(blob);
+    a.download = `waxflow-history-${stamp}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      URL.revokeObjectURL(a.href);
+      a.remove();
+    }, 0);
+  };
+
+  const openBtn = document.getElementById('openHistoryBtn');
+  const closeBtn = document.getElementById('closeHistoryBtn');
+  const clearBtn = document.getElementById('clearHistoryBtn');
+  const exportBtn = document.getElementById('exportHistoryCsvBtn');
+  const overlay = document.getElementById('historyPopupOverlay');
+
+  if (openBtn) openBtn.addEventListener('click', () => window.openHistoryPopup());
+  if (closeBtn) closeBtn.addEventListener('click', () => window.closeHistoryPopup());
+  if (clearBtn) clearBtn.addEventListener('click', () => {
+    window.playHistory = [];
+    window.renderHistoryPopup();
+  });
+  if (exportBtn) exportBtn.addEventListener('click', () => window.exportHistoryCsv());
+
+  if (overlay){
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) window.closeHistoryPopup();
+    });
+  }
+})();
+</script>
+
+
+<script>
+/* v3.0.4: suggestion-loaded tracks also age and enter history */
+(function(){
+  function findLibraryIndexForTrackForSession(track){
+    try{
+      if (!track || !window.libraryTracks) return null;
+      let idx = window.libraryTracks.findIndex(t => t === track);
+      if (idx >= 0) return idx;
+      idx = window.libraryTracks.findIndex(t =>
+        normalizeTrackText(t.artist || '') === normalizeTrackText(track.artist || '') &&
+        normalizeTrackText((t.title ?? t.song) || '') === normalizeTrackText((track.title ?? track.song) || '') &&
+        normalizeTrackText(t.album || '') === normalizeTrackText(track.album || '') &&
+        sanitizeKey(t.key || '') === sanitizeKey(track.key || '') &&
+        normalizeTrackBpm(t.bpm) === normalizeTrackBpm(track.bpm)
+      );
+      return idx >= 0 ? idx : null;
+    } catch(e){
+      return null;
+    }
+  }
+
+  function startDeckSessionFromSuggestion(side, track){
+    try{
+      const idx = findLibraryIndexForTrackForSession(track);
+      if (side === 'left') window.loadedLeftLibraryIndex = idx;
+      if (side === 'right') window.loadedRightLibraryIndex = idx;
+    } catch(e){}
+
+    if (typeof window.leftDeckSession === 'undefined') window.leftDeckSession = null;
+    if (typeof window.rightDeckSession === 'undefined') window.rightDeckSession = null;
+
+    const session = {
+      track,
+      libraryIndex: findLibraryIndexForTrackForSession(track),
+      loadedAt: Date.now(),
+      logged: false
+    };
+
+    if (side === 'left') window.leftDeckSession = session;
+    if (side === 'right') window.rightDeckSession = session;
+
+    setTimeout(() => {
+      try{
+        if (typeof window.loadedTrackAgeState === 'undefined') window.loadedTrackAgeState = {};
+        const idx = session.libraryIndex;
+        if (idx != null && idx >= 0){
+          const key = String(idx);
+          if (!window.loadedTrackAgeState[key]){
+            window.loadedTrackAgeState[key] = { firstLoadedAt: Date.now(), aged: false };
+          }
+        }
+      } catch(e){}
+    }, 20);
+
+    setTimeout(() => {
+      try{
+        const idx = session.libraryIndex;
+        if (idx != null && idx >= 0){
+          const key = String(idx);
+          if (window.loadedTrackAgeState && window.loadedTrackAgeState[key]){
+            window.loadedTrackAgeState[key].aged = true;
+          }
+        }
+
+        if (!session.logged){
+          session.logged = true;
+          if (!window.playHistory) window.playHistory = [];
+          const speedDisplay = (v) => Number(v) === 45 ? '45' : '33⅓';
+          const raw = {...(track || {})};
+          window.playHistory.push({
+            ...raw,
+            playedAt: session.loadedAt + 60000,
+            deck: side.toUpperCase(),
+            artist: raw.artist ?? raw.Artist ?? '',
+            title: raw.title ?? raw.song ?? raw.Song ?? '',
+            bpm: raw.bpm ?? raw.BPM ?? '',
+            key: raw.key ?? raw.Key ?? '',
+            genre: raw.genre ?? raw.Genre ?? '',
+            album: raw.album ?? raw.Album ?? '',
+            speed: speedDisplay(raw.speed ?? raw.Speed),
+            year: raw.year ?? raw.Year ?? ''
+          });
+        }
+
+        try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e){}
+        try { if (typeof window.renderHistoryPopup === 'function') window.renderHistoryPopup(); } catch(e){}
+      } catch(e){}
+    }, 60000);
+
+    try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e){}
+  }
+
+  if (typeof window.loadRightTrack === 'function' && !window.__wrappedLoadRightTrackHistory){
+    const orig = window.loadRightTrack;
+    window.loadRightTrack = function(track, requiredPct){
+      const result = orig.apply(this, arguments);
+      startDeckSessionFromSuggestion('right', track);
+      return result;
+    };
+    window.__wrappedLoadRightTrackHistory = true;
+  }
+
+  if (typeof window.loadLeftTrackMirror === 'function' && !window.__wrappedLoadLeftTrackMirrorHistory){
+    const orig = window.loadLeftTrackMirror;
+    window.loadLeftTrackMirror = function(track, requiredPct){
+      const result = orig.apply(this, arguments);
+      startDeckSessionFromSuggestion('left', track);
+      return result;
+    };
+    window.__wrappedLoadLeftTrackMirrorHistory = true;
+  }
+})();
+</script>
+
+
+<script>
+/* v3.0.5: robust session/history tracking from actual deck UI state */
+(function(){
+  window.loadedTrackAgeState = window.loadedTrackAgeState || {};
+  window.playHistory = window.playHistory || [];
+  window.deckSessionMonitor = window.deckSessionMonitor || {
+    left:  { signature: null, timerId: null, logged: false, startedAt: null, libraryIndex: null, track: null },
+    right: { signature: null, timerId: null, logged: false, startedAt: null, libraryIndex: null, track: null }
+  };
+
+  function speedDisplay(v){
+    return Number(v) === 45 ? '45' : '33⅓';
+  }
+
+  function getDeckUiTrack(side){
+    const titleEl = document.getElementById(side === 'left' ? 'leftDeckSourceTitle' : 'rightDeckSourceTitle');
+    const artistEl = document.getElementById(side === 'left' ? 'leftDeckSourceSub' : 'rightDeckSourceSub');
+    const bpmEl = document.getElementById(side === 'left' ? 'leftDeckOrigBpm' : 'rightDeckOrigBpm');
+    const keyEl = document.getElementById(side === 'left' ? 'leftDeckOrigKey' : 'rightDeckOrigKey');
+    const speedEl = document.getElementById(side === 'left' ? 'leftDeckNativeSpeed' : 'rightDeckNativeSpeed');
+
+    const title = String(titleEl?.textContent || '').trim();
+    const artist = String(artistEl?.textContent || '').trim();
+    const bpm = String(bpmEl?.textContent || '').trim();
+    const key = String(keyEl?.textContent || '').trim();
+    const speed = String(speedEl?.textContent || '').trim();
+
+    if (!title || title === 'Source' || title === '—') return null;
+    if (!artist || artist === 'Load a track from the library') return null;
+
+    return { title, artist, bpm, key, speed };
+  }
+
+  function findLibraryIndexFromUiTrack(uiTrack){
+    try{
+      if (!uiTrack || !window.libraryTracks) return null;
+      const idx = window.libraryTracks.findIndex(t => {
+        const tArtist = normalizeTrackText(t.artist || '');
+        const tTitle = normalizeTrackText((t.title ?? t.song) || '');
+        const tBpm = normalizeTrackBpm(t.bpm);
+        const tKey = sanitizeKey(t.key || '');
+        return tArtist === normalizeTrackText(uiTrack.artist) &&
+          tTitle === normalizeTrackText(uiTrack.title) &&
+          tBpm === normalizeTrackBpm(uiTrack.bpm) &&
+          tKey === sanitizeKey(uiTrack.key);
+      });
+      return idx >= 0 ? idx : null;
+    }catch(e){
+      return null;
+    }
+  }
+
+  function buildHistoryRow(track, side, playedAt){
+    const raw = {...(track || {})};
+    return {
+      ...raw,
+      playedAt,
+      deck: side.toUpperCase(),
+      artist: raw.artist ?? raw.Artist ?? '',
+      title: raw.title ?? raw.song ?? raw.Song ?? '',
+      bpm: raw.bpm ?? raw.BPM ?? '',
+      key: raw.key ?? raw.Key ?? '',
+      genre: raw.genre ?? raw.Genre ?? '',
+      album: raw.album ?? raw.Album ?? '',
+      speed: speedDisplay(raw.speed ?? raw.Speed),
+      year: raw.year ?? raw.Year ?? ''
+    };
+  }
+
+  function markAgedAndLog(side){
+    const state = window.deckSessionMonitor[side];
+    if (!state || !state.signature || state.logged) return;
+
+    state.logged = true;
+
+    if (state.libraryIndex != null && state.libraryIndex >= 0){
+      const key = String(state.libraryIndex);
+      if (!window.loadedTrackAgeState[key]){
+        window.loadedTrackAgeState[key] = { firstLoadedAt: state.startedAt || Date.now(), aged: false };
+      }
+      window.loadedTrackAgeState[key].aged = true;
+    }
+
+    if (state.track){
+      window.playHistory.push(buildHistoryRow(state.track, side, (state.startedAt || Date.now()) + 60000));
+    }
+
+    try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e){}
+    try { if (typeof window.renderHistoryPopup === 'function') window.renderHistoryPopup(); } catch(e){}
+  }
+
+  function clearSession(side){
+    const state = window.deckSessionMonitor[side];
+    if (!state) return;
+    if (state.timerId) clearTimeout(state.timerId);
+    window.deckSessionMonitor[side] = {
+      signature: null,
+      timerId: null,
+      logged: false,
+      startedAt: null,
+      libraryIndex: null,
+      track: null
+    };
+  }
+
+  function ensureSessionForDeck(side){
+    const uiTrack = getDeckUiTrack(side);
+    const currentSignature = uiTrack ? [uiTrack.artist, uiTrack.title, uiTrack.bpm, uiTrack.key].join(' | ') : null;
+    const state = window.deckSessionMonitor[side];
+
+    if (!uiTrack){
+      clearSession(side);
+      return;
+    }
+
+    if (state.signature === currentSignature){
+      return;
+    }
+
+    clearSession(side);
+
+    const idx = findLibraryIndexFromUiTrack(uiTrack);
+    if (side === 'left') window.loadedLeftLibraryIndex = idx;
+    if (side === 'right') window.loadedRightLibraryIndex = idx;
+
+    const trackObj = idx != null && idx >= 0 && window.libraryTracks ? window.libraryTracks[idx] : {
+      artist: uiTrack.artist,
+      title: uiTrack.title,
+      bpm: uiTrack.bpm,
+      key: uiTrack.key,
+      speed: uiTrack.speed
+    };
+
+    window.deckSessionMonitor[side] = {
+      signature: currentSignature,
+      timerId: setTimeout(function(){ markAgedAndLog(side); }, 60000),
+      logged: false,
+      startedAt: Date.now(),
+      libraryIndex: idx,
+      track: trackObj
+    };
+
+    try { if (typeof window.renderLibraryPopup === 'function') window.renderLibraryPopup(); } catch(e){}
+  }
+
+  function pollDeckSessions(){
+    ensureSessionForDeck('left');
+    ensureSessionForDeck('right');
+  }
+
+  window.addEventListener('load', function(){
+    pollDeckSessions();
+    setInterval(pollDeckSessions, 1000);
+  });
+})();
+</script>
+
+<script>
+/* v3.0.6: docked dual library with crates + prepare */
+(function(){
+  const storageKey = 'vinylDualDockState';
+  const dock = document.getElementById('dualLibraryDock');
+  const toggleBtn = document.getElementById('toggleDockLibraryBtn');
+  const hideBtn = document.getElementById('dualDockHideBtn');
+  const searchInput = document.getElementById('dualDockSearch');
+  const centerSearch = document.getElementById('trackSearchDual');
+  const genreFilter = document.getElementById('genreFilterDual');
+  const decadeFilter = document.getElementById('decadeFilterDual');
+  const dualToggle = document.getElementById('dualDeckToggle');
+  const crateList = document.getElementById('dualCrateList');
+  const createCrateBtn = document.getElementById('dualCreateCrateBtn');
+  const libraryBody = document.getElementById('dualDockLibraryBody');
+  const libraryStatus = document.getElementById('dualDockLibraryStatus');
+  const prepareList = document.getElementById('dualPrepareList');
+  const addToPrepareBtn = document.getElementById('dualDockAddToPrepareBtn');
+  const addToCrateBtn = document.getElementById('dualDockAddToCrateBtn');
+  const clearPrepareBtn = document.getElementById('dualDockClearPrepareBtn');
+  const loadLeftBtn = document.getElementById('dualDockLoadLeftBtn');
+  const loadRightBtn = document.getElementById('dualDockLoadRightBtn');
+  const trackSelectDual = document.getElementById('trackSelectDual');
+  const sortHeaders = Array.from(document.querySelectorAll('#dualDockLibraryTable th[data-sort-key]'));
+
+  if (!dock || !toggleBtn || !crateList || !libraryBody || !prepareList) return;
+
+  let dockSort = { key: 'artist', direction: 'asc' };
+
+  function norm(value) {
+    return String(value || '').trim().toLowerCase();
+  }
+
+  function trackFingerprint(track) {
+    return [
+      norm(track?.artist),
+      norm(track?.title),
+      String(Number(track?.bpm || 0).toFixed(1)),
+      norm(track?.key),
+      norm(track?.album)
+    ].join('|');
+  }
+
+  function readState() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(storageKey) || '{}');
+      return {
+        open: !!parsed.open,
+        activeCrate: parsed.activeCrate || '__all',
+        prepare: Array.isArray(parsed.prepare) ? parsed.prepare : [],
+        crates: parsed.crates && typeof parsed.crates === 'object' ? parsed.crates : {}
+      };
+    } catch (e) {
+      return { open: false, activeCrate: '__all', prepare: [], crates: {} };
+    }
+  }
+
+  let state = readState();
+
+  function saveState() {
+    try { localStorage.setItem(storageKey, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function allTracks() {
+    return Array.isArray(window.libraryTracks) ? window.libraryTracks : [];
+  }
+
+  function findTrackIndexByFingerprint(fp) {
+    if (!fp) return -1;
+    return allTracks().findIndex(track => trackFingerprint(track) === fp);
+  }
+
+  function resolveFingerprints(list) {
+    return (Array.isArray(list) ? list : []).map(fp => {
+      const idx = findTrackIndexByFingerprint(fp);
+      return idx >= 0 ? { idx, track: allTracks()[idx], fp } : null;
+    }).filter(Boolean);
+  }
+
+  function getSelectedDualTrackIndex() {
+    const idx = Number(trackSelectDual?.value || -1);
+    return Number.isFinite(idx) ? idx : -1;
+  }
+
+  function selectDualTrackIndex(idx) {
+    if (!trackSelectDual || !Number.isFinite(idx) || !allTracks()[idx]) return;
+    trackSelectDual.value = String(idx);
+    trackSelectDual.dispatchEvent(new Event('change', { bubbles: true }));
+    renderDock();
+  }
+
+  function setDockOpen(open) {
+    state.open = !!open;
+    dock.hidden = !state.open;
+    toggleBtn.textContent = state.open ? 'Hide Dock' : 'Dock Library';
+    saveState();
+    renderDock();
+  }
+
+  function ensureActiveCrate() {
+    if (state.activeCrate === '__all' || state.activeCrate === '__prepare') return;
+    if (!state.crates[state.activeCrate]) state.activeCrate = '__all';
+  }
+
+  function currentQuery() {
+    return norm(centerSearch?.value || searchInput?.value || '');
+  }
+
+  function buildHaystack(track) {
+    if (typeof window.buildTrackSearchText === 'function') return window.buildTrackSearchText(track);
+    return `${track.artist || ''} ${track.title || ''} ${track.album || ''} ${track.genre || ''} ${track.year || ''} ${track.key || ''} ${track.bpm || ''} ${track.speed || ''}`.toLowerCase();
+  }
+
+  function getFilteredLibraryItems() {
+    const query = currentQuery();
+    const genre = norm(genreFilter?.value || '');
+    const decade = Number(decadeFilter?.value || 0);
+    const crateFingerprints = state.activeCrate === '__prepare'
+      ? state.prepare
+      : state.activeCrate !== '__all'
+        ? (state.crates[state.activeCrate] || [])
+        : null;
+    const crateSet = crateFingerprints ? new Set(crateFingerprints) : null;
+
+    let items = allTracks().map((track, idx) => ({ track, idx, fp: trackFingerprint(track) }));
+    if (crateSet) items = items.filter(item => crateSet.has(item.fp));
+    if (query) items = items.filter(item => buildHaystack(item.track).includes(query));
+    if (genre) items = items.filter(item => norm(item.track.genre) === genre);
+    if (decade) items = items.filter(item => {
+      const year = Number(item.track.year || 0);
+      return year && year >= decade && year <= (decade + 9);
+    });
+
+    const dir = dockSort.direction === 'desc' ? -1 : 1;
+    items.sort((a, b) => {
+      const key = dockSort.key;
+      const av = key === 'bpm' || key === 'speed' || key === 'year' ? Number(a.track[key] || 0) : String(a.track[key] || '').toLowerCase();
+      const bv = key === 'bpm' || key === 'speed' || key === 'year' ? Number(b.track[key] || 0) : String(b.track[key] || '').toLowerCase();
+      if (av < bv) return -1 * dir;
+      if (av > bv) return 1 * dir;
+      return String(a.track.artist || '').localeCompare(String(b.track.artist || ''));
+    });
+    return items;
+  }
+
+  function updateDockStatus(count) {
+    const crateLabel = state.activeCrate === '__all' ? 'All Library' : state.activeCrate === '__prepare' ? 'Prepare' : state.activeCrate;
+    const total = allTracks().length;
+    if (!total) {
+      libraryStatus.textContent = 'Import a CSV to build the library dock.';
+      return;
+    }
+    libraryStatus.textContent = `${crateLabel} · ${count} shown of ${total} tracks`;
+  }
+
+  function renderCrates() {
+    ensureActiveCrate();
+    const crateNames = Object.keys(state.crates).sort((a, b) => a.localeCompare(b));
+    const allCount = allTracks().length;
+    const prepareCount = resolveFingerprints(state.prepare).length;
+
+    crateList.innerHTML = '';
+    const entries = [
+      { key: '__all', label: 'All Library', count: allCount, removable: false },
+      { key: '__prepare', label: 'Prepare', count: prepareCount, removable: false },
+      ...crateNames.map(name => ({ key: name, label: name, count: resolveFingerprints(state.crates[name]).length, removable: true }))
+    ];
+
+    entries.forEach(entry => {
+      const row = document.createElement('div');
+      row.className = `dual-crate-item${state.activeCrate === entry.key ? ' is-active' : ''}`;
+      row.innerHTML = `
+        <span>${entry.label}</span>
+        <span class="dual-crate-count">${entry.count}</span>
+        ${entry.removable ? '<button class="dual-crate-remove" type="button" aria-label="Delete crate">×</button>' : '<span></span>'}
+      `;
+      row.addEventListener('click', () => {
+        state.activeCrate = entry.key;
+        saveState();
+        renderDock();
+      });
+      const removeBtn = row.querySelector('.dual-crate-remove');
+      if (removeBtn) {
+        removeBtn.addEventListener('click', (event) => {
+          event.stopPropagation();
+          delete state.crates[entry.key];
+          if (state.activeCrate === entry.key) state.activeCrate = '__all';
+          saveState();
+          renderDock();
+        });
+      }
+      crateList.appendChild(row);
+    });
+  }
+
+  function renderLibraryRows() {
+    const items = getFilteredLibraryItems();
+    updateDockStatus(items.length);
+    const selectedIdx = getSelectedDualTrackIndex();
+    libraryBody.innerHTML = '';
+    if (!items.length) {
+      libraryBody.innerHTML = '<tr><td colspan="8" class="dual-library-empty">No matching tracks in this crate view.</td></tr>';
+      return;
+    }
+    items.forEach(item => {
+      const row = document.createElement('tr');
+      if (item.idx === selectedIdx) row.classList.add('selected');
+      row.dataset.trackIndex = String(item.idx);
+      row.innerHTML = `
+        <td>${item.track.artist || ''}</td>
+        <td>${item.track.title || ''}</td>
+        <td class="num-cell">${Number(item.track.bpm || 0).toFixed(1)}</td>
+        <td>${item.track.key || ''}</td>
+        <td>${item.track.genre || ''}</td>
+        <td>${item.track.album || ''}</td>
+        <td>${Number(item.track.speed) === 45 ? '45' : '33⅓'}</td>
+        <td>${item.track.year || ''}</td>
+      `;
+      row.addEventListener('click', () => selectDualTrackIndex(item.idx));
+      row.addEventListener('dblclick', () => {
+        selectDualTrackIndex(item.idx);
+        document.getElementById('loadLeftBtn')?.click();
+      });
+      libraryBody.appendChild(row);
+    });
+  }
+
+  function renderPrepare() {
+    const items = resolveFingerprints(state.prepare);
+    prepareList.innerHTML = '';
+    if (!items.length) {
+      prepareList.innerHTML = '<div class="dual-library-empty">Prepare is empty.</div>';
+      return;
+    }
+    items.forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'dual-prepare-item';
+      row.innerHTML = `
+        <div class="dual-prepare-meta">
+          <div class="dual-prepare-title">${item.track.artist || '—'} - ${item.track.title || '—'}</div>
+          <div class="dual-prepare-sub">${Number(item.track.bpm || 0).toFixed(1)} BPM · ${item.track.key || '—'} · ${item.track.genre || '—'} · ${Number(item.track.speed) === 45 ? '45' : '33⅓'}</div>
+        </div>
+        <div class="dual-prepare-actions">
+          <button class="tap-btn" type="button" data-load-side="left">L</button>
+          <button class="tap-btn" type="button" data-load-side="right">R</button>
+          <button class="tap-btn" type="button" data-remove="1">Remove</button>
+        </div>
+      `;
+      row.querySelector('[data-load-side="left"]').addEventListener('click', () => {
+        selectDualTrackIndex(item.idx);
+        document.getElementById('loadLeftBtn')?.click();
+      });
+      row.querySelector('[data-load-side="right"]').addEventListener('click', () => {
+        selectDualTrackIndex(item.idx);
+        document.getElementById('loadRightBtn')?.click();
+      });
+      row.querySelector('[data-remove="1"]').addEventListener('click', () => {
+        state.prepare = state.prepare.filter(fp => fp !== item.fp);
+        saveState();
+        renderDock();
+      });
+      prepareList.appendChild(row);
+    });
+  }
+
+  function renderDock() {
+    if (searchInput && document.activeElement !== searchInput) searchInput.value = centerSearch?.value || '';
+    renderCrates();
+    renderLibraryRows();
+    renderPrepare();
+  }
+
+  function addSelectedToPrepare() {
+    const idx = getSelectedDualTrackIndex();
+    const track = allTracks()[idx];
+    if (!track) return;
+    const fp = trackFingerprint(track);
+    if (!state.prepare.includes(fp)) state.prepare.unshift(fp);
+    saveState();
+    renderDock();
+  }
+
+  function ensureActiveCustomCrate() {
+    if (state.activeCrate !== '__all' && state.activeCrate !== '__prepare' && state.crates[state.activeCrate]) return state.activeCrate;
+    const name = window.prompt('Name a crate for this track:');
+    if (!name) return null;
+    const clean = name.trim();
+    if (!clean) return null;
+    state.crates[clean] = state.crates[clean] || [];
+    state.activeCrate = clean;
+    saveState();
+    return clean;
+  }
+
+  function addSelectedToCrate() {
+    const idx = getSelectedDualTrackIndex();
+    const track = allTracks()[idx];
+    if (!track) return;
+    const crate = ensureActiveCustomCrate();
+    if (!crate) return;
+    const fp = trackFingerprint(track);
+    const list = state.crates[crate] || [];
+    if (!list.includes(fp)) list.unshift(fp);
+    state.crates[crate] = list;
+    saveState();
+    renderDock();
+  }
+
+  toggleBtn.addEventListener('click', () => setDockOpen(!state.open));
+  hideBtn.addEventListener('click', () => setDockOpen(false));
+  createCrateBtn.addEventListener('click', () => {
+    const name = window.prompt('New crate name:');
+    if (!name) return;
+    const clean = name.trim();
+    if (!clean) return;
+    state.crates[clean] = state.crates[clean] || [];
+    state.activeCrate = clean;
+    saveState();
+    renderDock();
+  });
+  addToPrepareBtn.addEventListener('click', addSelectedToPrepare);
+  addToCrateBtn.addEventListener('click', addSelectedToCrate);
+  clearPrepareBtn.addEventListener('click', () => {
+    state.prepare = [];
+    saveState();
+    renderDock();
+  });
+  loadLeftBtn.addEventListener('click', () => document.getElementById('loadLeftBtn')?.click());
+  loadRightBtn.addEventListener('click', () => document.getElementById('loadRightBtn')?.click());
+
+  if (searchInput && centerSearch) {
+    searchInput.addEventListener('input', () => {
+      centerSearch.value = searchInput.value;
+      centerSearch.dispatchEvent(new Event('input', { bubbles: true }));
+      renderDock();
+    });
+    centerSearch.addEventListener('input', () => renderDock());
+  }
+
+  [genreFilter, decadeFilter, trackSelectDual].forEach(el => {
+    if (!el) return;
+    el.addEventListener('change', renderDock);
+  });
+
+  sortHeaders.forEach(th => {
+    th.addEventListener('click', () => {
+      const key = th.dataset.sortKey;
+      if (!key) return;
+      if (dockSort.key === key) dockSort.direction = dockSort.direction === 'asc' ? 'desc' : 'asc';
+      else {
+        dockSort.key = key;
+        dockSort.direction = 'asc';
+      }
+      renderDock();
+    });
+  });
+
+  if (dualToggle) {
+    dualToggle.addEventListener('change', () => {
+      if (!dualToggle.checked) setDockOpen(false);
+      else renderDock();
+    });
+  }
+
+  if (typeof window.importCsvIntoApp === 'function' && !window.__dualDockWrappedImport) {
+    const origImport = window.importCsvIntoApp;
+    window.importCsvIntoApp = async function(file) {
+      const result = await origImport.apply(this, arguments);
+      setTimeout(renderDock, 0);
+      return result;
+    };
+    window.__dualDockWrappedImport = true;
+  }
+
+  window.renderDualLibraryDock = renderDock;
+  setDockOpen(state.open && !!dualToggle?.checked);
+  renderDock();
 })();
 </script>
 
