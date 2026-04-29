@@ -1,0 +1,14 @@
+name = "theday-api"
+main = "src/index.js"
+compatibility_date = "2026-04-29"
+
+[vars]
+ALLOWED_ORIGIN = "https://your-domain.com"
+
+# Set these as Cloudflare secrets, not plain vars:
+# SPOTIFY_CLIENT_ID
+# SPOTIFY_CLIENT_SECRET
+# SPOTIFY_REDIRECT_URI
+# APPLE_TEAM_ID
+# APPLE_KEY_ID
+# APPLE_PRIVATE_KEY

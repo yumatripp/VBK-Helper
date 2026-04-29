@@ -1,23 +1,27 @@
-# Vinyl BPM Key Helper
+# The Day
 
-Stable build: v1.0.8
+`theday.html` is the standalone event contract + wedding planning + timeline tool.
 
-This repository is ready for GitHub Pages.
+## GitHub / Cloudflare Pages
 
-## Publish on GitHub Pages
+Recommended Cloudflare Pages settings:
 
-1. Create a new GitHub repository.
-2. Upload `index.html` and this `README.md`.
-3. Open **Settings → Pages**.
-4. Under **Build and deployment**, choose **Deploy from a branch**.
-5. Set **Branch** to `main` and **Folder** to `/ (root)`.
-6. Save.
-7. Wait for GitHub Pages to publish your site.
+- Build command: none
+- Build output directory: `/`
 
-Your site URL will be shown on the Pages settings screen.
+The app will be available at:
 
-## Notes
+- `/theday.html`
 
-- This app is a single-file static site.
-- No build step is required.
-- Future stable versions can replace `index.html`.
+## Important
+
+Do not store Spotify, Apple Music, Stripe, Discogs, or other API secrets inside `theday.html`.
+
+Use the `/worker` folder for Cloudflare Worker API code.
+
+## Next planned integrations
+
+- Spotify OAuth
+- Spotify playlist creation
+- Apple Music developer token + Music User Token flow
+- Playlist export from The Day to Spotify / Apple Music

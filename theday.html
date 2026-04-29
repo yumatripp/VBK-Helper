@@ -44,8 +44,44 @@ button.ok{background:var(--ok);color:#071017}
 .tabpanel{display:none}
 .tabpanel.active{display:block}
 .dynamic-list{display:flex;flex-direction:column;gap:8px;margin:8px 0 12px}
-.dynamic-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;align-items:center}
-.dynamic-row button{margin:0;padding:9px 10px}
+.dynamic-row{display:grid;grid-template-columns:repeat(3,1fr) auto;gap:8px;align-items:center}.dynamic-row:has(.row-actions){grid-template-columns:repeat(4,1fr) auto auto}
+.dynamic-row button{margin:0;padding:9px 10px}.row-actions{display:flex;gap:4px}.row-actions button{padding:7px 8px;font-size:12px}
+.mini-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px;border-bottom:1px solid var(--line);padding-bottom:10px;position:sticky;top:92px;background:rgba(23,26,34,.98);z-index:5}
+.mini-tabbtn{background:#2b3142;color:var(--text);padding:9px 12px;border-radius:999px}
+.mini-tabbtn.active{background:var(--accent);color:#071017}
+.mini-panel{display:none}
+.mini-panel.active{display:block}
+.role-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.role-card{background:#111520;border:1px solid var(--line);border-radius:10px;padding:10px}
+.role-card label{margin-top:0}
+@media(max-width:760px){.role-grid{grid-template-columns:1fr}.mini-tabs{position:static}}
+.people-picker{background:#10141e;border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0}
+.people-picker-results{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.person-chip{background:#2b3142;color:var(--text);border:1px solid var(--line);border-radius:999px;padding:6px 9px;font-size:12px;cursor:pointer}
+.person-chip:hover{background:var(--accent);color:#071017}
+.song-row-actions{display:flex;gap:6px;align-items:center}
+.song-search-btn{padding:8px 9px;font-size:12px;margin:0}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:999}
+.modal-backdrop.active{display:flex}
+.modal{background:#171a22;border:1px solid var(--line);border-radius:14px;padding:18px;width:min(680px,94vw);max-height:86vh;overflow:auto;box-shadow:0 20px 70px rgba(0,0,0,.5)}
+.modal h2{margin-top:0}
+.search-results{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.search-result{display:flex;justify-content:space-between;gap:10px;align-items:center;background:#111520;border:1px solid var(--line);border-radius:10px;padding:10px}
+.search-result small{color:var(--muted)}
+.song-suggest-box{grid-column:2 / -1;background:#0f121a;border:1px solid var(--line);border-radius:10px;margin-top:6px;padding:6px;display:none;z-index:3}
+.song-suggest-box.active{display:block}
+.song-suggest-item{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:7px 8px;border-radius:8px;cursor:pointer}
+.song-suggest-item:hover{background:#2b3142}
+.song-suggest-item small{color:var(--muted)}
+.playlist-box{background:#10141e;border:1px solid var(--line);border-radius:10px;padding:12px;margin:10px 0}
+.playlist-review{background:#fff;color:#111;border-radius:12px;padding:16px;margin-top:12px;max-height:420px;overflow:auto}
+.playlist-review table{width:100%;border-collapse:collapse}
+.playlist-review th,.playlist-review td{border-bottom:1px solid #ddd;padding:7px;text-align:left;font-size:13px}
+.playlist-review th{font-weight:bold;text-transform:uppercase;font-size:11px;letter-spacing:.05em}
+.playlist-pill{display:inline-block;border:1px solid #bbb;border-radius:999px;padding:2px 7px;font-size:11px;background:#f6f6f6}
+.selected-people{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.selected-person{background:#111520;border:1px solid var(--line);border-radius:999px;padding:6px 9px;font-size:12px}
+.selected-person button{padding:2px 6px;margin-left:6px;border-radius:999px}
 .timeline-row{display:grid;grid-template-columns:220px 130px 1fr;gap:8px;align-items:center;background:#111520;border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0}
 .timeline-label{font-weight:bold;color:#d9deea;font-size:13px}
 .dance-song-grid{display:grid;grid-template-columns:1fr;gap:8px;margin:10px 0 14px}
@@ -108,7 +144,7 @@ button.ok{background:var(--ok);color:#071017}
 </head>
 <body>
 <header>
-  <h1>Decknics Contract Generator <span class="badge">v1.8.1 clean placement</span></h1>
+  <h1>Decknics Contract Generator <span class="badge">v1.9.6 clean placement</span></h1>
   <p>Contract + internal worksheet + client wedding worksheet + day-of timeline.</p>
   <div class="toolbar" style="margin-top:10px">
     <button class="ok" type="button" onclick="loadDemoMode()">Demo Mode</button>
@@ -126,6 +162,7 @@ button.ok{background:var(--ok);color:#071017}
       <button class="tabbtn" type="button" onclick="showTab('internalWorksheetTab', this)">Internal Event Worksheet</button>
       <button class="tabbtn" type="button" onclick="showTab('clientWorksheetTab', this)">Client Wedding Worksheet</button>
       <button class="tabbtn" type="button" onclick="showTab('timelineScreenTab', this); renderTimelineScreen();">Timeline Screen</button>
+      <button class="tabbtn" type="button" onclick="showTab('playlistExportTab', this); renderPlaylistReview();">Playlist Export</button>
     </div>
 
     <div id="contractTab" class="tabpanel active">
@@ -234,114 +271,200 @@ button.ok{background:var(--ok);color:#071017}
     </div>
 
     <div id="clientWorksheetTab" class="tabpanel">
-      <h3>Client Wedding Worksheet Link / ID</h3>
-      <label>Client Worksheet ID</label>
-      <input id="clientWorksheet_id" placeholder="smith-wedding-2026">
-      <label>Future Share Link</label>
-      <input id="clientWorksheet_shareLink" placeholder="/wedding-worksheet.html?id=smith-wedding-2026">
+      <h2>Wedding Client Worksheet</h2>
+      <p class="small">Mini-site flow: enter names first, then fill Ceremony, Dinner, Toasts, and Dancing/Reception.</p>
 
-      <h3>1. Ceremony</h3>
-      <p class="small">Checklist first. Checked ceremony items create ceremony timeline rows and song rows.</p>
-      <label class="check"><input id="wedding_ceremony" type="checkbox"> Wedding Ceremony</label>
-      <div class="checkgrid">
-        <label class="check"><input id="ceremony_preGuestMusic" type="checkbox"> Pre-Ceremony / Guest Arrival Music</label>
-        <label class="check"><input id="ceremony_familySeating" type="checkbox"> Family / VIP Seating</label>
-        <label class="check"><input id="ceremony_weddingPartyProcessional" type="checkbox"> Wedding Party Processional</label>
-        <label class="check"><input id="ceremony_partnerProcessional" type="checkbox"> Partner / Bride / Groom Processional</label>
-        <label class="check"><input id="ceremony_ceremonyStart" type="checkbox"> Ceremony Start / Welcome</label>
-        <label class="check"><input id="ceremony_reading" type="checkbox"> Reading / Special Moment</label>
-        <label class="check"><input id="ceremony_vows" type="checkbox"> Vows</label>
-        <label class="check"><input id="ceremony_ringExchange" type="checkbox"> Ring Exchange</label>
-        <label class="check"><input id="ceremony_unityCeremony" type="checkbox"> Unity Ceremony</label>
-        <label class="check"><input id="ceremony_pronouncement" type="checkbox"> Pronouncement / Kiss</label>
-        <label class="check"><input id="ceremony_recessional" type="checkbox"> Recessional</label>
-        <label class="check"><input id="ceremony_postCeremonyAnnouncements" type="checkbox"> Post-Ceremony Announcements</label>
-      </div>
-      <h3>Ceremony Timeline</h3>
-      <div id="ceremonyTimelineList"></div>
-      <h3>Ceremony Names / Speaking Parts</h3>
-      <div id="ceremonyPeopleList" class="dynamic-list"></div>
-      <button class="secondary" type="button" onclick="addCeremonyPersonRow()">Add Ceremony Person</button>
-      <h3>Ceremony Songs</h3>
-      <div id="ceremonySongGrid" class="dance-song-grid"></div>
-
-      <h3>2. Dinner</h3>
-      <p class="small">Dinner flow, cocktail hour, table releases, and dinner music notes.</p>
-      <div class="checkgrid">
-        <label class="check"><input id="wedding_cocktailHour" type="checkbox"> Cocktail Hour</label>
-        <label class="check"><input id="wedding_dinnerMusic" type="checkbox"> Dinner Music</label>
-      </div>
-      <h3>Dinner Timeline</h3>
-      <div id="dinnerTimelineList"></div>
-      <label>Dinner / Cocktail Notes</label>
-      <textarea id="dinner_notes" placeholder="Meal flow, table releases, cocktail/dinner music vibe, catering cues, etc."></textarea>
-
-      <h3>3. Toasts</h3>
-      <p class="small">Toast checklist, names, phonetics, order, and mic notes.</p>
-      <label class="check"><input id="event_toasts" type="checkbox"> Toasts / Speeches</label>
-      <h3>Toasts Timeline</h3>
-      <div id="toastsTimelineList"></div>
-      <h3>Toast Names / Order</h3>
-      <div id="toastList" class="dynamic-list"></div>
-      <button class="secondary" type="button" onclick="addToastRow()">Add Toast</button>
-
-      <h3>4. Reception</h3>
-      <p class="small">Reception checklist first. Music direction comes immediately after this checklist.</p>
-      <div class="checkgrid">
-        <label class="check"><input id="wedding_reception" type="checkbox"> Wedding Reception</label>
-        <label class="check"><input id="wedding_announcements" type="checkbox"> Announcements / MC</label>
-        <label class="check"><input id="wedding_timelineCoordination" type="checkbox"> Timeline Coordination</label>
-        <label class="check"><input id="dance_grandEntrance" type="checkbox"> Grand Entrance</label>
-        <label class="check"><input id="dance_firstDance" type="checkbox"> First Dance</label>
-        <label class="check"><input id="dance_parentDance" type="checkbox"> Parent Dance</label>
-        <label class="check"><input id="dance_motherSon" type="checkbox"> Mother / Son Dance</label>
-        <label class="check"><input id="dance_fatherDaughter" type="checkbox"> Father / Daughter Dance</label>
-        <label class="check"><input id="dance_weddingPartyDance" type="checkbox"> Wedding Party Dance</label>
-        <label class="check"><input id="dance_anniversaryDance" type="checkbox"> Anniversary Dance</label>
-        <label class="check"><input id="dance_moneyDance" type="checkbox"> Money Dance</label>
-        <label class="check"><input id="dance_bouquetToss" type="checkbox"> Bouquet Toss</label>
-        <label class="check"><input id="dance_garterToss" type="checkbox"> Garter Toss</label>
-        <label class="check"><input id="dance_cakeCutting" type="checkbox"> Cake Cutting Song</label>
-        <label class="check"><input id="dance_lastDance" type="checkbox"> Last Dance</label>
-      </div>
-      <div style="margin-top:10px">
-        <div id="customResponsibilityList" class="dynamic-list"></div>
-        <button class="secondary" type="button" onclick="addCustomResponsibilityRow()">Add Responsibility</button>
-      </div>
-      <div style="margin-top:10px">
-        <div id="customDanceEventList" class="dynamic-list"></div>
-        <button class="secondary" type="button" onclick="addCustomDanceEventRow()">Add Dance / Event</button>
+      <div class="mini-tabs">
+        <button class="mini-tabbtn active" type="button" onclick="showWeddingMiniTab('namesMiniTab', this)">Names</button>
+        <button class="mini-tabbtn" type="button" onclick="showWeddingMiniTab('ceremonyMiniTab', this)">Ceremony</button>
+        <button class="mini-tabbtn" type="button" onclick="showWeddingMiniTab('dinnerMiniTab', this)">Dinner</button>
+        <button class="mini-tabbtn" type="button" onclick="showWeddingMiniTab('toastsMiniTab', this)">Toasts</button>
+        <button class="mini-tabbtn" type="button" onclick="showWeddingMiniTab('receptionMiniTab', this)">Dancing / Reception</button>
       </div>
 
-      <h3>Reception Music Direction</h3>
-      <div class="checkgrid" id="styleChecklist"></div>
-      <label>Must Play Songs</label>
-      <textarea id="wedding_mustPlay"></textarea>
-      <label>Do Not Play Songs</label>
-      <textarea id="wedding_doNotPlay"></textarea>
+      <div id="namesMiniTab" class="mini-panel active">
+        <h3>Names / People</h3>
+        <p class="small">Start here. These are the common wedding roles. Fill the ones you need; leave the rest blank. Pronunciation follows into the timeline.</p>
 
-      <h3>Reception Timeline</h3>
-      <div id="receptionTimelineList"></div>
-      <button class="secondary" type="button" onclick="addExtraTimelineRow()">Add Extra Timeline Item</button>
-      <div id="extraTimelineList" class="dynamic-list"></div>
+        <div class="role-grid">
+          <div class="role-card"><label>Bride / Partner 1</label><input id="role_bride_name" placeholder="Name"><input id="role_bride_phonetic" placeholder="Pronunciation"></div>
+          <div class="role-card"><label>Groom / Partner 2</label><input id="role_groom_name" placeholder="Name"><input id="role_groom_phonetic" placeholder="Pronunciation"></div>
+          <div class="role-card"><label>Officiant</label><input id="role_officiant_name" placeholder="Name"><input id="role_officiant_phonetic" placeholder="Pronunciation"></div>
+          <div class="role-card"><label>Wedding Planner / Coordinator</label><input id="role_planner_name" placeholder="Name"><input id="role_planner_phonetic" placeholder="Pronunciation"></div>
+          <div class="role-card"><label>Best Man</label><input id="role_bestMan_name" placeholder="Name"><input id="role_bestMan_phonetic" placeholder="Pronunciation"></div>
+          <div class="role-card"><label>Maid / Matron of Honor</label><input id="role_moh_name" placeholder="Name"><input id="role_moh_phonetic" placeholder="Pronunciation"></div>
+          <div class="role-card"><label>Father of Bride / Partner 1 Parent</label><input id="role_fob_name" placeholder="Name"><input id="role_fob_phonetic" placeholder="Pronunciation"></div>
+          <div class="role-card"><label>Mother of Bride / Partner 1 Parent</label><input id="role_mob_name" placeholder="Name"><input id="role_mob_phonetic" placeholder="Pronunciation"></div>
+          <div class="role-card"><label>Father of Groom / Partner 2 Parent</label><input id="role_fog_name" placeholder="Name"><input id="role_fog_phonetic" placeholder="Pronunciation"></div>
+          <div class="role-card"><label>Mother of Groom / Partner 2 Parent</label><input id="role_mog_name" placeholder="Name"><input id="role_mog_phonetic" placeholder="Pronunciation"></div>
+          <div class="role-card"><label>Reader / Ceremony Speaker</label><input id="role_reader_name" placeholder="Name"><input id="role_reader_phonetic" placeholder="Pronunciation"></div>
+          <div class="role-card"><label>VIP / Special Announcement</label><input id="role_vip_name" placeholder="Name"><input id="role_vip_phonetic" placeholder="Pronunciation"></div>
+        </div>
 
-      <h3>Reception Songs for Checked Events</h3>
-      <div id="danceSongGrid" class="dance-song-grid"></div>
-      <button class="secondary" type="button" onclick="addExtraDanceSongRow()">Add Extra Dance / Song</button>
-      <div id="extraDanceSongList" class="dynamic-list"></div>
-
-      <h3>Reception Names / Announcements</h3>
-      <div class="row">
-        <input id="wedding_partnerOne" placeholder="Partner 1 / Bride / Groom">
-        <input id="wedding_partnerTwo" placeholder="Partner 2 / Bride / Groom">
+        <h3>Additional People</h3>
+        <div id="peopleMasterList" class="dynamic-list"></div>
+        <button class="secondary" type="button" onclick="addPersonMasterRow()">Add Additional Person</button>
       </div>
-      <div id="weddingPartyList" class="dynamic-list"></div>
-      <button class="secondary" type="button" onclick="addWeddingPartyRow()">Add Wedding Party Member</button>
-      <div id="announcementList" class="dynamic-list"></div>
-      <button class="secondary" type="button" onclick="addAnnouncementRow()">Add Announcement Name</button>
 
-      <label>Wedding Notes / Must Announce</label>
-      <textarea id="wedding_notes"></textarea>
+      <div id="ceremonyMiniTab" class="mini-panel">
+        <h3>Ceremony Checklist</h3>
+        <p class="small">Check what is happening. Checked items create timeline rows and song fields below.</p>
+        <div class="checkgrid">
+          <label class="check"><input id="wedding_ceremony" type="checkbox"> Wedding Ceremony</label>
+          <label class="check"><input id="ceremony_preGuestMusic" type="checkbox"> Pre-Ceremony / Guest Arrival Music</label>
+          <label class="check"><input id="ceremony_familySeating" type="checkbox"> Family / VIP Seating</label>
+          <label class="check"><input id="ceremony_weddingPartyProcessional" type="checkbox"> Wedding Party Processional</label>
+          <label class="check"><input id="ceremony_partnerProcessional" type="checkbox"> Partner / Bride / Groom Processional</label>
+          <label class="check"><input id="ceremony_ceremonyStart" type="checkbox"> Ceremony Start / Welcome</label>
+          <label class="check"><input id="ceremony_reading" type="checkbox"> Reading / Special Moment</label>
+          <label class="check"><input id="ceremony_vows" type="checkbox"> Vows</label>
+          <label class="check"><input id="ceremony_ringExchange" type="checkbox"> Ring Exchange</label>
+          <label class="check"><input id="ceremony_unityCeremony" type="checkbox"> Unity Ceremony</label>
+          <label class="check"><input id="ceremony_pronouncement" type="checkbox"> Pronouncement / Kiss</label>
+          <label class="check"><input id="ceremony_recessional" type="checkbox"> Recessional</label>
+          <label class="check"><input id="ceremony_postCeremonyAnnouncements" type="checkbox"> Post-Ceremony Announcements</label>
+        </div>
+        <div style="margin-top:10px">
+          <div id="customCeremonyList" class="dynamic-list"></div>
+          <button class="secondary" type="button" onclick="addCustomCeremonyRow()">Add Ceremony Item</button>
+        </div>
+
+        <h3>Ceremony Timeline</h3>
+        <div id="ceremonyTimelineList"></div>
+
+        <h3>Ceremony Songs</h3>
+        <div id="ceremonySongGrid" class="dance-song-grid"></div>
+
+        <h3>Ceremony Names / Speaking Parts</h3>
+        <div id="ceremonyPeopleList" class="dynamic-list"></div>
+        <button class="secondary" type="button" onclick="addCeremonyPersonRow()">Add Ceremony Person</button>
+        <div class="people-picker">
+          <label>Add from Names List</label>
+          <input id="ceremonyPeopleSearch" placeholder="Search people..." oninput="renderPeoplePicker('ceremonyPeopleSearch','ceremonyPeopleResults','ceremonyPeopleList','ceremony')">
+          <div id="ceremonyPeopleResults" class="people-picker-results"></div>
+        </div>
+      </div>
+
+      <div id="dinnerMiniTab" class="mini-panel">
+        <h3>Dinner Checklist</h3>
+        <div class="checkgrid">
+          <label class="check"><input id="wedding_cocktailHour" type="checkbox"> Cocktail Hour</label>
+          <label class="check"><input id="wedding_dinnerMusic" type="checkbox"> Dinner Music</label>
+          <label class="check"><input id="dinner_tableRelease" type="checkbox"> Table Release / Buffet Announcements</label>
+          <label class="check"><input id="dinner_backgroundMusic" type="checkbox"> Background Dinner Music</label>
+        </div>
+
+        <h3>Dinner Timeline</h3>
+        <div id="dinnerTimelineList"></div>
+
+        <label>Dinner Notes / Meal Flow</label>
+        <textarea id="dinner_notes" placeholder="Catering cues, table release notes, venue flow, announcements, etc."></textarea>
+
+        <label>Dinner Music Vibe</label>
+        <textarea id="dinner_musicVibe" placeholder="Example: mellow R&B, acoustic covers, soul/disco background, no dance music yet."></textarea>
+      </div>
+
+      <div id="toastsMiniTab" class="mini-panel">
+        <h3>Toasts Checklist</h3>
+        <div class="checkgrid">
+          <label class="check"><input id="event_toasts" type="checkbox"> Toasts / Speeches</label>
+          <label class="check"><input id="toasts_wirelessMic" type="checkbox"> Wireless Mic Needed</label>
+          <label class="check"><input id="toasts_standMic" type="checkbox"> Stand Mic Needed</label>
+          <label class="check"><input id="toasts_afterDinner" type="checkbox"> Toasts After Dinner</label>
+        </div>
+
+        <h3>Toasts Timeline</h3>
+        <div id="toastsTimelineList"></div>
+
+        <h3>Toast Givers</h3>
+        <p class="small">Top row is first. Use ↑ / ↓ to change order.</p>
+        <div id="toastList" class="dynamic-list"></div>
+        <button class="secondary" type="button" onclick="addToastRow()">Add Toast</button>
+        <div class="people-picker">
+          <label>Add Toast Giver from Names List</label>
+          <input id="toastPeopleSearch" placeholder="Search people..." oninput="renderPeoplePicker('toastPeopleSearch','toastPeopleResults','toastList','toast')">
+          <div id="toastPeopleResults" class="people-picker-results"></div>
+        </div>
+      </div>
+
+      <div id="receptionMiniTab" class="mini-panel">
+        <h3>Dancing / Reception Checklist</h3>
+        <div class="checkgrid">
+          <label class="check"><input id="wedding_reception" type="checkbox"> Wedding Reception</label>
+          <label class="check"><input id="wedding_announcements" type="checkbox"> Announcements / MC</label>
+          <label class="check"><input id="wedding_timelineCoordination" type="checkbox"> Timeline Coordination</label>
+          <label class="check"><input id="dance_grandEntrance" type="checkbox"> Grand Entrance</label>
+          <label class="check"><input id="dance_firstDance" type="checkbox"> First Dance</label>
+          <label class="check"><input id="dance_parentDance" type="checkbox"> Parent Dance</label>
+          <label class="check"><input id="dance_motherSon" type="checkbox"> Mother / Son Dance</label>
+          <label class="check"><input id="dance_fatherDaughter" type="checkbox"> Father / Daughter Dance</label>
+          <label class="check"><input id="dance_weddingPartyDance" type="checkbox"> Wedding Party Dance</label>
+          <label class="check"><input id="dance_anniversaryDance" type="checkbox"> Anniversary Dance</label>
+          <label class="check"><input id="dance_moneyDance" type="checkbox"> Money Dance</label>
+          <label class="check"><input id="dance_bouquetToss" type="checkbox"> Bouquet Toss</label>
+          <label class="check"><input id="dance_garterToss" type="checkbox"> Garter Toss</label>
+          <label class="check"><input id="dance_cakeCutting" type="checkbox"> Cake Cutting Song</label>
+          <label class="check"><input id="dance_lastDance" type="checkbox"> Last Dance</label>
+        </div>
+        <div style="margin-top:10px">
+          <div id="customResponsibilityList" class="dynamic-list"></div>
+          <button class="secondary" type="button" onclick="addCustomResponsibilityRow()">Add Reception Responsibility</button>
+        </div>
+        <div style="margin-top:10px">
+          <div id="customDanceEventList" class="dynamic-list"></div>
+          <button class="secondary" type="button" onclick="addCustomDanceEventRow()">Add Dance / Event</button>
+        </div>
+
+        <h3>Music Direction</h3>
+        <div class="checkgrid" id="styleChecklist"></div>
+
+        <div class="playlist-box">
+          <h3>Client Playlist Links</h3>
+          <label>Spotify Playlist Link</label>
+          <input id="playlist_spotify" placeholder="https://open.spotify.com/playlist/...">
+          <label>Apple Music Playlist Link</label>
+          <input id="playlist_apple" placeholder="https://music.apple.com/.../playlist/...">
+          <label>Playlist Notes</label>
+          <textarea id="playlist_notes" placeholder="Example: Use this as must-play inspiration, dinner only, dance floor, no explicit versions, etc."></textarea>
+          <button class="secondary" type="button" onclick="addPlaylistToMustPlay()">Add Playlist Links to Must Play Notes</button>
+        </div>
+
+        <label>Must Play Songs</label>
+        <textarea id="wedding_mustPlay"></textarea>
+        <label>Do Not Play Songs</label>
+        <textarea id="wedding_doNotPlay"></textarea>
+
+        <h3>Reception Timeline</h3>
+        <div id="receptionTimelineList"></div>
+        <button class="secondary" type="button" onclick="addExtraTimelineRow()">Add Extra Timeline Item</button>
+        <div id="extraTimelineList" class="dynamic-list"></div>
+
+        <h3>Reception Event Songs</h3>
+        <div id="danceSongGrid" class="dance-song-grid"></div>
+        <button class="secondary" type="button" onclick="addExtraDanceSongRow()">Add Extra Dance / Song</button>
+        <div id="extraDanceSongList" class="dynamic-list"></div>
+
+        <h3>Wedding Party</h3>
+        <div id="weddingPartyList" class="dynamic-list"></div>
+        <button class="secondary" type="button" onclick="addWeddingPartyRow()">Add Wedding Party Member</button>
+        <div class="people-picker">
+          <label>Add Wedding Party Member from Names List</label>
+          <input id="weddingPartySearch" placeholder="Search people..." oninput="renderPeoplePicker('weddingPartySearch','weddingPartyResults','weddingPartyList','weddingParty')">
+          <div id="weddingPartyResults" class="people-picker-results"></div>
+        </div>
+
+        <h3>Announcement Names</h3>
+        <div id="announcementList" class="dynamic-list"></div>
+        <button class="secondary" type="button" onclick="addAnnouncementRow()">Add Announcement Name</button>
+        <div class="people-picker">
+          <label>Add Announcement Name from Names List</label>
+          <input id="announcementPeopleSearch" placeholder="Search people..." oninput="renderPeoplePicker('announcementPeopleSearch','announcementPeopleResults','announcementList','announcement')">
+          <div id="announcementPeopleResults" class="people-picker-results"></div>
+        </div>
+
+        <label>Reception Notes / Must Announce</label>
+        <textarea id="wedding_notes"></textarea>
+      </div>
     </div>
 
     <div id="timelineScreenTab" class="tabpanel">
@@ -357,6 +480,24 @@ button.ok{background:var(--ok);color:#071017}
         <button class="danger" type="button" onclick="resetTimelineShifts()">Reset Shifted Times</button>
       </div>
       <div id="timeline_screen_output" class="timeline-screen"></div>
+    </div>
+
+
+    <div id="playlistExportTab" class="tabpanel">
+      <h3>Playlist Export</h3>
+      <p class="small">Collects all filled songs from ceremony, reception, extra dance/song rows, and Must Play. Duplicates are removed by Song + Artist.</p>
+      <div class="toolbar">
+        <button type="button" onclick="renderPlaylistReview()">Collect / Refresh Songs</button>
+        <button class="secondary" type="button" onclick="downloadPlaylistTXT()">Download Playlist TXT</button>
+        <button class="secondary" type="button" onclick="downloadPlaylistCSV()">Download Playlist CSV</button>
+        <button class="secondary" type="button" onclick="exportSpotifyPlaylist()">Export to Spotify</button>
+        <button class="secondary" type="button" onclick="exportAppleMusicPlaylist()">Export to Apple Music</button>
+      </div>
+      <label>Playlist Name</label>
+      <input id="export_playlistName" placeholder="Alex & Jamie Wedding Playlist">
+      <label>Worker Endpoint <span class="small">(optional later)</span></label>
+      <input id="export_workerEndpoint" placeholder="https://your-worker.yourdomain.workers.dev">
+      <div id="playlist_review" class="playlist-review"></div>
     </div>
 
     <div class="toolbar" style="margin-top:14px">
@@ -398,6 +539,8 @@ const STYLE_DEFS = [
 const BASE_TIMELINE_MAP = [
   {key:"cocktailStart", label:"Cocktail Hour Start", checkbox:"wedding_cocktailHour", section:"dinner"},
   {key:"dinnerStart", label:"Dinner Start", checkbox:"wedding_dinnerMusic", section:"dinner"},
+  {key:"tableRelease", label:"Table Release / Buffet Announcements", checkbox:"dinner_tableRelease", section:"dinner"},
+  {key:"backgroundDinnerMusic", label:"Background Dinner Music", checkbox:"dinner_backgroundMusic", section:"dinner"},
   {key:"toasts", label:"Toasts", checkbox:"event_toasts", section:"toasts"},
   {key:"receptionDoors", label:"Reception Doors / Guest Seating", checkbox:"wedding_reception", section:"reception"},
   {key:"grandEntrance", label:"Grand Entrance", checkbox:"dance_grandEntrance", section:"reception"},
@@ -548,6 +691,14 @@ function formatAddressZip(value){
   return String(value||"").trim().replace(/\b(\d{5})(\d{4})\b$/,"$1-$2").replace(/\b([A-Z]{2})\s+(\d{5}(?:-\d{4})?)$/i,(_,s,z)=>`${s.toUpperCase()} ${z}`);
 }
 
+
+function showWeddingMiniTab(tabId, btn){
+  document.querySelectorAll("#clientWorksheetTab .mini-panel").forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll("#clientWorksheetTab .mini-tabbtn").forEach(b=>b.classList.remove("active"));
+  document.getElementById(tabId)?.classList.add("active");
+  if(btn) btn.classList.add("active");
+}
+
 function showTab(tabId, btn){
   document.querySelectorAll(".tabpanel").forEach(p=>p.classList.remove("active"));
   document.querySelectorAll(".tabbtn").forEach(b=>b.classList.remove("active"));
@@ -626,9 +777,10 @@ function buildDanceSongGrid(){
     const row=document.createElement("div");
     row.className="dance-song-row active";
     row.dataset.key=item.key;
-    row.innerHTML=`<div class="dance-song-label">${escapeHTML(item.label)}</div><input data-row-key="song" placeholder="Song Title" value="${escapeHTML(old.song)}"><input data-row-key="artist" placeholder="Artist" value="${escapeHTML(old.artist)}">`;
+    row.innerHTML=`<div class="dance-song-label">${escapeHTML(item.label)}</div><input data-row-key="song" placeholder="Song Title" value="${escapeHTML(old.song)}"><div class="song-row-actions"><input data-row-key="artist" placeholder="Artist" value="${escapeHTML(old.artist)}"><button class="secondary song-search-btn" type="button" onclick="openSongSearch(this)">Search</button></div>`;
     row.querySelectorAll("input").forEach(inp=>inp.addEventListener("input",generateContract));
     c.appendChild(row);
+    attachSongAutocomplete(row);
   });
 }
 function rebuildWorksheetGeneratedSections(){
@@ -636,6 +788,7 @@ function rebuildWorksheetGeneratedSections(){
   buildDanceSongGrid();
   buildCeremonyTimelineList();
   buildCeremonySongGrid();
+  attachAllSongAutocompletes();
   generateContract();
 }
 
@@ -648,7 +801,9 @@ function buildCeremonyTimelineList(){
     existing[row.dataset.key]={time:row.querySelector("[data-row-key='time']")?.value||"", notes:row.querySelector("[data-row-key='notes']")?.value||"", original:row.dataset.originalTime||""};
   });
   c.innerHTML="";
-  CEREMONY_MAP.filter(item=>checked(item.checkbox)).forEach(item=>{
+  CEREMONY_MAP.filter(item=>checked(item.checkbox)).concat(
+    collectCustomSelectableRows("customCeremonyList").filter(x=>x.enabled && x.label).map((x,i)=>({key:"customCeremony_"+i,label:x.label,custom:true}))
+  ).forEach(item=>{
     const old=existing[item.key]||{};
     const row=document.createElement("div");
     row.className="timeline-row";
@@ -668,14 +823,17 @@ function buildCeremonySongGrid(){
     existing[row.dataset.key]={song:row.querySelector("[data-row-key='song']")?.value||"", artist:row.querySelector("[data-row-key='artist']")?.value||""};
   });
   c.innerHTML="";
-  CEREMONY_MAP.filter(item=>checked(item.checkbox)).forEach(item=>{
+  CEREMONY_MAP.filter(item=>checked(item.checkbox)).concat(
+    collectCustomSelectableRows("customCeremonyList").filter(x=>x.enabled && x.label).map((x,i)=>({key:"customCeremony_"+i,label:x.label,custom:true}))
+  ).forEach(item=>{
     const old=existing[item.key]||{};
     const row=document.createElement("div");
     row.className="dance-song-row active";
     row.dataset.key=item.key;
-    row.innerHTML=`<div class="dance-song-label">${escapeHTML(item.label)}</div><input data-row-key="song" placeholder="Song Title" value="${escapeHTML(old.song)}"><input data-row-key="artist" placeholder="Artist" value="${escapeHTML(old.artist)}">`;
+    row.innerHTML=`<div class="dance-song-label">${escapeHTML(item.label)}</div><input data-row-key="song" placeholder="Song Title" value="${escapeHTML(old.song)}"><div class="song-row-actions"><input data-row-key="artist" placeholder="Artist" value="${escapeHTML(old.artist)}"><button class="secondary song-search-btn" type="button" onclick="openSongSearch(this)">Search</button></div>`;
     row.querySelectorAll("input").forEach(inp=>inp.addEventListener("input",generateContract));
     c.appendChild(row);
+    attachSongAutocomplete(row);
   });
 }
 
@@ -694,6 +852,84 @@ function addDynamicRow(containerId, defs, values={}){
   btn.onclick=()=>{row.remove(); generateContract(); renderTimelineScreen();};
   row.appendChild(btn); c.appendChild(row);
 }
+
+function addPersonMasterRow(values={}){
+  addDynamicRow("peopleMasterList",[
+    {key:"name",placeholder:"Name"},
+    {key:"phonetic",placeholder:"Pronunciation / Phonetic"},
+    {key:"role",placeholder:"Role"},
+    {key:"group",placeholder:"Group / Side"},
+    {key:"notes",placeholder:"Notes"}
+  ],values);
+}
+
+function collectPeopleMaster(){
+  const roleDefs = [
+    ["bride","Bride / Partner 1","Couple"],
+    ["groom","Groom / Partner 2","Couple"],
+    ["officiant","Officiant","Ceremony"],
+    ["planner","Wedding Planner / Coordinator","Vendor"],
+    ["bestMan","Best Man","Wedding Party"],
+    ["moh","Maid / Matron of Honor","Wedding Party"],
+    ["fob","Father of Bride / Partner 1 Parent","Family"],
+    ["mob","Mother of Bride / Partner 1 Parent","Family"],
+    ["fog","Father of Groom / Partner 2 Parent","Family"],
+    ["mog","Mother of Groom / Partner 2 Parent","Family"],
+    ["reader","Reader / Ceremony Speaker","Ceremony"],
+    ["vip","VIP / Special Announcement","VIP"]
+  ];
+  const common = roleDefs.map(([key, role, group]) => ({
+    name: val("role_" + key + "_name"),
+    phonetic: val("role_" + key + "_phonetic"),
+    role,
+    group,
+    notes: ""
+  })).filter(p=>p.name || p.phonetic);
+  return common.concat(collectDynamicRows("peopleMasterList",["name","phonetic","role","group","notes"]));
+}
+
+function personDisplay(person){
+  const bits = [];
+  if(person.name) bits.push(person.name);
+  if(person.phonetic) bits.push("(" + person.phonetic + ")");
+  if(person.role) bits.push("— " + person.role);
+  if(person.group) bits.push("[" + person.group + "]");
+  return bits.join(" ");
+}
+
+function renderPeoplePicker(inputId, resultsId, targetListId, targetType){
+  const q = String(document.getElementById(inputId)?.value || "").toLowerCase().trim();
+  const results = document.getElementById(resultsId);
+  if(!results) return;
+  const people = collectPeopleMaster().filter(p => p.name && (!q || personDisplay(p).toLowerCase().includes(q)));
+  results.innerHTML = people.slice(0, 12).map((p, i) => `<button class="person-chip" type="button" onclick="addPersonToSection('${targetListId}','${targetType}',${i},'${inputId}','${resultsId}')">${escapeHTML(personDisplay(p))}</button>`).join("");
+  results.dataset.people = JSON.stringify(people.slice(0, 12));
+}
+
+function addPersonToSection(targetListId, targetType, index, inputId, resultsId){
+  const results = document.getElementById(resultsId);
+  const people = JSON.parse(results?.dataset.people || "[]");
+  const p = people[index];
+  if(!p) return;
+
+  if(targetType === "toast"){
+    addToastRow({name:p.name, phonetic:p.phonetic, relationship:p.role || p.group, notes:p.notes || ""});
+  } else if(targetType === "ceremony"){
+    addCeremonyPersonRow({name:p.name, phonetic:p.phonetic, role:p.role || p.group || p.notes || ""});
+  } else if(targetType === "announcement"){
+    addAnnouncementRow({name:p.name, phonetic:p.phonetic, role:p.role || p.group || p.notes || ""});
+  } else if(targetType === "weddingParty"){
+    addWeddingPartyRow({name:p.name, phonetic:p.phonetic, role:p.role || p.group || ""});
+  }
+
+  const input = document.getElementById(inputId);
+  if(input) input.value = "";
+  if(results) results.innerHTML = "";
+  attachAllSongAutocompletes();
+  generateContract();
+  renderTimelineScreen();
+}
+
 function addCustomSelectableRow(containerId, values={}){
   const c=document.getElementById(containerId); if(!c) return;
   const row=document.createElement("div"); row.className="dynamic-row";
@@ -710,12 +946,43 @@ function addCustomSelectableRow(containerId, values={}){
 }
 function addCustomResponsibilityRow(values={}){ addCustomSelectableRow("customResponsibilityList", values); }
 function addCustomDanceEventRow(values={}){ addCustomSelectableRow("customDanceEventList", values); }
+function addCustomCeremonyRow(values={}){ addCustomSelectableRow("customCeremonyList", values); }
 
 function addExtraTimelineRow(values={}){ addDynamicRow("extraTimelineList",[{key:"time",placeholder:"Time, ex: 7:30 PM"},{key:"label",placeholder:"Timeline Item"},{key:"notes",placeholder:"Notes / cue / announcement"}],values); }
-function addExtraDanceSongRow(values={}){ addDynamicRow("extraDanceSongList",[{key:"moment",placeholder:"Dance / Moment"},{key:"song",placeholder:"Song Title"},{key:"artist",placeholder:"Artist"}],values); }
+function addExtraDanceSongRow(values={}){
+  addDynamicRow("extraDanceSongList",[{key:"moment",placeholder:"Dance / Moment"},{key:"song",placeholder:"Song Title"},{key:"artist",placeholder:"Artist"}],values);
+  const row = document.querySelector("#extraDanceSongList .dynamic-row:last-child");
+  if(row) attachSongAutocomplete(row);
+}
 function addWeddingPartyRow(values={}){ addDynamicRow("weddingPartyList",[{key:"name",placeholder:"Name"},{key:"phonetic",placeholder:"Phonetic"},{key:"role",placeholder:"Role"}],values); }
 function addCeremonyPersonRow(values={}){ addDynamicRow("ceremonyPeopleList",[{key:"name",placeholder:"Name"},{key:"phonetic",placeholder:"Phonetic"},{key:"role",placeholder:"Officiant / Reader / Music Cue"}],values); }
-function addToastRow(values={}){ addDynamicRow("toastList",[{key:"name",placeholder:"Toast Person Name"},{key:"relationship",placeholder:"Relationship / Role"},{key:"notes",placeholder:"Notes / Order"}],values); }
+function moveDynamicRow(btn, direction){
+  const row = btn.closest(".dynamic-row");
+  if(!row) return;
+  const parent = row.parentElement;
+  if(direction < 0 && row.previousElementSibling) parent.insertBefore(row, row.previousElementSibling);
+  if(direction > 0 && row.nextElementSibling) parent.insertBefore(row.nextElementSibling, row);
+  generateContract();
+  renderTimelineScreen();
+}
+function addToastRow(values={}){
+  addDynamicRow("toastList",[
+    {key:"name",placeholder:"Toast Person Name"},
+    {key:"phonetic",placeholder:"Pronunciation / Phonetic"},
+    {key:"relationship",placeholder:"Relationship / Role"},
+    {key:"notes",placeholder:"Notes (optional)"}
+  ],values);
+  const row = document.querySelector("#toastList .dynamic-row:last-child");
+  if(row){
+    const removeBtn = row.querySelector("button.danger");
+    if(removeBtn && !row.querySelector(".row-actions")){
+      const actions = document.createElement("div");
+      actions.className = "row-actions";
+      actions.innerHTML = `<button class="secondary" type="button" onclick="moveDynamicRow(this,-1)">↑</button><button class="secondary" type="button" onclick="moveDynamicRow(this,1)">↓</button>`;
+      row.insertBefore(actions, removeBtn);
+    }
+  }
+}
 function addAnnouncementRow(values={}){ addDynamicRow("announcementList",[{key:"name",placeholder:"Name(s) to Announce"},{key:"phonetic",placeholder:"Phonetic Spelling"},{key:"role",placeholder:"Role / Group"}],values); }
 function setDynamicRows(containerId, addFn, rows){
   const c=document.getElementById(containerId); if(c) c.innerHTML="";
@@ -741,7 +1008,7 @@ function collectDynamicRows(containerId, keys){
 function collectCeremonyTimelineItems(){
   return Array.from(document.querySelectorAll("#ceremonyTimelineList .timeline-row")).map(row=>{
     const key=row.dataset.key;
-    const def=CEREMONY_MAP.find(x=>x.key===key)||{};
+    const def=CEREMONY_MAP.find(x=>x.key===key) || {label: row.querySelector(".timeline-label")?.textContent || key};
     return {key:"ceremony_"+key,label:def.label||key,time:row.querySelector("[data-row-key='time']")?.value||"",notes:row.querySelector("[data-row-key='notes']")?.value||"",fixed:true,ceremony:true,originalTime:row.dataset.originalTime||""};
   }).filter(x=>x.time || x.notes);
 }
@@ -757,7 +1024,7 @@ function collectCeremonySongs(){
 function collectGeneratedTimelineItems(){
   return Array.from(document.querySelectorAll("#dinnerTimelineList .timeline-row, #toastsTimelineList .timeline-row, #receptionTimelineList .timeline-row, #generatedTimelineList .timeline-row")).map(row=>{
     const key=row.dataset.key;
-    const def=BASE_TIMELINE_MAP.find(x=>x.key===key)||{};
+    const def=BASE_TIMELINE_MAP.find(x=>x.key===key) || {label: row.querySelector(".timeline-label")?.textContent || key};
     return {key,label:def.label||key,time:row.querySelector("[data-row-key='time']")?.value||"",notes:row.querySelector("[data-row-key='notes']")?.value||"",fixed:true,originalTime:row.dataset.originalTime||""};
   }).filter(x=>x.time || x.notes);
 }
@@ -789,11 +1056,13 @@ function collectContractData(){
     equipment,
     attire:{type:val("attire_type"),notes:val("attire_notes")},
     wedding:{
+      peopleMaster: collectPeopleMaster(),
       responsibilities:{ceremony:checked("wedding_ceremony"),cocktailHour:checked("wedding_cocktailHour"),reception:checked("wedding_reception"),dinnerMusic:checked("wedding_dinnerMusic"),announcements:checked("wedding_announcements"),timelineCoordination:checked("wedding_timelineCoordination")},
       customResponsibilities: collectCustomSelectableRows("customResponsibilityList"),
       customDanceEvents: collectCustomSelectableRows("customDanceEventList"),
       ceremony: {
         selections: Object.fromEntries(CEREMONY_MAP.map(item=>[item.key, checked(item.checkbox)])),
+        customItems: collectCustomSelectableRows("customCeremonyList"),
         timelineItems: collectCeremonyTimelineItems(),
         songs: collectCeremonySongs(),
         people: collectDynamicRows("ceremonyPeopleList",["name","phonetic","role"])
@@ -805,11 +1074,12 @@ function collectContractData(){
       dedicatedDanceSongs:collectDedicatedDanceSongs(),
       danceSongs:collectDynamicRows("extraDanceSongList",["moment","song","artist"]),
       musicStyles,
-      music:{mustPlay:val("wedding_mustPlay"),doNotPlay:val("wedding_doNotPlay")},
-      toasts:collectDynamicRows("toastList",["name","relationship","notes"]),
+      music:{mustPlay:val("wedding_mustPlay"),doNotPlay:val("wedding_doNotPlay"),playlistSpotify:val("playlist_spotify"),playlistApple:val("playlist_apple"),playlistNotes:val("playlist_notes")},
+      toasts:collectDynamicRows("toastList",["name","phonetic","relationship","notes"]),
       announcements:collectDynamicRows("announcementList",["name","phonetic","role"]),
-      notes:val("wedding_notes"), dinnerNotes: val("dinner_notes")
+      notes:val("wedding_notes"), dinnerNotes: val("dinner_notes"), dinnerMusicVibe: val("dinner_musicVibe")
     },
+    playlistExport:{playlistName:val("export_playlistName"),workerEndpoint:val("export_workerEndpoint")},
     eventPlan:{},
     customTerms:val("custom_terms")
   };
@@ -830,10 +1100,39 @@ function fillContractForm(data){
   setVal("equipment_notes",data.equipment?.notes);
   setVal("attire_type",data.attire?.type); setVal("attire_notes",data.attire?.notes);
   const w=data.wedding||{};
+  if(w.peopleMaster){
+    const roleMap = {
+      "Bride / Partner 1":"bride",
+      "Groom / Partner 2":"groom",
+      "Officiant":"officiant",
+      "Wedding Planner / Coordinator":"planner",
+      "Best Man":"bestMan",
+      "Maid / Matron of Honor":"moh",
+      "Father of Bride / Partner 1 Parent":"fob",
+      "Mother of Bride / Partner 1 Parent":"mob",
+      "Father of Groom / Partner 2 Parent":"fog",
+      "Mother of Groom / Partner 2 Parent":"mog",
+      "Reader / Ceremony Speaker":"reader",
+      "VIP / Special Announcement":"vip"
+    };
+    const extras = [];
+    w.peopleMaster.forEach(p=>{
+      const key = roleMap[p.role];
+      if(key){
+        setVal("role_" + key + "_name", p.name || "");
+        setVal("role_" + key + "_phonetic", p.phonetic || "");
+      } else {
+        extras.push(p);
+      }
+    });
+    setDynamicRows("peopleMasterList", addPersonMasterRow, extras);
+  }
+
   Object.entries(w.responsibilities||{}).forEach(([k,v])=>setChecked("wedding_"+k,v));
   Object.entries(w.dances||{}).forEach(([k,v])=>{ const item=DANCE_SONG_MAP.find(d=>d.key===k); if(item) setChecked(item.checkbox, typeof v==="object"?v.enabled:v); });
   setDynamicRows("customResponsibilityList", addCustomResponsibilityRow, w.customResponsibilities);
   setDynamicRows("customDanceEventList", addCustomDanceEventRow, w.customDanceEvents);
+  setDynamicRows("customCeremonyList", addCustomCeremonyRow, w.ceremony?.customItems);
   Object.entries(w.ceremony?.selections||{}).forEach(([k,v])=>{ const item=CEREMONY_MAP.find(x=>x.key===k); if(item) setChecked(item.checkbox,v); });
   buildCeremonyTimelineList();
   (w.ceremony?.timelineItems||[]).forEach(item=>{
@@ -871,11 +1170,17 @@ function fillContractForm(data){
   setVal("wedding_partnerOne",w.people?.partnerOne); setVal("wedding_partnerTwo",w.people?.partnerTwo);
   setDynamicRows("weddingPartyList",addWeddingPartyRow,w.partyMembers);
   Object.entries(w.musicStyles||{}).forEach(([k,v])=>setChecked("style_"+k,v));
+  setVal("playlist_spotify",w.music?.playlistSpotify);
+  setVal("playlist_apple",w.music?.playlistApple);
+  setVal("playlist_notes",w.music?.playlistNotes);
   setVal("wedding_mustPlay",w.music?.mustPlay); setVal("wedding_doNotPlay",w.music?.doNotPlay);
   setDynamicRows("toastList",addToastRow,w.toasts);
   setDynamicRows("announcementList",addAnnouncementRow,w.announcements);
-  setVal("wedding_notes",w.notes); setVal("dinner_notes",w.dinnerNotes);
+  setVal("wedding_notes",w.notes);
+  setVal("dinner_musicVibe",w.dinnerMusicVibe); setVal("dinner_notes",w.dinnerNotes);
   setVal("custom_terms",data.customTerms);
+  setVal("export_playlistName", data.playlistExport?.playlistName);
+  setVal("export_workerEndpoint", data.playlistExport?.workerEndpoint);
   generateContract();
   renderTimelineScreen();
 }
@@ -949,7 +1254,10 @@ function timelineDetailsText(item, data){
     if(party) parts.push(`Wedding Party: ${party}`);
   }
   if(cleanKey === "toasts"){
-    const toasts = (w.toasts || []).map(plainPerson).filter(Boolean).join("; ");
+    const toasts = (w.toasts || []).map((p,i)=> {
+      const line = plainPerson(p);
+      return line ? `${i+1}. ${line}` : "";
+    }).filter(Boolean).join("; ");
     if(toasts) parts.push(`Toasts: ${toasts}`);
   }
   if(cleanKey === "welcomeBlessing" || cleanKey === "postCeremonyAnnouncements"){
@@ -961,7 +1269,9 @@ function timelineDetailsText(item, data){
 
 function buildClientWeddingWorksheet(data){
   const e=data.event||{}, c=data.client||{}, w=data.wedding||{}, people=w.people||{};
+  const peopleMaster=rowsToLines(w.peopleMaster,row=>`- ${row.name||""}${row.phonetic?" ("+row.phonetic+")":""}${row.role?" — "+row.role:""}${row.group?" ["+row.group+"]":""}${row.notes?" — "+row.notes:""}`);
   const timeline=allTimelineItems(data).map(item=>`- ${timelineDisplayTime(item)} — ${item.label}${item.notes?": "+item.notes:""}${timelineDetailsText(item,data) ? " | " + timelineDetailsText(item,data) : ""}`).join("\n");
+  const customCeremony=(w.ceremony?.customItems||[]).filter(x=>x.enabled&&x.label).map(x=>`- ${x.label}${x.notes?": "+x.notes:""}`).join("\n");
   const customResp=(w.customResponsibilities||[]).filter(x=>x.enabled&&x.label).map(x=>`- ${x.label}${x.notes?": "+x.notes:""}`).join("\n");
   const customDance=(w.customDanceEvents||[]).filter(x=>x.enabled&&x.label).map(x=>`- ${x.label}${x.notes?": "+x.notes:""}`).join("\n");
   const ceremonyPeople=rowsToLines(w.ceremony?.people,row=>`- ${row.name||""}${row.phonetic?" ("+row.phonetic+")":""}${row.role?" — "+row.role:""}`);
@@ -970,7 +1280,7 @@ function buildClientWeddingWorksheet(data){
   const songs=Object.values(w.dedicatedDanceSongs||{}).filter(x=>x.song||x.artist).map(x=>`- ${x.label}: ${x.song||""}${x.artist?" — "+x.artist:""}`).join("\n");
   const extraSongs=rowsToLines(w.danceSongs,row=>`- ${row.moment||"Dance"}: ${row.song||""}${row.artist?" — "+row.artist:""}`);
   const styles=checkedLabels(w.musicStyles||{},STYLE_DEFS).join(", ");
-  const toasts=rowsToLines(w.toasts,row=>`- ${row.name||""}${row.relationship?" — "+row.relationship:""}${row.notes?" ("+row.notes+")":""}`);
+  const toasts=rowsToLines(w.toasts,(row,i)=>`- ${i+1}. ${row.name||""}${row.phonetic?" ("+row.phonetic+")":""}${row.relationship?" — "+row.relationship:""}${row.notes?" ("+row.notes+")":""}`);
   const ann=rowsToLines(w.announcements,row=>`- ${row.name||""}${row.phonetic?" | Phonetic: "+row.phonetic:""}${row.role?" | "+row.role:""}`);
   return `CLIENT WEDDING WORKSHEET
 
@@ -987,6 +1297,9 @@ COUPLE / GUESTS OF HONOR
 ${people.partnerOne||""}
 ${people.partnerTwo||""}
 
+PEOPLE
+${peopleMaster}
+
 WEDDING TIMELINE
 ${timeline}
 
@@ -995,6 +1308,9 @@ ${customResp}
 
 EXTRA SPECIAL DANCE / EVENT SELECTIONS
 ${customDance}
+
+EXTRA CEREMONY ITEMS
+${customCeremony}
 
 CEREMONY SONGS
 ${ceremonySongs}
@@ -1014,6 +1330,11 @@ ${extraSongs}
 MUSIC STYLE PREFERENCES
 ${styles}
 
+PLAYLIST LINKS
+${w.music?.playlistSpotify ? "Spotify: " + w.music.playlistSpotify : ""}
+${w.music?.playlistApple ? "Apple Music: " + w.music.playlistApple : ""}
+${w.music?.playlistNotes || ""}
+
 MUST PLAY
 ${w.music?.mustPlay||""}
 
@@ -1028,6 +1349,12 @@ ${toasts}
 
 ANNOUNCEMENT NAMES + PHONETIC SPELLING
 ${ann}
+
+DINNER NOTES
+${w.dinnerNotes||""}
+
+DINNER MUSIC VIBE
+${w.dinnerMusicVibe||""}
 
 SPECIAL ANNOUNCEMENTS / NOTES
 ${w.notes||""}
@@ -1045,7 +1372,9 @@ function printRow(label,value){ return String(value||"").trim()?`<div class="pri
 function printList(title, items){ const clean=(items||[]).filter(Boolean); return clean.length?`<div class="print-section"><h2>${escapeHTML(title)}</h2><ul class="print-list">${clean.map(i=>`<li>${i}</li>`).join("")}</ul></div>`:""; }
 function buildClientWeddingWorksheetHTML(data){
   const e=data.event||{}, c=data.client||{}, w=data.wedding||{}, people=w.people||{};
+  const peopleMaster=(w.peopleMaster||[]).filter(r=>r.name||r.phonetic||r.role||r.group||r.notes).map(r=>`${escapeHTML(r.name||"")}${r.phonetic?" ("+escapeHTML(r.phonetic)+")":""}${r.role?" — "+escapeHTML(r.role):""}${r.group?" ["+escapeHTML(r.group)+"]":""}${r.notes?" — "+escapeHTML(r.notes):""}`);
   const timeline=allTimelineItems(data).map(item=>`${escapeHTML(timelineDisplayTime(item))} — ${escapeHTML(item.label)}${item.notes?": "+escapeHTML(item.notes):""}${timelineDetailsText(item,data) ? " | " + escapeHTML(timelineDetailsText(item,data)) : ""}`);
+  const customCeremony=(w.ceremony?.customItems||[]).filter(x=>x.enabled&&x.label).map(x=>`${escapeHTML(x.label)}${x.notes?": "+escapeHTML(x.notes):""}`);
   const customResp=(w.customResponsibilities||[]).filter(x=>x.enabled&&x.label).map(x=>`${escapeHTML(x.label)}${x.notes?": "+escapeHTML(x.notes):""}`);
   const customDance=(w.customDanceEvents||[]).filter(x=>x.enabled&&x.label).map(x=>`${escapeHTML(x.label)}${x.notes?": "+escapeHTML(x.notes):""}`);
   const party=(w.partyMembers||[]).filter(r=>r.name||r.phonetic||r.role).map(r=>`${escapeHTML(r.name||"")}${r.phonetic?" ("+escapeHTML(r.phonetic)+")":""}${r.role?" — "+escapeHTML(r.role):""}`);
@@ -1054,14 +1383,14 @@ function buildClientWeddingWorksheetHTML(data){
   const songs=Object.values(w.dedicatedDanceSongs||{}).filter(x=>x.song||x.artist).map(x=>`${escapeHTML(x.label)}: ${escapeHTML(x.song||"")}${x.artist?" — "+escapeHTML(x.artist):""}`);
   const extra=(w.danceSongs||[]).filter(r=>r.moment||r.song||r.artist).map(r=>`${escapeHTML(r.moment||"Dance")}: ${escapeHTML(r.song||"")}${r.artist?" — "+escapeHTML(r.artist):""}`);
   const styles=checkedLabels(w.musicStyles||{},STYLE_DEFS).map(escapeHTML);
-  const toasts=(w.toasts||[]).filter(r=>r.name||r.relationship||r.notes).map(r=>`${escapeHTML(r.name||"")}${r.relationship?" — "+escapeHTML(r.relationship):""}${r.notes?" ("+escapeHTML(r.notes)+")":""}`);
+  const toasts=(w.toasts||[]).filter(r=>r.name||r.phonetic||r.relationship||r.notes).map((r,i)=>`${i+1}. ${escapeHTML(r.name||"")}${r.phonetic?" ("+escapeHTML(r.phonetic)+")":""}${r.relationship?" — "+escapeHTML(r.relationship):""}${r.notes?" ("+escapeHTML(r.notes)+")":""}`);
   const ann=(w.announcements||[]).filter(r=>r.name||r.phonetic||r.role).map(r=>`${escapeHTML(r.name||"")}${r.phonetic?" | Phonetic: "+escapeHTML(r.phonetic):""}${r.role?" | "+escapeHTML(r.role):""}`);
   return `<div class="print-title">Client Wedding Worksheet</div><div class="print-subtitle">${escapeHTML(e.name||"Wedding")}${e.date?" • "+escapeHTML(displayDate(e.date)):""}</div>
   <div class="print-section"><h2>Event</h2>${printRow("Event Name",e.name)}${printRow("Date",displayDate(e.date))}${printRow("Location",e.location)}${printRow("Client",c.name)}${printRow("Client Phone",c.phone)}${printRow("Client Email",c.email)}</div>
   ${(people.partnerOne||people.partnerTwo)?`<div class="print-section"><h2>Couple / Guests of Honor</h2>${printRow("Partner 1",people.partnerOne)}${printRow("Partner 2",people.partnerTwo)}</div>`:""}
-  ${printList("Wedding Timeline",timeline)}${printList("Ceremony Songs",ceremonySongs)}${printList("Ceremony Names / Speaking Parts",ceremonyPeople)}${printList("Extra Wedding Responsibilities",customResp)}${printList("Extra Special Dance / Event Selections",customDance)}${printList("Wedding Party",party)}${printList("Special Dance Songs",songs.concat(extra))}${printList("Music Style Preferences",styles)}
-  ${w.music?.mustPlay?`<div class="print-section"><h2>Must Play</h2><div>${nl2br(w.music.mustPlay)}</div></div>`:""}${w.music?.doNotPlay?`<div class="print-section"><h2>Do Not Play</h2><div>${nl2br(w.music.doNotPlay)}</div></div>`:""}
-  ${w.dinnerNotes?`<div class="print-section"><h2>Dinner / Cocktail Notes</h2><div>${nl2br(w.dinnerNotes)}</div></div>`:""}${printList("Toasts",toasts)}${printList("Announcement Names + Phonetic Spelling",ann)}${w.notes?`<div class="print-section"><h2>Special Announcements / Notes</h2><div>${nl2br(w.notes)}</div></div>`:""}`;
+  ${printList("People",peopleMaster)}${printList("Wedding Timeline",timeline)}${printList("Extra Ceremony Items",customCeremony)}${printList("Ceremony Songs",ceremonySongs)}${printList("Ceremony Names / Speaking Parts",ceremonyPeople)}${printList("Extra Wedding Responsibilities",customResp)}${printList("Extra Special Dance / Event Selections",customDance)}${printList("Wedding Party",party)}${printList("Special Dance Songs",songs.concat(extra))}${printList("Music Style Preferences",styles)}
+  ${(w.music?.playlistSpotify||w.music?.playlistApple||w.music?.playlistNotes)?`<div class="print-section"><h2>Playlist Links</h2><div>${w.music.playlistSpotify?`Spotify: ${escapeHTML(w.music.playlistSpotify)}<br>`:""}${w.music.playlistApple?`Apple Music: ${escapeHTML(w.music.playlistApple)}<br>`:""}${w.music.playlistNotes?nl2br(w.music.playlistNotes):""}</div></div>`:""}${w.music?.mustPlay?`<div class="print-section"><h2>Must Play</h2><div>${nl2br(w.music.mustPlay)}</div></div>`:""}${w.music?.doNotPlay?`<div class="print-section"><h2>Do Not Play</h2><div>${nl2br(w.music.doNotPlay)}</div></div>`:""}
+  ${w.dinnerNotes?`<div class="print-section"><h2>Dinner / Cocktail Notes</h2><div>${nl2br(w.dinnerNotes)}</div></div>`:""}${printList("Toasts",toasts)}${printList("Announcement Names + Phonetic Spelling",ann)}${w.dinnerNotes?`<div class="print-section"><h2>Dinner Notes</h2><div>${nl2br(w.dinnerNotes)}</div></div>`:""}${w.dinnerMusicVibe?`<div class="print-section"><h2>Dinner Music Vibe</h2><div>${nl2br(w.dinnerMusicVibe)}</div></div>`:""}${w.notes?`<div class="print-section"><h2>Special Announcements / Notes</h2><div>${nl2br(w.notes)}</div></div>`:""}`;
 }
 function buildInternalWorksheetHTML(data){
   const e=data.event||{}, eq=data.equipment||{}, attire=data.attire||{};
@@ -1154,7 +1483,10 @@ function timelineDetailsHTML(item, data){
   }
 
   if(cleanKey === "toasts"){
-    const toasts = (w.toasts || []).map(personLine).filter(Boolean);
+    const toasts = (w.toasts || []).map((p,i)=> {
+      const line = personLine(p);
+      return line ? `${i+1}. ${line}` : "";
+    }).filter(Boolean);
     if(toasts.length) details.push(`<div class="timeline-live-detail"><strong>Toasts:</strong> ${toasts.join("; ")}</div>`);
   }
 
@@ -1230,6 +1562,313 @@ function savePerformerProfile(){ localStorage.setItem("decknics.contract.perform
 function loadPerformerProfile(){ const raw=localStorage.getItem("decknics.contract.performerProfile.v1"); if(!raw)return alert("No saved performer profile found."); fillContractForm({performer:JSON.parse(raw)}); }
 function handleLogoUpload(event){ const file=event.target.files?.[0]; if(!file)return; const reader=new FileReader(); reader.onload=()=>{setVal("branding_logoData",reader.result); generateContract();}; reader.readAsDataURL(file); }
 
+
+const SONG_SEARCH_DEMO_CATALOG = [
+  {song:"Perfect", artist:"Ed Sheeran", source:"Demo"},
+  {song:"A Thousand Years", artist:"Christina Perri", source:"Demo"},
+  {song:"Can’t Stop the Feeling!", artist:"Justin Timberlake", source:"Demo"},
+  {song:"My Girl", artist:"The Temptations", source:"Demo"},
+  {song:"A Song for Mama", artist:"Boyz II Men", source:"Demo"},
+  {song:"Signed, Sealed, Delivered", artist:"Stevie Wonder", source:"Demo"},
+  {song:"Somewhere Over the Rainbow", artist:"Israel Kamakawiwoʻole", source:"Demo"},
+  {song:"Canon in D", artist:"Pachelbel", source:"Demo"},
+  {song:"September", artist:"Earth, Wind & Fire", source:"Demo"},
+  {song:"Yeah!", artist:"Usher", source:"Demo"},
+  {song:"Mr. Brightside", artist:"The Killers", source:"Demo"},
+  {song:"Sugar", artist:"Maroon 5", source:"Demo"},
+  {song:"Single Ladies", artist:"Beyoncé", source:"Demo"},
+  {song:"Pony", artist:"Ginuwine", source:"Demo"},
+  {song:"Closing Time", artist:"Semisonic", source:"Demo"},
+  {song:"You Are the Best Thing", artist:"Ray LaMontagne", source:"Demo"}
+];
+
+function songMatches(query){
+  const q = String(query || "").toLowerCase().trim();
+  if(!q || q.length < 2) return [];
+  return SONG_SEARCH_DEMO_CATALOG.filter(item => `${item.song} ${item.artist}`.toLowerCase().includes(q)).slice(0, 6);
+}
+
+function attachSongAutocomplete(row){
+  if(!row || row.dataset.songAutocompleteAttached === "1") return;
+  const songInput = row.querySelector('[data-row-key="song"]');
+  const artistInput = row.querySelector('[data-row-key="artist"]');
+  if(!songInput && !artistInput) return;
+
+  row.dataset.songAutocompleteAttached = "1";
+  let box = row.querySelector(".song-suggest-box");
+  if(!box){
+    box = document.createElement("div");
+    box.className = "song-suggest-box";
+    row.appendChild(box);
+  }
+
+  const render = () => {
+    const q = `${songInput?.value || ""} ${artistInput?.value || ""}`.trim();
+    const matches = songMatches(q);
+    if(!matches.length){
+      box.classList.remove("active");
+      box.innerHTML = "";
+      return;
+    }
+    box.innerHTML = matches.map((item, index)=>`
+      <div class="song-suggest-item" onclick="selectInlineSongSuggestion(this, ${index})">
+        <div><strong>${escapeHTML(item.song)}</strong><br><small>${escapeHTML(item.artist)}</small></div>
+        <small>${escapeHTML(item.source)}</small>
+      </div>
+    `).join("");
+    box.dataset.matches = JSON.stringify(matches);
+    box.classList.add("active");
+  };
+
+  [songInput, artistInput].filter(Boolean).forEach(input=>{
+    input.addEventListener("input", render);
+    input.addEventListener("focus", render);
+    input.addEventListener("blur", ()=>setTimeout(()=>box.classList.remove("active"), 180));
+  });
+}
+
+function selectInlineSongSuggestion(el, index){
+  const box = el.closest(".song-suggest-box");
+  const row = el.closest(".dance-song-row") || el.closest(".dynamic-row");
+  const matches = JSON.parse(box?.dataset.matches || "[]");
+  const item = matches[index];
+  if(!item || !row) return;
+
+  const songInput = row.querySelector('[data-row-key="song"]');
+  const artistInput = row.querySelector('[data-row-key="artist"]');
+  if(songInput) songInput.value = item.song;
+  if(artistInput) artistInput.value = item.artist;
+  box.classList.remove("active");
+  generateContract();
+  renderTimelineScreen();
+}
+
+function attachAllSongAutocompletes(){
+  document.querySelectorAll(".dance-song-row, #extraDanceSongList .dynamic-row").forEach(attachSongAutocomplete);
+}
+
+
+let activeSongSearchRow = null;
+
+function openSongSearch(button){
+  activeSongSearchRow = button.closest(".dance-song-row") || button.closest(".dynamic-row");
+  const song = activeSongSearchRow?.querySelector('[data-row-key="song"]')?.value || "";
+  const artist = activeSongSearchRow?.querySelector('[data-row-key="artist"]')?.value || "";
+  const input = document.getElementById("songSearchInput");
+  if(input) input.value = `${song} ${artist}`.trim();
+  document.getElementById("songSearchModal")?.classList.add("active");
+  runSongSearch();
+  setTimeout(()=>input?.focus(),50);
+}
+
+function closeSongSearch(){
+  document.getElementById("songSearchModal")?.classList.remove("active");
+  activeSongSearchRow = null;
+}
+
+function runSongSearch(){
+  const q = String(document.getElementById("songSearchInput")?.value || "").toLowerCase().trim();
+  const results = document.getElementById("songSearchResults");
+  if(!results) return;
+
+  const matches = SONG_SEARCH_DEMO_CATALOG.filter(item => {
+    const hay = `${item.song} ${item.artist}`.toLowerCase();
+    return !q || hay.includes(q);
+  }).slice(0, 12);
+
+  results.innerHTML = matches.length ? matches.map((item, index)=>`
+    <div class="search-result">
+      <div>
+        <strong>${escapeHTML(item.song)}</strong><br>
+        <small>${escapeHTML(item.artist)} • ${escapeHTML(item.source)}</small>
+      </div>
+      <button type="button" onclick="selectSongSearchResult(${index})">Use</button>
+    </div>
+  `).join("") : `<div class="small">No demo results. You can still type songs manually. Spotify/Apple API will connect here later.</div>`;
+
+  results.dataset.matches = JSON.stringify(matches);
+}
+
+function selectSongSearchResult(index){
+  const results = document.getElementById("songSearchResults");
+  const matches = JSON.parse(results?.dataset.matches || "[]");
+  const item = matches[index];
+  if(!item || !activeSongSearchRow) return;
+
+  const songInput = activeSongSearchRow.querySelector('[data-row-key="song"]');
+  const artistInput = activeSongSearchRow.querySelector('[data-row-key="artist"]');
+  if(songInput) songInput.value = item.song;
+  if(artistInput) artistInput.value = item.artist;
+
+  generateContract();
+  renderTimelineScreen();
+  closeSongSearch();
+}
+
+function addPlaylistToMustPlay(){
+  const spotify = val("playlist_spotify");
+  const apple = val("playlist_apple");
+  const notes = val("playlist_notes");
+  const lines = [];
+  if(spotify) lines.push("Spotify Playlist: " + spotify);
+  if(apple) lines.push("Apple Music Playlist: " + apple);
+  if(notes) lines.push("Playlist Notes: " + notes);
+  if(!lines.length) return alert("Add a Spotify or Apple Music playlist link first.");
+
+  const current = val("wedding_mustPlay");
+  setVal("wedding_mustPlay", [current, lines.join("\\n")].filter(Boolean).join("\\n\\n"));
+  generateContract();
+}
+
+document.addEventListener("keydown", e=>{
+  if(e.key === "Escape") closeSongSearch();
+});
+
+
+function normalizeSongKey(song, artist){
+  return `${String(song||"").trim().toLowerCase()}::${String(artist||"").trim().toLowerCase()}`;
+}
+
+function splitMustPlaySongs(text){
+  return String(text || "")
+    .split(/\n+/)
+    .map(line => line.trim())
+    .filter(Boolean)
+    .map(line => {
+      // Accept common formats: "Song - Artist", "Artist - Song", or just text.
+      const parts = line.split(/\s+-\s+/);
+      if(parts.length >= 2){
+        return { song: parts[0].trim(), artist: parts.slice(1).join(" - ").trim(), source: "Must Play" };
+      }
+      return { song: line, artist: "", source: "Must Play" };
+    });
+}
+
+function collectAllSongsForPlaylist(){
+  const data = collectContractData();
+  const w = data.wedding || {};
+  const songs = [];
+
+  Object.values(w.ceremony?.songs || {}).forEach(item => {
+    if(item.song || item.artist) songs.push({ song:item.song||"", artist:item.artist||"", moment:item.label||"Ceremony", section:"Ceremony", source:"Ceremony Song" });
+  });
+
+  Object.values(w.dedicatedDanceSongs || {}).forEach(item => {
+    if(item.song || item.artist) songs.push({ song:item.song||"", artist:item.artist||"", moment:item.label||"Reception", section:"Reception", source:"Event Song" });
+  });
+
+  (w.danceSongs || []).forEach(item => {
+    if(item.song || item.artist) songs.push({ song:item.song||"", artist:item.artist||"", moment:item.moment||"Extra Dance / Song", section:"Reception", source:"Extra Song" });
+  });
+
+  splitMustPlaySongs(w.music?.mustPlay).forEach(item => {
+    if(item.song || item.artist) songs.push({ ...item, moment:"Must Play", section:"Music Direction" });
+  });
+
+  // Include playlist links as source-only rows so they are visible in exports/review.
+  if(w.music?.playlistSpotify) songs.push({ song:"Spotify Playlist Link", artist:w.music.playlistSpotify, moment:"Client Playlist", section:"Playlist Link", source:"Spotify" });
+  if(w.music?.playlistApple) songs.push({ song:"Apple Music Playlist Link", artist:w.music.playlistApple, moment:"Client Playlist", section:"Playlist Link", source:"Apple Music" });
+
+  const seen = new Set();
+  return songs.filter(item => {
+    const key = normalizeSongKey(item.song, item.artist);
+    if(!item.song && !item.artist) return false;
+    if(seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function renderPlaylistReview(){
+  const box = document.getElementById("playlist_review");
+  if(!box) return;
+  const songs = collectAllSongsForPlaylist();
+  if(!val("export_playlistName")){
+    const data = collectContractData();
+    setVal("export_playlistName", `${data.event?.name || "Wedding"} Playlist`);
+  }
+
+  if(!songs.length){
+    box.innerHTML = "<p>No songs entered yet.</p>";
+    return;
+  }
+
+  box.innerHTML = `
+    <div style="margin-bottom:10px"><strong>${songs.length}</strong> unique song/link item${songs.length === 1 ? "" : "s"} collected.</div>
+    <table>
+      <thead><tr><th>#</th><th>Section</th><th>Moment</th><th>Song</th><th>Artist / Link</th><th>Source</th></tr></thead>
+      <tbody>
+        ${songs.map((item,i)=>`
+          <tr>
+            <td>${i+1}</td>
+            <td><span class="playlist-pill">${escapeHTML(item.section||"")}</span></td>
+            <td>${escapeHTML(item.moment||"")}</td>
+            <td>${escapeHTML(item.song||"")}</td>
+            <td>${escapeHTML(item.artist||"")}</td>
+            <td>${escapeHTML(item.source||"")}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  `;
+}
+
+function playlistTXT(){
+  const name = val("export_playlistName") || "Wedding Playlist";
+  const songs = collectAllSongsForPlaylist();
+  return `${name}\n\n` + songs.map((item,i)=>
+    `${i+1}. ${item.song || ""}${item.artist ? " — " + item.artist : ""}${item.moment ? " [" + item.moment + "]" : ""}`
+  ).join("\n");
+}
+
+function playlistCSV(){
+  const rows = collectAllSongsForPlaylist();
+  const esc = value => `"${String(value ?? "").replaceAll('"','""')}"`;
+  return ["Number,Section,Moment,Song,Artist_or_Link,Source"].concat(
+    rows.map((item,i)=>[i+1,item.section,item.moment,item.song,item.artist,item.source].map(esc).join(","))
+  ).join("\n");
+}
+
+function downloadPlaylistTXT(){
+  renderPlaylistReview();
+  download((val("export_playlistName") || "wedding_playlist").replace(/[^a-z0-9_-]+/gi,"_") + ".txt", playlistTXT(), "text/plain");
+}
+
+function downloadPlaylistCSV(){
+  renderPlaylistReview();
+  download((val("export_playlistName") || "wedding_playlist").replace(/[^a-z0-9_-]+/gi,"_") + ".csv", playlistCSV(), "text/csv");
+}
+
+function exportSpotifyPlaylist(){
+  const endpoint = val("export_workerEndpoint");
+  const payload = {
+    service: "spotify",
+    playlistName: val("export_playlistName") || "Wedding Playlist",
+    songs: collectAllSongsForPlaylist()
+  };
+  if(!endpoint){
+    alert("Spotify export is Worker-ready. Add your Cloudflare Worker endpoint first. For now, download CSV/TXT.");
+    return;
+  }
+  alert("Worker hookup placeholder ready. Payload is prepared for Spotify playlist creation.");
+  console.log("Spotify playlist export payload", payload);
+}
+
+function exportAppleMusicPlaylist(){
+  const endpoint = val("export_workerEndpoint");
+  const payload = {
+    service: "appleMusic",
+    playlistName: val("export_playlistName") || "Wedding Playlist",
+    songs: collectAllSongsForPlaylist()
+  };
+  if(!endpoint){
+    alert("Apple Music export is Worker-ready. Add your Cloudflare Worker endpoint first. For now, download CSV/TXT.");
+    return;
+  }
+  alert("Worker hookup placeholder ready. Payload is prepared for Apple Music playlist creation.");
+  console.log("Apple Music playlist export payload", payload);
+}
+
 function loadDemoMode(){
   const demo={
     contract:{eventId:"demo-wedding-2026"},
@@ -1242,17 +1881,32 @@ function loadDemoMode(){
     equipment:{twoSpeakers:true,ceremonySystem:true,subwoofer:true,lights:true,largeDjSetup:true,table:true,laptop:true,ipad:true,headphones:true,wirelessMic:true,lavMic:true,wiredMic:true,largeCart:true,handCart:true,cableBag:true,notes:"Bring ceremony system, lav mic, wireless handheld, and dance floor lighting."},
     attire:{type:"Formal",notes:"Black suit."},
     wedding:{
+      peopleMaster:[
+        {name:"Alex Morgan",phonetic:"AL-ex MOR-gun",role:"Bride / Partner 1",group:"Couple",notes:""},
+        {name:"Jamie Taylor",phonetic:"JAY-mee TAY-ler",role:"Groom / Partner 2",group:"Couple",notes:""},
+        {name:"Morgan Lee",phonetic:"MOR-gun Lee",role:"Officiant",group:"Ceremony",notes:""},
+        {name:"Riley Chen",phonetic:"RYE-lee Chen",role:"Wedding Planner / Coordinator",group:"Vendor",notes:""},
+        {name:"Chris Smith",phonetic:"Kriss Smith",role:"Best Man",group:"Wedding Party",notes:""},
+        {name:"Taylor Lee",phonetic:"TAY-ler Lee",role:"Maid / Matron of Honor",group:"Wedding Party",notes:""},
+        {name:"Pat Morgan",phonetic:"Pat MOR-gun",role:"Father of Bride / Partner 1 Parent",group:"Family",notes:"Welcome toast"},
+        {name:"Dana Morgan",phonetic:"DAY-nuh MOR-gun",role:"Mother of Bride / Partner 1 Parent",group:"Family",notes:""},
+        {name:"Sam Taylor",phonetic:"Sam TAY-ler",role:"Father of Groom / Partner 2 Parent",group:"Family",notes:""},
+        {name:"Jordan Kim",phonetic:"JOR-dan Kim",role:"Reader / Ceremony Speaker",group:"Ceremony",notes:"Short reading"},
+        {name:"Sam Rivera",phonetic:"Sam Ruh-VAIR-uh",role:"Bridesmaid",group:"Wedding Party",notes:""}
+      ],
       responsibilities:{ceremony:true,cocktailHour:true,reception:true,dinnerMusic:true,announcements:true,timelineCoordination:true},
       customResponsibilities:[{enabled:true,label:"Photo Dash",notes:"Couple wants one photo with each table."}],
       customDanceEvents:[{enabled:true,label:"Private Last Dance",notes:"Clear room before song."}],
       ceremony:{
-        selections:{preGuestMusic:true,familySeating:true,weddingPartyProcessional:true,partnerProcessional:true,ceremonyStart:true,reading:false,vows:true,ringExchange:true,unityCeremony:false,pronouncement:true,recessional:true,postCeremonyAnnouncements:true},
+        selections:{preGuestMusic:true,familySeating:true,weddingPartyProcessional:true,partnerProcessional:true,ceremonyStart:true,reading:true,vows:true,ringExchange:true,unityCeremony:false,pronouncement:true,recessional:true,postCeremonyAnnouncements:true},
+        customItems:[{enabled:true,label:"Memorial Mention",notes:"Brief mention before vows."}],
         timelineItems:[
           {key:"ceremony_preGuestMusic",label:"Pre-Ceremony / Guest Arrival Music",time:"15:30",notes:"Play acoustic soul while guests arrive.",fixed:true,ceremony:true},
           {key:"ceremony_familySeating",label:"Family / VIP Seating",time:"15:50",notes:"Seat grandparents and parents.",fixed:true,ceremony:true},
           {key:"ceremony_weddingPartyProcessional",label:"Wedding Party Processional",time:"15:55",notes:"Cue planner before starting.",fixed:true,ceremony:true},
           {key:"ceremony_partnerProcessional",label:"Partner / Bride / Groom Processional",time:"15:58",notes:"Fade at front.",fixed:true,ceremony:true},
           {key:"ceremony_ceremonyStart",label:"Ceremony Start / Welcome",time:"16:00",notes:"Officiant welcome.",fixed:true,ceremony:true},
+          {key:"ceremony_reading",label:"Reading / Special Moment",time:"16:08",notes:"Jordan Kim reading.",fixed:true,ceremony:true},
           {key:"ceremony_vows",label:"Vows",time:"16:15",notes:"Handheld backup nearby.",fixed:true,ceremony:true},
           {key:"ceremony_ringExchange",label:"Ring Exchange",time:"16:20",notes:"No music under vows.",fixed:true,ceremony:true},
           {key:"ceremony_pronouncement",label:"Pronouncement / Kiss",time:"16:27",notes:"Be ready for recessional.",fixed:true,ceremony:true},
@@ -1268,19 +1922,17 @@ function loadDemoMode(){
         },
         people:[
           {name:"Morgan Lee",phonetic:"MOR-gun Lee",role:"Officiant"},
-          {name:"Pat Morgan",phonetic:"Pat MOR-gun",role:"Reader"}
+          {name:"Jordan Kim",phonetic:"JOR-dan Kim",role:"Reader"}
         ]
       },
-      dances:{grandEntrance:{enabled:true},firstDance:{enabled:true},parentDance:{enabled:true},motherSon:{enabled:true},fatherDaughter:{enabled:true},bouquetToss:{enabled:true},garterToss:{enabled:true},cakeCutting:{enabled:true},lastDance:{enabled:true}},
       timeline:{items:[
-        {key:"ceremonyStart",label:"Ceremony Start",time:"16:00",notes:"Processional starts when planner gives cue.",fixed:true},
-        {key:"ceremonyEnd",label:"Ceremony End",time:"16:30",notes:"Recessional.",fixed:true},
         {key:"cocktailStart",label:"Cocktail Hour Start",time:"16:35",notes:"Upbeat soul/disco.",fixed:true},
+        {key:"dinnerStart",label:"Dinner Start",time:"18:30",notes:"Buffet release by table.",fixed:true},
+        {key:"tableRelease",label:"Table Release / Buffet Announcements",time:"18:35",notes:"Release VIP/family tables first.",fixed:true},
+        {key:"toasts",label:"Toasts",time:"19:20",notes:"Best Man, Maid of Honor, then parent welcome.",fixed:true},
         {key:"receptionDoors",label:"Reception Doors / Guest Seating",time:"17:45",notes:"Invite guests inside.",fixed:true},
         {key:"grandEntrance",label:"Grand Entrance",time:"18:00",notes:"Parents, wedding party, couple.",fixed:true},
         {key:"firstDance",label:"First Dance",time:"18:10",notes:"Immediately after entrance.",fixed:true},
-        {key:"dinnerStart",label:"Dinner Start",time:"18:30",notes:"Buffet release by table.",fixed:true},
-        {key:"toasts",label:"Toasts",time:"19:20",notes:"Best Man, Maid of Honor, parents.",fixed:true},
         {key:"parentDances",label:"Parent Dances",time:"19:45",notes:"Father/Daughter then Mother/Son.",fixed:true},
         {key:"openDancing",label:"Open Dancing",time:"20:00",notes:"Open with September.",fixed:true},
         {key:"cakeCutting",label:"Cake Cutting",time:"20:45",notes:"Announce 5 min before.",fixed:true},
@@ -1290,22 +1942,75 @@ function loadDemoMode(){
         {key:"grandExit",label:"Grand Exit / Send-Off",time:"23:00",notes:"Sparkler exit.",fixed:true}
       ],extraItems:[{key:"extra",label:"Photo Dash",time:"20:30",displayTime:"8:30 PM",notes:"Photo with each table.",fixed:false}]},
       people:{partnerOne:"Alex Morgan",partnerTwo:"Jamie Taylor"},
-      partyMembers:[{name:"Chris Smith",phonetic:"Kriss Smith",role:"Best Man"},{name:"Taylor Lee",phonetic:"TAY-ler Lee",role:"Maid of Honor"},{name:"Sam Rivera",phonetic:"Ruh-VAIR-uh",role:"Bridesmaid"}],
-      dedicatedDanceSongs:{grandEntrance:{label:"Grand Entrance",song:"Can’t Stop the Feeling!",artist:"Justin Timberlake"},firstDance:{label:"First Dance",song:"Perfect",artist:"Ed Sheeran"},fatherDaughter:{label:"Father / Daughter Dance",song:"My Girl",artist:"The Temptations"},motherSon:{label:"Mother / Son Dance",song:"A Song for Mama",artist:"Boyz II Men"},bouquetToss:{label:"Bouquet Toss",song:"Single Ladies",artist:"Beyoncé"},garterToss:{label:"Garter Toss",song:"Pony",artist:"Ginuwine"},cakeCutting:{label:"Cake Cutting Song",song:"Sugar",artist:"Maroon 5"},lastDance:{label:"Last Dance",song:"Closing Time",artist:"Semisonic"}},
-      danceSongs:[{moment:"Private Last Dance",song:"You Are the Best Thing",artist:"Ray LaMontagne"}],
+      partyMembers:[
+        {name:"Chris Smith",phonetic:"Kriss Smith",role:"Best Man"},
+        {name:"Taylor Lee",phonetic:"TAY-ler Lee",role:"Maid of Honor"},
+        {name:"Sam Rivera",phonetic:"Sam Ruh-VAIR-uh",role:"Bridesmaid"}
+      ],
+      dances:{grandEntrance:{enabled:true},firstDance:{enabled:true},parentDance:{enabled:true},motherSon:{enabled:true},fatherDaughter:{enabled:true},bouquetToss:{enabled:true},garterToss:{enabled:true},cakeCutting:{enabled:true},lastDance:{enabled:true}},
+      dedicatedDanceSongs:{
+        grandEntrance:{label:"Grand Entrance",song:"Can’t Stop the Feeling!",artist:"Justin Timberlake"},
+        firstDance:{label:"First Dance",song:"Perfect",artist:"Ed Sheeran"},
+        fatherDaughter:{label:"Father / Daughter Dance",song:"My Girl",artist:"The Temptations"},
+        motherSon:{label:"Mother / Son Dance",song:"A Song for Mama",artist:"Boyz II Men"},
+        bouquetToss:{label:"Bouquet Toss",song:"Single Ladies",artist:"Beyoncé"},
+        garterToss:{label:"Garter Toss",song:"Pony",artist:"Ginuwine"},
+        cakeCutting:{label:"Cake Cutting Song",song:"Sugar",artist:"Maroon 5"},
+        lastDance:{label:"Last Dance",song:"Closing Time",artist:"Semisonic"},
+        customDance_0:{label:"Private Last Dance",song:"You Are the Best Thing",artist:"Ray LaMontagne"}
+      },
+      danceSongs:[],
       musicStyles:{cleanRadio:true,top40:true,pop:true,hipHop:true,rnb:true,danceEdm:true,discoFunk:true,motownSoul:true,latin:true,eighties:true,nineties:true,twoThousands:true,slowJams:true},
-      music:{mustPlay:"September - Earth, Wind & Fire\nYeah! - Usher\nMr. Brightside - The Killers",doNotPlay:"Chicken Dance\nExplicit versions"},
-      toasts:[{name:"Chris Smith",relationship:"Best Man",notes:"First toast"},{name:"Taylor Lee",relationship:"Maid of Honor",notes:"Second toast"}],
-      announcements:[{name:"Alex and Jamie",phonetic:"AL-ex and JAY-mee",role:"Newlyweds"}],
-      notes:"Pronounce Rivera as Ruh-VAIR-uh.", dinnerNotes:"Cocktail: upbeat soul/disco. Dinner: mellow R&B and acoustic covers. Release buffet by table number."
+      music:{mustPlay:"September - Earth, Wind & Fire\nYeah! - Usher\nMr. Brightside - The Killers",doNotPlay:"Chicken Dance\nExplicit versions",playlistSpotify:"https://open.spotify.com/playlist/demo-wedding",playlistApple:"https://music.apple.com/us/playlist/demo-wedding",playlistNotes:"Use playlist as inspiration, but keep clean versions."},
+      toasts:[
+        {name:"Chris Smith",phonetic:"Kriss Smith",relationship:"Best Man",notes:""},
+        {name:"Taylor Lee",phonetic:"TAY-ler Lee",relationship:"Maid of Honor",notes:""},
+        {name:"Pat Morgan",phonetic:"Pat MOR-gun",relationship:"Parent",notes:"Welcome toast"}
+      ],
+      announcements:[
+        {name:"Alex and Jamie",phonetic:"AL-ex and JAY-mee",role:"Newlyweds"},
+        {name:"Pat Morgan",phonetic:"Pat MOR-gun",role:"Welcome"}
+      ],
+      notes:"Pronounce Rivera as Ruh-VAIR-uh.",
+      dinnerNotes:"Buffet release by table. Confirm with coordinator before announcing.",
+      dinnerMusicVibe:"Mellow R&B, soul, acoustic covers, no dance floor bangers yet."
     },
+    playlistExport:{playlistName:"Alex & Jamie Wedding Playlist",workerEndpoint:""},
     customTerms:"Client agrees to provide vendor meal for events over five hours."
   };
+
   fillContractForm(demo);
+
+  // Explicitly route demo data into the visible mini-site Names tab role fields.
+  setVal("role_bride_name","Alex Morgan");
+  setVal("role_bride_phonetic","AL-ex MOR-gun");
+  setVal("role_groom_name","Jamie Taylor");
+  setVal("role_groom_phonetic","JAY-mee TAY-ler");
+  setVal("role_officiant_name","Morgan Lee");
+  setVal("role_officiant_phonetic","MOR-gun Lee");
+  setVal("role_planner_name","Riley Chen");
+  setVal("role_planner_phonetic","RYE-lee Chen");
+  setVal("role_bestMan_name","Chris Smith");
+  setVal("role_bestMan_phonetic","Kriss Smith");
+  setVal("role_moh_name","Taylor Lee");
+  setVal("role_moh_phonetic","TAY-ler Lee");
+  setVal("role_fob_name","Pat Morgan");
+  setVal("role_fob_phonetic","Pat MOR-gun");
+  setVal("role_reader_name","Jordan Kim");
+  setVal("role_reader_phonetic","JOR-dan Kim");
+
   ["pricing_totalFee","pricing_deposit","pricing_overtimeRate"].forEach(id=>{const el=document.getElementById(id); if(el) formatMoneyInput(el);});
-  showTab("clientWorksheetTab", Array.from(document.querySelectorAll(".tabbtn")).find(b=>b.textContent.includes("Client Wedding")));
-  alert("Demo wedding loaded.");
+
+  const clientBtn = Array.from(document.querySelectorAll(".tabbtn")).find(b=>b.textContent.includes("Client Wedding"));
+  showTab("clientWorksheetTab", clientBtn);
+  const namesBtn = Array.from(document.querySelectorAll(".mini-tabbtn")).find(b=>b.textContent.includes("Names"));
+  showWeddingMiniTab("namesMiniTab", namesBtn);
+
+  generateContract();
+  renderTimelineScreen();
+  alert("Demo wedding loaded into the mini-site flow.");
 }
+
 function resetBlankMode(){ if(confirm("Reset the generator to a blank form?")) location.reload(); }
 
 function setDefaultDateTime(){
@@ -1332,6 +2037,8 @@ function setupFieldPolish(){
 
 setupChecklists();
 setDefaultDateTime();
+setDynamicRows("peopleMasterList",addPersonMasterRow,[]);
+setDynamicRows("customCeremonyList",addCustomCeremonyRow,[]);
 setDynamicRows("customResponsibilityList",addCustomResponsibilityRow,[]);
 setDynamicRows("customDanceEventList",addCustomDanceEventRow,[]);
 setDynamicRows("ceremonyPeopleList",addCeremonyPersonRow,[]);
@@ -1342,7 +2049,22 @@ setDynamicRows("extraTimelineList",addExtraTimelineRow,[]);
 setDynamicRows("extraDanceSongList",addExtraDanceSongRow,[]);
 setupFieldPolish();
 rebuildWorksheetGeneratedSections();
+attachAllSongAutocompletes();
 generateContract();
 </script>
+
+<div id="songSearchModal" class="modal-backdrop">
+  <div class="modal">
+    <h2>Search Song</h2>
+    <p class="small">Simple local/demo search for now. Spotify / Apple Music API can plug into this same window through a Cloudflare Worker later.</p>
+    <input id="songSearchInput" placeholder="Search song and artist..." oninput="runSongSearch()">
+    <div class="toolbar" style="margin-top:10px">
+      <button type="button" onclick="runSongSearch()">Search</button>
+      <button class="secondary" type="button" onclick="closeSongSearch()">Cancel</button>
+    </div>
+    <div id="songSearchResults" class="search-results"></div>
+  </div>
+</div>
+
 </body>
 </html>
